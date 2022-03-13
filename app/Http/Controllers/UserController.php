@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:admin');
+        $this->middleware('role:user');
     }
     public function list()
     {
@@ -26,7 +27,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view('profile');
     }
 
     /**
@@ -47,7 +48,6 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
     }
 
     /**
@@ -69,7 +69,11 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+
+        return view('profile', [
+            'profile' => $user
+        ]);
     }
 
     /**
@@ -81,7 +85,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+
+        request()->validate([
+            'name' => 'required',
+            'npm' => 'required',
+            'phone' => 'required',
+            'email' => 'required'
+        ]);
+        $user = User::find($id)->update($request->all());
+        return back()->with('success', ' Data telah diperbaharui!');
     }
 
     /**
