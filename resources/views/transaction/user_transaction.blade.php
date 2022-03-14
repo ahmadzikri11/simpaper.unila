@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>File Upload</title>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css')}}" rel="stylesheet">
 </head>
 
 <body>
@@ -17,8 +17,8 @@
                 <div class="md:grid md:grid-cols-3 md:gap-6">
                     <div class="md:col-span-1">
                         <div class="px-4 sm:px-0">
-                            <h3 class="text-lg font-medium leading-6 text-gray-900">Profile</h3>
-                            <p class="mt-1 text-sm text-gray-600">This information will be displayed publicly so be careful what you share.</p>
+                            <h3 class="text-lg font-medium leading-6 text-gray-900">Kirim File</h3>
+                            <p class="mt-1 text-sm text-gray-600">Kirim File Perjuanganmu disini</p>
                         </div>
                     </div>
 
@@ -31,8 +31,8 @@
                                     <div class="grid grid-cols-3 gap-6">
                                         <div class="col-span-3 sm:col-span-2">
                                             <div class="col-span-6 sm:col-span-3">
-                                                <label for="first-name" class="block text-sm font-medium text-gray-700">NAMA</label>
-                                                <input type="text" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <label for="name" class="block text-sm font-medium text-gray-700">NAMA</label>
+                                                <input type="text" name="name" id="name" value="{{$user->name}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
                                         </div>
                                     </div>
@@ -42,7 +42,7 @@
                                             <div>
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="npm" class="block text-sm font-medium text-gray-700">NPM</label>
-                                                    <input type="number" name="npm" id="npm" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <input type="number" name="npm" id="npm" value="{{$user->npm}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
                                             </div>
                                         </div>
@@ -52,8 +52,8 @@
                                         <div class="col-span-3 sm:col-span-2">
                                             <div>
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <label for="email-address" class="block text-sm font-medium text-gray-700">Email address</label>
-                                                    <input type="text" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                                                    <input type="text" name="email" id="email" value="{{$user->email}}" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
                                             </div>
                                         </div>
@@ -64,7 +64,7 @@
                                         <div class="col-span-3 sm:col-span-2">
                                             <div class="col-span-6 sm:col-span-3">
                                                 <label for="phone" class="block text-sm font-medium text-gray-700">Nomer Whattsapp</label>
-                                                <input type="text" name="phone" id="phone" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                <input type="text" name="phone" id="phone" value="{{$user->phone}}" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             </div>
                                         </div>
                                     </div>

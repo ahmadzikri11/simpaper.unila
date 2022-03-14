@@ -18,9 +18,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        // $user = User::all();
-        // return view('transaction.user_transaction' . compact('user'));
-        return view('transaction.user_transaction');
+        $user = Auth::user();
+        return view('transaction.user_transaction', compact('user'));
     }
 
 

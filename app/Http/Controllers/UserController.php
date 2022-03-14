@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use League\CommonMark\Extension\CommonMark\Parser\Inline\BacktickParser;
 
 class UserController extends Controller
 {
@@ -27,7 +29,8 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('profile');
+        $user = Auth::user();
+        return view('profile', compact('user'));
     }
 
     /**
@@ -69,11 +72,6 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        $user = User::findOrFail($id);
-
-        return view('profile', [
-            'profile' => $user
-        ]);
     }
 
     /**
@@ -83,17 +81,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user, $id)
     {
-
-        request()->validate([
+        $this->validate($request, [
             'name' => 'required',
             'npm' => 'required',
             'phone' => 'required',
-            'email' => 'required'
+            'email' => 'required',
         ]);
-        $user = User::find($id)->update($request->all());
-        return back()->with('success', ' Data telah diperbaharui!');
+
+        $user = User::find($id);
+
+        $user->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'npm' => $request['npm'],
+            'phone' => $request['phone'],
+        ]);
+
+        return redirect()->route('profile')->with('success', ' Data telah diperbaharui!');
     }
 
     /**

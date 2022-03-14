@@ -23,9 +23,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/profile', [UserController::class, 'index']);
-Route::post('/profile/update', [UserController::class, 'update'])->name('profile/update');
-
+Route::get('/profile', [UserController::class, 'index'])->name('profile');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
@@ -37,4 +35,4 @@ Route::middleware(['role:user', 'auth'])->group(function () {
     Route::get('test', [UserController::class, 'list'])->name('user.list');
 });
 
-Route::post('/profileupdate', [UserController::class, 'update']);
+Route::put('/profile/update/{id}', [UserController::class, 'update'])->name('profile.update');

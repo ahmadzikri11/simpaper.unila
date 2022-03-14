@@ -21,16 +21,18 @@
                                 <p class="mt-1 text-sm text-gray-600">Lengkapi Profile Terlebih Dahulu.</p>
                             </div>
                         </div>
+
                         <div class="mt-5 md:mt-0 md:col-span-2">
-                            <form action="{{route('profile/update', $siswa->id) }}" method="POST">
+                            <form action="{{route('profile.update', ['id' => $user->id,]) }}" method="POST">
                                 @csrf
+                                @method('PUT')
                                 <div class="shadow sm:rounded-md sm:overflow-hidden">
                                     <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                                         <div class="grid grid-cols-3 gap-6">
                                             <div class="col-span-3 sm:col-span-2">
                                                 <div class="col-span-6 sm:col-span-3">
-                                                    <label for="first-name" class="block text-sm font-medium text-gray-700">NAMA</label>
-                                                    <input type="text" value="{{ $user->name }}" name="first-name" id="first-name" autocomplete="given-name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
+                                                    <input type="text" value="{{old('name') ?? $user->name}}" name="name" id="name" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
                                             </div>
                                         </div>
@@ -40,7 +42,7 @@
                                                 <div>
                                                     <div class="col-span-6 sm:col-span-3">
                                                         <label for="npm" class="block text-sm font-medium text-gray-700">NPM</label>
-                                                        <input type="number" value="{{ $user->npm }}" name="npm" id="npm" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                        <input type="number" value="{{ old('npm') ?? $user->npm}}" name="npm" id="npm" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                     </div>
                                                 </div>
                                             </div>
@@ -50,8 +52,8 @@
                                             <div class="col-span-3 sm:col-span-2">
                                                 <div>
                                                     <div class="col-span-6 sm:col-span-3">
-                                                        <label for="email-address" class="block text-sm font-medium text-gray-700">Email address</label>
-                                                        <input type="text " value="{{ $user->email}}" name="email-address" id="email-address" autocomplete="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                        <label for="email" class="block text-sm font-medium text-gray-700">Alamat Email</label>
+                                                        <input type="email" value="{{old('email') ??$user->email}}" name="email" id="email" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                     </div>
                                                 </div>
                                             </div>
@@ -62,7 +64,7 @@
                                             <div class="col-span-3 sm:col-span-2">
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="phone" class="block text-sm font-medium text-gray-700">Nomer Whattsapp</label>
-                                                    <input type="text" value="{{ $user->phone }}" name="phone" id="phone" autocomplete="given-phone" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <input type="text" value="{{old('phone') ?? $user->phone}}" name="phone" id="phone" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
                                             </div>
                                         </div>
@@ -70,7 +72,7 @@
                                             <div class="col-span-3 sm:col-span-2">
                                                 <div class="col-span-6 sm:col-span-3">
                                                     <label for="token" class="block text-sm font-medium text-gray-700">Token</label>
-                                                    <input type="text" name="token" value="{{ $post->title }}" id="token" autocomplete="given-token" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
+                                                    <input type="text" name="token" value="" id="token" autocomplete="given-token" class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                                 </div>
                                             </div>
                                         </div>
@@ -91,13 +93,7 @@
                 </div>
 
 
-
-
             </div>
-
-
-
-
 
             <x-jet-section-border />
             @endif
