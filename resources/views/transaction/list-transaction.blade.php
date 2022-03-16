@@ -22,7 +22,7 @@
                                 </th>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-
+                                    Token
                                 </th>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
@@ -44,17 +44,17 @@
                                         {{ $transaction->transactions->name }}
                                     </td>
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $transaction->token }}
+                                        {{ $transaction->transactions->npm }}
                                     </td>
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        d
+                                        {{ $transaction->transactions->phone }}
 
                                     </td>
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        a
+                                        {{ $transaction->token }}
                                     </td>
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        a
+                                        Belum Validasi
                                     </td>
                                     <td class="py-4 px-10 text-sm font-medium text-right whitespace-nowrap">
                                         <a href="{{ route('validation') }}"></a>

@@ -29,8 +29,6 @@ class TransactionController extends Controller
     }
     public function listRequest()
     {
-        $users = transaction::join('users', 'users.id', '=', 'posts.user_id')
-            ->get(['users.*', 'posts.descrption']);
         $transaction = Transaction::all();
         return view('transaction.list-transaction', compact('transaction'));
     }

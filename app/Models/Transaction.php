@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -18,11 +19,8 @@ class Transaction extends Model
         'token',
         'user_id',
     ];
-
-    protected $table = 'transactions';
-
     public function transactions()
     {
-        return $this->hasMany(User::class);
+        return $this->hasOne(User::class, 'id', 'user_id');
     }
 }
