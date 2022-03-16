@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -21,6 +22,11 @@ class TransactionController extends Controller
         $user = Auth::user();
         return view('transaction.user_transaction', compact('user'));
     }
+    public function Status()
+    {
+        $user = Auth::user();
+        return view('transaction.status_transaction', compact('user'));
+    }
 
 
     /**
@@ -30,22 +36,22 @@ class TransactionController extends Controller
      */
     public function create(Request $request)
     {
-        $token = $request->token;
-        $periode = $request->periode;
-        $file1 = $request->file1;
-        $file2 = $request->file2;
-        $file3 = $request->file3;
+        $attr = $request->validate([
+            'file1' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file2' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file3' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'token' => 'required',
+            'periode_wisuda' => 'required',
+        ]);
 
+        $attr['user_id'] = auth()->user()->id;
+        $attr['file1'] = $this->storeFile($request->file('file1'), 'surat-rekomendasi');
+        $attr['file2'] = $this->storeFile($request->file('file2'), 'surat-keterangan');
+        $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
 
+        Transaction::create($attr);
 
-        $transaksi = new Transaksi;
-        $transaksi->token = $token;
-        $transaksi->periode = $periode;
-        $transaksi->file1 = $file1;
-        $transaksi->file2 = $file2;
-        $transaksi->file3 = $file3;
-        $transaksi->save();
-        return back();
+        return back()->with('message', 'Data berhasil ditambahkan');
     }
 
 

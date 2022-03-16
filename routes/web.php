@@ -23,16 +23,18 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/profile', [UserController::class, 'index'])->name('profile');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
-Route::get('/transaction/user_transaction', [TransactionController::class, 'index'])->name('transcation/user_transaction');
-Route::post('/transaction/user_transaction', [TransactionController::class, 'create'])->name('transcation/user_transaction');
+Route::middleware('auth')->group(function () {
+    Route::get('/transaction/user_transaction', [TransactionController::class, 'index'])->name('transcation/user_transaction');
+    Route::get('/profile', [UserController::class, 'index'])->name('profile');
+    Route::post('/transaction/user_transaction', [TransactionController::class, 'create'])->name('transcation/user_transaction');
+    Route::put('/profile/update/{id}', [UserController::class, 'update'])->name('profile.update');
+    Route::get('/transaction/status', [TransactionController::class, 'status'])->name('transcation/status');
+});
 
 Route::middleware(['role:user', 'auth'])->group(function () {
     Route::get('test', [UserController::class, 'list'])->name('user.list');
 });
-
-Route::put('/profile/update/{id}', [UserController::class, 'update'])->name('profile.update');

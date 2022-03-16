@@ -16,5 +16,6 @@ class Transaction extends Model
         'file3',
         'periode_wisuda',
         'token',
+        'user_id',
     ];
 }
