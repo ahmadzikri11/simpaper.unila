@@ -27,6 +27,13 @@ class TransactionController extends Controller
         $user = Auth::user();
         return view('transaction.status_transaction', compact('user'));
     }
+    public function listRequest()
+    {
+        $users = transaction::join('users', 'users.id', '=', 'posts.user_id')
+            ->get(['users.*', 'posts.descrption']);
+        $transaction = Transaction::all();
+        return view('transaction.list-transaction', compact('transaction'));
+    }
 
 
     /**

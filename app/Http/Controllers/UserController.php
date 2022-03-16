@@ -11,13 +11,13 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('role:user');
+        $this->middleware('role:admin');
     }
-    public function list()
+    public function listaccount()
     {
-        return view('policy', [
-            'policy' => 'ASD ASD ASD',
-        ]);
+        $user = User::all();
+        // return ($user);
+        return view('transaction.list-account', compact('user'));
     }
 
 
@@ -32,6 +32,12 @@ class UserController extends Controller
         $user = Auth::user();
         return view('profile', compact('user'));
     }
+    public function display()
+    {
+        return view('dashboard-admin');
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

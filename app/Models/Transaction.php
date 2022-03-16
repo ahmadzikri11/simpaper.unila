@@ -18,4 +18,11 @@ class Transaction extends Model
         'token',
         'user_id',
     ];
+
+    protected $table = 'transactions';
+
+    public function transactions()
+    {
+        return $this->hasMany(User::class);
+    }
 }
