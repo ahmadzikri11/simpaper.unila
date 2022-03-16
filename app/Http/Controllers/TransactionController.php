@@ -32,6 +32,11 @@ class TransactionController extends Controller
         $transaction = Transaction::all();
         return view('transaction.list-transaction', compact('transaction'));
     }
+    public function validation()
+    {
+        $transaction = Transaction::all();
+        return view('transaction.validation', compact('transaction'));
+    }
 
 
     /**

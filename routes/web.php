@@ -39,5 +39,5 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/account', [UserController::class, 'listaccount'])->name('account.list');
     Route::get('/dashboard/admin', [UserController::class, 'display'])->name('dashboard.admin');
     Route::get('/dashboard/list/request', [TransactionController::class, 'listRequest'])->name('request.list');
-    Route::get('/dashboard/list/validation', [TransactionController::class, 'validation'])->name('validation');
+    Route::get('/dashboard/validation', [TransactionController::class, 'validation'])->name('validation');
 });
