@@ -1,12 +1,14 @@
 @extends('side-bar')
 @section('title', 'List Transaksi')
 @section('content')
+
+
     <div class="flex flex-col px-12 mt-5">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
                 <div class="overflow-hidden shadow-md sm:rounded-lg">
                     <table class="min-w-full">
-                        <thead class="bg-blue-300 dark:bg-gray-700">
+                        <thead class="bg-purple-200 text-purple-600 uppercase text-sm leading-normal">
                             <tr>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
@@ -26,11 +28,15 @@
                                 </th>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                    Waktu Upload
+                                </th>
+                                <th scope="col"
+                                    class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
                                     Status
                                 </th>
                                 <th scope="col"
                                     class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                    Action
+                                    Validasi
                                 </th>
 
                             </tr>
@@ -54,20 +60,35 @@
                                         {{ $transaction->token }}
                                     </td>
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        {{ $transaction->status }}
+                                        {{ $transaction->created_at }}
                                     </td>
-                                    <td class="py-4 px-10 text-sm font-medium text-right whitespace-nowrap">
-                                        <a href="{{ route('validation') }}">
-                                            <button type="button "
-                                                class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                                Validasi
-                                                <svg class="w-5 h-5 ml-1" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <td>
+                                        <span
+                                            class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">{{ $transaction->status }}</span>
+
+                                    </td>
+                                    <td class="py-3 px-6 text-center">
+                                        <div class="flex item-center justify-center">
+                                            <a href="{{ route('validation') }}">
+                                                <div class="w-4 mr-2 transform hover:text-green-500 hover:scale-110">
+                                                    <svg class="w-5" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                            </a>
+
+                                            <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
+                                                <svg class="w-5" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                    viewBox="0 0 24 24" stroke="currentColor">
                                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                        d="M5 13l4 4L19 7"></path>
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                                                 </svg>
-                                            </button>
-                                        </a>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

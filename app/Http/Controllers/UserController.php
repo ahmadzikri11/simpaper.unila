@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Pagination\Paginator;
 use League\CommonMark\Extension\CommonMark\Parser\Inline\BacktickParser;
 
 class UserController extends Controller
@@ -15,8 +16,8 @@ class UserController extends Controller
     }
     public function listaccount()
     {
-        $user = User::all();
-        // return ($user);
+        $user = User::paginate(10);
+
         return view('transaction.list-account', compact('user'));
     }
 

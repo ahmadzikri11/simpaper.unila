@@ -32,7 +32,7 @@ class TransactionController extends Controller
 
     public function listRequest()
     {
-        $transaction = Transaction::all();
+        $transaction = Transaction::paginate(10);
         return view('transaction.list-transaction', compact('transaction'));
     }
     public function validation()
