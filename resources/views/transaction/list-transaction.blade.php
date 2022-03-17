@@ -54,7 +54,7 @@
                                         {{ $transaction->token }}
                                     </td>
                                     <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                        Belum Validasi
+                                        {{ $transaction->status }}
                                     </td>
                                     <td class="py-4 px-10 text-sm font-medium text-right whitespace-nowrap">
                                         <a href="{{ route('validation') }}">

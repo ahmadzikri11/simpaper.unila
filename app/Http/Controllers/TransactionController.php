@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
-use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
+use GuzzleHttp\Client;
+use GuzzleHttp;
+
 
 class TransactionController extends Controller
 {
@@ -22,11 +23,13 @@ class TransactionController extends Controller
         $user = Auth::user();
         return view('transaction.user_transaction', compact('user'));
     }
+
     public function Status()
     {
         $user = Auth::user();
         return view('transaction.status_transaction', compact('user'));
     }
+
     public function listRequest()
     {
         $transaction = Transaction::all();
@@ -38,6 +41,45 @@ class TransactionController extends Controller
         return view('transaction.validation', compact('transaction'));
     }
 
+    public function validationUpdate(Request $request, Transaction $transaction, $id)
+    {
+
+        $this->validate($request, [
+            'status' => 'required',
+        ]);
+        $transaction = Transaction::find($id);
+        $transaction->update([
+            'status' => $request['status'],
+        ]);
+        return redirect()->route('validation')->with('success', ' Data telah diperbaharui!');
+    }
+
+
+    public function message($phone)
+    {
+
+        $client = new Client();
+
+        $url = "https://app.whatspie.com/api/messages";
+
+
+        $request = $client->post(
+            $url,
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'Authorization' => 'Bearer ' . 'uTusgUQmz2vRHtmU4Q8FIcHKV79fhjTifmhxAfjzHZDptUVaOP'
+                ],
+                'form_params' => [
+                    'receiver' => $phone,
+                    'device' => '62816514372',
+                    'message' => 'Hi there, this is from API',
+                    'type' => 'chat'
+                ]
+            ]
+        );
+    }
 
     /**
      * Show the form for creating a new resource.

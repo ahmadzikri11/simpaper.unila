@@ -18,6 +18,7 @@ class Transaction extends Model
         'periode_wisuda',
         'token',
         'user_id',
+        'status',
     ];
     public function transactions()
     {
