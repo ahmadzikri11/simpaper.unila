@@ -173,7 +173,7 @@
                                                     </a>
                                                     <a>
                                                         <form
-                                                            action="{{ route('validation.accepted', ['id' => $transaction->id]) }}"
+                                                            action="{{ route('validation.accept', ['id' => $transaction->id]) }}"
                                                             method="POST"
                                                             class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
                                                             @csrf
@@ -268,7 +268,7 @@
                                                     </a>
                                                     <a>
                                                         <form
-                                                            action="{{ route('validation.accepted', ['id' => $transaction->id]) }}"
+                                                            action="{{ route('validation.reject', ['id' => $transaction->id]) }}"
                                                             method="POST"
                                                             class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                                                             @csrf
@@ -312,4 +312,40 @@
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
+
+    <div class="flex px-12 mt-5">
+        <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+            <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
+                <div class="overflow-hidden shadow-md sm:rounded-lg">
+                    <!-- component -->
+                    <div class="h-auto flex bg-gray-200">
+
+                        <!-- Card -->
+                        <div class="bg-white p-8 w-[32rem]">
+                            <header class="flex font-light text-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-90 -ml-2" viewBox="0 0 24 24"
+                                    stroke="#b91c1c">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                                </svg>
+                                <p> File Data Skripsi</p>
+                            </header>
+                            <a href="{{ route('file1') }}">{{ $transaction->file1 }}</a>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 @endsection

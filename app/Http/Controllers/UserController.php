@@ -14,11 +14,39 @@ class UserController extends Controller
     {
         $this->middleware('role:admin');
     }
+
     public function listaccount()
     {
         $user = User::paginate(10);
 
         return view('transaction.list-account', compact('user'));
+    }
+
+
+    public function editAccount($id)
+    {
+        $user = User::find($id);
+        return view('transaction.edit-account', compact('user'));
+    }
+    public function updateAccount(Request $request, User $user, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'npm' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+        ]);
+
+        $user = User::find($id);
+
+        $user->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'npm' => $request['npm'],
+            'phone' => $request['phone'],
+        ]);
+
+        return redirect()->route('account.list')->with('success', ' Data telah diperbaharui!');
     }
 
 
@@ -116,8 +144,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user, $id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        return redirect()->route('account.list')->with('success', ' Data telah Dihapus!');
     }
 }

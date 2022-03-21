@@ -40,8 +40,13 @@ class TransactionController extends Controller
         $transaction = Transaction::all();
         return view('transaction.validation', compact('transaction'));
     }
+    public function showFile1()
+    {
+        $transaction = Transaction::all();
+        return view('transaction.iframe-file1', compact('transaction'));
+    }
 
-    public function validationUpdate(Request $request, Transaction $transaction, $id)
+    public function validationAccept(Request $request, Transaction $transaction, $id)
     {
 
         $this->validate($request, [
@@ -51,7 +56,20 @@ class TransactionController extends Controller
         $transaction->update([
             'status' => $request['status'],
         ]);
-        return redirect()->route('validation')->with('success', ' Data telah diperbaharui!');
+        return redirect()->route('request.list')->with('success', ' Data telah diperbaharui!');
+    }
+
+    public function validationreject(Request $request, Transaction $transaction, $id)
+    {
+
+        $this->validate($request, [
+            'status' => 'required',
+        ]);
+        $transaction = Transaction::find($id);
+        $transaction->update([
+            'status' => $request['status'],
+        ]);
+        return redirect()->route('request.list')->with('success', ' Data telah diperbaharui!');
     }
 
 
@@ -106,6 +124,29 @@ class TransactionController extends Controller
         return back()->with('message', 'Data berhasil ditambahkan');
     }
 
+    public function downloadFile1(Request $request)
+    {
+        $attr = $request->validate([
+            'file1' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file2' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file3' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'token' => 'required',
+            'periode_wisuda' => 'required',
+        ]);
+
+        $attr['user_id'] = auth()->user()->id;
+        $attr['file1'] = $this->storeFile($request->file('file1'), 'surat-rekomendasi');
+        $attr['file2'] = $this->storeFile($request->file('file2'), 'surat-keterangan');
+        $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
+
+        Transaction::create($attr);
+
+        return back()->with('message', 'Data berhasil ditambahkan');
+    }
+
+
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -158,8 +199,10 @@ class TransactionController extends Controller
      * @param  \App\Models\Transaction  $transaction
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Transaction $transaction)
+    public function destroy(Transaction $transaction, $id)
     {
-        //
+        $transaction = Transaction::find($id);
+        $transaction->delete();
+        return redirect()->route('request.list')->with('success', ' Data telah Dihapus!');
     }
 }

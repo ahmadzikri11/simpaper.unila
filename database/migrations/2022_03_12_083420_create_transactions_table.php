@@ -22,7 +22,7 @@ class CreateTransactionsTable extends Migration
             $table->string('file1');
             $table->string('file2');
             $table->string('file3');
-            $table->string('status')->default('Belum Validasi');
+            $table->string('status')->default('Diproses');
         });
     }
 

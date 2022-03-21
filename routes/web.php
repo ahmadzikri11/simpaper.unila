@@ -26,7 +26,7 @@ Route::get('/', function () {
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard-admin');
+    return view('dashboard');
 })->name('dashboard');
 
 
@@ -41,9 +41,15 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/account', [UserController::class, 'listaccount'])->name('account.list');
+    Route::get('/dashboard/list/account/editaccount{id}', [UserController::class, 'editAccount'])->name('edit.account');
+    Route::put('/dashboard/list/account/editaccount{id}', [UserController::class, 'updateAccount'])->name('update.account');
+    Route::get('/dashboard/list/account/deleteaccount{id}', [UserController::class, 'destroy'])->name('delete.account');
+    Route::get('/dashboard/list/account/deletetransaction{id}', [TransactionController::class, 'destroy'])->name('delete.transaction');
     Route::get('/dashboard/list/request', [TransactionController::class, 'listRequest'])->name('request.list');
     Route::get('/dashboard/admin', [UserController::class, 'display'])->name('dashboard.admin');
     Route::get('/dashboard/validation', [TransactionController::class, 'validation'])->name('validation');
-    Route::put('/dashboard/validation/{id}', [TransactionController::class, 'validationUpdate'])->name('validation.accepted');
+    Route::put('/dashboard/validation/accept{id}', [TransactionController::class, 'validationAccept'])->name('validation.accept');
+    Route::put('/dashboard/validation/reject{id}', [TransactionController::class, 'validationReject'])->name('validation.reject');
     Route::post('/dashboard/validation/{phone}', [TransactionController::class, 'message'])->name('validation.message');
+    Route::get('/dashboard/validation/file/skripsi', [TransactionController::class, 'showFile1'])->name('file1');
 });
