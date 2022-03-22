@@ -336,10 +336,16 @@
                                 </svg>
                                 <p> File Data Skripsi</p>
                             </header>
-                            <a href="{{ route('file1') }}">{{ $transaction->file1 }}</a>
+
+                            {{-- <embed src="{{ url('/storage/' . $transaction->file1) }}" type="application/pdf"
+                                style=" width:500px; height:600px;"> --}}
 
 
 
+                            <a href="{{ route('file1', ['path' => $transaction->file1]) }}">File
+                                Skripsi</a>
+                            <a href="{{ route('file2') }}">File Skripsi</a>
+                            <a href="{{ route('file3') }}">File Skripsi</a>
                         </div>
                     </div>
                 </div>

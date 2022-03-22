@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -63,7 +64,11 @@ class UserController extends Controller
     }
     public function display()
     {
-        return view('dashboard-admin');
+        $user = User::count();
+        $transaction = Transaction::count();
+        $transactionaccept = Transaction::where('status', 'Sudah Tervalidasi')->count();
+        $transactionproses = Transaction::where('status', 'Belum Validasi')->count();
+        return view('dashboard-admin', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
     }
 
 

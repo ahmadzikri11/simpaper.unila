@@ -40,10 +40,26 @@ class TransactionController extends Controller
         $transaction = Transaction::all();
         return view('transaction.validation', compact('transaction'));
     }
-    public function showFile1()
+    public function showFile1($path)
+    {
+        $file = public_path('storage' . '/' . $path);
+        $header = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $path . '"'
+        ];
+        return response()->file($file, $header);
+        // $transaction = Transaction::all();
+        // return view('transaction.iframe-file1', compact('transaction'));
+    }
+    public function showFile2()
     {
         $transaction = Transaction::all();
-        return view('transaction.iframe-file1', compact('transaction'));
+        return view('transaction.iframe-file2', compact('transaction'));
+    }
+    public function showFile3()
+    {
+        $transaction = Transaction::all();
+        return view('transaction.iframe-file3', compact('transaction'));
     }
 
     public function validationAccept(Request $request, Transaction $transaction, $id)

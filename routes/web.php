@@ -51,5 +51,7 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::put('/dashboard/validation/accept{id}', [TransactionController::class, 'validationAccept'])->name('validation.accept');
     Route::put('/dashboard/validation/reject{id}', [TransactionController::class, 'validationReject'])->name('validation.reject');
     Route::post('/dashboard/validation/{phone}', [TransactionController::class, 'message'])->name('validation.message');
-    Route::get('/dashboard/validation/file/skripsi', [TransactionController::class, 'showFile1'])->name('file1');
+    Route::get('/storage/{path}', [TransactionController::class, 'showFile1'])->name('file1');
+    Route::get('/dashboard/validation/file/skripsi2', [TransactionController::class, 'showFile2'])->name('file2');
+    Route::get('/dashboard/validation/file/skripsi3', [TransactionController::class, 'showFile3'])->name('file3');
 });
