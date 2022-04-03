@@ -1,8 +1,4 @@
-@extends('side-bar')
-
-@section('tittle', 'list Akun')
-
-@section('content')
+<x-app-layout>
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-7">
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-1">
             <div class="mt-5 md:mt-0 md:col-span-2">
@@ -15,7 +11,8 @@
                                 <div class="grid grid-cols-2 gap-2">
                                     <div class="col-span-3">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="name" class="block text-sm font-medium text-gray-700">Nama</label>
+                                            <label for="name"
+                                                class="block text-sm font-medium text-gray-700">Nama</label>
                                             <input type="text" value="{{ old('name') ?? $user->name }}" name="name"
                                                 id="name"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
@@ -27,7 +24,8 @@
                                     <div class="col-span-3 ml-5">
                                         <div>
                                             <div class="col-span-6">
-                                                <label for="npm" class="block text-sm font-medium text-gray-700">NPM</label>
+                                                <label for="npm"
+                                                    class="block text-sm font-medium text-gray-700">NPM</label>
                                                 <input type="number" value="{{ old('npm') ?? $user->npm }}" name="npm"
                                                     id="npm"
                                                     class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
@@ -40,7 +38,8 @@
                                     <div class="col-span-3">
                                         <div>
                                             <div class="col-span-6 mt-5 sm:col-span-3">
-                                                <label for="email" class="block text-sm font-medium text-gray-700">Alamat
+                                                <label for="email"
+                                                    class="block text-sm font-medium text-gray-700">Alamat
                                                     Email</label>
                                                 <input type="email" value="{{ old('email') ?? $user->email }}"
                                                     name="email" id="email"
@@ -85,5 +84,4 @@
 
 
     </div>
-
-@endsection
+</x-app-layout>

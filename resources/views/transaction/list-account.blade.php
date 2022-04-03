@@ -1,103 +1,76 @@
-@extends('side-bar')
+<x-app-layout>
 
-@section('tittle', 'list Akun')
-
-@section('content')
-
-    <div class="w-full h-full">
-        <div class="flex flex-col px-12 mt-5">
-            <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
-
-                <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-                    <div class="overflow-hidden shadow-md sm:rounded-lg min-w-full">
-                        <table class="min-w-full">
-                            <thead class="bg-green-200 dark:bg-gray-700">
-                                <tr>
-                                    <th scope="col"
-                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-900 uppercase dark:text-gray-400">
-                                        Nama
-                                    </th>
-                                    <th scope="col"
-                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-900 uppercase dark:text-gray-400">
-                                        NPM
-                                    </th>
-                                    <th scope="col"
-                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-900 uppercase dark:text-gray-400">
-                                        No Whatssapp
-                                    </th>
-                                    <th scope="col"
-                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-900 uppercase dark:text-gray-400">
-                                        Email
-                                    </th>
-                                    <th scope="col"
-                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-900 uppercase dark:text-gray-400">
-                                        Role
-                                    </th>
-                                    <th scope="col"
-                                        class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-900 uppercase dark:text-gray-400">
-                                        Action
-                                    </th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($user as $data)
-                                    <tr
-                                        class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
-                                        <td
-                                            class="py-3 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                            {{ $data->name }}
-                                        </td>
-                                        <td class="py-3 px-6 text-sm text-gray-900 whitespace-nowrap dark:text-gray-400">
-                                            {{ $data->npm }}
-                                        </td>
-                                        <td class="py-3 px-6 text-sm text-gray-900 whitespace-nowrap dark:text-gray-400">
-
-                                            {{ $data->phone }}
-                                        </td>
-                                        <td class="py-3 px-6 text-sm text-gray-900 whitespace-nowrap dark:text-gray-400">
-                                            {{ $data->email }}
-                                        </td>
-                                        <td class="py-3 px-6 text-sm text-gray-900 whitespace-nowrap dark:text-gray-400">
-                                            {{ $data->role }}
-                                        </td>
-                                        <td class="py-3 px-6 text-center">
-                                            <div class="flex item-center justify-center">
-                                                <a href="{{ route('edit.account', ['id' => $data->id]) }}">
-                                                    <div class="w-4 mr-2 transform hover:text-purple-500 hover:scale-110">
-                                                        <svg class="w-5" xmlns="http://www.w3.org/2000/svg"
-                                                            fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                            <path stroke-linecap="round" stroke-linejoin="round"
-                                                                stroke-width="2"
-                                                                d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-                                                        </svg>
-                                                    </div>
-                                                </a>
-
-                                                {{-- <a href="{{ route('delete.account', ['id' => $data->id]) }}"> --}}
-                                                <button class="w-4 ml-3 mr-2 transform hover:text-red-500 hover:scale-110"
-                                                    type="button" onclick="toggleModal('modal-id')">
-                                                    <svg class="w-5" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                                            stroke-width="2"
-                                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                    </svg>
-                                                </button>
-                                                {{-- </a> --}}
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                        {{ $user->links() }}
-
-                    </div>
-                </div>
+    <!-- BEGIN: Weekly Top Products -->
+    <div class="col-span-12 mt-6">
+        <div class="intro-y block sm:flex items-center h-10">
+            <h2 class="text-lg font-medium truncate mr-5">
+                List Account
+            </h2>
+            <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+                <button class="btn box flex items-center text-gray-700 dark:text-gray-300"> <i data-feather="file-text"
+                        class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </button>
+                <button class="ml-3 btn box flex items-center text-gray-700 dark:text-gray-300"> <i
+                        data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to PDF </button>
             </div>
         </div>
+        <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+            <table class="table table-report sm:mt-2">
+                <thead>
+                    <tr>
+                        <th class="whitespace-nowrap">Id</th>
+                        <th class="whitespace-nowrap">NAME</th>
+                        <th class="text-center whitespace-nowrap">WHATSAPP</th>
+                        <th class="text-center whitespace-nowrap">ROLE</th>
+                        <th class="text-center whitespace-nowrap">ACTIONS</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($user as $data)
+                        <tr class="intro-x">
+                            <td class="w-40">
+                                <div class="font-medium whitespace-nowrap">{{ $data->id }}</div>
+                            </td>
+                            <td>
+                                <div class="font-medium whitespace-nowrap">{{ $data->name }}</div>
+                                <div class="text-gray-600 text-xs whitespace-nowrap mt-0.5">{{ $data->npm }}
+                                </div>
+                            </td>
+                            <td class="text-center">{{ $data->phone }}</td>
+                            <td class="w-40">
+                                @if ($data->role == 'admin')
+                                    <div class="flex items-center justify-center text-teal-400"> <i data-feather="user"
+                                            class="w-4 h-4 mr-2"></i> {{ $data->role }}
+                                    </div>
+                                @else
+                                    <div class="flex items-center justify-center text-violet-600"> <i
+                                            data-feather="user" class="w-4 h-4 mr-2"></i> {{ $data->role }}
+                                    </div>
+                                @endif
+                            </td>
+                            <td class="table-report__action w-56">
+                                <div class="flex justify-center items-center">
+                                    <a class="flex items-center mr-3 text-theme-10"
+                                        href="{{ route('edit.account', ['id' => $data->id]) }}"> <i
+                                            data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+
+
+                                    <a class="flex items-center text-theme-24" type="button"
+                                        onclick="toggleModal('modal-id')">
+                                        <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+
+                </tbody>
+                @endforeach
+            </table>
+
+            {{ $user->links() }}
+        </div>
     </div>
+    <!-- END: Weekly Top Products -->
+
 
     <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
         id="modal-id">
@@ -108,7 +81,7 @@
                 <!--header-->
                 <div class="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                     <p class=" font-semibold">
-                        Hapus Data
+                        Hapus Transaksi
                     </p>
 
                     <button class="focus:outline-none p-2" onclick="toggleModal('modal-id')">
@@ -137,16 +110,16 @@
                 </div>
                 <div class="relative p-6 flex-auto">
 
-                    <p class="text-sm text-gray-500 px-8">Apakah kamu yakin untuk menghapus data {{ $data->name }}?</p>
+                    <p class="text-sm text-gray-500 px-8">Apakah kamu yakin untuk menghapus transaksi
+                        {{ $data->name }}?</p>
                 </div>
                 <!--footer-->
                 <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
-
-
                     <a href="{{ route('delete.account', ['id' => $data->id]) }}"
                         class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                         <div class="input-group">
-                            <input type="hidden" class="form-control" name="status" id="status" value="Sudah Tervalidasi">
+                            <input type="hidden" class="form-control" name="status" id="status"
+                                value="Sudah Tervalidasi">
                             <button type="submit" onclick="toggleModal('modal-id')">
                                 Hapus
                             </button>
@@ -167,6 +140,4 @@
             document.getElementById(modalID + "-backdrop").classList.toggle("flex");
         }
     </script>
-
-
-@endsection
+</x-app-layout>

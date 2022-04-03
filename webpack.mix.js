@@ -1,5 +1,7 @@
 const mix = require('laravel-mix');
 
+const tailwindcss = require("tailwindcss");
+
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -11,11 +13,23 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        require('postcss-import'),
-        require('tailwindcss'),
-    ]);
+mix.js("resources/js/app.js", "public/js")
+    .js("resources/js/ckeditor-classic.js", "public/js")
+    .js("resources/js/ckeditor-inline.js", "public/js")
+    .js("resources/js/ckeditor-balloon.js", "public/js")
+    .js("resources/js/ckeditor-balloon-block.js", "public/js")
+    .js("resources/js/ckeditor-document.js", "public/js")
+    .sass("resources/sass/app.scss", "public/css")
+    .options({
+        processCssUrls: false,
+        postCss: [tailwindcss("./tailwind.config.js")],
+    })
+    .autoload({
+        "cash-dom": ["cash"],
+    })
+    .copyDirectory("resources/json", "public/json")
+    .copyDirectory("resources/fonts", "public/fonts")
+    .copyDirectory("resources/images", "public/images")
 
 if (mix.inProduction()) {
     mix.version();

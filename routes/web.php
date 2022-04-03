@@ -25,9 +25,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [UserController::class, 'dashboarduser'])->name('dashboard');
 
 
 Route::middleware('auth')->group(function () {
@@ -46,7 +47,6 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/account/deleteaccount{id}', [UserController::class, 'destroy'])->name('delete.account');
     Route::get('/dashboard/list/account/deletetransaction{id}', [TransactionController::class, 'destroy'])->name('delete.transaction');
     Route::get('/dashboard/list/request', [TransactionController::class, 'listRequest'])->name('request.list');
-    Route::get('/dashboard/admin', [UserController::class, 'display'])->name('dashboard.admin');
     Route::get('/dashboard/validation', [TransactionController::class, 'validation'])->name('validation');
     Route::put('/dashboard/validation/accept{id}', [TransactionController::class, 'validationAccept'])->name('validation.accept');
     Route::put('/dashboard/validation/reject{id}', [TransactionController::class, 'validationReject'])->name('validation.reject');
@@ -55,3 +55,5 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/validation/file/skripsi2', [TransactionController::class, 'showFile2'])->name('file2');
     Route::get('/dashboard/validation/file/skripsi3', [TransactionController::class, 'showFile3'])->name('file3');
 });
+
+Route::view('testing', 'admin.dashboard');

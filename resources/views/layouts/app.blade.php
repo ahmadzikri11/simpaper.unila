@@ -5,47 +5,200 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
-
+    @livewireStyles
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-    @livewireStyles
+
 
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <link href="{{ asset('css/apps.css') }}" rel="stylesheet" />
+
 </head>
 
-<body class="font-sans antialiased">
-    <x-jet-banner />
+<body class="main">
+    <!-- BEGIN: Mobile Menu -->
+    <x-mobile-menu />
+    <!-- END: Mobile Menu -->
+    <!-- BEGIN: Top Bar -->
+    <div class="top-bar-boxed border-b border-theme-2 -mt-7 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 md:pt-0 mb-12">
+        <div class="h-full flex items-center">
+            <!-- BEGIN: Logo -->
+            <a href="" class="-intro-x hidden md:flex">
+                <img alt="" class="w-6" src="{{ asset('/storage/Perpus.png') }}">
+                <span class="text-white text-lg ml-3"> Submit<span class="font-medium">Script</span> </span>
+            </a>
+            <!-- END: Logo -->
+            <!-- BEGIN: Breadcrumb -->
+            <div class="-intro-x breadcrumb mr-auto"> @yield('navi') </div>
+            <!-- END: Breadcrumb -->
+            <!-- BEGIN: Search -->
 
-    <div class="min-h-screen bg-slate-100">
-        @livewire('navigation-menu')
-
-        <!-- Page Heading -->
-        @if (isset($header))
-            <header class="bg-slate-400 shadow">
-                <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                    {{ $header }}
+            <!-- END: Search -->
+            <!-- BEGIN: Notifications -->
+            <div class="intro-x dropdown mr-4 sm:mr-6">
+                <div class="dropdown-toggle notification notification--bullet cursor-pointer" role="button"
+                    aria-expanded="false"> <i data-feather="bell" class="notification__icon dark:text-gray-300"></i>
                 </div>
-            </header>
-        @endif
-
-
-        <!-- Page Content -->
-        <main>
-
-            {{ $slot }}
-        </main>
+                <div class="notification-content pt-2 dropdown-menu">
+                    <div class="notification-content__box dropdown-menu__content box dark:bg-dark-6">
+                        <div class="notification-content__title">Notifications</div>
+                        <div class="cursor-pointer relative flex items-center ">
+                            <div class="w-12 h-12 flex-none image-fit mr-1">
+                                <img alt="Icewall Tailwind HTML Admin Template" class="rounded-full"
+                                    src="images/profile-6.jpg">
+                                <div
+                                    class="w-3 h-3 bg-theme-10 absolute right-0 bottom-0 rounded-full border-2 border-white">
+                                </div>
+                            </div>
+                            <div class="ml-2 overflow-hidden">
+                                <div class="flex items-center">
+                                    <a href="javascript:;" class="font-medium truncate mr-5">adsadas</a>
+                                    <div class="text-xs text-gray-500 ml-auto whitespace-nowrap">05:09 AM</div>
+                                </div>
+                                <div class="w-full truncate text-gray-600 mt-0.5">There are many variations of
+                                    passages
+                                    of Lorem Ipsum available, but the majority have suffered alteration in some
+                                    form, by
+                                    injected humour, or randomi</div>
+                            </div>
+                        </div>
+                        <div class="cursor-pointer relative flex items-center mt-5">
+                            <div class="w-12 h-12 flex-none image-fit mr-1">
+                                <img alt="Icewall Tailwind HTML Admin Template" class="rounded-full"
+                                    src="images/profile-5.jpg">
+                                <div
+                                    class="w-3 h-3 bg-theme-10 absolute right-0 bottom-0 rounded-full border-2 border-white">
+                                </div>
+                            </div>
+                            <div class="ml-2 overflow-hidden">
+                                <div class="flex items-center">
+                                    <a href="javascript:;" class="font-medium truncate mr-5">Johnny Depp</a>
+                                    <div class="text-xs text-gray-500 ml-auto whitespace-nowrap">01:10 PM</div>
+                                </div>
+                                <div class="w-full truncate text-gray-600 mt-0.5">It is a long established fact that
+                                    a
+                                    reader will be distracted by the readable content of a page when looking at its
+                                    layout. The point of using Lorem </div>
+                            </div>
+                        </div>
+                        <div class="cursor-pointer relative flex items-center mt-5">
+                            <div class="w-12 h-12 flex-none image-fit mr-1">
+                                <img alt="Icewall Tailwind HTML Admin Template" class="rounded-full"
+                                    src="images/profile-1.jpg">
+                                <div
+                                    class="w-3 h-3 bg-theme-10 absolute right-0 bottom-0 rounded-full border-2 border-white">
+                                </div>
+                            </div>
+                            <div class="ml-2 overflow-hidden">
+                                <div class="flex items-center">
+                                    <a href="javascript:;" class="font-medium truncate mr-5">Brad Pitt</a>
+                                    <div class="text-xs text-gray-500 ml-auto whitespace-nowrap">05:09 AM</div>
+                                </div>
+                                <div class="w-full truncate text-gray-600 mt-0.5">Lorem Ipsum is simply dummy text
+                                    of
+                                    the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s
+                                    standard dummy text ever since the 1500</div>
+                            </div>
+                        </div>
+                        <div class="cursor-pointer relative flex items-center mt-5">
+                            <div class="w-12 h-12 flex-none image-fit mr-1">
+                                <img alt="Icewall Tailwind HTML Admin Template" class="rounded-full"
+                                    src="images/profile-5.jpg">
+                                <div
+                                    class="w-3 h-3 bg-theme-10 absolute right-0 bottom-0 rounded-full border-2 border-white">
+                                </div>
+                            </div>
+                            <div class="ml-2 overflow-hidden">
+                                <div class="flex items-center">
+                                    <a href="javascript:;" class="font-medium truncate mr-5">Johnny Depp</a>
+                                    <div class="text-xs text-gray-500 ml-auto whitespace-nowrap">01:10 PM</div>
+                                </div>
+                                <div class="w-full truncate text-gray-600 mt-0.5">Contrary to popular belief, Lorem
+                                    Ipsum is not simply random text. It has roots in a piece of classical Latin
+                                    literature from 45 BC, making it over 20</div>
+                            </div>
+                        </div>
+                        <div class="cursor-pointer relative flex items-center mt-5">
+                            <div class="w-12 h-12 flex-none image-fit mr-1">
+                                <img alt="Icewall Tailwind HTML Admin Template" class="rounded-full"
+                                    src="images/profile-9.jpg">
+                                <div
+                                    class="w-3 h-3 bg-theme-10 absolute right-0 bottom-0 rounded-full border-2 border-white">
+                                </div>
+                            </div>
+                            <div class="ml-2 overflow-hidden">
+                                <div class="flex items-center">
+                                    <a href="javascript:;" class="font-medium truncate mr-5">Leonardo DiCaprio</a>
+                                    <div class="text-xs text-gray-500 ml-auto whitespace-nowrap">01:10 PM</div>
+                                </div>
+                                <div class="w-full truncate text-gray-600 mt-0.5">Lorem Ipsum is simply dummy text
+                                    of
+                                    the printing and typesetting industry. Lorem Ipsum has been the industry&#039;s
+                                    standard dummy text ever since the 1500</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Notifications -->
+            <!-- BEGIN: Account Menu -->
+            <div class="intro-x dropdown w-8 h-8">
+                <div class="dropdown-toggle w-8 h-8 rounded-full overflow-hidden shadow-lg image-fit zoom-in scale-110"
+                    role="button" aria-expanded="false">
+                    <img alt="Icewall Tailwind HTML Admin Template" src="images/profile-2.jpg">
+                </div>
+                <div class="dropdown-menu w-56">
+                    <div class="dropdown-menu__content box bg-theme-11 dark:bg-dark-6 text-white">
+                        <div class="p-4 border-b border-theme-12 dark:border-dark-3">
+                            <div class="font-medium">{{ Auth::user()->name }}</div>
+                            <div class="text-xs text-theme-13 mt-0.5 dark:text-gray-600">{{ Auth::user()->npm }}</div>
+                        </div>
+                        <div class="p-2">
+                            <a href=""
+                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
+                                <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
+                            <a href=""
+                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
+                                <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
+                            <a href=""
+                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
+                                <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
+                            <a href=""
+                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
+                                <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
+                        </div>
+                        <div class="p-2 border-t border-theme-12 dark:border-dark-3">
+                            <a href=""
+                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
+                                <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i> Logout </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- END: Account Menu -->
+        </div>
     </div>
-
-    @stack('modals')
-
-    @livewireScripts
+    <!-- END: Top Bar -->
+    <div class="wrapper">
+        <div class="wrapper-box">
+            <!-- BEGIN: Side Menu -->
+            <x-side-menu />
+            <!-- END: Side Menu -->
+            <!-- BEGIN: Content -->
+            <div class="content">
+                {{ $slot }}
+            </div>
+            <!-- END: Content -->
+        </div>
+    </div>
 </body>
+@livewireScripts
 
 </html>

@@ -1,7 +1,4 @@
-@extends('side-bar')
-@section('title')
-@section('content')
-
+<x-app-layout>
     <div class="flex px-12 mt-5">
         <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
@@ -14,9 +11,10 @@
 
                             <!-- Header -->
                             <header class="flex font-light text-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-90 -ml-2" viewBox="0 0 24 24"
-                                    stroke="#b91c1c">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-90 -ml-2"
+                                    viewBox="0 0 24 24" stroke="#b91c1c">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20 12H4" />
                                 </svg>
                                 <p> Validasi Data Skripsi</p>
                             </header>
@@ -179,8 +177,8 @@
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="input-group">
-                                                                <input type="hidden" class="form-control" name="status"
-                                                                    id="status" value="Sudah Tervalidasi">
+                                                                <input type="hidden" class="form-control"
+                                                                    name="status" id="status" value="Sudah Tervalidasi">
                                                                 <button type="submit" onclick="toggleModal('modal-id')">
                                                                     Validasi
                                                                 </button>
@@ -274,8 +272,9 @@
                                                             @csrf
                                                             @method('PUT')
                                                             <div class="input-group">
-                                                                <input type="hidden" class="form-control" name="status"
-                                                                    id="status" value="Permintaan Ditolak">
+                                                                <input type="hidden" class="form-control"
+                                                                    name="status" id="status"
+                                                                    value="Permintaan Ditolak">
                                                                 <button type="submit"
                                                                     onclick="toggleModalReject('modal-id-reject')">
                                                                     Tolak Validasi
@@ -287,7 +286,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-id-backdrop"></div>
+                                    <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-id-backdrop">
+                                    </div>
                                     <script type="text/javascript">
                                         function toggleModal(modalID) {
                                             document.getElementById(modalID).classList.toggle("hidden");
@@ -330,9 +330,10 @@
                         <!-- Card -->
                         <div class="bg-white p-8 w-[32rem]">
                             <header class="flex font-light text-sm">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-90 -ml-2" viewBox="0 0 24 24"
-                                    stroke="#b91c1c">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 12H4" />
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 rotate-90 -ml-2"
+                                    viewBox="0 0 24 24" stroke="#b91c1c">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M20 12H4" />
                                 </svg>
                                 <p> File Data Skripsi</p>
                             </header>
@@ -352,6 +353,4 @@
             </div>
         </div>
     </div>
-
-
-@endsection
+</x-app-layout>
