@@ -15,7 +15,7 @@
                     </div>
 
                     <div class="mt-5 md:mt-0 md:col-span-2">
-                        <form action="{{ route('profile.update', ['id' => $user->id]) }}" method="POST">
+                        <form ac    tion="{{ route('profile.update', ['id' => $user->id]) }}" method="POST">
                             @csrf
                             @method('PUT')
                             <div class="shadow sm:rounded-md sm:overflow-hidden">

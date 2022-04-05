@@ -6,28 +6,26 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Pagination\Paginator;
-use League\CommonMark\Extension\CommonMark\Parser\Inline\BacktickParser;
+
 
 class UserController extends Controller
 {
-    public function __construct()
-    {
-        $this->middleware('role:admin');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('role:admin');
+    // }
 
     public function dashboarduser()
     {
         $user = User::count();
         $transaction = Transaction::count();
         $transactionaccept = Transaction::where('status', 'Sudah Tervalidasi')->count();
-        $transactionproses = Transaction::where('status', 'Belum Validasi')->count();
+        $transactionproses = Transaction::where('status', 'Diproses')->count();
         return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
     }
     public function listaccount()
     {
-        $user = User::paginate(20);
-
+        $user = User::paginate(10);
         return view('transaction.list-account', compact('user'));
     }
 
@@ -55,31 +53,13 @@ class UserController extends Controller
             'phone' => $request['phone'],
         ]);
 
-        return redirect()->route('account.list')->with('success', ' Data telah diperbaharui!');
+        return view('transaction.edit-account', compact('user'));
     }
-
-
-
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $user = Auth::user();
         return view('profile', compact('user'));
     }
-
-    public function dashboard()
-    {
-        $user = User::count();
-        $transaction = Transaction::count();
-        $transactionaccept = Transaction::where('status', 'Sudah Tervalidasi')->count();
-        $transactionproses = Transaction::where('status', 'Belum Validasi')->count();
-        return view('dashboard-admin', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
-    }
-
 
     public function update(Request $request, User $user, $id)
     {

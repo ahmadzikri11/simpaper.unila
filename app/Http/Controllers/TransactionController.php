@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Transaction;
+use App\Models\User;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use Illuminate\Support\Facades\Auth;
@@ -35,11 +36,12 @@ class TransactionController extends Controller
         $transaction = Transaction::paginate(10);
         return view('transaction.list-transaction', compact('transaction'));
     }
-    public function validation()
+    public function validation($id)
     {
-        $transaction = Transaction::all();
+        $transaction = Transaction::find($id);
         return view('transaction.validation', compact('transaction'));
     }
+
     public function showFile1($path)
     {
         $file = public_path('storage' . '/' . $path);
@@ -51,51 +53,46 @@ class TransactionController extends Controller
         // $transaction = Transaction::all();
         // return view('transaction.iframe-file1', compact('transaction'));
     }
-    public function showFile2()
+    public function showFile2($path2)
     {
-        $transaction = Transaction::all();
-        return view('transaction.iframe-file2', compact('transaction'));
+        $file = public_path('storage' . '/' . $path2);
+        $header = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $path2 . '"'
+        ];
+        return response()->file($file, $header);
     }
-    public function showFile3()
+    public function showFile3($path3)
     {
-        $transaction = Transaction::all();
-        return view('transaction.iframe-file3', compact('transaction'));
+        $file = public_path('storage' . '/' . $path3);
+        $header = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $path3 . '"'
+        ];
+        return response()->file($file, $header);
     }
 
-    public function validationAccept(Request $request, Transaction $transaction, $id)
+    public function validationAccept(Request $request, Transaction $transaction, User $user, $id)
     {
 
         $this->validate($request, [
             'status' => 'required',
+            'message' => 'required',
         ]);
+
         $transaction = Transaction::find($id);
+
         $transaction->update([
             'status' => $request['status'],
         ]);
-        return redirect()->route('request.list')->with('success', ' Data telah diperbaharui!');
-    }
-
-    public function validationreject(Request $request, Transaction $transaction, $id)
-    {
-
-        $this->validate($request, [
-            'status' => 'required',
-        ]);
-        $transaction = Transaction::find($id);
-        $transaction->update([
-            'status' => $request['status'],
-        ]);
-        return redirect()->route('request.list')->with('success', ' Data telah diperbaharui!');
-    }
 
 
-    public function message($phone)
-    {
+        $phone = $transaction->transactions->phone;
 
+        $message = $request['message'];
         $client = new Client();
 
         $url = "https://app.whatspie.com/api/messages";
-
 
         $request = $client->post(
             $url,
@@ -108,7 +105,76 @@ class TransactionController extends Controller
                 'form_params' => [
                     'receiver' => $phone,
                     'device' => '62816514372',
-                    'message' => 'Hi there, this is from API',
+                    'message' => $message,
+                    'type' => 'chat'
+                ]
+            ]
+        );
+
+        return redirect()->route('request.list')->with('success', ' Data telah diperbaharui!');
+    }
+
+    public function validationreject(Request $request, Transaction $transaction, $id)
+    {
+        $this->validate($request, [
+            'status' => 'required',
+            'message' => 'required',
+        ]);
+
+        $transaction = Transaction::find($id);
+
+        $transaction->update([
+            'status' => $request['status'],
+        ]);
+
+
+        $phone = $transaction->transactions->phone;
+
+        $message = $request['message'];
+        $client = new Client();
+
+        $url = "https://app.whatspie.com/api/messages";
+
+        $request = $client->post(
+            $url,
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'Authorization' => 'Bearer ' . 'uTusgUQmz2vRHtmU4Q8FIcHKV79fhjTifmhxAfjzHZDptUVaOP'
+                ],
+                'form_params' => [
+                    'receiver' => $phone,
+                    'device' => '62816514372',
+                    'message' => $message,
+                    'type' => 'chat'
+                ]
+            ]
+        );
+
+        return redirect()->route('request.list')->with('success', ' Data telah diperbaharui!');
+    }
+
+
+    public function message($phone)
+    {
+
+        $client = new Client();
+
+        $url = "https://app.whatspie.com/api/messages";
+
+        $request = $client->post(
+            $url,
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'Authorization' => 'Bearer ' . 'uTusgUQmz2vRHtmU4Q8FIcHKV79fhjTifmhxAfjzHZDptUVaOP'
+                ],
+                'form_params' => [
+                    'receiver' => $phone,
+                    'device' => '62816514372',
+                    'message' => 'cobaa',
                     'type' => 'chat'
                 ]
             ]

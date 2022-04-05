@@ -1,121 +1,177 @@
 <x-app-layout>
+    @section('navi')
+        <div>SubScripts</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <div class="breadcrumb--active">List Script</div>
+    @endsection
 
-    <div class="overflow-x-auto mt-10 lg:-mx-8">
-        <div class="inline-block py-2 min-w-full sm:px-6 lg:px-8">
-            <div class="overflow-hidden shadow-md sm:rounded-lg">
-                <table class="min-w-full">
-                    <thead class="bg-purple-200 text-purple-600 uppercase text-sm leading-normal">
-                        <tr>
-                            <th scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Nama
-                            </th>
-                            <th scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                NPM
-                            </th>
-                            <th scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                No Whatssapp
-                            </th>
-                            <th scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Token
-                            </th>
-                            <th scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Waktu Upload
-                            </th>
-                            <th scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Status
-                            </th>
-                            <th scope="col"
-                                class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
-                                Validasi
-                            </th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($transaction as $transaction)
-                            <tr
-                                class="border-b odd:bg-white even:bg-gray-50 odd:dark:bg-gray-800 even:dark:bg-gray-700 dark:border-gray-600">
-                                <td
-                                    class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    {{ $transaction->transactions->name }}
-                                </td>
-                                <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    {{ $transaction->transactions->npm }}
-                                </td>
-                                <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    {{ $transaction->transactions->phone }}
 
-                                </td>
-                                <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    {{ $transaction->token }}
-                                </td>
-                                <td class="py-4 px-6 text-sm text-gray-500 whitespace-nowrap dark:text-gray-400">
-                                    {{ $transaction->created_at }}
-                                </td>
-                                <td>
 
-                                    @if ($transaction->status == 'Sudah Tervalidasi')
-                                        <span
-                                            class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">{{ $transaction->status }}</span>
-                                    @elseif ($transaction->status == 'Permintaan Ditolak')
-                                        <span
-                                            class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">{{ $transaction->status }}</span>
-                                    @elseif ($transaction->status == 'Diproses')
-                                        <span
-                                            class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">{{ $transaction->status }}</span>
-                                    @endif
-                                </td>
-                                <td class="py-3 px-6 text-center">
-                                    <div class="flex item-center justify-center">
-                                        <a href="{{ route('validation') }}">
-                                            <div class="w-4 mr-2 transform hover:text-green-500 hover:scale-110">
-                                                <svg class="w-5" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                        </a>
-                                        <button class="w-4 ml-3 mr-2 transform hover:text-red-500 hover:scale-110"
-                                            type="button" onclick="toggleModal('modal-id')">
-                                            {{-- <button href="{{ route('delete.transaction', ['id' => $transaction->id]) }}"> --}}
-                                            <div class="w-4 mr-2 transform hover:text-red-500 hover:scale-110">
-                                                <svg class="w-5" xmlns="http://www.w3.org/2000/svg"
-                                                    fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2"
-                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                                                </svg>
 
-                                                <button class="flex items-center text-theme-24" type="button"
-                                                    onclick="toggleModal('modal-id')" href="">
-                                                    <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
-                                                </button>
-                                            </div>
+    <div class="col-span-12 mt-6">
+        <div class="intro-y block sm:flex items-center h-10">
+            <h2 class="text-lg font-medium truncate mr-5">
+                List Account
+            </h2>
+            <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
+
+            </div>
+        </div>
+        <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
+            <table class="table table-report sm:mt-2">
+                <thead>
+                    <tr>
+                        <th class="whitespace-nowrap">NAME</th>
+                        <th class="whitespace-nowrap">TOKEN</th>
+                        <th class="text-center whitespace-nowrap">WHATSAPP</th>
+                        <th class="text-center whitespace-nowrap">UPLOAD TIME</th>
+                        <th class="text-center whitespace-nowrap">STATUS</th>
+                        <th class="text-center whitespace-nowrap">ACTIONS</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($transaction as $data)
+                        <tr class="intro-x">
+                            <td class="w-40">
+                                <div class="font-medium whitespace-nowrap">{{ $data->transactions->name }}
+                                </div>
+                                <div class="text-gray-600 text-xs whitespace-nowrap mt-0.5">
+                                    {{ $data->transactions->npm }}
+                                </div>
+                            </td>
+                            <td>
+                                <div class="font-medium whitespace-nowrap">{{ $data->token }}</div>
+
+                            </td>
+                            <td class="w-40">
+                                <div class="flex items-center justify-center ">
+                                    {{ $data->transactions->phone }}
+                                </div>
+                            </td>
+                            <td class="text-center">
+                                {{ $data->created_at }}</td>
+                            <td class="text-center">
+                                @if ($data->status == 'Sudah Tervalidasi')
+                                    <span
+                                        class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">{{ $data->status }}</span>
+                                @elseif ($data->status == 'Permintaan Ditolak')
+                                    <span
+                                        class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">{{ $data->status }}</span>
+                                @elseif ($data->status == 'Diproses')
+                                    <span
+                                        class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">{{ $data->status }}</span>
+                                @endif
+                            </td>
+                            {{-- <td class="table-report__action w-56">
+                                <div class="flex justify-center items-center">
+                                    <a class="flex items-center mr-3 text-theme-10" href="{{ route('validation') }}">
+                                        <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Validasi </a>
+
+
+                                    <a class="flex items-center text-theme-24" type="button" href="javascript:;"
+                                        data-toggle="modal" data-target="#delete-modal-preview">
+                                        <button>
+                                            <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
                                         </button>
-                                    </div>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                    </a>
+                                </div>
+                            </td> --}}
+
+                            <td class="table-report__action w-56">
+                                <div class="flex justify-center items-center">
+                                    <a class="flex items-center mr-3 text-theme-10"
+                                        href="{{ route('validation', ['id' => $data->id]) }}">
+                                        <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Validasi</a>
+
+                                    <a class="flex items-center text-theme-24" type="button" href="javascript:;"
+                                        data-toggle="modal" data-target="#delete-modal-preview"
+                                        value="{{ $data->id }}">
+                                        <button value=" {{ $data->id }}">
+                                            <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
+                                        </button>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+            {{ $transaction->links() }}
+        </div>
+    </div>
+    <!-- END: Weekly Top Products -->
+
+
+    <!-- BEGIN: Delete Modal -->
+
+
+    <!-- BEGIN: Modal Content -->
+    <div id="delete-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-white rounded-md">
+                <div class="modal-body p-0">
+                    <div class="p-5 text-center">
+                        <i data-feather="x-circle" class="w-16 h-16 text-theme-24 mx-auto mt-3"></i>
+                        <div class="text-3xl mt-5">Apa Kamu Yakin?</div>
+                        <div class="text-gray-600 mt-2">
+                            Apakah Kamu yakin menghapus
+                            <br>
+                            data {{ $data->transactions->name }}?.
+                        </div>
+                    </div>
+                    <div class="px-5 pb-8 text-center">
+                        <button type="button" data-dismiss="modal"
+                            class="btn btn-outline-secondary w-24 dark:border-dark-5 dark:text-gray-300 mr-1">Cancel</button>
+
+                        <a href="{{ route('delete.transaction', ['id' => $data->id]) }}">
+                            <button type="button" class="btn btn-danger bg-red-500 text-white w-24">Delete</button>
+
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+    <!-- END: Modal Content -->
     </div>
+    <div class="source-code hidden">
+        <button data-target="#copy-delete-modal" class="copy-code btn py-1 px-2 btn-outline-secondary"> <i
+                data-feather="file" class="w-4 h-4 mr-2"></i> Copy example code </button>
+        <div class="overflow-y-auto mt-3 rounded-md">
+            <pre id="copy-delete-modal"
+                class="source-preview"> <code class="text-xs p-0 rounded-md html pl-5 pt-8 pb-4 -mb-10 -mt-10"> HTMLOpenTag!-- BEGIN: Modal Toggle --HTMLCloseTag HTMLOpenTagdiv class=&quot;text-center&quot;HTMLCloseTag HTMLOpenTaga href=&quot;javascript:;&quot; data-toggle=&quot;modal&quot; data-target=&quot;#delete-modal-preview&quot; class=&quot;btn btn-primary&quot;HTMLCloseTagShow ModalHTMLOpenTag/aHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag!-- END: Modal Toggle --HTMLCloseTag HTMLOpenTag!-- BEGIN: Modal Content --HTMLCloseTag HTMLOpenTagdiv id=&quot;delete-modal-preview&quot; class=&quot;modal&quot; tabindex=&quot;-1&quot; aria-hidden=&quot;true&quot;HTMLCloseTag HTMLOpenTagdiv class=&quot;modal-dialog&quot;HTMLCloseTag HTMLOpenTagdiv class=&quot;modal-content&quot;HTMLCloseTag HTMLOpenTagdiv class=&quot;modal-body p-0&quot;HTMLCloseTag HTMLOpenTagdiv class=&quot;p-5 text-center&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;x-circle&quot; class=&quot;w-16 h-16 text-theme-24 mx-auto mt-3&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag HTMLOpenTagdiv class=&quot;text-3xl mt-5&quot;HTMLCloseTagAre you sure?HTMLOpenTag/divHTMLCloseTag HTMLOpenTagdiv class=&quot;text-gray-600 mt-2&quot;HTMLCloseTagDo you really want to delete these records? HTMLOpenTagbrHTMLCloseTagThis process cannot be undone.HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTagdiv class=&quot;px-5 pb-8 text-center&quot;HTMLCloseTag HTMLOpenTagbutton type=&quot;button&quot; data-dismiss=&quot;modal&quot; class=&quot;btn btn-outline-secondary w-24 dark:border-dark-5 dark:text-gray-300 mr-1&quot;HTMLCloseTagCancelHTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton type=&quot;button&quot; class=&quot;btn btn-danger w-24&quot;HTMLCloseTagDeleteHTMLOpenTag/buttonHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag!-- END: Modal Content --HTMLCloseTag </code> </pre>
+        </div>
     </div>
 
 
+    <!-- END: Delete Modal -->
 
-    <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{-- <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
         id="modal-id">
         <div class="relative w-auto my-6 mx-auto max-w-3xl">
             <!--content-->
@@ -154,13 +210,13 @@
                 <div class="relative p-6 flex-auto">
 
                     <p class="text-sm text-gray-500 px-8">Apakah kamu yakin untuk menghapus transaksi
-                        {{ $transaction->transactions->name }}?</p>
+                        {{ $data->transactions->name }}?</p>
                 </div>
                 <!--footer-->
                 <div class="flex items-center justify-end p-6 border-t border-solid border-blueGray-200 rounded-b">
 
 
-                    <a href="{{ route('delete.transaction', ['id' => $transaction->id]) }}"
+                    <a href="{{ route('delete.transaction', ['id' => $data->id]) }}"
                         class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-full text-sm px-5 py-2.5 text-center mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
                         <div class="input-group">
                             <input type="hidden" class="form-control" name="status" id="status"
@@ -175,7 +231,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <div class="hidden opacity-25 fixed inset-0 z-40 bg-black" id="modal-id-backdrop"></div>
     <script type="text/javascript">
         function toggleModal(modalID) {

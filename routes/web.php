@@ -47,13 +47,12 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/account/deleteaccount{id}', [UserController::class, 'destroy'])->name('delete.account');
     Route::get('/dashboard/list/account/deletetransaction{id}', [TransactionController::class, 'destroy'])->name('delete.transaction');
     Route::get('/dashboard/list/request', [TransactionController::class, 'listRequest'])->name('request.list');
-    Route::get('/dashboard/validation', [TransactionController::class, 'validation'])->name('validation');
+    Route::get('/dashboard/validation/{id}', [TransactionController::class, 'validation'])->name('validation');
+    Route::post('/dashboard/validation', [TransactionController::class, 'messege'])->name('messege');
     Route::put('/dashboard/validation/accept{id}', [TransactionController::class, 'validationAccept'])->name('validation.accept');
     Route::put('/dashboard/validation/reject{id}', [TransactionController::class, 'validationReject'])->name('validation.reject');
     Route::post('/dashboard/validation/{phone}', [TransactionController::class, 'message'])->name('validation.message');
     Route::get('/storage/{path}', [TransactionController::class, 'showFile1'])->name('file1');
-    Route::get('/dashboard/validation/file/skripsi2', [TransactionController::class, 'showFile2'])->name('file2');
-    Route::get('/dashboard/validation/file/skripsi3', [TransactionController::class, 'showFile3'])->name('file3');
+    Route::get('/storage/{path2}', [TransactionController::class, 'showFile2'])->name('file2');
+    Route::get('/storage/{path3}', [TransactionController::class, 'showFile3'])->name('file3');
 });
-
-Route::view('testing', 'admin.dashboard');

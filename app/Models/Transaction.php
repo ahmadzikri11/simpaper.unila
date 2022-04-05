@@ -19,6 +19,7 @@ class Transaction extends Model
         'token',
         'user_id',
         'status',
+        'messege',
     ];
     public function transactions()
     {

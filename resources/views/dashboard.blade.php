@@ -18,9 +18,9 @@
                         <div class="flex">
                             <i data-feather="users" class="report-box__icon text-theme-21"></i>
                             <div class="ml-auto">
-                                <div class="report-box__indicator bg-theme-10 tooltip cursor-pointer" title="Total">
-                                    {{ $user }}
-                                    <i data-feather="chevron-up" class="w-4 h-4 ml-0.5"></i>
+                                <div class="report-box__indicator bg-theme-26 tooltip cursor-pointer" title="Total">
+                                    Total Account
+                                    <i data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i>
                                 </div>
                             </div>
                         </div>
@@ -36,7 +36,7 @@
                             <i data-feather="inbox" class="report-box__icon text-theme-22"></i>
                             <div class="ml-auto">
                                 <div class="report-box__indicator bg-theme-22 tooltip cursor-pointer"
-                                    title="2% Lower than last month"> 2% <i data-feather="chevron-down"
+                                    title="2% Lower than last month"> Total Script <i data-feather="chevron-right"
                                         class="w-4 h-4 ml-0.5"></i> </div>
                             </div>
                         </div>
@@ -51,8 +51,8 @@
                         <div class="flex">
                             <i data-feather="edit" class="report-box__icon text-theme-23"></i>
                             <div class="ml-auto">
-                                <div class="report-box__indicator bg-theme-10 tooltip cursor-pointer"
-                                    title="12% Higher than last month"> 12% <i data-feather="chevron-up"
+                                <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
+                                    title="12% Higher than last month"> Total Unprosses<i data-feather="chevron-right"
                                         class="w-4 h-4 ml-0.5"></i> </div>
                             </div>
                         </div>
@@ -68,12 +68,12 @@
                             <i data-feather="file-text" class="report-box__icon text-theme-10"></i>
                             <div class="ml-auto">
                                 <div class="report-box__indicator bg-theme-10 tooltip cursor-pointer"
-                                    title="22% Higher than last month"> 22% <i data-feather="chevron-up"
-                                        class="w-4 h-4 ml-0.5"></i> </div>
+                                    title="22% Higher than last month"> Total been Processed<i
+                                        data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i> </div>
                             </div>
                         </div>
                         <div class="text-3xl font-medium leading-8 mt-6">{{ $transactionaccept }}</div>
-                        <div class="text-base text-gray-600 mt-1">Script been processed</div>
+                        <div class="text-base text-gray-600 mt-1">Script been processed {{ $transactionproses }}</div>
                     </div>
                 </div>
             </div>

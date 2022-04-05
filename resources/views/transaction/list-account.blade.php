@@ -1,5 +1,8 @@
 <x-app-layout>
-
+    @section('navi')
+        <div>SubScripts</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <div class="breadcrumb--active">List Account</div>
+    @endsection
     <!-- BEGIN: Weekly Top Products -->
     <div class="col-span-12 mt-6">
         <div class="intro-y block sm:flex items-center h-10">
@@ -7,17 +10,14 @@
                 List Account
             </h2>
             <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
-                <button class="btn box flex items-center text-gray-700 dark:text-gray-300"> <i data-feather="file-text"
-                        class="hidden sm:block w-4 h-4 mr-2"></i> Export to Excel </button>
-                <button class="ml-3 btn box flex items-center text-gray-700 dark:text-gray-300"> <i
-                        data-feather="file-text" class="hidden sm:block w-4 h-4 mr-2"></i> Export to PDF </button>
+
             </div>
         </div>
         <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
             <table class="table table-report sm:mt-2">
                 <thead>
                     <tr>
-                        <th class="whitespace-nowrap">Id</th>
+                        <th class="whitespace-nowrap">ID</th>
                         <th class="whitespace-nowrap">NAME</th>
                         <th class="text-center whitespace-nowrap">WHATSAPP</th>
                         <th class="text-center whitespace-nowrap">ROLE</th>
@@ -38,7 +38,7 @@
                             <td class="text-center">{{ $data->phone }}</td>
                             <td class="w-40">
                                 @if ($data->role == 'admin')
-                                    <div class="flex items-center justify-center text-teal-400"> <i data-feather="user"
+                                    <div class="flex items-center justify-center text-red-400"> <i data-feather="user"
                                             class="w-4 h-4 mr-2"></i> {{ $data->role }}
                                     </div>
                                 @else
@@ -50,20 +50,16 @@
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
                                     <a class="flex items-center mr-3 text-theme-10"
-                                        href="{{ route('edit.account', ['id' => $data->id]) }}"> <i
-                                            data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit </a>
+                                        href="{{ route('edit.account', ['id' => $data->id]) }}">
+                                        <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit</a>
 
 
-                                    <a class="flex items-center text-theme-24" type="button"
-                                        onclick="toggleModal('modal-id')">
-                                        <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
-                                    </a>
+
                                 </div>
                             </td>
                         </tr>
-
+                    @endforeach
                 </tbody>
-                @endforeach
             </table>
 
             {{ $user->links() }}
@@ -71,8 +67,51 @@
     </div>
     <!-- END: Weekly Top Products -->
 
+    <!-- BEGIN: Delete Modal -->
 
-    <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
+
+    <!-- BEGIN: Modal Content -->
+    <div id="delete-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content bg-white rounded-md">
+                <div class="modal-body p-0">
+                    <div class="p-5 text-center">
+                        <i data-feather="x-circle" class="w-16 h-16 text-theme-24 mx-auto mt-3"></i>
+                        <div class="text-3xl mt-5">Apa Kamu Yakin?</div>
+                        <div class="text-gray-600 mt-2">
+                            Apakah Kamu yakin menghapus
+                            <br>
+                            data {{ $data->name }}?.
+                        </div>
+                    </div>
+                    <div class="px-5 pb-8 text-center">
+                        <button type="button" data-dismiss="modal"
+                            class="btn btn-outline-secondary w-24 dark:border-dark-5 dark:text-gray-300 mr-1">Cancel</button>
+
+                        <a href="{{ route('delete.account', ['id' => $data->id]) }}">
+                            <button type="button" class="btn btn-danger bg-red-500 text-white w-24">Delete</button>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END: Modal Content -->
+    </div>
+    <div class="source-code hidden">
+        <button data-target="#copy-delete-modal" class="copy-code btn py-1 px-2 btn-outline-secondary"> <i
+                data-feather="file" class="w-4 h-4 mr-2"></i> Copy example code </button>
+        <div class="overflow-y-auto mt-3 rounded-md">
+            <pre id="copy-delete-modal"
+                class="source-preview"> <code class="text-xs p-0 rounded-md html pl-5 pt-8 pb-4 -mb-10 -mt-10"> HTMLOpenTag!-- BEGIN: Modal Toggle --HTMLCloseTag HTMLOpenTagdiv class=&quot;text-center&quot;HTMLCloseTag HTMLOpenTaga href=&quot;javascript:;&quot; data-toggle=&quot;modal&quot; data-target=&quot;#delete-modal-preview&quot; class=&quot;btn btn-primary&quot;HTMLCloseTagShow ModalHTMLOpenTag/aHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag!-- END: Modal Toggle --HTMLCloseTag HTMLOpenTag!-- BEGIN: Modal Content --HTMLCloseTag HTMLOpenTagdiv id=&quot;delete-modal-preview&quot; class=&quot;modal&quot; tabindex=&quot;-1&quot; aria-hidden=&quot;true&quot;HTMLCloseTag HTMLOpenTagdiv class=&quot;modal-dialog&quot;HTMLCloseTag HTMLOpenTagdiv class=&quot;modal-content&quot;HTMLCloseTag HTMLOpenTagdiv class=&quot;modal-body p-0&quot;HTMLCloseTag HTMLOpenTagdiv class=&quot;p-5 text-center&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;x-circle&quot; class=&quot;w-16 h-16 text-theme-24 mx-auto mt-3&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag HTMLOpenTagdiv class=&quot;text-3xl mt-5&quot;HTMLCloseTagAre you sure?HTMLOpenTag/divHTMLCloseTag HTMLOpenTagdiv class=&quot;text-gray-600 mt-2&quot;HTMLCloseTagDo you really want to delete these records? HTMLOpenTagbrHTMLCloseTagThis process cannot be undone.HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTagdiv class=&quot;px-5 pb-8 text-center&quot;HTMLCloseTag HTMLOpenTagbutton type=&quot;button&quot; data-dismiss=&quot;modal&quot; class=&quot;btn btn-outline-secondary w-24 dark:border-dark-5 dark:text-gray-300 mr-1&quot;HTMLCloseTagCancelHTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton type=&quot;button&quot; class=&quot;btn btn-danger w-24&quot;HTMLCloseTagDeleteHTMLOpenTag/buttonHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag/divHTMLCloseTag HTMLOpenTag!-- END: Modal Content --HTMLCloseTag </code> </pre>
+        </div>
+    </div>
+    <!-- END: Delete Modal -->
+
+
+
+
+    {{-- <div class="hidden overflow-x-hidden overflow-y-auto fixed inset-0 z-50 outline-none focus:outline-none justify-center items-center"
         id="modal-id">
         <div class="relative w-auto my-6 mx-auto max-w-3xl">
             <!--content-->
@@ -139,5 +178,5 @@
             document.getElementById(modalID).classList.toggle("flex");
             document.getElementById(modalID + "-backdrop").classList.toggle("flex");
         }
-    </script>
+    </script> --}}
 </x-app-layout>
