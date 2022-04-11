@@ -18,6 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->foreignIdFor(\App\Models\User::class, 'user_id');
             $table->timestamps();
             $table->string('periode_wisuda');
+            $table->string('tahun_wisuda');
             $table->string('token');
             $table->string('file1');
             $table->string('file2');

@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Fakultas;
+use App\Models\Prodi;
 use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Log;
+use SebastianBergmann\Environment\Console;
 
 class UserController extends Controller
 {
@@ -53,12 +56,14 @@ class UserController extends Controller
             'phone' => $request['phone'],
         ]);
 
-        return view('transaction.edit-account', compact('user'));
+        return redirect()->route('account.list')->with('edit', ' Data telah diperbaharui!');
     }
     public function index()
     {
         $user = Auth::user();
-        return view('profile', compact('user'));
+        $fakultas = Fakultas::all();
+        $prodi = Prodi::all();
+        return view('profile', compact('user', 'fakultas', 'prodi'));
     }
 
     public function update(Request $request, User $user, $id)
@@ -68,6 +73,8 @@ class UserController extends Controller
             'npm' => 'required',
             'phone' => 'required',
             'email' => 'required',
+            'fakultas' => 'required',
+            'prodi' => 'required',
         ]);
 
         $user = User::find($id);
@@ -77,6 +84,8 @@ class UserController extends Controller
             'email' => $request['email'],
             'npm' => $request['npm'],
             'phone' => $request['phone'],
+            'fakultas_id' => $request['fakultas'],
+            'prodi_id' => $request['prodi'],
         ]);
 
         return redirect()->route('profile')->with('success', ' Data telah diperbaharui!');
@@ -86,6 +95,12 @@ class UserController extends Controller
     {
         $user = User::find($id);
         $user->delete();
-        return redirect()->route('account.list')->with('success', ' Data telah Dihapus!');
+        return redirect()->route('account.list')->with('delete', ' Data telah Dihapus!');
+    }
+
+    public function getprodi(Request $request)
+    {
+        $prodi = Prodi::where("fakultas_id", $request->kabID)->pluck('id', 'prodi');
+        return response()->json($prodi);
     }
 }

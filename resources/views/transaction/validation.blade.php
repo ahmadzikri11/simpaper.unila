@@ -71,58 +71,49 @@
                                     class="font-medium flex items-center border-b border-gray-200 dark:border-dark-5 pb-5">
                                     <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Validasi Skripsi
                                 </div>
-                                <div class="mt-5">
-                                    <form
-                                        action="{{ route('validation.message', ['phone' => $transaction->transactions->phone]) }}"
-                                        method="POST">
-                                        <label name="message" for="crud-form-4" class="form-label">Pesan</label>
-                                        <input type="text" id="message" name="message" class="form-control"
-                                            placeholder="ex: Skripsi Anda sudah Kami Validasi"
-                                            aria-describedby="input-group-2">
-                                        {{-- <div class="input-group">
 
-                                        <button id="input-group-2" type="submit" class="input-group-text">Kirim</button>
-                                    </div> --}}
-                                    </form>
-                                </div>
-                            </div>
-                            <div class="intro-y box mt-5">
-                                <div id="icon-button" class="p-5">
-                                    <div class="preview">
-                                        <div class="flex flex-wrap">
-                                            <a href="javascript:;" data-toggle="modal"
-                                                data-target="#header-footer-modal-preview">
-                                                <button class="btn btn-primary bg-green-600 text-white w-32 mr-2 mb-2">
-                                                    <i data-feather="edit-3" class=" mr-2"></i> Validasi
-                                                </button>
-                                            </a>
+                                <div class="intro-y box mt-5">
+                                    <div id="icon-button" class="p-5">
+                                        <div class="preview">
+                                            <div class="flex flex-wrap">
+                                                <a href="javascript:;" data-toggle="modal"
+                                                    data-target="#header-footer-modal-preview">
+                                                    <button
+                                                        class="btn btn-primary bg-green-600 text-white w-32 mr-2 mb-2">
+                                                        <i data-feather="edit-3" class=" mr-2"></i> Validasi
+                                                    </button>
+                                                </a>
 
-                                            <a href="javascript:;" data-toggle="modal"
-                                                data-target="#header-footer-modal-preview2">
-                                                <button class="btn btn-primary bg-red-600 text-white w-32 mr-2 mb-2"> <i
-                                                        data-feather="x-square" class="mr-2"></i> Tolak File
-                                                </button>
-                                            </a>
+                                                <a href="javascript:;" data-toggle="modal"
+                                                    data-target="#header-footer-modal-preview2">
+                                                    <button
+                                                        class="btn btn-primary bg-red-600 text-white w-32 mr-2 mb-2"> <i
+                                                            data-feather="x-square" class="mr-2"></i> Tolak
+                                                        File
+                                                    </button>
+                                                </a>
 
 
 
-                                            <a type="button" href="javascript:;" data-toggle="modal"
-                                                data-target="#delete-modal-preview">
-                                                <button class="btn btn-primary bg-red-600 text-white w-32 mr-2 mb-2">
-                                                    <i data-feather="trash-2" class="mr-2"></i> Hapus
-                                                </button>
-                                            </a>
+                                                <a type="button" href="javascript:;" data-toggle="modal"
+                                                    data-target="#delete-modal-preview">
+                                                    <button
+                                                        class="btn btn-primary bg-red-600 text-white w-32 mr-2 mb-2">
+                                                        <i data-feather="trash-2" class="mr-2"></i> Hapus
+                                                    </button>
+                                                </a>
 
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="source-code hidden">
-                                        <button data-target="#copy-icon-button"
-                                            class="copy-code btn py-1 px-2 btn-outline-secondary"> <i
-                                                data-feather="file" class="w-4 h-4 mr-2"></i> Copy example code
-                                        </button>
-                                        <div class="overflow-y-auto mt-3 rounded-md">
-                                            <pre id="copy-icon-button"
-                                                class="source-preview"> <code class="text-xs p-0 rounded-md html pl-5 pt-8 pb-4 -mb-10 -mt-10"> HTMLOpenTagbutton class=&quot;btn btn-primary w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;activity&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Activity HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-secondary w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;hard-drive&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Hard Drive HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-success w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;calendar&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Calendar HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-warning w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;share-2&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Share HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-danger w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;trash&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Trash HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-dark w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;image&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Image HTMLOpenTag/buttonHTMLCloseTag </code> </pre>
+                                        <div class="source-code hidden">
+                                            <button data-target="#copy-icon-button"
+                                                class="copy-code btn py-1 px-2 btn-outline-secondary"> <i
+                                                    data-feather="file" class="w-4 h-4 mr-2"></i> Copy example code
+                                            </button>
+                                            <div class="overflow-y-auto mt-3 rounded-md">
+                                                <pre id="copy-icon-button"
+                                                    class="source-preview"> <code class="text-xs p-0 rounded-md html pl-5 pt-8 pb-4 -mb-10 -mt-10"> HTMLOpenTagbutton class=&quot;btn btn-primary w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;activity&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Activity HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-secondary w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;hard-drive&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Hard Drive HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-success w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;calendar&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Calendar HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-warning w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;share-2&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Share HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-danger w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;trash&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Trash HTMLOpenTag/buttonHTMLCloseTag HTMLOpenTagbutton class=&quot;btn btn-dark w-32 mr-2 mb-2&quot;HTMLCloseTag HTMLOpenTagi data-feather=&quot;image&quot; class=&quot;w-4 h-4 mr-2&quot;HTMLCloseTagHTMLOpenTag/iHTMLCloseTag Image HTMLOpenTag/buttonHTMLCloseTag </code> </pre>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

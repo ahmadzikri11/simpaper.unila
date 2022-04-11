@@ -20,6 +20,7 @@ class Transaction extends Model
         'user_id',
         'status',
         'messege',
+        'tahun_wisuda',
     ];
     public function transactions()
     {

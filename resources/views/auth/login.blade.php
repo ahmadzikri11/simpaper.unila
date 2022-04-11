@@ -21,15 +21,15 @@
                 <h2 class="intro-x font-bold text-2xl xl:text-3xl mb-5 xl:text-left">
                     Sign In
                 </h2>
-                <div>
+                <div class="mt-4">
                     <x-jet-label for="email" value="{{ __('Email') }}" />
-                    <x-jet-input id="email" class="form-control w-full" type="email" name="email" :value="old('email')"
+                    <x-jet-input id="email" class="form-control mt-2 w-full" type="email" name="email" :value="old('email')"
                         required autofocus />
                 </div>
 
                 <div class="mt-4">
                     <x-jet-label for="password" value="{{ __('Password') }}" />
-                    <x-jet-input id="password" class="form-control w-full" type="password" name="password" required
+                    <x-jet-input id="password" class="form-control mt-2 w-full" type="password" name="password" required
                         autocomplete="current-password" />
                 </div>
 

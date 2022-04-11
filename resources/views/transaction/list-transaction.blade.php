@@ -17,8 +17,29 @@
 
             </div>
         </div>
+
+
+
         <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
             <table class="table table-report sm:mt-2">
+                @if (session()->has('message'))
+                    <div class="alert bg-green-700 text-white show flex items-center mb-2" role="alert">
+                        <i data-feather="edit" class="w-6 h-6 mr-2 "></i>
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
+                @if (session()->has('reject'))
+                    <div class="alert bg-red-500 text-white show flex items-center mb-2" role="alert">
+                        <i data-feather="x-square" class="w-6 h-6 mr-2 "></i>
+                        {{ session()->get('reject') }}
+                    </div>
+                @endif
+                @if (session()->has('delete'))
+                    <div class="alert bg-red-700 text-white show flex items-center mb-2" role="alert">
+                        <i data-feather="trash" class="w-6 h-6 mr-2 "></i>
+                        {{ session()->get('delete') }}
+                    </div>
+                @endif
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">NAME</th>
@@ -63,20 +84,6 @@
                                         class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">{{ $data->status }}</span>
                                 @endif
                             </td>
-                            {{-- <td class="table-report__action w-56">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3 text-theme-10" href="{{ route('validation') }}">
-                                        <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Validasi </a>
-
-
-                                    <a class="flex items-center text-theme-24" type="button" href="javascript:;"
-                                        data-toggle="modal" data-target="#delete-modal-preview">
-                                        <button>
-                                            <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
-                                        </button>
-                                    </a>
-                                </div>
-                            </td> --}}
 
                             <td class="table-report__action w-56">
                                 <div class="flex justify-center items-center">
@@ -84,13 +91,6 @@
                                         href="{{ route('validation', ['id' => $data->id]) }}">
                                         <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Validasi</a>
 
-                                    <a class="flex items-center text-theme-24" type="button" href="javascript:;"
-                                        data-toggle="modal" data-target="#delete-modal-preview"
-                                        value="{{ $data->id }}">
-                                        <button value=" {{ $data->id }}">
-                                            <i data-feather="trash-2" class="w-4 h-4 mr-1"></i> Delete
-                                        </button>
-                                    </a>
                                 </div>
                             </td>
                         </tr>

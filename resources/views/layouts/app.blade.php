@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'Submitscript') }}</title>
     @livewireStyles
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
@@ -165,15 +165,7 @@
                             <a href=""
                                 class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
                                 <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
-                            <a href=""
-                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
-                                <i data-feather="edit" class="w-4 h-4 mr-2"></i> Add Account </a>
-                            <a href=""
-                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
-                                <i data-feather="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
-                            <a href=""
-                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
-                                <i data-feather="help-circle" class="w-4 h-4 mr-2"></i> Help </a>
+
                         </div>
                         <div class="p-2 border-t border-theme-12 dark:border-dark-3">
                             <form method="POST" action="{{ route('logout') }}">

@@ -24,16 +24,24 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('request.list') }}" class="menu">
-                <div class="menu__icon"> <i data-feather="file-text"></i> </div>
-                <div class="menu__title"> Submitted </div>
+            <a href="{{ route('transcation/user_transaction') }}" class="menu">
+                <div class="menu__icon"> <i data-feather="monitor"></i> </div>
+                <div class="menu__title"> Status </div>
             </a>
         </li>
-        <li>
-            <a href="{{ route('account.list') }}" class="menu">
-                <div class="menu__icon"> <i data-feather="users"></i> </div>
-                <div class="menu__title"> Users </div>
-            </a>
-        </li>
+        @if (auth()->user()->role == 'admin')
+            <li>
+                <a href="{{ route('request.list') }}" class="menu">
+                    <div class="menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="menu__title"> Submitted </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('account.list') }}" class="menu">
+                    <div class="menu__icon"> <i data-feather="users"></i> </div>
+                    <div class="menu__title"> Users </div>
+                </a>
+            </li>
+        @endif
     </ul>
 </div>

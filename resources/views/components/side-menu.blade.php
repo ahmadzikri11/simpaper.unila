@@ -1,8 +1,8 @@
 <nav class="side-nav">
     <ul>
-        
+
         <li>
-        
+
             <a href=" {{ route('dashboard') }}" class="side-menu">
                 <div class="side-menu__icon"> <i data-feather="home"></i> </div>
                 <div class="side-menu__title">
@@ -22,7 +22,13 @@
                 <div class="side-menu__title"> Submission </div>
             </a>
         </li>
-            @if(auth()->user()->role == 'admin')
+        <li>
+            <a href="{{ route('transcation.status') }}" class="side-menu">
+                <div class="side-menu__icon"> <i data-feather="monitor"></i></i> </div>
+                <div class="side-menu__title"> Status </div>
+            </a>
+        </li>
+        @if (auth()->user()->role == 'admin')
             <li>
                 <a href="{{ route('request.list') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>

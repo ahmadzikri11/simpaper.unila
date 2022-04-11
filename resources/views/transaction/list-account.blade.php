@@ -15,6 +15,19 @@
         </div>
         <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
             <table class="table table-report sm:mt-2">
+                @if (session()->has('edit'))
+                    <div class="alert bg-green-700 text-white show flex items-center mb-2" role="alert">
+                        <i data-feather="edit" class="w-6 h-6 mr-2 "></i>
+                        {{ session()->get('edit') }}
+                    </div>
+                @endif
+
+                @if (session()->has('delete'))
+                    <div class="alert bg-red-700 text-white show flex items-center mb-2" role="alert">
+                        <i data-feather="trash" class="w-6 h-6 mr-2 "></i>
+                        {{ session()->get('delete') }}
+                    </div>
+                @endif
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">ID</th>

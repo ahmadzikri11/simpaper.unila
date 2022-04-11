@@ -28,7 +28,14 @@ class TransactionController extends Controller
     public function Status()
     {
         $user = Auth::user();
-        return view('transaction.status_transaction', compact('user'));
+        $get_id = $user->id;
+        $check = Transaction::where('user_id', $get_id)->exists();
+
+        if ($check) {
+            return view('transaction.edit_transaction', compact('user',));
+        } else {
+            return view('transaction.status_submit');
+        }
     }
 
     public function listRequest()
@@ -50,8 +57,6 @@ class TransactionController extends Controller
             'Content-Disposition' => 'inline; filename="' . $path . '"'
         ];
         return response()->file($file, $header);
-        // $transaction = Transaction::all();
-        // return view('transaction.iframe-file1', compact('transaction'));
     }
     public function showFile2($path2)
     {
@@ -111,7 +116,7 @@ class TransactionController extends Controller
             ]
         );
 
-        return redirect()->route('request.list')->with('success', ' Data telah diperbaharui!');
+        return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
     }
 
     public function validationreject(Request $request, Transaction $transaction, $id)
@@ -152,7 +157,7 @@ class TransactionController extends Controller
             ]
         );
 
-        return redirect()->route('request.list')->with('success', ' Data telah diperbaharui!');
+        return redirect()->route('request.list')->with('reject', ' Data tidak Divalidasi!');
     }
 
 
@@ -181,11 +186,7 @@ class TransactionController extends Controller
         );
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create(Request $request)
     {
         $attr = $request->validate([
@@ -194,6 +195,7 @@ class TransactionController extends Controller
             'file3' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
             'token' => 'required',
             'periode_wisuda' => 'required',
+            'tahun_wisuda' => 'required',
         ]);
 
         $attr['user_id'] = auth()->user()->id;
@@ -202,6 +204,32 @@ class TransactionController extends Controller
         $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
 
         Transaction::create($attr);
+
+        return back()->with('message', 'Data berhasil ditambahkan');
+    }
+    public function update(Request $request, $id)
+    {
+        $this->validate($request, [
+            'file1' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file2' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file3' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'token' => 'nullable',
+            'periode_wisuda' => 'nullable',
+        ]);
+
+        $a = Transaction::find($id);
+        $a->update([
+            'file1' => $request['file1'],
+            'file2' => $request['file2'],
+            'file3' => $request['file3'],
+            'token' => $request['token'],
+        ]);
+
+        // $attr['file1'] = $this->storeFile($request->file('file1'), 'surat-rekomendasi');
+        // $attr['file2'] = $this->storeFile($request->file('file2'), 'surat-keterangan');
+        // $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
+
+        // Transaction::update($attr);
 
         return back()->with('message', 'Data berhasil ditambahkan');
     }
@@ -226,65 +254,10 @@ class TransactionController extends Controller
         return back()->with('message', 'Data berhasil ditambahkan');
     }
 
-
-
-
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreTransactionRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreTransactionRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateTransactionRequest  $request
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateTransactionRequest $request, Transaction $transaction)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Transaction  $transaction
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(Transaction $transaction, $id)
     {
         $transaction = Transaction::find($id);
         $transaction->delete();
-        return redirect()->route('request.list')->with('success', ' Data telah Dihapus!');
+        return redirect()->route('request.list')->with('delete', ' Data telah Dihapus!');
     }
 }

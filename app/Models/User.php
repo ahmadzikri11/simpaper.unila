@@ -10,6 +10,7 @@ use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Transactions;
+use App\Models\Transaction;
 
 class User extends Authenticatable
 {
@@ -31,6 +32,8 @@ class User extends Authenticatable
         'password',
         'npm',
         'phone',
+        'prodi_id',
+        'fakultas_id',
     ];
 
     /**
@@ -65,6 +68,16 @@ class User extends Authenticatable
 
     public function users()
     {
-        return $this->hasMany(Transactions::class, 'user_id', 'id');
+        return $this->hasMany(Transaction::class, 'user_id', 'id');
+    }
+
+    public function getfakultas()
+    {
+        return $this->hasOne(Fakultas::class, 'id', 'fakultas_id');
+    }
+
+    public function getprodi()
+    {
+        return $this->hasOne(Prodi::class, 'id', 'prodi_id');
     }
 }

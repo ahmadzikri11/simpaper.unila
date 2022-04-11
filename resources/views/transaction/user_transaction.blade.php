@@ -19,7 +19,10 @@
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <div class="w-ful">
                         @if (session()->has('message'))
-                            <p class="text-green-500 font-medium text-base">{{ session()->get('message') }}</p>
+                            <div class="alert bg-green-500 text-white show flex items-center mb-2" role="alert">
+                                <i data-feather="file-plus" class="w-6 h-6 mr-2 "></i>
+                                {{ session()->get('message') }}
+                            </div>
                         @endif
                     </div>
                     <form action="{{ route('transcation/user_transaction') }}" enctype="multipart/form-data"
@@ -27,7 +30,7 @@
                         @csrf
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
-                                <div class="flex max-w-7xl table-fixed">
+                                <div class="flex ml-5 max-w-7xl table-fixed">
                                     <div class="overflow-x-auto shadow-md sm:rounded-lg">
                                         <div class="inline-block min-w-full align-middle">
                                             <div class="overflow-hidden ">
@@ -110,7 +113,7 @@
                                     </div>
                                 </div>
 
-                                <div class="grid grid-cols-3 gap-6">
+                                <div class=" ml-10 grid grid-cols-4 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="token"
@@ -124,7 +127,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-3 gap-6">
+                                <div class="grid ml-10 grid-cols-4 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="periode_wisuda"
@@ -147,28 +150,38 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="grid ml-10 grid-cols-4 gap-6">
+                                    <div class="col-span-3 sm:col-span-2">
+                                        <div class="col-span-6 sm:col-span-3">
+                                            <label for="tahun_wisuda"
+                                                class="block text-sm font-medium text-gray-700">Tahun Wisuda</label>
+                                            <select id="tahun_wisuda" name="tahun_wisuda" autocomplete="periode-name"
+                                                class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                <option value="">Pilih Tahun</option>
+                                                <option value="2022">2022</option>
+                                                <option value="2023">2023</option>
+                                                <option value="2024">2024</option>
+                                                <option value="2025">2025</option>
+                                                <option value="2026">2026</option>
+                                                <option value="2027">2027</option>
+                                                <option value="2028">2028</option>
+                                                <option value="2029">2029</option>
+                                                <option value="2030">2030</option>
+                                            </select>
+                                            @error('tahun_wisuda')
+                                                <span class="text-red-500">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ml-10">
                                     <div class="flex justify-left">
-                                        <div class="mb-3 w-96">
+                                        <div class="mb-3 w-80 ">
                                             <label for="formFileSm"
                                                 class="form-label inline-block mb-2 text-gray-700">Input File
                                                 Skripsi</label>
                                             <input
-                                                class="form-control
-                                                    block
-                                                    w-full
-                                                    px-2
-                                                    py-1
-                                                    text-sm
-                                                    font-normal
-                                                    text-gray-700
-                                                    bg-white bg-clip-padding
-                                                    border border-solid border-gray-300
-                                                    rounded
-                                                    transition
-                                                    ease-in-out
-                                                    m-0
-                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                 id="file1" name="file1" type="file">
                                             @error('file1')
                                                 <span class="text-red-500">{{ $message }}</span>
@@ -176,28 +189,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="ml-10">
                                     <div class="flex justify-left">
-                                        <div class="mb-3 w-96">
+                                        <div class="mb-3 w-80">
                                             <label for="formFileSm"
                                                 class="form-label inline-block mb-2 text-gray-700">Input File
                                                 2</label>
                                             <input
-                                                class="form-control
-                                                    block
-                                                    w-full
-                                                    px-2
-                                                    py-1
-                                                    text-sm
-                                                    font-normal
-                                                    text-gray-700
-                                                    bg-white bg-clip-padding
-                                                    border border-solid border-gray-300
-                                                    rounded
-                                                    transition
-                                                    ease-in-out
-                                                    m-0
-                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                 id="file2" name="file2" type="file">
                                             @error('file2')
                                                 <span class="text-red-500">{{ $message }}</span>
@@ -205,28 +204,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div>
+                                <div class="ml-10">
                                     <div class="flex justify-left">
-                                        <div class="mb-3 w-96">
+                                        <div class="mb-3 w-80">
                                             <label for="formFileSm"
                                                 class="form-label inline-block mb-2 text-gray-700">Input
                                                 file3</label>
                                             <input
-                                                class="form-control
-                                                    block
-                                                    w-full
-                                                    px-2
-                                                    py-1
-                                                    text-sm
-                                                    font-normal
-                                                    text-gray-700
-                                                    bg-white bg-clip-padding
-                                                    border border-solid border-gray-300
-                                                    rounded
-                                                    transition
-                                                    ease-in-out
-                                                    m-0
-                                                    focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                 id="file3" name="file3" type="file">
                                             @error('file3')
                                                 <span class="text-red-500">{{ $message }}</span>
