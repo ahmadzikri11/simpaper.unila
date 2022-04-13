@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp;
-
+use Illuminate\Support\Facades\Mail;
 
 class TransactionController extends Controller
 {
@@ -27,7 +27,6 @@ class TransactionController extends Controller
 
     public function Status()
     {
-
 
         $user = Auth::user();
         $get_id = $user->id;
@@ -95,6 +94,7 @@ class TransactionController extends Controller
 
 
         $phone = $transaction->transactions->phone;
+        $email = $transaction->transactions->email;
 
         $message = $request['message'];
         $client = new Client();
@@ -117,7 +117,12 @@ class TransactionController extends Controller
                 ]
             ]
         );
+        $details = [
+            'title' => 'UPT Perpustakaan Unila',
+            'body' => $message
+        ];
 
+        \Mail::to($email)->send(new \App\Mail\MyMail($details));
         return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
     }
 

@@ -84,13 +84,13 @@
                             <td class="text-center">
                                 @if ($data->status == 'Sudah Tervalidasi')
                                     <span
-                                        class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">{{ $data->status }}</span>
+                                        class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Tervalidasi</span>
                                 @elseif ($data->status == 'Permintaan Ditolak')
-                                    <span
-                                        class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs">{{ $data->status }}</span>
+                                    <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs"> Ditolak
+                                    </span>
                                 @elseif ($data->status == 'Diproses')
-                                    <span
-                                        class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">{{ $data->status }}</span>
+                                    <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">Diproses
+                                    </span>
                                 @endif
                             </td>
 

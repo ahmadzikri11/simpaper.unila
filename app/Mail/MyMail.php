@@ -10,7 +10,7 @@ use Illuminate\Queue\SerializesModels;
 class MyMail extends Mailable
 {
     use Queueable, SerializesModels;
-
+    public $details;
     /**
      * Create a new message instance.
      *
@@ -29,6 +29,6 @@ class MyMail extends Mailable
     public function build()
     {
         return $this->subject('Mail from UPT Perpustakaan Universitas Lampung')
-            ->view('emails.myTestMail');
+            ->view('emails.myMail');
     }
 }

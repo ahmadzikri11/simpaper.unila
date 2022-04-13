@@ -56,13 +56,14 @@
                                                     class="block text-sm font-medium text-gray-700">Fakultas</label>
                                                 <select id="fakultas" name="fakultas" autocomplete="periode-name"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                    <option value="">
-                                                        @if (empty($user->fakultas_id))
-                                                            Pilih Fakultas
-                                                        @else
-                                                            {{ $user->getfakultas->fakultas }}
-                                                        @endif
-                                                    </option>
+
+                                                    @if (empty($user->fakultas_id))
+                                                        <option value=""> Pilih Fakultas </option>
+                                                    @else
+                                                        <option value="{{ $user->fakultas_id }}">
+                                                            {{ $user->getfakultas->fakultas }}</option>
+                                                    @endif
+
                                                     @foreach ($fakultas as $fakultas)
                                                         <option value="{{ $fakultas->id }}">
                                                             {{ $fakultas->fakultas }}
@@ -82,20 +83,15 @@
 
                                                 <select id="prodi" name="prodi" autocomplete="periode-name"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-                                                    <option value="">
-                                                        @if (empty($user->prodi_id))
-                                                            Pilih Prodi
-                                                        @else
-                                                            {{ $user->getprodi->prodi }}
-                                                        @endif
-                                                    </option>
+
+                                                    @if (empty($user->prodi_id))
+                                                        <option value="">Pilih Prodi</option>
+                                                    @else
+                                                        <option value="{{ $user->prodi_id }}">
+                                                            {{ $user->getprodi->prodi }} </option>
+                                                    @endif
+
                                                 </select>
-
-
-
-
-
-
                                             </div>
                                         </div>
                                     </div>
@@ -107,8 +103,8 @@
                                         <div class="">
                                             <label for="phone" class="block text-sm font-medium text-gray-700">Nomer
                                                 Whattsapp</label>
-                                            <input type="text" value="{{ old('phone') ?? $user->phone }}" name="phone"
-                                                id="phone"
+                                            <input type="text" value="{{ old('phone') ?? $user->phone }}"
+                                                name="phone" id="phone"
                                                 class=" form-control mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                         </div>
                                     </div>
