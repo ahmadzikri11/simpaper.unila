@@ -36,7 +36,8 @@ class UserController extends Controller
     public function editAccount($id)
     {
         $user = User::find($id);
-        return view('transaction.edit-account', compact('user'));
+        $fakultas = Fakultas::all();
+        return view('transaction.edit-account', compact('user', 'fakultas'));
     }
     public function updateAccount(Request $request, User $user, $id)
     {
@@ -45,6 +46,8 @@ class UserController extends Controller
             'npm' => 'required',
             'phone' => 'required',
             'email' => 'required',
+            'fakultas' => 'required',
+            'prodi' => 'required',
         ]);
 
         $user = User::find($id);
@@ -54,6 +57,8 @@ class UserController extends Controller
             'email' => $request['email'],
             'npm' => $request['npm'],
             'phone' => $request['phone'],
+            'fakultas_id' => $request['fakultas'],
+            'prodi_id' => $request['prodi'],
         ]);
 
         return redirect()->route('account.list')->with('edit', ' Data telah diperbaharui!');

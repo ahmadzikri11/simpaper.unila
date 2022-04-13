@@ -24,7 +24,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ route('transcation/user_transaction') }}" class="menu">
+            <a href="{{ route('transcation/status') }}" class="menu">
                 <div class="menu__icon"> <i data-feather="monitor"></i> </div>
                 <div class="menu__title"> Status </div>
             </a>

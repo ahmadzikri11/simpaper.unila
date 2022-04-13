@@ -11,7 +11,7 @@
     <div class="col-span-12 mt-6">
         <div class="intro-y block sm:flex items-center h-10">
             <h2 class="text-lg font-medium truncate mr-5">
-                List Account
+                List Transaction
             </h2>
             <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
 
@@ -43,8 +43,11 @@
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">NAME</th>
-                        <th class="whitespace-nowrap">TOKEN</th>
-                        <th class="text-center whitespace-nowrap">WHATSAPP</th>
+
+                        <th class="whitespace-nowrap">TAHUN WISUDA</th>
+                        <th class="whitespace-nowrap">FAKULTAS</th>
+                        <th class="whitespace-nowrap">JURUSAN</th>
+
                         <th class="text-center whitespace-nowrap">UPLOAD TIME</th>
                         <th class="text-center whitespace-nowrap">STATUS</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
@@ -54,24 +57,30 @@
                 <tbody>
                     @foreach ($transaction as $data)
                         <tr class="intro-x">
-                            <td class="w-40">
+                            <td class="w-56">
                                 <div class="font-medium whitespace-nowrap">{{ $data->transactions->name }}
                                 </div>
                                 <div class="text-gray-600 text-xs whitespace-nowrap mt-0.5">
                                     {{ $data->transactions->npm }}
                                 </div>
                             </td>
-                            <td>
-                                <div class="font-medium whitespace-nowrap">{{ $data->token }}</div>
 
+                            <td>
+                                <div class="font-medium whitespace-nowrap">{{ $data->periode_wisuda }},
+                                    {{ $data->tahun_wisuda }}</div>
                             </td>
-                            <td class="w-40">
-                                <div class="flex items-center justify-center ">
-                                    {{ $data->transactions->phone }}
+                            <td>
+                                <div class="font-medium whitespace-nowrap">
+                                    {{ $data->transactions->getfakultas->fakultas }}
                                 </div>
                             </td>
+                            <td>
+                                <div class="font-medium whitespace-nowrap">{{ $data->transactions->getprodi->prodi }}
+                                </div>
+                            </td>
+
                             <td class="text-center">
-                                {{ $data->created_at }}</td>
+                                {{ $data->created_at->todatestring() }}</td>
                             <td class="text-center">
                                 @if ($data->status == 'Sudah Tervalidasi')
                                     <span
@@ -85,7 +94,7 @@
                                 @endif
                             </td>
 
-                            <td class="table-report__action w-56">
+                            <td class="table-report__action">
                                 <div class="flex justify-center items-center">
                                     <a class="flex items-center mr-3 text-theme-10"
                                         href="{{ route('validation', ['id' => $data->id]) }}">

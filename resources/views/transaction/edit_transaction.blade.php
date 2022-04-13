@@ -209,7 +209,14 @@
                                 </div>
                             </div>
 
+                            <div class="intro-y grid grid-cols-2 gap-3 mt-5">
+                                <img class="rounded-lg shadow-lg ml-2" alt=""
+                                    src="{{ asset('storage' . '/' . $user->users[0]->ktm) }}">
+                                <img class="rounded-lg mr-2 shadow-lg" alt=""
+                                    src="{{ asset('storage' . '/' . $user->users[0]->photo) }}">
+                            </div>
                         </div>
+
                         <a href="javascript:;" data-toggle="modal" data-target="#header-footer-modal-preview">
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                 <button type="submit"

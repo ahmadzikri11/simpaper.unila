@@ -48,6 +48,58 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div class="col-span-3 ml-5">
+                                        <div>
+                                            <div class="col-span-6 mt-5 sm:col-span-3">
+                                                <label for="fakultas"
+                                                    class="block text-sm font-medium text-gray-700">Fakultas</label>
+                                                <select id="fakultas" name="fakultas" autocomplete="periode-name"
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    <option value="">
+                                                        @if (empty($user->fakultas_id))
+                                                            Pilih Fakultas
+                                                        @else
+                                                            {{ $user->getfakultas->fakultas }}
+                                                        @endif
+                                                    </option>
+                                                    @foreach ($fakultas as $fakultas)
+                                                        <option value="{{ $fakultas->id }}">
+                                                            {{ $fakultas->fakultas }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="grid grid-cols-3 gap-2">
+                                    <div class="col-span-3">
+                                        <div>
+                                            <div class="col-span-6 mt-5 sm:col-span-3">
+                                                <label for="prodi"
+                                                    class="block text-sm font-medium text-gray-700">Jurusan</label>
+
+                                                <select id="prodi" name="prodi" autocomplete="periode-name"
+                                                    class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                                    <option value="">
+                                                        @if (empty($user->prodi_id))
+                                                            Pilih Prodi
+                                                        @else
+                                                            {{ $user->getprodi->prodi }}
+                                                        @endif
+                                                    </option>
+                                                </select>
+
+
+
+
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
 
 
                                 <div class="grid grid-cols-3 gap-2">
@@ -122,3 +174,30 @@
     <!-- END: Delete Modal -->
 
 </x-app-layout>
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script>
+    $('#fakultas').change(function() {
+        var kabID = $(this).val();
+        if (kabID) {
+            $.ajax({
+                type: "GET",
+                url: "/getprodi?kabID=" + kabID,
+                dataType: 'JSON',
+                success: function(res) {
+                    if (res) {
+                        $("#prodi").empty();
+                        $("#prodi").append('<option>---Pilih prodi---</option>');
+                        $.each(res, function(prodi, id) {
+                            $("#prodi").append('<option value="' + id + '">' + prodi +
+                                '</option>');
+                        });
+                    } else {
+                        $("#prodi").empty();
+                    }
+                }
+            });
+        }
+    });
+</script>

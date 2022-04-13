@@ -60,8 +60,15 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
 
+                <div class="intro-y grid grid-cols-2 gap-3 mt-5">
+                    <img class="rounded-lg shadow-lg ml-2" alt=""
+                        src="{{ asset('storage' . '/' . $transaction->ktm) }}">
+                    <img class="rounded-lg mr-2 shadow-lg" alt=""
+                        src="{{ asset('storage' . '/' . $transaction->photo) }}">
+                </div>
 
                 <div class="post intro-y overflow-hidden box mt-5">
                     <div class="post__content tab-content">
@@ -69,9 +76,17 @@
                             <div class="border border-gray-200 dark:border-dark-5 rounded-md p-5">
                                 <div
                                     class="font-medium flex items-center border-b border-gray-200 dark:border-dark-5 pb-5">
-                                    <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Validasi Skripsi
+                                    <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Pesan
                                 </div>
+                                <div class="flex justify-center">
+                                    <div class="mb-3 w-full ">
 
+                                        <textarea class="
+                                          form-control block h-80 w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
+                                            id="exampleFormControlTextarea1" rows="3">Selamat siang users, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan users, kami ingin menginformasikan bahwa permohonan tersebut telah kami poroses. Kami menyimpulkan bahwa data kamu ...........
+                                        </textarea>
+                                    </div>
+                                </div>
                                 <div class="intro-y box mt-5">
                                     <div id="icon-button" class="p-5">
                                         <div class="preview">
@@ -90,16 +105,6 @@
                                                         class="btn btn-primary bg-red-600 text-white w-32 mr-2 mb-2"> <i
                                                             data-feather="x-square" class="mr-2"></i> Tolak
                                                         File
-                                                    </button>
-                                                </a>
-
-
-
-                                                <a type="button" href="javascript:;" data-toggle="modal"
-                                                    data-target="#delete-modal-preview">
-                                                    <button
-                                                        class="btn btn-primary bg-red-600 text-white w-32 mr-2 mb-2">
-                                                        <i data-feather="trash-2" class="mr-2"></i> Hapus
                                                     </button>
                                                 </a>
 
@@ -145,6 +150,29 @@
                                 <div class="w-6 h-6 image-fit mr-3">
                                 </div>
                                 <div class="truncate"> {{ $transaction->transactions->npm }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class=" mt-4 form-label">Fakultas</label>
+                        <div class="dropdown">
+                            <div class="dropdown-toggle btn w-full btn-outline-secondary dark:bg-dark-2 dark:border-dark-2 flex items-center justify-start"
+                                role="button" aria-expanded="false">
+                                <div class="w-6 h-6 image-fit mr-3">
+                                </div>
+                                <div class="truncate"> {{ $transaction->transactions->getfakultas->fakultas }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class=" mt-4 form-label">Jurusan</label>
+                        <div class="dropdown">
+                            <div class="dropdown-toggle btn w-full btn-outline-secondary dark:bg-dark-2 dark:border-dark-2 flex items-center justify-start"
+                                role="button" aria-expanded="false">
+                                <div class="w-6 h-6 image-fit mr-3">
+                                </div>
+                                <div class="truncate"> {{ $transaction->transactions->getprodi->prodi }}</div>
                             </div>
                         </div>
                     </div>
@@ -242,8 +270,6 @@
                             <h2 class="font-medium text-base mr-auto">
                                 Validasi File Skripsi
                             </h2>
-
-
                         </div>
                         <!-- END: Modal Header -->
                         <!-- BEGIN: Modal Body -->

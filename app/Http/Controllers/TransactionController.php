@@ -27,6 +27,8 @@ class TransactionController extends Controller
 
     public function Status()
     {
+
+
         $user = Auth::user();
         $get_id = $user->id;
         $check = Transaction::where('user_id', $get_id)->exists();
@@ -196,12 +198,16 @@ class TransactionController extends Controller
             'token' => 'required',
             'periode_wisuda' => 'required',
             'tahun_wisuda' => 'required',
+            'photo' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
+            'ktm' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
         ]);
 
         $attr['user_id'] = auth()->user()->id;
         $attr['file1'] = $this->storeFile($request->file('file1'), 'surat-rekomendasi');
         $attr['file2'] = $this->storeFile($request->file('file2'), 'surat-keterangan');
         $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
+        $attr['ktm'] = $this->storeFile($request->file('ktm'), 'ktm');
+        $attr['photo'] = $this->storeFile($request->file('photo'), 'photo');
 
         Transaction::create($attr);
 

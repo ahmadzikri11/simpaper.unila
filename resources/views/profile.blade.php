@@ -98,19 +98,6 @@
                                                     </option>
                                                 @endforeach
 
-
-                                                {{-- <option value="fakultas teknik">Teknik</option>
-                                                <option value="fakultas pertanian">Pertanian</option>
-                                                <option value="fakultas ekonomi dan bisnis">Ekonomi dan Bisinis</option>
-                                                <option value="fakultas hukum">Hukum</option>
-                                                <option value="fakultas keguruan dan ilmu pendidikan">Keguruan Ilmu dan
-                                                    pendidikan</option>
-                                                <option value="fakultas matematika dan ilmu pengetahuan alam">Matematika
-                                                    dan IPA</option>
-                                                <option value="fakultas kedokteran">Kedokteran</option>
-                                                <option value="fakultas ilmu sosial dan politik "> Ilmu Sosial dan Ilmu
-                                                    Politik</option> --}}
-
                                             </select>
                                             @error('fakultas')
                                                 <span class="text-red-500">{{ $message }}</span>
@@ -131,10 +118,6 @@
                                                         {{ $user->getprodi->prodi }}
                                                     @endif
                                                 </option>
-                                                {{-- @foreach ($prodi as $prodi)
-                                                    <option value="2022">{{ $prodi->prodi }}</option>
-                                                @endforeach --}}
-
                                             </select>
 
                                         </div>

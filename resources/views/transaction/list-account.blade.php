@@ -32,6 +32,8 @@
                     <tr>
                         <th class="whitespace-nowrap">ID</th>
                         <th class="whitespace-nowrap">NAME</th>
+                        <th class="whitespace-nowrap">FAKULTAS</th>
+                        <th class="whitespace-nowrap">JURUSAN</th>
                         <th class="text-center whitespace-nowrap">WHATSAPP</th>
                         <th class="text-center whitespace-nowrap">ROLE</th>
                         <th class="text-center whitespace-nowrap">ACTIONS</th>
@@ -40,7 +42,7 @@
                 <tbody>
                     @foreach ($user as $data)
                         <tr class="intro-x">
-                            <td class="w-40">
+                            <td class="">
                                 <div class="font-medium whitespace-nowrap">{{ $data->id }}</div>
                             </td>
                             <td>
@@ -48,6 +50,19 @@
                                 <div class="text-gray-600 text-xs whitespace-nowrap mt-0.5">{{ $data->npm }}
                                 </div>
                             </td>
+
+                            @if (empty($data->fakultas_id))
+                                <td class="text-center"></td>
+                            @else
+                                <td class="text-center">{{ $data->getfakultas->fakultas }}</td>
+                            @endif
+
+                            @if (empty($data->prodi_id))
+                                <td class="text-center"></td>
+                            @else
+                                <td class="text-center">{{ $data->getprodi->prodi }}</td>
+                            @endif
+
                             <td class="text-center">{{ $data->phone }}</td>
                             <td class="w-40">
                                 @if ($data->role == 'admin')
@@ -60,13 +75,11 @@
                                     </div>
                                 @endif
                             </td>
-                            <td class="table-report__action w-56">
+                            <td class="table-report__action ">
                                 <div class="flex justify-center items-center">
                                     <a class="flex items-center mr-3 text-theme-10"
                                         href="{{ route('edit.account', ['id' => $data->id]) }}">
                                         <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit</a>
-
-
 
                                 </div>
                             </td>

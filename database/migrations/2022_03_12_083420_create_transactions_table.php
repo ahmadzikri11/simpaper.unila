@@ -23,6 +23,8 @@ class CreateTransactionsTable extends Migration
             $table->string('file1');
             $table->string('file2');
             $table->string('file3');
+            $table->string('ktm');
+            $table->string('photo');
             $table->string('messege')->nullable();
             $table->string('status')->default('Diproses');
         });
