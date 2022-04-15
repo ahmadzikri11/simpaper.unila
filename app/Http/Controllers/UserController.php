@@ -10,6 +10,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use SebastianBergmann\Environment\Console;
+use DataTables;
+
+
 
 class UserController extends Controller
 {
@@ -26,10 +29,66 @@ class UserController extends Controller
         $transactionproses = Transaction::where('status', 'Diproses')->count();
         return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
     }
-    public function listaccount()
+
+    public function html()
     {
-        $user = User::paginate(10);
-        return view('transaction.list-account', compact('user'));
+        return $this->builder()
+            ->columns($this->getColumns())
+            ->parameters([
+                'buttons' => ['excel'],
+            ]);
+    }
+    public function listaccount(Request $request)
+    {
+
+
+        $data = User::with('getfakultas', 'getprodi');
+        if ($request->ajax()) {
+
+            return DataTables::eloquent($data)
+
+                ->addIndexColumn()
+                ->addColumn('getfakultas', function ($row) {
+                    if (empty($row->getfakultas['fakultas'])) {
+                        $row = '';
+                    } else {
+                        return $row->getfakultas['fakultas'];
+                    }
+                })
+                ->addColumn('getprodi', function ($row) {
+                    if (empty($row->getprodi['prodi'])) {
+                        $row = ' ';
+                    } else {
+                        return $row->getprodi['prodi'];
+                    }
+                })
+                ->addColumn('action', function ($row) {
+                    // $actionBtn = '<a href="/dashboard/list/account/editaccount{id}' . $user->id . '" class="edit btn btn-success btn-sm">Edit</a> ';
+                    $actionBtn = '<a href="/dashboard/list/account/editaccount' . $row->id . '" " class="edit h-8 btn bg-green-500 text-white btn-sm">Edit</a> ';
+
+                    return $actionBtn;
+                })
+
+
+                // ->filter(function ($instance) use ($request) {
+                //     if ($request->get('fakultas') == '0' || $request->get('fakultas') == '1') {
+                //         $instance->where('fakultas_id', $request->get('fakultas'));
+                //     }
+                //     if (!empty($request->get('fakultas'))) {
+                //         $instance->where(function ($w) use ($request) {
+                //             $get = $request->get('fakultas');
+                //             $w->orWhere('fakultas_id', 'LIKE', "%$get%");
+                //         });
+                //     }
+
+                // })
+
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
+
+        return view('transaction.list-account');
     }
 
 

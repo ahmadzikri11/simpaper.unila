@@ -14,7 +14,13 @@
             </div>
         </div>
         <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
-            <table class="table table-report sm:mt-2">
+            @if (session()->has('edit'))
+                <div class="alert bg-green-700 text-white show flex items-center mb-2" role="alert">
+                    <i data-feather="edit" class="w-6 h-6 mr-2 "></i>
+                    {{ session()->get('edit') }}
+                </div>
+            @endif
+            {{-- <table class="table table-report sm:mt-2">
                 @if (session()->has('edit'))
                     <div class="alert bg-green-700 text-white show flex items-center mb-2" role="alert">
                         <i data-feather="edit" class="w-6 h-6 mr-2 "></i>
@@ -28,6 +34,7 @@
                         {{ session()->get('delete') }}
                     </div>
                 @endif
+
                 <thead>
                     <tr>
                         <th class="whitespace-nowrap">ID</th>
@@ -78,7 +85,7 @@
                             <td class="table-report__action ">
                                 <div class="flex justify-center items-center">
                                     <a class="flex items-center mr-3 text-theme-10"
-                                        href="{{ route('edit.account', ['id' => $data->id]) }}">
+                                        href="{{ route('edit.account', ) }}">
                                         <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Edit</a>
 
                                 </div>
@@ -86,9 +93,50 @@
                         </tr>
                     @endforeach
                 </tbody>
-            </table>
+            </table> --}}
 
-            {{ $user->links() }}
+            {{-- {{ $user->links() }} --}}
+            <table class="table table-bordered yajra-datatable">
+                {{-- <div class="relative inline-flex">
+                    <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                        <path
+                            d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                            fill="#648299" fill-rule="nonzero" />
+                    </svg>
+                    <select id="fakultas"
+                        class="border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                        <option value="">Choose Fakultas</option>
+                        <option value="1">Fakultas Teknik</option>
+                        <option value="2">Fakultas Pertanian</option>
+                        <option value="3">Fakultas Kedokteran</option>
+                        <option value="4">Fakultas Matematika dan Ipa</option>
+                        <option value="5">Fakultas Hukum</option>
+                        <option value="6">Fakultas Ilmu Sosial dan Politik</option>
+                        <option value="7">Fakultas Keguruan dan Ilmu Pendidikan</option>
+                        <option value="8">Fakultas Ekonomi dan Bisnis</option>
+                    </select>
+                    <div class="ml-3">
+                        <input id="search"
+                            class="border search border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                    </div>
+                </div> --}}
+
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Fakultas</th>
+                        <th>Jurusan</th>
+                        <th>Email</th>
+                        <th>Whatapps</th>
+                        <th>Role</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </div>
     </div>
     <!-- END: Weekly Top Products -->
@@ -97,31 +145,7 @@
 
 
     <!-- BEGIN: Modal Content -->
-    <div id="delete-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content bg-white rounded-md">
-                <div class="modal-body p-0">
-                    <div class="p-5 text-center">
-                        <i data-feather="x-circle" class="w-16 h-16 text-theme-24 mx-auto mt-3"></i>
-                        <div class="text-3xl mt-5">Apa Kamu Yakin?</div>
-                        <div class="text-gray-600 mt-2">
-                            Apakah Kamu yakin menghapus
-                            <br>
-                            data {{ $data->name }}?.
-                        </div>
-                    </div>
-                    <div class="px-5 pb-8 text-center">
-                        <button type="button" data-dismiss="modal"
-                            class="btn btn-outline-secondary w-24 dark:border-dark-5 dark:text-gray-300 mr-1">Cancel</button>
 
-                        <a href="{{ route('delete.account', ['id' => $data->id]) }}">
-                            <button type="button" class="btn btn-danger bg-red-500 text-white w-24">Delete</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- END: Modal Content -->
     </div>
     <div class="source-code hidden">
@@ -206,3 +230,77 @@
         }
     </script> --}}
 </x-app-layout>
+<script type="text/javascript">
+    $(function() {
+        $.fn.dataTable.ext.errMode = 'throw';
+        var table = $('.yajra-datatable').DataTable({
+            processing: true,
+            serverSide: true,
+
+            dom: 'Bfrtip',
+            buttons: [{
+                extend: 'excelHtml5',
+                text: 'Download'
+            }],
+
+            ajax: {
+                url: "{{ route('account.list') }}",
+                data: function(d) {
+                    d.fakultas = $("#fakultas").val();
+                    return d
+                }
+            },
+
+            columns: [{
+                    data: 'id',
+                    name: 'id'
+                },
+                {
+                    data: 'name',
+                    name: 'name'
+                },
+                {
+                    data: 'getfakultas',
+                    name: 'getfakultas.fakultas'
+                },
+                {
+                    data: 'getprodi',
+                    name: 'getprodi.prodi'
+
+                },
+                {
+                    data: 'email',
+                    name: 'email'
+                },
+                {
+                    data: 'phone',
+                    name: 'phone'
+                },
+
+
+
+
+                {
+                    data: 'role',
+                    name: 'role'
+                },
+
+
+                {
+                    data: 'action',
+                    name: 'action',
+                    orderable: true,
+                    searchable: true
+                },
+            ]
+
+        });
+        // $(".filter").change(function() {
+        //     let fakultas = $("#fakultas").val();
+        //     console.log([fakultas]);
+        //     table.ajax.reload(null, false)
+        // });
+
+
+    });
+</script>
