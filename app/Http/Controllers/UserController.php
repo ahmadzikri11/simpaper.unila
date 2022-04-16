@@ -30,14 +30,14 @@ class UserController extends Controller
         return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
     }
 
-    public function html()
-    {
-        return $this->builder()
-            ->columns($this->getColumns())
-            ->parameters([
-                'buttons' => ['excel'],
-            ]);
-    }
+    // public function html()
+    // {
+    //     return $this->builder()
+    //         ->columns($this->getColumns())
+    //         ->parameters([
+    //             'buttons' => ['excel'],
+    //         ]);
+    // }
     public function listaccount(Request $request)
     {
 

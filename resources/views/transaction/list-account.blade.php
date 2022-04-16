@@ -97,6 +97,19 @@
 
             {{-- {{ $user->links() }} --}}
             <table class="table table-bordered yajra-datatable">
+
+                <button id="print" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="printer"
+                        class="w-4 h-4 mr-2"></i>
+                    Print</button>
+                <button id="excel" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="book"
+                        class="w-4 h-4 mr-2"></i>
+                    Excel</button>
+                <button id="csv" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="file-plus"
+                        class="w-4 h-4 mr-2"></i>
+                    CSV</button>
+                <button id="pdf" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="file-text"
+                        class="w-4 h-4 mr-2"></i>
+                    PDF</button>
                 {{-- <div class="relative inline-flex">
                     <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
@@ -237,11 +250,24 @@
             processing: true,
             serverSide: true,
 
-            dom: 'Bfrtip',
+            dom: 'Blfrtip',
             buttons: [{
-                extend: 'excelHtml5',
-                text: 'Download'
-            }],
+                    extend: 'excelHtml5',
+                    text: ' '
+                },
+                {
+                    text: '',
+                    extend: 'csvHtml5'
+                },
+                {
+                    text: '',
+                    extend: 'pdfHtml5'
+                },
+                {
+                    text: '',
+                    extend: 'print'
+                }
+            ],
 
             ajax: {
                 url: "{{ route('account.list') }}",
@@ -295,6 +321,25 @@
             ]
 
         });
+
+        $("#print").click(function() {
+            var table = $('.yajra-datatable').DataTable();
+            table.button('.buttons-pdf').trigger();
+        });
+        $("#excel").click(function() {
+            var table = $('.yajra-datatable').DataTable();
+            table.button('.buttons-excel').trigger();
+        });
+        $("#pdf").click(function() {
+            var table = $('.yajra-datatable').DataTable();
+            table.button('.buttons-pdf').trigger();
+        });
+        $("#csv").click(function() {
+            var table = $('.yajra-datatable').DataTable();
+            table.button('.buttons-csv').trigger();
+        });
+
+
         // $(".filter").change(function() {
         //     let fakultas = $("#fakultas").val();
         //     console.log([fakultas]);
