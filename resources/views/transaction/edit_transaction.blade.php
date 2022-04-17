@@ -295,9 +295,29 @@
                             @enderror
                         </div>
                         <div class="col-span-12 sm:col-span-6">
+                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Input
+                                KTM</label>
+                            <input
+                                class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                id="ktm" name="ktm" type="file">
+                            @error('ktm')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-span-12 sm:col-span-6">
+                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Input
+                                Photo</label>
+                            <input
+                                class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                id="photo" name="photo" type="file">
+                            @error('photo')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-span-12 sm:col-span-6">
                             <label for="modal-form-6" name="periode_wisuda" class="form-label">Periode
                                 Wisuda</label>
-                            <select id="modal-form-6" class="form-select">
+                            <select name="periode_wisuda" id="modal-form-6" class="form-select">
                                 <option value="{{ $user->users[0]->periode_wisuda }}">
                                     {{ $user->users[0]->periode_wisuda }}</option>
                                 <option value="januari">Januari</option>
@@ -306,6 +326,23 @@
                                 <option value="juli">Juli</option>
                                 <option value="september">September</option>
                                 <option value="november">November</option>
+                            </select>
+                        </div>
+                        <div class="col-span-12 sm:col-span-6">
+                            <label for="modal-form-6" name="tahun_wisuda" class="form-label">Tahun
+                                Wisuda</label>
+                            <select name="tahun_wisuda" id="modal-form-6" class="form-select">
+                                <option value="{{ $user->users[0]->tahun_wisuda }}">
+                                    {{ $user->users[0]->tahun_wisuda }}</option>
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
                             </select>
                         </div>
                     </div>

@@ -36,7 +36,7 @@
                             <i data-feather="inbox" class="report-box__icon text-theme-22"></i>
                             <div class="ml-auto">
                                 <div class="report-box__indicator bg-theme-22 tooltip cursor-pointer"
-                                    title="2% Lower than last month"> Total Script <i data-feather="chevron-right"
+                                    title="Total Script"> Total Script <i data-feather="chevron-right"
                                         class="w-4 h-4 ml-0.5"></i> </div>
                             </div>
                         </div>
@@ -52,7 +52,7 @@
                             <i data-feather="edit" class="report-box__icon text-theme-23"></i>
                             <div class="ml-auto">
                                 <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
-                                    title="12% Higher than last month"> Total Unprosses<i data-feather="chevron-right"
+                                    title="Total Unprosses"> Total Unprosses<i data-feather="chevron-right"
                                         class="w-4 h-4 ml-0.5"></i> </div>
                             </div>
                         </div>
@@ -68,8 +68,8 @@
                             <i data-feather="file-text" class="report-box__icon text-theme-10"></i>
                             <div class="ml-auto">
                                 <div class="report-box__indicator bg-theme-10 tooltip cursor-pointer"
-                                    title="22% Higher than last month"> Total been Processed<i
-                                        data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i> </div>
+                                    title="Total been Processed"> Total been Processed<i data-feather="chevron-right"
+                                        class="w-4 h-4 ml-0.5"></i> </div>
                             </div>
                         </div>
                         <div class="text-3xl font-medium leading-8 mt-6">{{ $transactionaccept }}</div>

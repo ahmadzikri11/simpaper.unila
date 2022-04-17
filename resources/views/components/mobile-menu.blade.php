@@ -17,18 +17,20 @@
                 <div class="menu__title"> Update Profile </div>
             </a>
         </li>
-        <li>
-            <a href="{{ route('transcation/user_transaction') }}" class="menu">
-                <div class="menu__icon"> <i data-feather="edit"></i> </div>
-                <div class="menu__title"> Submission </div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ route('transcation/status') }}" class="menu">
-                <div class="menu__icon"> <i data-feather="monitor"></i> </div>
-                <div class="menu__title"> Status </div>
-            </a>
-        </li>
+        @if (auth()->user()->role == 'user')
+            <li>
+                <a href="{{ route('transcation/user_transaction') }}" class="menu">
+                    <div class="menu__icon"> <i data-feather="edit"></i> </div>
+                    <div class="menu__title"> Submission </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('transcation/status') }}" class="menu">
+                    <div class="menu__icon"> <i data-feather="monitor"></i> </div>
+                    <div class="menu__title"> Status </div>
+                </a>
+            </li>
+        @endif
         @if (auth()->user()->role == 'admin')
             <li>
                 <a href="{{ route('request.list') }}" class="menu">

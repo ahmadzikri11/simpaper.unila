@@ -11,6 +11,8 @@ use Illuminate\Http\Request;
 use GuzzleHttp\Client;
 use GuzzleHttp;
 use Illuminate\Support\Facades\Mail;
+use DataTables;
+use Illuminate\Support\Str;
 
 class TransactionController extends Controller
 {
@@ -39,8 +41,64 @@ class TransactionController extends Controller
         }
     }
 
-    public function listRequest()
+    public function listRequest(Request $request)
     {
+        if ($request->ajax()) {
+            $data = Transaction::with('transactions');
+
+            return DataTables::eloquent($data)
+
+                ->addIndexColumn()
+                ->addColumn('name', function ($row) {
+                    if (empty($row->transactions['name'])) {
+                        $row = ' ';
+                    } else {
+                        return $row->transactions['name'];
+                    }
+                })
+                ->addColumn('fakultas', function ($row) {
+                    if (empty($row->transactions->getfakultas['fakultas'])) {
+                        $row = ' ';
+                    } else {
+                        return $row->transactions->getfakultas['fakultas'];
+                    }
+                })
+                ->addColumn('prodi', function ($row) {
+                    if (empty($row->transactions->getprodi['prodi'])) {
+                        $row = ' ';
+                    } else {
+                        return $row->transactions->getprodi['prodi'];
+                    }
+                })
+                ->addColumn('action', function ($row) {
+                    // $actionBtn = '<a href="/dashboard/list/account/editaccount{id}' . $user->id . '" class="edit btn btn-success btn-sm">Edit</a> ';
+                    $actionBtn = '<a href="/dashboard/validation/' . $row->id . '" " class="edit h-8 btn bg-green-500 text-white btn-sm">Validasi</a> ';
+
+                    return $actionBtn;
+                })
+                ->editColumn('created_at', function ($row) {
+                    //change over here
+                    return date('d-m-Y', strtotime($row->created_at));
+                })
+
+
+                // ->filter(function ($instance) use ($request) {
+                //     if ($request->get('fakultas') == '0' || $request->get('fakultas') == '1') {
+                //         $instance->where('fakultas_id', $request->get('fakultas'));
+                //     }
+                //     if (!empty($request->get('fakultas'))) {
+                //         $instance->where(function ($w) use ($request) {
+                //             $get = $request->get('fakultas');
+                //             $w->orWhere('fakultas_id', 'LIKE', "%$get%");
+                //         });
+                //     }
+
+                // })
+
+                ->rawColumns(['action'])
+                ->make(true);
+        }
+
         $transaction = Transaction::paginate(10);
         return view('transaction.list-transaction', compact('transaction'));
     }
@@ -91,8 +149,6 @@ class TransactionController extends Controller
         $transaction->update([
             'status' => $request['status'],
         ]);
-
-
         $phone = $transaction->transactions->phone;
         $email = $transaction->transactions->email;
 
@@ -196,11 +252,14 @@ class TransactionController extends Controller
 
     public function create(Request $request)
     {
+
+        $a = Str::random(6);
+        // dd($a);
         $attr = $request->validate([
             'file1' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
             'file2' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
             'file3' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
-            'token' => 'required',
+            // 'token' => 'required',
             'periode_wisuda' => 'required',
             'tahun_wisuda' => 'required',
             'photo' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
@@ -213,34 +272,54 @@ class TransactionController extends Controller
         $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
         $attr['ktm'] = $this->storeFile($request->file('ktm'), 'ktm');
         $attr['photo'] = $this->storeFile($request->file('photo'), 'photo');
-
+        $attr['token'] = $a;
         Transaction::create($attr);
 
-        return back()->with('message', 'Data berhasil ditambahkan');
+        return redirect()->route('transcation.status')->with('message', ' Data telah Telah Terkirim!');
     }
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
-            'file1' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
-            'file2' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
-            'file3' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
-            'token' => 'nullable',
-            'periode_wisuda' => 'nullable',
-        ]);
+        $post = Transaction::find($id);
 
-        $a = Transaction::find($id);
-        $a->update([
-            'file1' => $request['file1'],
-            'file2' => $request['file2'],
-            'file3' => $request['file3'],
+        $request->validate([
+            // 'file1' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            // 'file2' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            // 'file3' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            // 'photo' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
+            // 'ktm' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
+            'token' => 'required',
+            'periode_wisuda' => 'required',
+            'tahun_wisuda' => 'required',
+        ]);
+        $post->update([
             'token' => $request['token'],
+            'periode_wisuda' => $request['periode_wisuda'],
+            'tahun_wisuda' => $request['tahun_wisuda'],
         ]);
+        $pathfile1 = $request->file('file1')->store('public/storage/files/surat-rekomendasi');
+        $pathfile2 = $request->file('file2')->store('public/storage/files/surat-keterangan');
+        $pathfile3 = $request->file('file3')->store('public/storage/files/sk');
+        $pathktm = $request->file('ktm')->store('public/storage/files/ktm');
+        $pathphoto = $request->file('photo')->store('public/storage/files/photo');
+        // $token = $request['token'];
+        // $periode_wisuda = $request['periode_wisuda'];
+        // $tahun_wisuda = $request['tahun_wisuda'];
 
-        // $attr['file1'] = $this->storeFile($request->file('file1'), 'surat-rekomendasi');
-        // $attr['file2'] = $this->storeFile($request->file('file2'), 'surat-keterangan');
-        // $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
+        $post->file1 = $pathfile1;
+        $post->file2 = $pathfile2;
+        $post->file3 = $pathfile3;
+        $post->ktm = $pathktm;
+        $post->photo = $pathphoto;
+        // $post->token = $token;
+        // $post->periode_wisuda = $periode_wisuda;
+        // $post->tahun_wisuda = $tahun_wisuda;
 
-        // Transaction::update($attr);
+
+
+
+        // $post->title = $request->title;
+        // $post->description = $request->description;
+        $post->save();
 
         return back()->with('message', 'Data berhasil ditambahkan');
     }

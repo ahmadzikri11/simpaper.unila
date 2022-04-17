@@ -2,6 +2,7 @@
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-7">
         <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-1">
             <div class="mt-5 md:mt-0 md:col-span-2">
+
                 <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
                     <form action="{{ route('update.account', ['id' => $user->id]) }}" method="POST">
                         @csrf
@@ -56,14 +57,12 @@
                                                     class="block text-sm font-medium text-gray-700">Fakultas</label>
                                                 <select id="fakultas" name="fakultas" autocomplete="periode-name"
                                                     class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-
                                                     @if (empty($user->fakultas_id))
                                                         <option value=""> Pilih Fakultas </option>
                                                     @else
                                                         <option value="{{ $user->fakultas_id }}">
                                                             {{ $user->getfakultas->fakultas }}</option>
                                                     @endif
-
                                                     @foreach ($fakultas as $fakultas)
                                                         <option value="{{ $fakultas->id }}">
                                                             {{ $fakultas->fakultas }}
@@ -119,12 +118,7 @@
 
                     </form>
 
-                    <a type="button" href="javascript:;" data-toggle="modal" data-target="#delete-modal-preview">
-                        <button
-                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500">
-                            Hapus
-                            Akun</button>
-                    </a>
+
                 </div>
             </div>
         </div>
