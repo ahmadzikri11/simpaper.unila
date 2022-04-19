@@ -80,21 +80,50 @@ class TransactionController extends Controller
                     //change over here
                     return date('d-m-Y', strtotime($row->created_at));
                 })
-
-
-                // ->filter(function ($instance) use ($request) {
-                //     if ($request->get('fakultas') == '0' || $request->get('fakultas') == '1') {
-                //         $instance->where('fakultas_id', $request->get('fakultas'));
-                //     }
-                //     if (!empty($request->get('fakultas'))) {
-                //         $instance->where(function ($w) use ($request) {
-                //             $get = $request->get('fakultas');
-                //             $w->orWhere('fakultas_id', 'LIKE', "%$get%");
-                //         });
-                //     }
-
-                // })
-
+                ->filter(function ($instance) use ($request) {
+                    if (!empty($request->get('fakultas'))) {
+                        $instance->wherehas('transactions', function ($w) use ($request) {
+                            $get = $request->get('fakultas');
+                            $w->Where('fakultas_id', 'LIKE', "%$get%");
+                        });
+                    }
+                    if (!empty($request->get('validasi'))) {
+                        $instance->where(function ($w) use ($request) {
+                            $get = $request->get('validasi');
+                            $w->Where('status', 'LIKE', "%$get%");
+                        });
+                    }
+                    if (!empty($request->get('periode_wisuda'))) {
+                        $instance->where(function ($w) use ($request) {
+                            $get = $request->get('periode_wisuda');
+                            $w->Where('periode_wisuda', 'LIKE', "%$get%");
+                        });
+                    }
+                    if (!empty($request->get('tahun_wisuda'))) {
+                        $instance->where(function ($w) use ($request) {
+                            $get = $request->get('tahun_wisuda');
+                            $w->Where('tahun_wisuda', 'LIKE', "%$get%");
+                        });
+                    }
+                    if (!empty($request->get('search'))) {
+                        $instance->wherehas('transactions', function ($w) use ($request) {
+                            $get = $request->get('search');
+                            $w->Where('name', 'LIKE', "%$get%");
+                        })->orWhere(function ($w) use ($request) {
+                            $get = $request->get('search');
+                            $w->orWhere('periode_wisuda', 'LIKE', "%$get%");
+                            $w->orWhere('tahun_wisuda', 'LIKE', "%$get%");
+                            $w->orWhere('created_at', 'LIKE', "%$get%");
+                            $w->orWhere('status', 'LIKE', "%$get%");
+                        })->orWherehas('transactions.getfakultas', function ($w) use ($request) {
+                            $get = $request->get('search');
+                            $w->Where('fakultas', 'LIKE', "%$get%");
+                        })->orWherehas('transactions.getprodi', function ($w) use ($request) {
+                            $get = $request->get('search');
+                            $w->Where('prodi', 'LIKE', "%$get%");
+                        });
+                    }
+                })
                 ->rawColumns(['action'])
                 ->make(true);
         }

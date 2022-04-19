@@ -109,9 +109,7 @@
             {{ $transaction->links() }}
         </div> --}}
 
-
-
-            <table class="table table-bordered yajra-datatable">
+            <div>
 
                 <button id="print" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="printer"
                         class="w-4 h-4 mr-2"></i>
@@ -125,8 +123,70 @@
                 <button id="pdf" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="file-text"
                         class="w-4 h-4 mr-2"></i>
                     PDF</button>
+            </div>
+
+            <table class="table table-bordered yajra-datatable">
+
+
 
                 <thead>
+                    <div class="relative inline-flex">
+                        <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
+                            xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
+                            <path
+                                d="M206 171.144L42.678 7.822c-9.763-9.763-25.592-9.763-35.355 0-9.763 9.764-9.763 25.592 0 35.355l181 181c4.88 4.882 11.279 7.323 17.677 7.323s12.796-2.441 17.678-7.322l181-181c9.763-9.764 9.763-25.592 0-35.355-9.763-9.763-25.592-9.763-35.355 0L206 171.144z"
+                                fill="#648299" fill-rule="nonzero" />
+                        </svg>
+                        <select id="fakultas"
+                            class="border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                            <option value="">Choose Fakultas</option>
+                            <option value="1">Fakultas Teknik</option>
+                            <option value="2">Fakultas Pertanian</option>
+                            <option value="3">Fakultas Kedokteran</option>
+                            <option value="4">Fakultas Matematika dan Ipa</option>
+                            <option value="5">Fakultas Hukum</option>
+                            <option value="6">Fakultas Ilmu Sosial dan Politik</option>
+                            <option value="7">Fakultas Keguruan dan Ilmu Pendidikan</option>
+                            <option value="8">Fakultas Ekonomi dan Bisnis</option>
+                        </select>
+                        <select id="validasi"
+                            class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                            <option value="">Validasi </option>
+                            <option value="Sudah Tervalidasi">Sudah Validasi</option>
+                            <option value="Permintaan Ditolak">tolak Validasi</option>
+                            <option value="Diproses">Dalam Proses</option>
+                        </select>
+                        <select id="periode_wisuda"
+                            class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                            <option value="">Periode </option>
+                            <option value="januari">Januari</option>
+                            <option value="maret">Maret</option>
+                            <option value="mei">Mei</option>
+                            <option value="juli">Juli</option>
+                            <option value="september">September</option>
+                            <option value="november">November</option>
+                        </select>
+
+                        <select id="tahun_wisuda"
+                            class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                            <option value="">Pilih Tahun</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                            <option value="2025">2025</option>
+                            <option value="2026">2026</option>
+                            <option value="2027">2027</option>
+                            <option value="2028">2028</option>
+                            <option value="2029">2029</option>
+                            <option value="2030">2030</option>
+                        </select>
+
+                        <div class="ml-3 mb-2">
+                            <input id="search"
+                                class="border search border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+                                placeholder="Search">
+                        </div>
+                    </div>
                     <tr>
                         <th>ID</th>
                         <th>Nama</th>
@@ -154,7 +214,7 @@
             processing: true,
             serverSide: true,
 
-            dom: 'Blfrtip',
+            dom: 'Blrtip',
             buttons: [{
                     extend: 'excelHtml5',
                     text: ' '
@@ -172,9 +232,17 @@
                     extend: 'print'
                 }
             ],
-
-            ajax: "{{ route('request.list') }}",
-
+            ajax: {
+                url: "{{ route('request.list') }}",
+                data: function(d) {
+                    d.validasi = $("#validasi").val();
+                    d.periode_wisuda = $("#periode_wisuda").val();
+                    d.fakultas = $("#fakultas").val();
+                    d.search = $("#search").val();
+                    d.tahun_wisuda = $("#tahun_wisuda").val();
+                    // d.search = $("#search").val();
+                }
+            },
             columns: [
 
                 {
@@ -246,11 +314,31 @@
         });
 
 
-        // $(".filter").change(function() {
-        //     let fakultas = $("#fakultas").val();
-        //     console.log([fakultas]);
-        //     table.ajax.reload(null, false)
-        // });
+        $("#validasi").change(function() {
+            let validasi = $("#validasi").val();
+            console.log([validasi]);
+            table.ajax.reload(null, false)
+        });
+        $("#periode_wisuda").change(function() {
+            let periode_wisuda = $("#periode_wisuda").val();
+            console.log([periode_wisuda]);
+            table.ajax.reload(null, false)
+        });
+        $("#fakultas").change(function() {
+            let fakultas = $("#fakultas").val();
+            // console.log([fakultas]);
+            table.ajax.reload(null, false)
+        });
+        $("#search").change(function() {
+            let search = $("#search").val();
+            console.log([search]);
+            table.ajax.reload(null, false)
+        });
+        $("#tahun_wisuda").change(function() {
+            let tahun_wisuda = $("#tahun_wisuda").val();
+            console.log([tahun_wisuda]);
+            table.ajax.reload(null, false)
+        });
 
 
     });

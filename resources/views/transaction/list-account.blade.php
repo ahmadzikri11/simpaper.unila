@@ -110,7 +110,7 @@
                 <button id="pdf" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="file-text"
                         class="w-4 h-4 mr-2"></i>
                     PDF</button>
-                {{-- <div class="relative inline-flex">
+                <div class="relative inline-flex">
                     <svg class="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
                         xmlns="http://www.w3.org/2000/svg" viewBox="0 0 412 232">
                         <path
@@ -133,7 +133,7 @@
                         <input id="search"
                             class="border search border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                     </div>
-                </div> --}}
+                </div>
 
                 <thead>
                     <tr>
@@ -250,7 +250,7 @@
             processing: true,
             serverSide: true,
 
-            dom: 'Blfrtip',
+            dom: 'Blrtip',
             buttons: [{
                     extend: 'excelHtml5',
                     text: ' '
@@ -273,7 +273,7 @@
                 url: "{{ route('account.list') }}",
                 data: function(d) {
                     d.fakultas = $("#fakultas").val();
-                    return d
+                    d.search = $("#search").val();
                 }
             },
 
@@ -337,11 +337,16 @@
         });
 
 
-        // $(".filter").change(function() {
-        //     let fakultas = $("#fakultas").val();
-        //     console.log([fakultas]);
-        //     table.ajax.reload(null, false)
-        // });
+        $("#fakultas").change(function() {
+            let fakultas = $("#fakultas").val();
+            // console.log([fakultas]);
+            table.ajax.reload(null, false)
+        });
+        $("#search").change(function() {
+            let search = $("#search").val();
+            console.log([search]);
+            table.ajax.reload(null, false)
+        });
 
 
     });

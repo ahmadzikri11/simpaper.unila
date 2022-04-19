@@ -69,19 +69,32 @@ class UserController extends Controller
                     return $actionBtn;
                 })
 
-
-                // ->filter(function ($instance) use ($request) {
-                //     if ($request->get('fakultas') == '0' || $request->get('fakultas') == '1') {
-                //         $instance->where('fakultas_id', $request->get('fakultas'));
-                //     }
-                //     if (!empty($request->get('fakultas'))) {
-                //         $instance->where(function ($w) use ($request) {
-                //             $get = $request->get('fakultas');
-                //             $w->orWhere('fakultas_id', 'LIKE', "%$get%");
-                //         });
-                //     }
-
-                // })
+                ->filter(function ($instance) use ($request) {
+                    if ($request->get('fakultas') == '0' || $request->get('fakultas') == '1') {
+                        $instance->where('fakultas_id', $request->get('fakultas'));
+                    }
+                    if (!empty($request->get('fakultas'))) {
+                        $instance->where(function ($w) use ($request) {
+                            $get = $request->get('fakultas');
+                            $w->orWhere('fakultas_id', 'LIKE', "%$get%");
+                        });
+                    }
+                    if (!empty($request->get('search'))) {
+                        $instance->wherehas('getfakultas', function ($w) use ($request) {
+                            $get = $request->get('search');
+                            $w->Where('fakultas', 'LIKE', "%$get%");
+                        })->orWherehas('getprodi', function ($w) use ($request) {
+                            $get = $request->get('search');
+                            $w->Where('prodi', 'LIKE', "%$get%");
+                        })->orWhere(function ($w) use ($request) {
+                            $get = $request->get('search');
+                            $w->orWhere('name', 'LIKE', "%$get%");
+                            $w->orWhere('email', 'LIKE', "%$get%");
+                            $w->orWhere('role', 'LIKE', "%$get%");
+                            $w->orWhere('phone', 'LIKE', "%$get%");
+                        });
+                    }
+                })
 
                 ->rawColumns(['action'])
                 ->make(true);
