@@ -13,9 +13,6 @@
                         <p class="mt-1 text-sm text-gray-600">Kirim File Skripsimu disini</p>
                     </div>
                 </div>
-
-
-
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <div class="w-ful">
                         @if (session()->has('message'))
@@ -174,7 +171,7 @@
                                     </div>
                                 </div>
 
-                                <div class=" ml-10 grid grid-cols-4 gap-6">
+                                {{-- <div class=" ml-10 grid grid-cols-4 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="token"
@@ -187,7 +184,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="grid ml-10 grid-cols-4 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
                                         <div class="col-span-6 sm:col-span-3">
