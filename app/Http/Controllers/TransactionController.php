@@ -13,6 +13,7 @@ use GuzzleHttp;
 use Illuminate\Support\Facades\Mail;
 use DataTables;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Exists;
 
 class TransactionController extends Controller
 {
@@ -24,18 +25,23 @@ class TransactionController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('transaction.user_transaction', compact('user'));
+        $a = $user->id;
+        $ceck_transaction = Transaction::where('user_id', $a)->exists();
+        if ($ceck_transaction) {
+            return view('transaction.edit_transaction', compact('user'));
+        } else {
+            return view('transaction.user_transaction', compact('user'));
+        }
     }
 
     public function Status()
     {
-
         $user = Auth::user();
         $get_id = $user->id;
         $check = Transaction::where('user_id', $get_id)->exists();
 
         if ($check) {
-            return view('transaction.edit_transaction', compact('user',));
+            return view('transaction.edit_transaction', compact('user'));
         } else {
             return view('transaction.status_submit');
         }
@@ -164,6 +170,15 @@ class TransactionController extends Controller
         ];
         return response()->file($file, $header);
     }
+    public function showFile4($path4)
+    {
+        $file = public_path('storage' . '/' . $path4);
+        $header = [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="' . $path4 . '"'
+        ];
+        return response()->file($file, $header);
+    }
 
     public function validationAccept(Request $request, Transaction $transaction, User $user, $id)
     {
@@ -171,37 +186,46 @@ class TransactionController extends Controller
         $this->validate($request, [
             'status' => 'required',
             'message' => 'required',
+            // 'validator' => 'required',
         ]);
+        // $user = Auth::user();
+        // $user_id = $user->id;
 
         $transaction = Transaction::find($id);
 
         $transaction->update([
             'status' => $request['status'],
+            'message' =>  $request['message'],
+            // 'validator' =>   $request->$user_id,
+            // 'validator' =>  $request->auth()->user()->id,
         ]);
+
+        $transaction->validator = auth()->user()->name;
+        $transaction->save();
         $phone = $transaction->transactions->phone;
         $email = $transaction->transactions->email;
 
         $message = $request['message'];
-        $client = new Client();
+        // $client = new Client();
 
-        $url = "https://app.whatspie.com/api/messages";
+        // $url = "https://app.whatspie.com/api/messages";
 
-        $request = $client->post(
-            $url,
-            [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Authorization' => 'Bearer ' . 'uTusgUQmz2vRHtmU4Q8FIcHKV79fhjTifmhxAfjzHZDptUVaOP'
-                ],
-                'form_params' => [
-                    'receiver' => $phone,
-                    'device' => '62816514372',
-                    'message' => $message,
-                    'type' => 'chat'
-                ]
-            ]
-        );
+        // $request = $client->post(
+        //     $url,
+        //     [
+        //         'headers' => [
+        //             'Accept' => 'application/json',
+        //             'Content-Type' => 'application/x-www-form-urlencoded',
+        //             'Authorization' => 'Bearer ' . 'uTusgUQmz2vRHtmU4Q8FIcHKV79fhjTifmhxAfjzHZDptUVaOP'
+        //         ],
+        //         'form_params' => [
+        //             'receiver' => $phone,
+        //             'device' => '62816514372',
+        //             'message' => $message,
+        //             'type' => 'chat'
+        //         ]
+        //     ]
+        // );
         $details = [
             'title' => 'UPT Perpustakaan Unila',
             'body' => $message
@@ -209,47 +233,6 @@ class TransactionController extends Controller
 
         \Mail::to($email)->send(new \App\Mail\MyMail($details));
         return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
-    }
-
-    public function validationreject(Request $request, Transaction $transaction, $id)
-    {
-        $this->validate($request, [
-            'status' => 'required',
-            'message' => 'required',
-        ]);
-
-        $transaction = Transaction::find($id);
-
-        $transaction->update([
-            'status' => $request['status'],
-        ]);
-
-
-        $phone = $transaction->transactions->phone;
-
-        $message = $request['message'];
-        $client = new Client();
-
-        $url = "https://app.whatspie.com/api/messages";
-
-        $request = $client->post(
-            $url,
-            [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Authorization' => 'Bearer ' . 'uTusgUQmz2vRHtmU4Q8FIcHKV79fhjTifmhxAfjzHZDptUVaOP'
-                ],
-                'form_params' => [
-                    'receiver' => $phone,
-                    'device' => '62816514372',
-                    'message' => $message,
-                    'type' => 'chat'
-                ]
-            ]
-        );
-
-        return redirect()->route('request.list')->with('reject', ' Data tidak Divalidasi!');
     }
 
 
@@ -282,13 +265,13 @@ class TransactionController extends Controller
     public function create(Request $request)
     {
 
-        $a = Str::random(6);
+        // $a = Str::random(6);
         // dd($a);
         $attr = $request->validate([
             'file1' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
             'file2' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
             'file3' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
-            // 'token' => 'required',
+            'file4' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
             'periode_wisuda' => 'required',
             'tahun_wisuda' => 'required',
             'photo' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
@@ -296,12 +279,13 @@ class TransactionController extends Controller
         ]);
 
         $attr['user_id'] = auth()->user()->id;
-        $attr['file1'] = $this->storeFile($request->file('file1'), 'surat-rekomendasi');
-        $attr['file2'] = $this->storeFile($request->file('file2'), 'surat-keterangan');
-        $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
+        $attr['file1'] = $this->storeFile($request->file('file1'), 'surat_layak_upload');
+        $attr['file2'] = $this->storeFile($request->file('file2'), 'surat_bebas_perpus');
+        $attr['file3'] = $this->storeFile($request->file('file3'), 'selip');
+        $attr['file4'] = $this->storeFile($request->file('file4'), 'bukti_pembayaran_karya_ilmiah');
         $attr['ktm'] = $this->storeFile($request->file('ktm'), 'ktm');
         $attr['photo'] = $this->storeFile($request->file('photo'), 'photo');
-        $attr['token'] = $a;
+        // $attr['token'] = $a;
         Transaction::create($attr);
 
         return redirect()->route('transcation.status')->with('message', ' Data telah Telah Terkirim!');
@@ -316,41 +300,63 @@ class TransactionController extends Controller
             // 'file3' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
             // 'photo' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
             // 'ktm' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
-            'token' => 'required',
+            // 'token' => 'required',
             'periode_wisuda' => 'required',
             'tahun_wisuda' => 'required',
         ]);
         $post->update([
-            'token' => $request['token'],
+            // 'token' => $request['token'],
             'periode_wisuda' => $request['periode_wisuda'],
             'tahun_wisuda' => $request['tahun_wisuda'],
         ]);
-        $pathfile1 = $request->file('file1')->store('public/storage/files/surat-rekomendasi');
-        $pathfile2 = $request->file('file2')->store('public/storage/files/surat-keterangan');
-        $pathfile3 = $request->file('file3')->store('public/storage/files/sk');
-        $pathktm = $request->file('ktm')->store('public/storage/files/ktm');
-        $pathphoto = $request->file('photo')->store('public/storage/files/photo');
-        // $token = $request['token'];
-        // $periode_wisuda = $request['periode_wisuda'];
-        // $tahun_wisuda = $request['tahun_wisuda'];
+
+        $path = public_path() . '/storage/';
+        if ($post->file1 != ''  && $post->file1 != null) {
+            $file_old = $path . $post->file1;
+            unlink($file_old);
+        }
+        if ($post->file2 != ''  && $post->file2 != null) {
+            $file_old = $path . $post->file2;
+            unlink($file_old);
+        }
+        if ($post->file3 != ''  && $post->file3 != null) {
+            $file_old = $path . $post->file3;
+            unlink($file_old);
+        }
+        if ($post->file4 != ''  && $post->file4 != null) {
+            $file_old = $path . $post->file4;
+            unlink($file_old);
+        }
+        if ($post->photo != ''  && $post->photo != null) {
+            $file_old = $path . $post->photo;
+            unlink($file_old);
+        }
+        if ($post->ktm != ''  && $post->ktm != null) {
+            $file_old = $path . $post->ktm;
+            unlink($file_old);
+        }
+
+
+
+
+        $pathfile1 = $request->file('file1')->store('files/surat_layak_upload');
+        $pathfile2 = $request->file('file2')->store('files/surat_bebas_perpus');
+        $pathfile3 = $request->file('file3')->store('files/selip');
+        $pathfile4 = $request->file('file4')->store('files/bukti_pembayaran_karya_ilmiah');
+        $pathktm = $request->file('ktm')->store('files/ktm');
+        $pathphoto = $request->file('photo')->store('files/photo');
+
 
         $post->file1 = $pathfile1;
         $post->file2 = $pathfile2;
         $post->file3 = $pathfile3;
+        $post->file4 = $pathfile4;
         $post->ktm = $pathktm;
         $post->photo = $pathphoto;
-        // $post->token = $token;
-        // $post->periode_wisuda = $periode_wisuda;
-        // $post->tahun_wisuda = $tahun_wisuda;
 
-
-
-
-        // $post->title = $request->title;
-        // $post->description = $request->description;
         $post->save();
 
-        return back()->with('message', 'Data berhasil ditambahkan');
+        return back()->with('message', 'Data berhasil Diubah');
     }
 
     public function downloadFile1(Request $request)
@@ -367,16 +373,7 @@ class TransactionController extends Controller
         $attr['file1'] = $this->storeFile($request->file('file1'), 'surat-rekomendasi');
         $attr['file2'] = $this->storeFile($request->file('file2'), 'surat-keterangan');
         $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
-
         Transaction::create($attr);
-
         return back()->with('message', 'Data berhasil ditambahkan');
-    }
-
-    public function destroy(Transaction $transaction, $id)
-    {
-        $transaction = Transaction::find($id);
-        $transaction->delete();
-        return redirect()->route('request.list')->with('delete', ' Data telah Dihapus!');
     }
 }

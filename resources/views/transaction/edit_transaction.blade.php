@@ -109,7 +109,7 @@
                                                             @if ($user->users[0]->status == 'Sudah Tervalidasi')
                                                                 <span
                                                                     class="bg-green-700 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
-                                                            @elseif ($user->users[0]->status == 'Permintaan Ditolak')
+                                                            @elseif ($user->users[0]->status == 'Revisi')
                                                                 <span
                                                                     class="bg-red-700 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
                                                             @elseif ($user->users[0]->status == 'Diproses')
@@ -161,7 +161,7 @@
                                         </a>
                                         <a href="{{ route('file1', ['path' => $user->users[0]->file1]) }}"
                                             class="block font-medium mt-4 text-center truncate">File.pdf</a>
-                                        <div class="text-gray-600 text-xs text-center mt-0.5">Skripsi</div>
+                                        <div class="text-gray-600 text-xs text-center mt-0.5">Surat Layak upload</div>
                                         <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
                                             <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
                                                 aria-expanded="false"> <i data-feather="more-vertical"
@@ -180,7 +180,7 @@
                                         </a>
                                         <a href="{{ route('file1', ['path' => $user->users[0]->file2]) }}"
                                             class="block font-medium mt-4 text-center truncate">File.pdf</a>
-                                        <div class="text-gray-600 text-xs text-center mt-0.5">Surat1</div>
+                                        <div class="text-gray-600 text-xs text-center mt-0.5">Surat Bebas Perpus</div>
                                         <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
                                             <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
                                                 aria-expanded="false"> <i data-feather="more-vertical"
@@ -199,7 +199,7 @@
                                         </a>
                                         <a href="{{ route('file1', ['path' => $user->users[0]->file3]) }}"
                                             class="block font-medium mt-4 text-center truncate">File.Pdf</a>
-                                        <div class="text-gray-600 text-xs text-center mt-0.5">Surat2</div>
+                                        <div class="text-gray-600 text-xs text-center mt-0.5">slip Pembayaran Ukt</div>
                                         <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
                                             <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
                                                 aria-expanded="false"> <i data-feather="more-vertical"
@@ -207,6 +207,27 @@
                                         </div>
                                     </div>
                                 </div>
+
+                                <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
+                                    <div
+                                        class="file bg-gray-100  box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
+
+                                        <a href="{{ route('file1', ['path' => $user->users[0]->file4]) }}"
+                                            class="w-3/5 file__icon file__icon--file mx-auto">
+                                            <div class="file__icon__file-name">PDF</div>
+                                        </a>
+                                        <a href="{{ route('file1', ['path' => $user->users[0]->file4]) }}"
+                                            class="block font-medium mt-4 text-center truncate">File.Pdf</a>
+                                        <div class="text-gray-600 text-xs text-center mt-0.5">Bukti Pembayaran KI
+                                        </div>
+                                        <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
+                                            <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
+                                                aria-expanded="false"> <i data-feather="more-vertical"
+                                                    class="w-5 h-5 text-gray-600"></i> </a>
+                                        </div>
+                                    </div>
+                                </div>
+
                             </div>
 
                             <div class="intro-y grid grid-cols-2 gap-3 mt-5">
@@ -259,14 +280,14 @@
                             <label for="modal-form-1" class="form-label">Dari</label>
                             <input id="modal-form-1" readonly value="{{ $user->name }}" class="form-control">
                         </div>
-                        <div class=" col-span-12 sm:col-span-6">
+                        {{-- <div class=" col-span-12 sm:col-span-6">
                             <label for="modal-form-2" class="form-label">Token</label>
                             <input id="modal-form-2" type="text" name="token" class="form-control"
                                 value=" {{ $user->users[0]->token }}">
-                        </div>
+                        </div> --}}
                         <div class="col-span-12 sm:col-span-6">
-                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Input File
-                                Skripsi</label>
+                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Surat Layak
+                                upload</label>
                             <input
                                 class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="file1" name="file1" type="file">
@@ -275,8 +296,8 @@
                             @enderror
                         </div>
                         <div class="col-span-12 sm:col-span-6">
-                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Input File
-                                2</label>
+                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Surat Bebas
+                                Perpus</label>
                             <input
                                 class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="file2" name="file2" type="file">
@@ -285,12 +306,23 @@
                             @enderror
                         </div>
                         <div class="col-span-12 sm:col-span-6">
-                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Input
-                                file3</label>
+                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Slip Pembayaran
+                                Ukt</label>
                             <input
                                 class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="file3" name="file3" type="file">
                             @error('file3')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="col-span-12 sm:col-span-6">
+                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Bukti
+                                Pembayaran Karya Ilmiah <br> * Untuk FP,FMIPA,FEB dan FK.
+                            </label>
+                            <input
+                                class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                id="file4" name="file4" type="file">
+                            @error('file4')
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>

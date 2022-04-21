@@ -29,6 +29,10 @@ class MyMail extends Mailable
     public function build()
     {
         return $this->subject('Mail from UPT Perpustakaan Universitas Lampung')
-            ->view('emails.myMail');
+            ->view('emails.myMail')
+            ->attach(public_path('storage/tanda_terima_online.pdf'), [
+                'as' => 'tanda_terima_online.pdf',
+                'mime' => 'application/pdf',
+            ]);
     }
 }

@@ -59,4 +59,5 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/storage/{path}', [TransactionController::class, 'showFile1'])->name('file1');
     Route::get('/storage/{path2}', [TransactionController::class, 'showFile2'])->name('file2');
     Route::get('/storage/{path3}', [TransactionController::class, 'showFile3'])->name('file3');
+    Route::get('/storage/{path4}', [TransactionController::class, 'showFile4'])->name('file4');
 });

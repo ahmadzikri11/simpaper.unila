@@ -139,7 +139,7 @@
                         </svg>
                         <select id="fakultas"
                             class="border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                            <option value="">Choose Fakultas</option>
+                            <option value="">Pilih Fakultas</option>
                             <option value="1">Fakultas Teknik</option>
                             <option value="2">Fakultas Pertanian</option>
                             <option value="3">Fakultas Kedokteran</option>
@@ -151,10 +151,10 @@
                         </select>
                         <select id="validasi"
                             class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
-                            <option value="">Validasi </option>
+                            <option value="">Pilih Status </option>
                             <option value="Sudah Tervalidasi">Sudah Validasi</option>
-                            <option value="Permintaan Ditolak">tolak Validasi</option>
-                            <option value="Diproses">Dalam Proses</option>
+                            <option value="Revisi">Revisi</option>
+                            <option value="Diproses">On Proses</option>
                         </select>
                         <select id="periode_wisuda"
                             class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
@@ -196,6 +196,7 @@
                         <th>Jurusan</th>
                         <th>Tanggal Upload</th>
                         <th>Status</th>
+                        <th>Validator</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -282,8 +283,30 @@
                 },
                 {
                     data: 'status',
-                    name: 'status'
+                    render: function(data, type, row) {
+                        var text = "";
+                        var label = "";
+                        if (data == "Sudah Tervalidasi") {
+                            text = "Tervalidasi";
+                            label = "bg-green-700";
+                        } else
+                        if (data == 'Revisi') {
+                            text = "Revisi";
+                            label = "bg-yellow-500";
+                        }
+                        if (data == 'Diproses') {
+                            text = "Diproses";
+                            label = "bg-red-700";
+                        }
 
+                        return "<span class= '" + label +
+                            "  text-white py-1 px-3 rounded-full text-xs' >" + text +
+                            "</span>";
+                    }
+                },
+                {
+                    data: 'validator',
+                    name: 'validator'
                 },
 
                 {
@@ -293,6 +316,8 @@
                     searchable: true
                 }
             ]
+
+
 
         });
 

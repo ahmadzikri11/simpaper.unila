@@ -236,8 +236,8 @@
                                     <div class="flex justify-left">
                                         <div class="mb-3 w-80 ">
                                             <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700">Input File
-                                                Skripsi</label>
+                                                class="form-label inline-block mb-2 text-gray-700">Surat Layak
+                                                Upload</label>
                                             <input
                                                 class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                 id="file1" name="file1" type="file">
@@ -251,8 +251,8 @@
                                     <div class="flex justify-left">
                                         <div class="mb-3 w-80">
                                             <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700">Input File
-                                                2</label>
+                                                class="form-label inline-block mb-2 text-gray-700">Surat Bebas
+                                                perpus</label>
                                             <input
                                                 class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                 id="file2" name="file2" type="file">
@@ -266,12 +266,28 @@
                                     <div class="flex justify-left">
                                         <div class="mb-3 w-80">
                                             <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700">Input
-                                                file3</label>
+                                                class="form-label inline-block mb-2 text-gray-700">Slip Pembayaran
+                                                UKT</label>
                                             <input
                                                 class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                 id="file3" name="file3" type="file">
                                             @error('file3')
+                                                <span class="text-red-500">{{ $message }}</span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="ml-10">
+                                    <div class="flex justify-left">
+                                        <div class="mb-3 w-80">
+                                            <label for="formFileSm"
+                                                class="form-label inline-block mb-2 text-gray-700">Bukti Pembayaran
+                                                Kerya Ilmiah <br>
+                                                * Hanya Untuk Fakultas FMIPA, FP, FEB da FK</label>
+                                            <input
+                                                class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                id="file4" name="file4" type="file">
+                                            @error('file4')
                                                 <span class="text-red-500">{{ $message }}</span>
                                             @enderror
                                         </div>

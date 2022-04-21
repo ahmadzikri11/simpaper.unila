@@ -15,13 +15,14 @@ class Transaction extends Model
         'file1',
         'file2',
         'file3',
+        'file4',
         'ktm',
         'photo',
         'periode_wisuda',
-        'token',
         'user_id',
         'status',
         'messege',
+        'validator',
         'tahun_wisuda',
     ];
     public function transactions()

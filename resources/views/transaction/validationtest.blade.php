@@ -94,9 +94,9 @@
                                             <button class="btn btn-primary bg-green-600 text-white w-32 mr-2 mb-2"
                                                 onclick="toggleModal('modal-id')"> <i data-feather="activity"
                                                     class="w-4 h-4 mr-2"></i> Validasi </button>
-                                            <button class="btn btn-primary bg-red-600 text-white w-32 mr-2 mb-2"
+                                            <button class="btn btn-primary bg-yellow-600 text-white w-32 mr-2 mb-2"
                                                 onclick="toggleModalReject('modal-id-reject')"> <i
-                                                    data-feather="hard-drive" class="w-4 h-4 mr-2"></i> Tolak File
+                                                    data-feather="hard-drive" class="w-4 h-4 mr-2"></i> Revisi
                                             </button>
 
                                         </div>

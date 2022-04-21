@@ -19,13 +19,15 @@ class CreateTransactionsTable extends Migration
             $table->timestamps();
             $table->string('periode_wisuda');
             $table->string('tahun_wisuda');
-            $table->string('token');
+            $table->string('validator')->nullable();
             $table->string('file1');
             $table->string('file2');
             $table->string('file3');
+            $table->string('file4')->nullable();
             $table->string('ktm');
             $table->string('photo');
-            $table->string('messege')->nullable();
+            $table->string('message')->nullable();
+            // $table->string('validator')->nullable();
             $table->string('status')->default('Diproses');
         });
     }
