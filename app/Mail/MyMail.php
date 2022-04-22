@@ -11,14 +11,16 @@ class MyMail extends Mailable
 {
     use Queueable, SerializesModels;
     public $details;
+    public $filename;
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($details)
+    public function __construct($details, $filename)
     {
         $this->details = $details;
+        $this->filename = $filename;
     }
 
     /**
@@ -30,9 +32,6 @@ class MyMail extends Mailable
     {
         return $this->subject('Mail from UPT Perpustakaan Universitas Lampung')
             ->view('emails.myMail')
-            ->attach(public_path('storage/tanda_terima_online.pdf'), [
-                'as' => 'tanda_terima_online.pdf',
-                'mime' => 'application/pdf',
-            ]);
+            ->attach($this->filename);
     }
 }

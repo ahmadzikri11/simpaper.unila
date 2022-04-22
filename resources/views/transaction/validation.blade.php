@@ -95,10 +95,10 @@
                                     <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Pesan
                                 </div>
                                 <form action="{{ route('validation.accept', ['id' => $transaction->id]) }}"
-                                    method="POST">
+                                    enctype="multipart/form-data" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <div class="flex justify-center">
+                                    <div class=" flex justify-center">
                                         <div class="mb-3 w-full ">
 
                                             <textarea name="message" id="message" class="
@@ -106,6 +106,29 @@
                                                 id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan users, kami ingin menginformasikan bahwa permohonan tersebut telah kami poroses. Kami menyimpulkan bahwa data kamu ...........
                                         </textarea>
                                         </div>
+                                    </div>
+                                    <div class="intro-y box">
+                                        <div
+                                            class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
+                                            <label for="formFileSm"
+                                                class="form-label inline-block mb-2 text-gray-700"><img
+                                                    src="{{ asset('images/id.png') }}" class="  w-60"
+                                                    alt="description of myimage"></label>
+                                            <div id="single-file-upload" class="p-5 ">
+                                                <div class="fallback">
+                                                    <input name="attachment" type="file" />
+                                                </div>
+                                                <div class="dz-message" data-dz-message>
+                                                    <div class="text-lg font-medium">Upload Foto selfi kamu dan KTM
+                                                        kamu.
+                                                    </div>
+                                                    <div class="text-gray-600">click and upload file
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                     <div class="intro-y box mt-5">
                                         <div id="icon-button" class="p-5">

@@ -186,19 +186,32 @@ class TransactionController extends Controller
         $this->validate($request, [
             'status' => 'required',
             'message' => 'required',
-            // 'validator' => 'required',
+            'attachment' => 'nullable',
         ]);
-        // $user = Auth::user();
-        // $user_id = $user->id;
 
+
+        if ($request->has('attachment')) {
+
+            $path = public_path('tanda_terima');
+            $attachment = $request->file('attachment');
+            $name = time() . '.' . $attachment->getClientOriginalExtension();
+            if (!Transaction::exists($path)) {
+                Transaction::makeDirectory($path, $mode = 0777, true, true);
+            }
+            $attachment->move($path, $name);
+
+            $filename = $path . '/' . $name;
+        } else {
+            $filename = public_path('storage/unila.png');
+        }
         $transaction = Transaction::find($id);
 
         $transaction->update([
             'status' => $request['status'],
             'message' =>  $request['message'],
-            // 'validator' =>   $request->$user_id,
-            // 'validator' =>  $request->auth()->user()->id,
         ]);
+
+
 
         $transaction->validator = auth()->user()->name;
         $transaction->save();
@@ -228,10 +241,10 @@ class TransactionController extends Controller
         // );
         $details = [
             'title' => 'UPT Perpustakaan Unila',
-            'body' => $message
+            'body' => $message,
         ];
 
-        \Mail::to($email)->send(new \App\Mail\MyMail($details));
+        \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
         return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
     }
 
