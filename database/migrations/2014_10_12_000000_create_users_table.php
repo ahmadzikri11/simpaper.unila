@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('role')->default('user');
             $table->char('npm')->unique();
-            $table->string('phone', 32);
+            $table->string('phone', 32)->nullable();
             $table->foreignIdFor(\App\Models\Prodi::class, 'prodi_id')->nullable();
             $table->foreignIdFor(\App\Models\Fakultas::class, 'fakultas_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();

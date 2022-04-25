@@ -11,15 +11,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use SebastianBergmann\Environment\Console;
 use DataTables;
-
-
+use Maatwebsite\Excel\Facades\Excel;
+use App\Imports\ImportUser;
+use Psy\ExecutionLoopClosure;
 
 class UserController extends Controller
 {
-    // public function __construct()
-    // {
-    //     $this->middleware('role:admin');
-    // }
+
 
     public function dashboarduser()
     {
@@ -30,14 +28,7 @@ class UserController extends Controller
         return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
     }
 
-    // public function html()
-    // {
-    //     return $this->builder()
-    //         ->columns($this->getColumns())
-    //         ->parameters([
-    //             'buttons' => ['excel'],
-    //         ]);
-    // }
+
     public function listaccount(Request $request)
     {
 
@@ -179,5 +170,20 @@ class UserController extends Controller
     {
         $prodi = Prodi::where("fakultas_id", $request->kabID)->pluck('id', 'prodi');
         return response()->json($prodi);
+    }
+
+    public function importUser(Request $request)
+    {
+        $this->validate($request, [
+            'file_user' => 'required',
+        ]);
+        $path = public_path('storage/user');
+        $fileuser = $request->file('file_user');
+        $name = $fileuser->getClientOriginalName() . '.' . $fileuser->getClientOriginalExtension();
+        $fileuser->move($path, $name);
+        $filename = $path . '/' . $name;
+
+        Excel::import(new ImportUser, $filename);
+        return redirect()->back()->with('success', ' User telah ditambahkan!');
     }
 }

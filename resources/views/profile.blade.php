@@ -72,7 +72,7 @@
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="phone" class="block text-sm font-medium text-gray-700">Nomer
                                                 Whattsapp (format: 62853--------)</label>
-                                            <input class="form-control" type="text"
+                                            <input class="form-control" type="text" placeholder="6285769088559"
                                                 value="{{ old('phone') ?? $user->phone }}" name="phone" id="phone"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                         </div>

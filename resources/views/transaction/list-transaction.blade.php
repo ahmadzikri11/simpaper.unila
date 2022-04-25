@@ -108,22 +108,37 @@
             </table>
             {{ $transaction->links() }}
         </div> --}}
+            <div class="w-full mb-2 sm:w-auto flex">
 
-            <div>
+                <div class="dropdown">
+                    <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">
+                        <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4"
+                                data-feather="plus"></i></span> Download File
+                    </button>
+                    <div class="dropdown-menu w-40">
+                        <div class="dropdown-menu__content box dark:bg-dark-1 p-2">
 
-                <button id="print" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="printer"
-                        class="w-4 h-4 mr-2"></i>
-                    Print</button>
-                <button id="excel" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="book"
-                        class="w-4 h-4 mr-2"></i>
-                    Excel</button>
-                <button id="csv" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="file-plus"
-                        class="w-4 h-4 mr-2"></i>
-                    CSV</button>
-                <button id="pdf" class="btn bg-sky-900 text-white w-32 mr-2 mb-2"> <i data-feather="file-text"
-                        class="w-4 h-4 mr-2"></i>
-                    PDF</button>
+                            <button id="print"
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </button>
+                            <button id="excel"
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                <i data-feather="book" class="w-4 h-4 mr-2"></i> Excel </button>
+                            <button id="csv"
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                <i data-feather="file-plus" class="w-4 h-4 mr-2"></i> CSV </button>
+                            <button id="pdf"
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                <i data-feather="file-text" class="w-4 h-4 mr-2"></i> PDF </button>
+                        </div>
+                    </div>
+                </div>
             </div>
+
+
+
+
+
 
             <table class="table table-bordered yajra-datatable">
 
@@ -186,6 +201,7 @@
                                 class="border search border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
                                 placeholder="Search">
                         </div>
+
                     </div>
                     <tr>
                         <th>ID</th>

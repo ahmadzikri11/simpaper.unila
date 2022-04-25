@@ -133,13 +133,13 @@
                                                     <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                            Token</td>
+                                                            Tahun Wisuda</td>
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                             :</td>
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
-                                                            {{ $user->users[0]->token }}</td>
+                                                            {{ $user->users[0]->tahun_wisuda }}</td>
                                                     </tr>
 
                                                 </tbody>

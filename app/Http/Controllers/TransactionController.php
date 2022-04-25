@@ -291,6 +291,7 @@ class TransactionController extends Controller
             'ktm' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
         ]);
 
+
         $attr['user_id'] = auth()->user()->id;
         $attr['file1'] = $this->storeFile($request->file('file1'), 'surat_layak_upload');
         $attr['file2'] = $this->storeFile($request->file('file2'), 'surat_bebas_perpus');

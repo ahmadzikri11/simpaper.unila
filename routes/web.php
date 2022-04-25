@@ -46,6 +46,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/account', [UserController::class, 'listaccount'])->name('account.list');
+    Route::put('dashboard/list/account/import', [UserController::class, 'importUser'])->name('import');
     Route::get('/dashboard/list/account/editaccount{id}', [UserController::class, 'editAccount'])->name('edit.account');
     Route::put('/dashboard/list/account/editaccount{id}', [UserController::class, 'updateAccount'])->name('update.account');
     Route::get('/dashboard/list/account/deleteaccount{id}', [UserController::class, 'destroy'])->name('delete.account');

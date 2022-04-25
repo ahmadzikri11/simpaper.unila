@@ -107,29 +107,49 @@
                                         </textarea>
                                         </div>
                                     </div>
-                                    <div class="intro-y box">
-                                        <div
-                                            class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
-                                            <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700"><img
-                                                    src="{{ asset('images/id.png') }}" class="  w-60"
-                                                    alt="description of myimage"></label>
-                                            <div id="single-file-upload" class="p-5 ">
-                                                <div class="fallback">
-                                                    <input name="attachment" type="file" />
-                                                </div>
-                                                <div class="dz-message" data-dz-message>
-                                                    <div class="text-lg font-medium">Upload Foto selfi kamu dan KTM
-                                                        kamu.
+
+                                    <div id="faq-accordion-1" class="accordion p-5">
+                                        <div class="accordion-item">
+                                            <div id="faq-accordion-content-2" class="accordion-header">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse" data-bs-target="#faq-accordion-collapse-2"
+                                                    aria-expanded="false" aria-controls="faq-accordion-collapse-2">
+                                                    Upload File Tanda Terima <i data-feather="plus"
+                                                        class="p-1 mr-2"></i></button>
+                                            </div>
+                                            <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
+                                                aria-labelledby="faq-accordion-content-2"
+                                                data-bs-parent="#faq-accordion-1">
+                                                <div class="intro-y box">
+                                                    <div
+                                                        class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
+                                                        <label for="formFileSm"
+                                                            class="form-label inline-block mb-2 text-gray-700"><img
+                                                                src="{{ asset('images/surat.png') }}"
+                                                                class="  w-60"
+                                                                alt="description of myimage"></label>
+                                                        <div id="single-file-upload" class="p-5 ">
+                                                            <div class="fallback">
+                                                                <input name="attachment" type="file" />
+                                                            </div>
+                                                            <div class="dz-message" data-dz-message>
+                                                                <div class="text-lg font-medium"> Upload File Tanda
+                                                                    Terima
+                                                                </div>
+                                                                <div class="text-gray-600">click and upload file
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
                                                     </div>
-                                                    <div class="text-gray-600">click and upload file
-                                                    </div>
+
                                                 </div>
                                             </div>
-
                                         </div>
 
                                     </div>
+
+
                                     <div class="intro-y box mt-5">
                                         <div id="icon-button" class="p-5">
                                             <div class="preview">
