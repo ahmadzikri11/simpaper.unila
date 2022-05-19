@@ -205,20 +205,20 @@ class TransactionController extends Controller
             $filename = public_path('storage/unila.png');
         }
         $transaction = Transaction::find($id);
+        $message = $request['message'];
 
         $transaction->update([
             'status' => $request['status'],
-            'message' =>  $request['message'],
         ]);
 
 
 
         $transaction->validator = auth()->user()->name;
+        $transaction->message = $request['message'];
         $transaction->save();
         $phone = $transaction->transactions->phone;
         $email = $transaction->transactions->email;
 
-        $message = $request['message'];
         // $client = new Client();
 
         // $url = "https://app.whatspie.com/api/messages";
@@ -285,8 +285,8 @@ class TransactionController extends Controller
             'file2' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
             'file3' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
             'file4' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
-            'periode_wisuda' => 'required',
-            'tahun_wisuda' => 'required',
+            // 'periode_wisuda' => 'required',
+            // 'tahun_wisuda' => 'required',
             'photo' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
             'ktm' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
         ]);
@@ -388,6 +388,19 @@ class TransactionController extends Controller
         $attr['file2'] = $this->storeFile($request->file('file2'), 'surat-keterangan');
         $attr['file3'] = $this->storeFile($request->file('file3'), 'sk');
         Transaction::create($attr);
+        return back()->with('message', 'Data berhasil ditambahkan');
+    }
+
+    public function updatePeriode(Request $request, $id)
+    {
+
+        $post = Transaction::find($id);
+        $get = $request->validate([
+            'periode_wisuda' => 'required',
+            'tahun_wisuda' => 'required',
+        ]);
+        $post->update($get);
+        // Transaction::update($post);
         return back()->with('message', 'Data berhasil ditambahkan');
     }
 }

@@ -54,6 +54,7 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/request', [TransactionController::class, 'listRequest'])->name('request.list');
     Route::get('/dashboard/validation/{id}', [TransactionController::class, 'validation'])->name('validation');
     Route::post('/dashboard/validation', [TransactionController::class, 'messege'])->name('messege');
+    Route::post('dahsboard/validation/{id}', [TransactionController::class, 'updatePeriode'])->name('periode_wisuda');
     Route::put('/dashboard/validation/accept{id}', [TransactionController::class, 'validationAccept'])->name('validation.accept');
     Route::put('/dashboard/validation/reject{id}', [TransactionController::class, 'validationReject'])->name('validation.reject');
     Route::post('/dashboard/validation/{phone}', [TransactionController::class, 'message'])->name('validation.message');

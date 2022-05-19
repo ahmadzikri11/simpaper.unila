@@ -17,8 +17,8 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\User::class, 'user_id');
             $table->timestamps();
-            $table->string('periode_wisuda');
-            $table->string('tahun_wisuda');
+            $table->string('periode_wisuda')->nullable();
+            $table->string('tahun_wisuda')->nullable();
             $table->string('validator')->nullable();
             $table->string('file1');
             $table->string('file2');
@@ -27,7 +27,6 @@ class CreateTransactionsTable extends Migration
             $table->string('ktm');
             $table->string('photo');
             $table->string('message')->nullable();
-            // $table->string('validator')->nullable();
             $table->string('status')->default('Diproses');
         });
     }

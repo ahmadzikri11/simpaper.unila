@@ -185,7 +185,7 @@
                                         </div>
                                     </div>
                                 </div> --}}
-                                <div class="grid ml-10 grid-cols-4 gap-6">
+                                {{-- <div class="grid ml-10 grid-cols-4 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
                                         <div class="col-span-6 sm:col-span-3">
                                             <label for="periode_wisuda"
@@ -231,7 +231,7 @@
                                             @enderror
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <div class="ml-10">
                                     <div class="flex justify-left">
                                         <div class="mb-3 w-80 ">

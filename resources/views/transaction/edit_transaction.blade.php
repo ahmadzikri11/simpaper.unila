@@ -93,8 +93,6 @@
                                                             {{ $user->phone }}</td>
                                                     </tr>
 
-
-
                                                     <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -141,6 +139,30 @@
                                                             class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
                                                             {{ $user->users[0]->tahun_wisuda }}</td>
                                                     </tr>
+                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            tanggal Upload</td>
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            :</td>
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            {{ $user->users[0]->created_at->format('d-m-Y h:m') }}
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            Tanggal Update</td>
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            :</td>
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            {{ $user->users[0]->updated_at->format('d-m-Y h:m') }}
+                                                        </td>
+                                                    </tr>
 
                                                 </tbody>
                                             </table>
@@ -149,6 +171,22 @@
                                 </div>
 
 
+                            </div>
+                            <div class=" flex justify-center">
+                                <div class="mb-3 w-full ">
+                                    <div
+                                        class="font-medium flex items-center border-b border-gray-200 dark:border-dark-5 pb-5">
+                                        <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Pesan
+                                    </div>
+                                    <textarea name="message" id="message" class="form-control block h-32 w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
+                                        id="exampleFormControlTextarea1" rows="3">
+@if (empty($user->users[0]->message))
+Belum Ada Pesan, Berkas Kamu Belum di Proses.
+@else
+{{ $user->users[0]->message }}
+@endif
+</textarea>
+                                </div>
                             </div>
 
                             <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 mt-5">

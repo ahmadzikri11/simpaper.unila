@@ -3,11 +3,16 @@
     <div class="content">
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                Validation
+                Halaman Validasi
             </h2>
 
+
+
         </div>
-        <div class="pos intro-y grid grid-cols-12 gap-5 mt-5">
+        <h3 class="text-lg mt-5 font-medium mr-auto">
+            Donwload File
+        </h3>
+        <div class="pos intro-y grid grid-cols-12 gap-5">
             <!-- BEGIN: Post Content -->
             <div class="intro-y col-span-12 lg:col-span-8">
                 <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 mt-5">
@@ -103,7 +108,7 @@
 
                                             <textarea name="message" id="message" class="
                                           form-control block h-80 w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
-                                                id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan users, kami ingin menginformasikan bahwa permohonan tersebut telah kami poroses. Kami menyimpulkan bahwa data kamu ...........
+                                                id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $transaction->transactions->name }}, kami ingin menginformasikan bahwa permohonan tersebut telah kami poroses. Kami menyimpulkan bahwa data kamu ...........
                                         </textarea>
                                         </div>
                                     </div>
@@ -263,12 +268,79 @@
                                 role="button" aria-expanded="false">
                                 <div class="w-6 h-6 image-fit mr-3">
                                 </div>
-                                <div class="truncate"> {{ $transaction->transactions->updated_at }}</div>
+                                <div class="truncate">
+                                    {{ $transaction->created_at->format('d-m-Y H:i:s') }}</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="mt-4 form-label">Waktu Update</label>
+                        <div class="dropdown">
+                            <div class="dropdown-toggle btn w-full btn-outline-secondary dark:bg-dark-2 dark:border-dark-2 flex items-center justify-start"
+                                role="button" aria-expanded="false">
+                                <div class="w-6 h-6 image-fit mr-3">
+                                </div>
+                                <div class="truncate">
+                                    {{ $transaction->updated_at->format('d-m-Y H:i:s') }}</div>
                             </div>
                         </div>
                     </div>
 
+                    <form action="{{ route('periode_wisuda', ['id' => $transaction->id]) }}" method="POST">
+                        @csrf
+                        <div>
+                            <label class="mt-4 form-label">Periode Wisuda</label>
+                            <select id="periode_wisuda" name="periode_wisuda" autocomplete="periode-name"
+                                class="dropdown-toggle btn w-full btn-outline-secondary">
 
+                                @if (empty($transaction->periode_wisuda))
+                                    <option value="">Pilih Periode</option>
+                                @else
+                                    <option value="{{ $transaction->periode_wisuda }}">
+                                        {{ $transaction->periode_wisuda }} </option>
+                                @endif
+                                <option value="januari">Januari</option>
+                                <option value="maret">Maret</option>
+                                <option value="mei">Mei</option>
+                                <option value="juli">Juli</option>
+                                <option value="september">September</option>
+                                <option value="november">November</option>
+                            </select>
+                            @error('periode_wisuda')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+
+                        <div>
+                            <label class="mt-4 form-label">Tahun Wisuda</label>
+                            <select id="tahun_wisuda" name="tahun_wisuda" autocomplete="periode-name"
+                                class="dropdown-toggle btn w-full btn-outline-secondary margin-">
+                                @if (empty($transaction->tahun_wisuda))
+                                    <option value=""> Pilih Tahun Wisuda </option>
+                                @else
+                                    <option value="{{ $transaction->tahun_wisuda }}">
+                                        {{ $transaction->tahun_wisuda }} </option>
+                                @endif
+
+                                <option value="2022">2022</option>
+                                <option value="2023">2023</option>
+                                <option value="2024">2024</option>
+                                <option value="2025">2025</option>
+                                <option value="2026">2026</option>
+                                <option value="2027">2027</option>
+                                <option value="2028">2028</option>
+                                <option value="2029">2029</option>
+                                <option value="2030">2030</option>
+                            </select>
+                            @error('tahun_wisuda')
+                                <span class="text-red-500">{{ $message }}</span>
+                            @enderror
+                        </div>
+                        <div class="px-4 pt-4 text-right sm:px-1">
+                            <button type="submit"
+                                class="inline-flex justify-center bg-indigo-600 py-2 px-4 border shadow-sm text-sm font-medium rounded-md text-white">Save</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- END: Post Info -->
