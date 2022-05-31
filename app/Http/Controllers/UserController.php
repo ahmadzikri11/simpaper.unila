@@ -186,4 +186,9 @@ class UserController extends Controller
         Excel::import(new ImportUser, $filename);
         return redirect()->back()->with('success', ' User telah ditambahkan!');
     }
+    public function GetRepository(Request $request)
+    {
+        $user = Auth::user();
+        return view('transaction.view-repository', compact('user'));
+    }
 }

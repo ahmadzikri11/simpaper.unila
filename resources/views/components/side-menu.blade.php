@@ -23,6 +23,12 @@
                     <div class="side-menu__title"> Submission </div>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('get_repository') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="edit"></i></i> </div>
+                    <div class="side-menu__title"> Upload Link Repositori</div>
+                </a>
+            </li>
             {{-- <li>
                 <a href="{{ route('transcation.status') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="monitor"></i></i> </div>

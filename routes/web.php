@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/transaction/user_transaction', [TransactionController::class, 'index'])->name('transcation/user_transaction');
     Route::get('/transaction/user_transaction/status', [TransactionController::class, 'status'])->name('transcation.status');
     Route::get('/profile', [UserController::class, 'index'])->name('profile');
+    Route::get('/upload/repository', [UserController::class, 'GetRepository'])->name('get_repository');
     Route::get('/getprodi', [UserController::class, 'getprodi']);
     Route::get('getprodi/{id}', [UserController::class, 'getprodi']);
     Route::post('/transaction/user_transaction', [TransactionController::class, 'create'])->name('transcation.user_transaction');
