@@ -13,6 +13,7 @@ use SebastianBergmann\Environment\Console;
 use DataTables;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportUser;
+use App\Models\Repository;
 use Psy\ExecutionLoopClosure;
 
 class UserController extends Controller
@@ -189,6 +190,12 @@ class UserController extends Controller
     public function GetRepository(Request $request)
     {
         $user = Auth::user();
-        return view('transaction.view-repository', compact('user'));
+        $get_id = $user->id;
+        $check = Repository::where('user_id', $get_id)->exists();
+        if ($check) {
+            return view('transaction.edit-repository', compact('user'));
+        } else {
+            return view('transaction.view-repository', compact('user'));
+        }
     }
 }

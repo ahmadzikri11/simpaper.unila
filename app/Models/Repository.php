@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Repository extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id',
+        'user_id',
+        'link_repository',
+    ];
 }

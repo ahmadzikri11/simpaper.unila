@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/getprodi', [UserController::class, 'getprodi']);
     Route::get('getprodi/{id}', [UserController::class, 'getprodi']);
     Route::post('/transaction/user_transaction', [TransactionController::class, 'create'])->name('transcation.user_transaction');
+    Route::post('/upload/Repository/create', [TransactionController::class, 'CreateRepository'])->name('create_repository');
     Route::put('/profile/update/{id}', [UserController::class, 'update'])->name('profile.update');
     Route::put('/transaction/user_transaction/status/update{id}', [TransactionController::class, 'update'])->name('transaction.update');
     Route::get('/transaction/status', [TransactionController::class, 'status'])->name('transcation/status');

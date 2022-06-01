@@ -23,8 +23,7 @@
                             </div>
                         @endif
                     </div>
-                    <form action="{{ route('transcation/user_transaction') }}" enctype="multipart/form-data"
-                        method="POST">
+                    <form action="{{ route('create_repository') }}" method="POST">
                         @csrf
                         <div class="shadow sm:rounded-md sm:overflow-hidden">
                             <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
@@ -44,8 +43,8 @@
                                             <label for="formFileSm"
                                                 class="form-label inline-block mb-2 text-gray-700">Upload Link
                                                 Digilib</label>
-                                            <input class="form-control" type="text" name="repository" id="repository"
-                                                placeholder="http://digilib.unila.ac.id/61033/"
+                                            <input class="form-control" type="text" name="link_repository"
+                                                id="link_repository" placeholder="http://digilib.unila.ac.id/61033/"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                             @error('file1')
                                                 <span class="text-red-500">{{ $message }}</span>

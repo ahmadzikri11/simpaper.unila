@@ -75,10 +75,12 @@ class User extends Authenticatable
     {
         return $this->hasOne(Fakultas::class, 'id', 'fakultas_id');
     }
-
-
     public function getprodi()
     {
         return $this->hasOne(Prodi::class, 'id', 'prodi_id');
+    }
+    public function getRepository()
+    {
+        return $this->hasOne(Repository::class, 'user_id', 'id');
     }
 }

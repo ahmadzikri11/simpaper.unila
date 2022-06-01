@@ -6,6 +6,7 @@ use App\Models\Transaction;
 use App\Models\User;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
+use App\Models\Repository;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use GuzzleHttp\Client;
@@ -402,5 +403,18 @@ class TransactionController extends Controller
         $post->update($get);
         // Transaction::update($post);
         return back()->with('message', 'Data berhasil ditambahkan');
+    }
+    public function CreateRepository(Request $request)
+    {
+        $user = Auth::user()->id;
+        $attr = $request->validate([
+            'link_repository' => 'required',
+            'user_id' => 'nullable',
+        ]);
+        $attr['user_id'] = $user;
+        // dd($attr);
+
+        Repository::create($attr);
+        return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
     }
 }
