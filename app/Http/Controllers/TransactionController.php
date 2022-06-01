@@ -143,6 +143,11 @@ class TransactionController extends Controller
         $transaction = Transaction::find($id);
         return view('transaction.validation', compact('transaction'));
     }
+    public function ViewAdminRepository($id)
+    {
+        $repository = Repository::find($id);
+        return view('transaction.validation-digilib', compact('repository'));
+    }
 
     public function showFile1($path)
     {

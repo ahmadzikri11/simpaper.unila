@@ -29,6 +29,7 @@
                     <div class="side-menu__title"> Upload Link Repositori</div>
                 </a>
             </li>
+
             {{-- <li>
                 <a href="{{ route('transcation.status') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="monitor"></i></i> </div>
@@ -41,6 +42,12 @@
                 <a href="{{ route('request.list') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                     <div class="side-menu__title"> Submitted </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('view_repository') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="external-link"></i></i> </div>
+                    <div class="side-menu__title"> Validasi Digilib</div>
                 </a>
             </li>
             <li>

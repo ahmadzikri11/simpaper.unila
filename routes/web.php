@@ -49,6 +49,7 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/account', [UserController::class, 'listaccount'])->name('account.list');
+    Route::get('/dashboard/list/repository', [UserController::class, 'ListRepository'])->name('list_repository');
     Route::put('dashboard/list/account/import', [UserController::class, 'importUser'])->name('import');
     Route::get('/dashboard/list/account/editaccount{id}', [UserController::class, 'editAccount'])->name('edit.account');
     Route::put('/dashboard/list/account/editaccount{id}', [UserController::class, 'updateAccount'])->name('update.account');
@@ -56,11 +57,13 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/account/deletetransaction{id}', [TransactionController::class, 'destroy'])->name('delete.transaction');
     Route::get('/dashboard/list/request', [TransactionController::class, 'listRequest'])->name('request.list');
     Route::get('/dashboard/validation/{id}', [TransactionController::class, 'validation'])->name('validation');
+    Route::get('/dashboard/validation/repository/{id}', [TransactionController::class, 'ViewAdminRepository'])->name('repository_admin');
     Route::post('/dashboard/validation', [TransactionController::class, 'messege'])->name('messege');
     Route::post('dahsboard/validation/{id}', [TransactionController::class, 'updatePeriode'])->name('periode_wisuda');
     Route::put('/dashboard/validation/accept{id}', [TransactionController::class, 'validationAccept'])->name('validation.accept');
     Route::put('/dashboard/validation/reject{id}', [TransactionController::class, 'validationReject'])->name('validation.reject');
     Route::post('/dashboard/validation/{phone}', [TransactionController::class, 'message'])->name('validation.message');
+    Route::get('/dashboard/repository/', [UserController::class, 'AdminGetRepository'])->name('view_repository');
     Route::get('/storage/{path}', [TransactionController::class, 'showFile1'])->name('file1');
     Route::get('/storage/{path2}', [TransactionController::class, 'showFile2'])->name('file2');
     Route::get('/storage/{path3}', [TransactionController::class, 'showFile3'])->name('file3');

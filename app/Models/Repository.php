@@ -13,4 +13,9 @@ class Repository extends Model
         'user_id',
         'link_repository',
     ];
+
+    public function getuserrepo()
+    {
+        return $this->hasOne(User::class, 'id', 'user_id');
+    }
 }
