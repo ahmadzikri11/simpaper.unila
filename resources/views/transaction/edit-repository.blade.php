@@ -52,7 +52,9 @@
 
                     <div class="px-4 py-5 bg-white shadow-sm space-y-6 sm:p-6">
 
-                        <form action="{{ route('create_repository') }}" method="POST">
+                        <form action="{{ route('update_repository', ['id' => $user->getRepository->id]) }}"
+                            method="POST">
+                            @method('PUT')
                             @csrf
                             <div class="sm:ml-10 mt-10">
                                 <div class="flex justify-left">

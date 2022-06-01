@@ -417,4 +417,14 @@ class TransactionController extends Controller
         Repository::create($attr);
         return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
     }
+
+    public function UpdateRepository(Request $request, $id)
+    {
+        $update = Repository::find($id);
+        $attr = $request->validate([
+            'link_repository' => 'required',
+        ]);
+        $update->update($attr);
+        return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
+    }
 }

@@ -42,6 +42,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/transaction/user_transaction', [TransactionController::class, 'create'])->name('transcation.user_transaction');
     Route::post('/upload/Repository/create', [TransactionController::class, 'CreateRepository'])->name('create_repository');
     Route::put('/profile/update/{id}', [UserController::class, 'update'])->name('profile.update');
+    Route::put('/upload/Repository/{id}', [TransactionController::class, 'UpdateRepository'])->name('update_repository');
     Route::put('/transaction/user_transaction/status/update{id}', [TransactionController::class, 'update'])->name('transaction.update');
     Route::get('/transaction/status', [TransactionController::class, 'status'])->name('transcation/status');
 });
