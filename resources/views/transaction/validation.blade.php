@@ -65,22 +65,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
-                        <div class="file box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
 
-                            <a href="{{ route('file4', ['path4' => $transaction->file4]) }}"
-                                class="w-3/5 file__icon file__icon--file mx-auto">
-                                <div class="file__icon__file-name">PDF</div>
-                            </a>
-                            <a href="{{ route('file4', ['path4' => $transaction->file4]) }}"
-                                class="block font-medium mt-4 text-center truncate">File.Pdf</a>
-                            <div class="text-gray-600 text-xs text-center mt-0.5">Surat2</div>
-                            <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
-                                <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false"> <i
-                                        data-feather="more-vertical" class="w-5 h-5 text-gray-600"></i> </a>
-                            </div>
-                        </div>
-                    </div>
 
                 </div>
 

@@ -18,6 +18,7 @@ class CreateRepositoriesTable extends Migration
             $table->foreignIdFor(\App\Models\User::class, 'user_id');
             $table->string('link_repository');
             $table->string('status')->default('Diproses');
+            $table->string('Validator')->nullable();
             $table->timestamps();
         });
     }

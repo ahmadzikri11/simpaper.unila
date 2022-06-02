@@ -43,7 +43,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/upload/Repository/create', [TransactionController::class, 'CreateRepository'])->name('create_repository');
     Route::put('/profile/update/{id}', [UserController::class, 'update'])->name('profile.update');
     Route::put('/upload/Repository/{id}', [TransactionController::class, 'UpdateRepository'])->name('update_repository');
-    Route::put('/transaction/user_transaction/status/update{id}', [TransactionController::class, 'update'])->name('transaction.update');
+    Route::put('/transaction/user_transaction/status/update{id}', [TransactionController::class, 'udate'])->name('transaction.update');
     Route::get('/transaction/status', [TransactionController::class, 'status'])->name('transcation/status');
 });
 
@@ -62,6 +62,7 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::post('dahsboard/validation/{id}', [TransactionController::class, 'updatePeriode'])->name('periode_wisuda');
     Route::put('/dashboard/validation/accept{id}', [TransactionController::class, 'validationAccept'])->name('validation.accept');
     Route::put('/dashboard/validation/reject{id}', [TransactionController::class, 'validationReject'])->name('validation.reject');
+    Route::put('/dashboard/validation/repository/{id}', [TransactionController::class, 'validationRepository'])->name('repository_validation_accept');
     Route::post('/dashboard/validation/{phone}', [TransactionController::class, 'message'])->name('validation.message');
     Route::get('/dashboard/repository/', [UserController::class, 'AdminGetRepository'])->name('view_repository');
     Route::get('/storage/{path}', [TransactionController::class, 'showFile1'])->name('file1');

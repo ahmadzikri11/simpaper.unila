@@ -82,18 +82,16 @@
                                 <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
 
                         </div>
-                        <div class="p-2 border-t border-theme-12 dark:border-dark-3">
+                        <div class="p-2 w-full">
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button
-                                    class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
+                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
                                     type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
                                     <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i>
                                     {{ __('Log Out') }}
                                 </button>
                             </form>
-
-
 
                         </div>
                     </div>

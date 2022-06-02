@@ -12,6 +12,8 @@ class Repository extends Model
         'id',
         'user_id',
         'link_repository',
+        'status',
+        'validator',
     ];
 
     public function getuserrepo()

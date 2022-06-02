@@ -178,14 +178,16 @@
                                         class="font-medium flex items-center border-b border-gray-200 dark:border-dark-5 pb-5">
                                         <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Pesan
                                     </div>
-                                    <textarea name="message" id="message" class="form-control block h-32 w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
-                                        id="exampleFormControlTextarea1" rows="3">
-@if (empty($user->users[0]->message))
-Belum Ada Pesan, Berkas Kamu Belum di Proses.
-@else
-{{ $user->users[0]->message }}
-@endif
-</textarea>
+                                    <label
+                                        class="flex flex-col rounded-lg border-4 border-dashed w-full border-blue-200 h-auto p-2 group text-left">
+                                        <h2>
+                                            @if (empty($user->users[0]->message))
+                                                Belum Ada Pesan, Berkas Kamu Belum di Proses.
+                                            @else
+                                                {{ $user->users[0]->message }}
+                                            @endif
+                                        </h2>
+                                    </label>
                                 </div>
                             </div>
 
@@ -246,25 +248,7 @@ Belum Ada Pesan, Berkas Kamu Belum di Proses.
                                     </div>
                                 </div>
 
-                                <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
-                                    <div
-                                        class="file bg-gray-100  box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
 
-                                        <a href="{{ route('file1', ['path' => $user->users[0]->file4]) }}"
-                                            class="w-3/5 file__icon file__icon--file mx-auto">
-                                            <div class="file__icon__file-name">PDF</div>
-                                        </a>
-                                        <a href="{{ route('file1', ['path' => $user->users[0]->file4]) }}"
-                                            class="block font-medium mt-4 text-center truncate">File.Pdf</a>
-                                        <div class="text-gray-600 text-xs text-center mt-0.5">Bukti Pembayaran KI
-                                        </div>
-                                        <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
-                                            <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
-                                                aria-expanded="false"> <i data-feather="more-vertical"
-                                                    class="w-5 h-5 text-gray-600"></i> </a>
-                                        </div>
-                                    </div>
-                                </div>
 
                             </div>
 
@@ -334,7 +318,8 @@ Belum Ada Pesan, Berkas Kamu Belum di Proses.
                             @enderror
                         </div>
                         <div class="col-span-12 sm:col-span-6">
-                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Surat Bebas
+                            <label for="formFileSm" class="form-label sm:mt-10 inline-block mb-2 text-gray-700">Surat
+                                Bebas
                                 Perpus</label>
                             <input
                                 class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -344,8 +329,10 @@ Belum Ada Pesan, Berkas Kamu Belum di Proses.
                             @enderror
                         </div>
                         <div class="col-span-12 sm:col-span-6">
-                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Slip Pembayaran
-                                Ukt</label>
+                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Bila ada Bekas
+                                yang
+                                harus di Tanda Tangan sebagai Bukti Sebar Karya Akhir Silahkan
+                                isi</label>
                             <input
                                 class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                 id="file3" name="file3" type="file">
@@ -353,17 +340,7 @@ Belum Ada Pesan, Berkas Kamu Belum di Proses.
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="col-span-12 sm:col-span-6">
-                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Bukti
-                                Pembayaran Karya Ilmiah <br> * Untuk FP,FMIPA,FEB dan FK.
-                            </label>
-                            <input
-                                class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                id="file4" name="file4" type="file">
-                            @error('file4')
-                                <span class="text-red-500">{{ $message }}</span>
-                            @enderror
-                        </div>
+
                         <div class="col-span-12 sm:col-span-6">
                             <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Input
                                 KTM</label>
@@ -384,7 +361,7 @@ Belum Ada Pesan, Berkas Kamu Belum di Proses.
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
-                        <div class="col-span-12 sm:col-span-6">
+                        {{-- <div class="col-span-12 sm:col-span-6">
                             <label for="modal-form-6" name="periode_wisuda" class="form-label">Periode
                                 Wisuda</label>
                             <select name="periode_wisuda" id="modal-form-6" class="form-select">
@@ -414,7 +391,7 @@ Belum Ada Pesan, Berkas Kamu Belum di Proses.
                                 <option value="2029">2029</option>
                                 <option value="2030">2030</option>
                             </select>
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- END: Modal Body -->
                     <!-- BEGIN: Modal Footer -->

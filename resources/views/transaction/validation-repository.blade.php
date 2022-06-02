@@ -6,6 +6,14 @@
     </div>
     <div>
         <table class="table table-bordered yajra-datatable">
+            <div class="w-ful">
+                @if (session()->has('message'))
+                    <div class="alert bg-green-500 text-white show flex items-center mb-2" role="alert">
+                        <i data-feather="file-plus" class="w-6 h-6 mr-2 "></i>
+                        {{ session()->get('message') }}
+                    </div>
+                @endif
+            </div>
             <div class="w-full  sm:w-auto flex">
                 <div class="dropdown">
                     <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">

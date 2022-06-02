@@ -27,12 +27,15 @@
                     <div class="px-4 py-5 my-5 bg-white shadow-sm space-y-6 sm:p-6">
 
                         <div class="sm:ml-12">
-
                             Status <span class="ml-5">:</span>
                             @if ($user->getRepository->status == 'Sudah Tervalidasi')
-                                <span class="bg-green-600 text-white ml-3 py-1 px-3 rounded-full text-xs"> Data Kamu
-                                    Sudah
-                                    Divalidasi Oleh Admin</span>
+                                <span class="bg-green-600 text-white ml-3 py-1 px-3 rounded-full text-xs"> Sudah
+                                    Divalidasi</span>
+                                <div class="mt-2 sm:ml-10">
+                                    <span class="text-gray-800 sm:ml-3 py-2 sm:px-3 text-m"> *Data Kamu Sudah Kami Cek
+                                        dan sudah Sesuai. Terimakasih
+                                    </span>
+                                </div>
                             @elseif ($user->getRepository->status == 'Revisi')
                                 <span class="bg-red-700 text-white ml-3 py-1 px-3 rounded-full text-xs">
                                     REVISI</span>
@@ -42,10 +45,12 @@
                                         Beberapa Hal Yang perlu Kamu Perbaiki</span>
                                 </div>
                             @elseif ($user->getRepository->status == 'Diproses')
-                                <span class="bg-yellow-500 text-white ml-3 py-1 px-3 rounded-full text-xs">Data kamu
-                                    masih
-                                    dalam
-                                    proses</span>
+                                <span class="bg-yellow-500 text-white ml-3 py-1 px-3 rounded-full text-xs">Dalam
+                                    Proses</span>
+                                <div class="mt-2 sm:ml-10">
+                                    <span class="text-gray-800 sm:ml-3 py-2 sm:px-3 text-m"> *Data Kamu Belum Kami
+                                        cek. Kami akan Cek secepat mungkin.</span>
+                                </div>
                             @endif
                         </div>
                     </div>
