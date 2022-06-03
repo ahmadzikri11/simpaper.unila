@@ -8,134 +8,16 @@ use App\Models\Transaction;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
-use SebastianBergmann\Environment\Console;
 use DataTables;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportUser;
 use App\Models\Repository;
-use Psy\ExecutionLoopClosure;
+
 
 class UserController extends Controller
 {
-
-
-    public function dashboarduser()
-    {
-        $user = User::count();
-        $transaction = Transaction::count();
-        $transactionaccept = Transaction::where('status', 'Sudah Tervalidasi')->count();
-        $transactionproses = Transaction::where('status', 'Diproses')->count();
-        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
-    }
-
-
-    public function listaccount(Request $request)
-    {
-
-
-        $data = User::with('getfakultas', 'getprodi');
-        if ($request->ajax()) {
-
-            return DataTables::eloquent($data)
-
-                ->addIndexColumn()
-                ->addColumn('getfakultas', function ($row) {
-                    if (empty($row->getfakultas['fakultas'])) {
-                        $row = '';
-                    } else {
-                        return $row->getfakultas['fakultas'];
-                    }
-                })
-                ->addColumn('getprodi', function ($row) {
-                    if (empty($row->getprodi['prodi'])) {
-                        $row = ' ';
-                    } else {
-                        return $row->getprodi['prodi'];
-                    }
-                })
-                ->addColumn('action', function ($row) {
-                    // $actionBtn = '<a href="/dashboard/list/account/editaccount{id}' . $user->id . '" class="edit btn btn-success btn-sm">Edit</a> ';
-                    $actionBtn = '<a href="/dashboard/list/account/editaccount' . $row->id . '" " class="edit h-8 btn bg-green-500 text-white btn-sm">Edit</a> ';
-
-                    return $actionBtn;
-                })
-
-                ->filter(function ($instance) use ($request) {
-                    if ($request->get('fakultas') == '0' || $request->get('fakultas') == '1') {
-                        $instance->where('fakultas_id', $request->get('fakultas'));
-                    }
-                    if (!empty($request->get('fakultas'))) {
-                        $instance->where(function ($w) use ($request) {
-                            $get = $request->get('fakultas');
-                            $w->orWhere('fakultas_id', 'LIKE', "%$get%");
-                        });
-                    }
-                    if (!empty($request->get('search'))) {
-                        $instance->wherehas('getfakultas', function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->Where('fakultas', 'LIKE', "%$get%");
-                        })->orWherehas('getprodi', function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->Where('prodi', 'LIKE', "%$get%");
-                        })->orWhere(function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->orWhere('name', 'LIKE', "%$get%");
-                            $w->orWhere('email', 'LIKE', "%$get%");
-                            $w->orWhere('role', 'LIKE', "%$get%");
-                            $w->orWhere('phone', 'LIKE', "%$get%");
-                        });
-                    }
-                })
-
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-
-        return view('transaction.list-account');
-    }
-
-
-    public function editAccount($id)
-    {
-        $user = User::find($id);
-        $fakultas = Fakultas::all();
-        return view('transaction.edit-account', compact('user', 'fakultas'));
-    }
-    public function updateAccount(Request $request, User $user, $id)
-    {
-        $this->validate($request, [
-            'name' => 'required',
-            'npm' => 'required',
-            'phone' => 'required',
-            'email' => 'required',
-            'fakultas' => 'required',
-            'prodi' => 'required',
-        ]);
-
-        $user = User::find($id);
-
-        $user->update([
-            'name' => $request['name'],
-            'email' => $request['email'],
-            'npm' => $request['npm'],
-            'phone' => $request['phone'],
-            'fakultas_id' => $request['fakultas'],
-            'prodi_id' => $request['prodi'],
-        ]);
-
-        return redirect()->route('account.list')->with('edit', ' Data telah diperbaharui!');
-    }
-    public function index()
-    {
-        $user = Auth::user();
-        $fakultas = Fakultas::all();
-        $prodi = Prodi::all();
-        return view('profile', compact('user', 'fakultas', 'prodi'));
-    }
-
-    public function update(Request $request, User $user, $id)
+    // upload profile user
+    public function UpdateUserProfile(Request $request, User $user, $id)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -159,6 +41,147 @@ class UserController extends Controller
 
         return redirect()->route('profile')->with('success', ' Data telah diperbaharui!');
     }
+
+
+    //create transaction
+    public function CreateUserTransaction(Request $request)
+    {
+        $attr = $request->validate([
+            'file1' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file2' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file3' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'photo' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
+            'ktm' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
+        ]);
+        $attr['user_id'] = auth()->user()->id;
+        $attr['file1'] = $this->storeFile($request->file('file1'), 'surat_layak_upload');
+        $attr['file2'] = $this->storeFile($request->file('file2'), 'surat_bebas_perpus');
+        $attr['file3'] = $this->storeFile($request->file('file3'), 'Bukti_Sebar_Karya_Akhir');
+        $attr['ktm'] = $this->storeFile($request->file('ktm'), 'ktm');
+        $attr['photo'] = $this->storeFile($request->file('photo'), 'photo');
+        Transaction::create($attr);
+        return redirect()->route('transcation.status')->with('message', ' Data telah Telah Terkirim!');
+    }
+
+    // Update Transaction
+    public function UpdateUserTransaction(Request $request, $id)
+    {
+        $post = Transaction::find($id);
+
+        $path = public_path() . '/storage/';
+        if ($post->file1 != ''  && $post->file1 != null) {
+            $file_old = $path . $post->file1;
+            unlink($file_old);
+        }
+        if ($post->file2 != ''  && $post->file2 != null) {
+            $file_old = $path . $post->file2;
+            unlink($file_old);
+        }
+        if ($post->file3 != ''  && $post->file3 != null) {
+            $file_old = $path . $post->file3;
+            unlink($file_old);
+        }
+
+        if ($post->photo != ''  && $post->photo != null) {
+            $file_old = $path . $post->photo;
+            unlink($file_old);
+        }
+        if ($post->ktm != ''  && $post->ktm != null) {
+            $file_old = $path . $post->ktm;
+            unlink($file_old);
+        }
+
+        $pathfile1 = $request->file('file1')->store('files/surat_layak_upload');
+        $pathfile2 = $request->file('file2')->store('files/surat_bebas_perpus');
+        $pathfile3 = $request->file('file3')->store('files/Bukti_Sebar_Karya_Akhir');
+        $pathktm = $request->file('ktm')->store('files/ktm');
+        $pathphoto = $request->file('photo')->store('files/photo');
+        $post->file1 = $pathfile1;
+        $post->file2 = $pathfile2;
+        $post->file3 = $pathfile3;
+        $post->ktm = $pathktm;
+        $post->photo = $pathphoto;
+
+        $post->save();
+
+        return back()->with('message', 'Data berhasil Diubah');
+    }
+
+    // Create Repository
+    public function CreateUserRepository(Request $request)
+    {
+        $user = Auth::user()->id;
+        $attr = $request->validate([
+            'link_repository' => 'required',
+        ]);
+        $attr['user_id'] = $user;
+        Repository::create($attr);
+        return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
+    }
+
+    // Update Repository
+    public function UpdateUserRepository(Request $request, $id)
+    {
+        $update = Repository::find($id);
+        $attr = $request->validate([
+            'link_repository' => 'required',
+        ]);
+        $update->update($attr);
+        return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
+    }
+
+
+
+
+
+
+
+
+
+
+
+    public function dashboarduser()
+    {
+        $user = User::count();
+        $transaction = Transaction::count();
+        $transactionaccept = Transaction::where('status', 'Sudah Tervalidasi')->count();
+        $transactionproses = Transaction::where('status', 'Diproses')->count();
+        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
+    }
+
+    // public function editAccount($id)
+    // {
+    //     $user = User::find($id);
+    //     $fakultas = Fakultas::all();
+    //     return view('transaction.edit-account', compact('user', 'fakultas'));
+    // }
+    // public function updateAccount(Request $request, User $user, $id)
+    // {
+    //     $this->validate($request, [
+    //         'name' => 'required',
+    //         'npm' => 'required',
+    //         'phone' => 'required',
+    //         'email' => 'required',
+    //         'fakultas' => 'required',
+    //         'prodi' => 'required',
+    //     ]);
+
+    //     $user = User::find($id);
+
+    //     $user->update([
+    //         'name' => $request['name'],
+    //         'email' => $request['email'],
+    //         'npm' => $request['npm'],
+    //         'phone' => $request['phone'],
+    //         'fakultas_id' => $request['fakultas'],
+    //         'prodi_id' => $request['prodi'],
+    //     ]);
+
+    //     return redirect()->route('account.list')->with('edit', ' Data telah diperbaharui!');
+    // }
+
+
+
 
     public function destroy(User $user, $id)
     {
@@ -187,94 +210,11 @@ class UserController extends Controller
         Excel::import(new ImportUser, $filename);
         return redirect()->back()->with('success', ' User telah ditambahkan!');
     }
-    public function GetRepository()
-    {
-        $user = Auth::user();
-        $get_id = $user->id;
-        $check = Repository::where('user_id', $get_id)->exists();
-        if ($check) {
-            return view('transaction.edit-repository', compact('user'));
-        } else {
-            return view('transaction.view-repository', compact('user'));
-        }
-    }
 
-    public function AdminGetRepository()
+
+    public function AdminViewRepository()
     {
         $user = Repository::all();
         return view('transaction.validation-repository', compact('user'));
-    }
-
-
-    public function ListRepository(Request $request)
-    {
-        $data = Repository::with('getuserrepo');
-        if ($request->ajax()) {
-
-            return DataTables::eloquent($data)
-
-                ->addIndexColumn()
-                ->addColumn('name', function ($row) {
-                    if (empty($row->getuserrepo['name'])) {
-                        $row = ' ';
-                    } else {
-                        return $row->getuserrepo['name'];
-                    }
-                })
-                ->addColumn('fakultas', function ($row) {
-                    if (empty($row->getuserrepo->getfakultas['fakultas'])) {
-                        $row = ' ';
-                    } else {
-                        return $row->getuserrepo->getfakultas['fakultas'];
-                    }
-                })
-                ->addColumn('prodi', function ($row) {
-                    if (empty($row->getuserrepo->getprodi['prodi'])) {
-                        $row = ' ';
-                    } else {
-                        return $row->getuserrepo->getprodi['prodi'];
-                    }
-                })
-                ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="/dashboard/validation/repository/' . $row->id . '" " class="edit h-8 btn bg-green-500 text-white btn-sm">Validasi</a> ';
-
-                    return $actionBtn;
-                })
-
-
-                ->filter(function ($instance) use ($request) {
-                    // if ($request->get('fakultas') == '0' || $request->get('fakultas') == '1') {
-                    //     $instance->where('fakultas_id', $request->get('fakultas'));
-                    // }
-                    if (!empty($request->get('fakultas'))) {
-                        $instance->wherehas('getuserrepo', function ($w) use ($request) {
-                            $get = $request->get('fakultas');
-                            $w->Where('fakultas_id', 'LIKE', "%$get%");
-                        });
-                    }
-                    if (!empty($request->get('search'))) {
-                        $instance->wherehas('getuserrepo', function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->Where('name', 'LIKE', "%$get%");
-                        })->orWhere(function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->orWhere('link_repository', 'LIKE', "%$get%");
-                            $w->orWhere('status', 'LIKE', "%$get%");
-                        })->orWherehas('getuserrepo.getfakultas', function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->Where('fakultas', 'LIKE', "%$get%");
-                        })->orWherehas('getuserrepo.getprodi', function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->Where('prodi', 'LIKE', "%$get%");
-                        });
-                    }
-                })
-
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-
-        return view('transaction.validation-repository');
     }
 }

@@ -86,6 +86,7 @@
                     <th>Jurusan</th>
                     <th>Link Digilib</th>
                     <th>Status</th>
+                    <th>Validator</th>
                     <th>Action</th>
                 </tr>
             </thead>
@@ -181,7 +182,10 @@
                             "</span>";
                     }
                 },
-
+                {
+                    data: 'validator',
+                    name: 'validator'
+                },
 
                 {
                     data: 'action',

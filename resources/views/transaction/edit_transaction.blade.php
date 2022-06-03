@@ -84,7 +84,7 @@
                                                     <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                            Phone</td>
+                                                            No WA</td>
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                             :</td>
@@ -117,6 +117,17 @@
                                                         </td>
                                                     </tr>
 
+                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            Validator</td>
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            :</td>
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            {{ $user->users[0]->validator }}</td>
+                                                    </tr>
                                                     <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
@@ -154,7 +165,7 @@
                                                     <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                                            Tanggal Update</td>
+                                                            Tanggal Edit</td>
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                                             :</td>

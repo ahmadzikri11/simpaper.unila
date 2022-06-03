@@ -126,31 +126,7 @@
 
 
     <!-- BEGIN: Modal Content -->
-    <div id="delete-modal-preview" class="modal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content bg-white rounded-md">
-                <div class="modal-body p-0">
-                    <div class="p-5 text-center">
-                        <i data-feather="x-circle" class="w-16 h-16 text-theme-24 mx-auto mt-3"></i>
-                        <div class="text-3xl mt-5">Apa Kamu Yakin?</div>
-                        <div class="text-gray-600 mt-2">
-                            Apakah Kamu yakin menghapus
-                            <br>
-                            data {{ $user->name }}?.
-                        </div>
-                    </div>
-                    <div class="px-5 pb-8 text-center">
-                        <button type="button" data-dismiss="modal"
-                            class="btn btn-outline-secondary w-24 dark:border-dark-5 dark:text-gray-300 mr-1">Cancel</button>
 
-                        <a href="{{ route('delete.account', ['id' => $user->id]) }}">
-                            <button type="button" class="btn btn-danger bg-red-500 text-white w-24">Delete</button>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
     <!-- END: Modal Content -->
     </div>
     <div class="source-code hidden">

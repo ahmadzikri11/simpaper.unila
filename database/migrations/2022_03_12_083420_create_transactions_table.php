@@ -23,7 +23,6 @@ class CreateTransactionsTable extends Migration
             $table->string('file1');
             $table->string('file2');
             $table->string('file3')->nullable();
-            // $table->string('file4')->nullable();
             $table->string('ktm');
             $table->string('photo');
             $table->string('message')->nullable();
