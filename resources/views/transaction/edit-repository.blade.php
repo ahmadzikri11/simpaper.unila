@@ -51,7 +51,21 @@
                                     <span class="text-gray-800 sm:ml-3 py-2 sm:px-3 text-m"> *Data Kamu Belum Kami
                                         cek. Kami akan Cek secepat mungkin.</span>
                                 </div>
+                            @elseif ($user->getRepository->status == 'Telah Diperbaiki')
+                                <span class="bg-gray-500 text-white ml-3 py-1 px-3 rounded-full text-xs">Telah
+                                    Diperbaiki</span>
+                                <div class="mt-2 sm:ml-10">
+                                    <span class="text-gray-800 sm:ml-3 py-2 sm:px-3 text-m"> *Data Kamu Belum Kami
+                                        cek. Kami akan Cek secepat mungkin.</span>
+                                </div>
                             @endif
+                        </div>
+                        <div class="sm:ml-12 flex">
+                            Pesan <span class="ml-5 mr-2">:</span>
+                            <div>
+                                <span class="text-gray-800 py-2  text-m">
+                                    {{ $user->getRepository->message }}</span>
+                            </div>
                         </div>
                     </div>
 

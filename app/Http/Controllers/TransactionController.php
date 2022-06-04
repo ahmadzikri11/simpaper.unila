@@ -26,18 +26,18 @@ class TransactionController extends Controller
     //     }
     // }
 
-    // public function Status()
-    // {
-    //     $user = Auth::user();
-    //     $get_id = $user->id;
-    //     $check = Transaction::where('user_id', $get_id)->exists();
+    public function Status()
+    {
+        $user = Auth::user();
+        $get_id = $user->id;
+        $check = Transaction::where('user_id', $get_id)->exists();
 
-    //     if ($check) {
-    //         return view('transaction.edit_transaction', compact('user'));
-    //     } else {
-    //         return view('transaction.status_submit');
-    //     }
-    // }
+        if ($check) {
+            return view('transaction.edit_transaction', compact('user'));
+        } else {
+            return view('transaction.status_submit');
+        }
+    }
 
 
 

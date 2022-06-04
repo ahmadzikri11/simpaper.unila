@@ -56,7 +56,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/getprodi', [UserController::class, 'getprodi']);
     Route::get('getprodi/{id}', [UserController::class, 'getprodi']);
 
-    // Route::get('/transaction/user_transaction/status', [TransactionController::class, 'status'])->name('transcation.status');
+    Route::get('/transaction/user_transaction/status', [TransactionController::class, 'status'])->name('transcation.status');
     Route::get('/transaction/status', [TransactionController::class, 'status'])->name('transcation/status');
 });
 
@@ -85,7 +85,6 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::put('/dashboard/validation/repository/{id}', [AdminController::class, 'ValidationRepository'])->name('repository_validation_accept');
     // Route::post('/dashboard/validation', [TransactionController::class, 'messege'])->name('messege');
     // Route::put('/dashboard/validation/reject{id}', [TransactionController::class, 'validationReject'])->name('validation.reject');
-
 
     // Route::post('/dashboard/validation/{phone}', [TransactionController::class, 'message'])->name('validation.message');
     Route::get('/storage/{path}', [TransactionController::class, 'showFile1'])->name('file1');

@@ -176,6 +176,10 @@
                             text = "Diproses";
                             label = "bg-red-700";
                         }
+                        if (data == 'Telah Diperbaiki') {
+                            text = "Telah Diperbaiki";
+                            label = "bg-gray-700";
+                        }
 
                         return "<span class= '" + label +
                             "  text-white py-1 px-3 rounded-full text-xs' >" + text +

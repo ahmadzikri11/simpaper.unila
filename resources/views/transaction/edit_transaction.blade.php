@@ -10,7 +10,7 @@
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Status Validasi</h3>
-                        <p class="mt-1 text-sm text-gray-600"> File Skripsi</p>
+                        <p class="mt-1 text-sm text-gray-600"> Upload File </p>
                     </div>
                 </div>
 
@@ -33,77 +33,75 @@
                                 <div class="overflow-x-auto shadow-md sm:rounded-lg">
                                     <div class="inline-block min-w-full align-middle">
                                         <div class="overflow-hidden ">
-                                            <table
-                                                class="min-w-full divide-y divide-gray-200 table-fixed dark:divide-gray-700">
-                                                <thead class="bg-white dark:bg-gray-700">
+                                            <table class="min-w-full divide-y divide-gray-200 table-fixed ">
+                                                <thead class="bg-white ">
                                                     <tr>
 
 
                                                         <th scope="col"
-                                                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase dark:text-gray-400">
+                                                            class="py-3 px-6 text-xs font-medium tracking-wider text-left text-gray-700 uppercase ">
                                                             Data
                                                         </th>
                                                     </tr>
                                                 </thead>
-                                                <tbody
-                                                    class="bg-white divide-y divide-gray-200 dark:bg-gray-800 dark:divide-gray-700">
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                <tbody class="bg-white divide-y divide-gray-200  ">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             Nama</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             {{ $user->name }}</td>
                                                     </tr>
 
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             NPM</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             {{ $user->npm }}</td>
                                                     </tr>
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             Email</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             {{ $user->email }}</td>
                                                     </tr>
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             No WA</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             {{ $user->phone }}</td>
                                                     </tr>
 
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             Status</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
 
 
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             @if ($user->users[0]->status == 'Sudah Tervalidasi')
                                                                 <span
                                                                     class="bg-green-700 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
@@ -113,64 +111,67 @@
                                                             @elseif ($user->users[0]->status == 'Diproses')
                                                                 <span
                                                                     class="bg-yellow-700 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
+                                                            @elseif ($user->users[0]->status == 'Telah Diperbaiki')
+                                                                <span
+                                                                    class="bg-gray-600 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
                                                             @endif
                                                         </td>
                                                     </tr>
 
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             Validator</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             {{ $user->users[0]->validator }}</td>
                                                     </tr>
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             Periode Wisuda</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             {{ $user->users[0]->periode_wisuda }}</td>
                                                     </tr>
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             Tahun Wisuda</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             {{ $user->users[0]->tahun_wisuda }}</td>
                                                     </tr>
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             tanggal Upload</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             {{ $user->users[0]->created_at->format('d-m-Y h:m') }}
                                                         </td>
                                                     </tr>
-                                                    <tr class="hover:bg-gray-100 dark:hover:bg-gray-700">
+                                                    <tr class="hover:bg-gray-100 ">
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             Tanggal Edit</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
                                                         <td
-                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap dark:text-white">
+                                                            class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             {{ $user->users[0]->updated_at->format('d-m-Y h:m') }}
                                                         </td>
                                                     </tr>
@@ -297,7 +298,7 @@
                     </h2>
                     <div class="dropdown sm:hidden">
                         <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false"> <i
-                                data-feather="more-horizontal" class="w-5 h-5 text-gray-600 dark:text-gray-600"></i>
+                                data-feather="more-horizontal" class="w-5 h-5 text-gray-600 "></i>
                         </a>
 
                     </div>
@@ -313,11 +314,7 @@
                             <label for="modal-form-1" class="form-label">Dari</label>
                             <input id="modal-form-1" readonly value="{{ $user->name }}" class="form-control">
                         </div>
-                        {{-- <div class=" col-span-12 sm:col-span-6">
-                            <label for="modal-form-2" class="form-label">Token</label>
-                            <input id="modal-form-2" type="text" name="token" class="form-control"
-                                value=" {{ $user->users[0]->token }}">
-                        </div> --}}
+
                         <div class="col-span-12 sm:col-span-6">
                             <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Surat Layak
                                 upload</label>
@@ -372,37 +369,7 @@
                                 <span class="text-red-500">{{ $message }}</span>
                             @enderror
                         </div>
-                        {{-- <div class="col-span-12 sm:col-span-6">
-                            <label for="modal-form-6" name="periode_wisuda" class="form-label">Periode
-                                Wisuda</label>
-                            <select name="periode_wisuda" id="modal-form-6" class="form-select">
-                                <option value="{{ $user->users[0]->periode_wisuda }}">
-                                    {{ $user->users[0]->periode_wisuda }}</option>
-                                <option value="januari">Januari</option>
-                                <option value="maret">Maret</option>
-                                <option value="mei">Mei</option>
-                                <option value="juli">Juli</option>
-                                <option value="september">September</option>
-                                <option value="november">November</option>
-                            </select>
-                        </div>
-                        <div class="col-span-12 sm:col-span-6">
-                            <label for="modal-form-6" name="tahun_wisuda" class="form-label">Tahun
-                                Wisuda</label>
-                            <select name="tahun_wisuda" id="modal-form-6" class="form-select">
-                                <option value="{{ $user->users[0]->tahun_wisuda }}">
-                                    {{ $user->users[0]->tahun_wisuda }}</option>
-                                <option value="2022">2022</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>
-                                <option value="2026">2026</option>
-                                <option value="2027">2027</option>
-                                <option value="2028">2028</option>
-                                <option value="2029">2029</option>
-                                <option value="2030">2030</option>
-                            </select>
-                        </div> --}}
+
                     </div>
                     <!-- END: Modal Body -->
                     <!-- BEGIN: Modal Footer -->

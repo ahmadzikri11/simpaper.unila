@@ -71,6 +71,7 @@ class UserController extends Controller
         $path = public_path() . '/storage/';
         if ($post->file1 != ''  && $post->file1 != null) {
             $file_old = $path . $post->file1;
+            // dd($file_old);
             unlink($file_old);
         }
         if ($post->file2 != ''  && $post->file2 != null) {
@@ -96,6 +97,7 @@ class UserController extends Controller
         $pathfile3 = $request->file('file3')->store('files/Bukti_Sebar_Karya_Akhir');
         $pathktm = $request->file('ktm')->store('files/ktm');
         $pathphoto = $request->file('photo')->store('files/photo');
+        $post->status = 'Telah Diperbaiki';
         $post->file1 = $pathfile1;
         $post->file2 = $pathfile2;
         $post->file3 = $pathfile3;
@@ -126,12 +128,10 @@ class UserController extends Controller
         $attr = $request->validate([
             'link_repository' => 'required',
         ]);
+        $update->status = 'Telah Diperbaiki';
         $update->update($attr);
         return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
     }
-
-
-
 
 
 

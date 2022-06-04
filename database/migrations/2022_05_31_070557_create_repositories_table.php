@@ -19,7 +19,7 @@ class CreateRepositoriesTable extends Migration
             $table->string('link_repository');
             $table->string('status')->default('Diproses');
             $table->string('validator')->nullable();
-            $table->string('masssage')->nullable();
+            $table->text('message')->nullable();
             $table->timestamps();
         });
     }
