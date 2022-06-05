@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('navi')
         <div>SubScripts</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
-        <div class="breadcrumb--active">List Script</div>
+        <div class="breadcrumb--active">List Transaction</div>
     @endsection
 
 
@@ -170,6 +170,7 @@
                             <option value="Sudah Tervalidasi">Sudah Validasi</option>
                             <option value="Revisi">Revisi</option>
                             <option value="Diproses">On Proses</option>
+                            <option value="Telah Diperbaiki">Telah Diperbaiki</option>
                         </select>
                         <select id="periode_wisuda"
                             class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
@@ -313,6 +314,10 @@
                         if (data == 'Diproses') {
                             text = "Diproses";
                             label = "bg-red-700";
+                        }
+                        if (data == 'Telah Diperbaiki') {
+                            text = "Diperbaiki";
+                            label = "bg-gray-700";
                         }
 
                         return "<span class= '" + label +

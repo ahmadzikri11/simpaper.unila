@@ -204,7 +204,7 @@
                             </div>
 
                             <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 mt-5">
-                                <div class="intro-y  col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
+                                <div class="intro-y  col-span-4 sm:col-span-4 md:col-span-3 2xl:col-span-2">
                                     <div
                                         class="file bg-gray-100 box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
                                         <a href="{{ route('file1', ['path' => $user->users[0]->file1]) }}"
@@ -222,7 +222,7 @@
                                     </div>
                                 </div>
 
-                                <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
+                                <div class="intro-y col-span-4 sm:col-span-2 md:col-span-3 2xl:col-span-2">
                                     <div
                                         class="file bg-gray-100  box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
 
@@ -241,7 +241,7 @@
                                     </div>
                                 </div>
 
-                                <div class="intro-y col-span-6 sm:col-span-4 md:col-span-3 2xl:col-span-2">
+                                <div class="intro-y col-span-4 sm:col-span-4 md:col-span-3 2xl:col-span-2">
                                     <div
                                         class="file bg-gray-100  box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
 
@@ -264,7 +264,7 @@
 
                             </div>
 
-                            <div class="intro-y grid grid-cols-2 gap-3 mt-5">
+                            <div class="intro-y grid sm:grid-cols-2 gap-3 mt-5">
                                 <img class="rounded-lg shadow-lg ml-2" alt=""
                                     src="{{ asset('storage' . '/' . $user->users[0]->ktm) }}">
                                 <img class="rounded-lg mr-2 shadow-lg" alt=""
@@ -297,8 +297,7 @@
                         Edit File
                     </h2>
                     <div class="dropdown sm:hidden">
-                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false"> <i
-                                data-feather="more-horizontal" class="w-5 h-5 text-gray-600 "></i>
+                        <a class="dropdown-toggle w-5 h-5 block" href="javascript:;" aria-expanded="false">
                         </a>
 
                     </div>

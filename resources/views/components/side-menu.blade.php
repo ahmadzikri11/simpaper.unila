@@ -41,7 +41,7 @@
             <li>
                 <a href="{{ route('request.list') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-                    <div class="side-menu__title"> Submitted </div>
+                    <div class="side-menu__title"> Validasi </div>
                 </a>
             </li>
             <li>

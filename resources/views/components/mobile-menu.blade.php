@@ -1,8 +1,14 @@
 <div class="mobile-menu md:hidden">
     <div class="mobile-menu-bar">
-
-        <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2"
-                class="w-8 h-8 text-white transform -rotate-90"></i> </a>
+        <div class="flex item-center justify-between">
+            <div>
+                <a href="javascript:;" id="mobile-menu-toggler"> <i data-feather="bar-chart-2"
+                        class="w-8 h-8 mt-2 text-white transform -rotate-90"></i> </a>
+            </div>
+            <div class="ml-5">
+                <img alt="" class="w-24 h-10 sm:hidden" src="{{ asset('Perpus.png') }}">
+            </div>
+        </div>
     </div>
     <ul class="border-t border-theme-2 py-5 hidden">
         <li>

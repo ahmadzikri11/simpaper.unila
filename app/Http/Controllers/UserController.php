@@ -54,11 +54,28 @@ class UserController extends Controller
             'ktm' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
         ]);
         $attr['user_id'] = auth()->user()->id;
-        $attr['file1'] = $this->storeFile($request->file('file1'), 'surat_layak_upload');
-        $attr['file2'] = $this->storeFile($request->file('file2'), 'surat_bebas_perpus');
-        $attr['file3'] = $this->storeFile($request->file('file3'), 'Bukti_Sebar_Karya_Akhir');
-        $attr['ktm'] = $this->storeFile($request->file('ktm'), 'ktm');
-        $attr['photo'] = $this->storeFile($request->file('photo'), 'photo');
+        $attr['file1'] = $request->file('file1')->store(
+            'surat_layak_upload',
+            'public'
+        );
+        $attr['file2'] = $request->file('file2')->store(
+            'surat_bebas_perpus',
+            'public'
+        );
+        $attr['file3'] = $request->file('file3')->store(
+            'Bukti_Sebar_Karya_Akhir',
+            'public'
+        );
+        $attr['ktm'] = $request->file('ktm')->store(
+            'ktm',
+            'public'
+        );
+        $attr['photo'] = $request->file('photo')->store(
+            'photo',
+            'public'
+        );
+
+
         Transaction::create($attr);
         return redirect()->route('transcation.status')->with('message', ' Data telah Telah Terkirim!');
     }
@@ -92,11 +109,17 @@ class UserController extends Controller
             unlink($file_old);
         }
 
-        $pathfile1 = $request->file('file1')->store('files/surat_layak_upload');
-        $pathfile2 = $request->file('file2')->store('files/surat_bebas_perpus');
-        $pathfile3 = $request->file('file3')->store('files/Bukti_Sebar_Karya_Akhir');
-        $pathktm = $request->file('ktm')->store('files/ktm');
-        $pathphoto = $request->file('photo')->store('files/photo');
+        $pathfile1 = $request->file('file1')->store(
+            'surat_layak_upload',
+            'public'
+        );
+        $pathfile2 = $request->file('file2')->store(
+            'surat_bebas_perpus',
+            'public'
+        );
+        $pathfile3 = $request->file('file3')->store('Bukti_Sebar_Karya_Akhir', 'public');
+        $pathktm = $request->file('ktm')->store('ktm', 'public');
+        $pathphoto = $request->file('photo')->store('photo', 'public');
         $post->status = 'Telah Diperbaiki';
         $post->file1 = $pathfile1;
         $post->file2 = $pathfile2;

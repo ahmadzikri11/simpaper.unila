@@ -94,7 +94,7 @@ class AdminController extends Controller
 
             $filename = $path . '/' . $name;
         } else {
-            $filename = public_path('storage/unila.png');
+            $filename = public_path('Perpus.png');
         }
         $transaction = Transaction::find($id);
         $message = $request['message'];
@@ -173,7 +173,7 @@ class AdminController extends Controller
 
             $filename = $path . '/' . $name;
         } else {
-            $filename = public_path('storage/unila.png');
+            $filename = public_path('/Perpus.png');
         }
 
         $repository = Repository::find($id);

@@ -11,12 +11,10 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function storeFile($attr, $folder = null)
-    {
-        $folder = $folder !== null ? "files/" . $folder : "files";
-
-        $path = $attr ? $attr->store($folder) : 'null files';
-
-        return $path;
-    }
+    // public function storeFile($attr, $folder = null)
+    // {
+    //     $folder = $folder !== null ? "public/files/" . $folder : "public/files/";
+    //     $path = $attr ? $attr->store($folder) : 'null files';
+    //     return $path;
+    // }
 }

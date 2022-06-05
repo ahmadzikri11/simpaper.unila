@@ -16,24 +16,24 @@
             </div>
             <div class="w-full  sm:w-auto flex">
                 <div class="dropdown">
-                    <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">
+                    <button class="dropdown-toggle btn px-2 box text-gray-700 " aria-expanded="false">
                         <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4"
                                 data-feather="plus"></i></span> Download File
                     </button>
                     <div class="dropdown-menu w-40">
-                        <div class="dropdown-menu__content box dark:bg-dark-1 p-2">
+                        <div class="dropdown-menu__content box -1 p-2">
 
                             <button id="print"
-                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white  hover:bg-gray-200 rounded-md">
                                 <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </button>
                             <button id="excel"
-                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white  hover:bg-gray-200 rounded-md">
                                 <i data-feather="book" class="w-4 h-4 mr-2"></i> Excel </button>
                             <button id="csv"
-                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white  hover:bg-gray-200 rounded-md">
                                 <i data-feather="file-plus" class="w-4 h-4 mr-2"></i> CSV </button>
                             <button id="pdf"
-                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white  hover:bg-gray-200 rounded-md">
                                 <i data-feather="file-text" class="w-4 h-4 mr-2"></i> PDF </button>
                         </div>
 
@@ -57,6 +57,14 @@
                         <option value="6">Fakultas Ilmu Sosial dan Politik</option>
                         <option value="7">Fakultas Keguruan dan Ilmu Pendidikan</option>
                         <option value="8">Fakultas Ekonomi dan Bisnis</option>
+                    </select>
+                    <select id="validasi"
+                        class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
+                        <option value="">Pilih Status </option>
+                        <option value="Sudah Tervalidasi">Sudah Validasi</option>
+                        <option value="Revisi">Revisi</option>
+                        <option value="Diproses">Dalam Proses</option>
+                        <option value="Telah Diperbaiki">Telah Diperbaiki</option>
                     </select>
                 </div>
                 <div class="ml-2">
@@ -125,6 +133,7 @@
                 url: "{{ route('list_repository') }}",
                 data: function(d) {
                     d.fakultas = $("#fakultas").val();
+                    d.validasi = $("#validasi").val();
                     d.search = $("#search").val();
                 }
             },
@@ -177,7 +186,7 @@
                             label = "bg-red-700";
                         }
                         if (data == 'Telah Diperbaiki') {
-                            text = "Telah Diperbaiki";
+                            text = "Diperbaiki";
                             label = "bg-gray-700";
                         }
 
@@ -227,6 +236,11 @@
         $("#search").change(function() {
             let search = $("#search").val();
             console.log([search]);
+            table.ajax.reload(null, false)
+        });
+        $("#validasi").change(function() {
+            let validasi = $("#validasi").val();
+            console.log([validasi]);
             table.ajax.reload(null, false)
         });
     });

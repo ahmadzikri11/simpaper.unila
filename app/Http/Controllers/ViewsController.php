@@ -169,6 +169,12 @@ class ViewsController extends Controller
                             $w->Where('fakultas_id', 'LIKE', "%$get%");
                         });
                     }
+                    if (!empty($request->get('validasi'))) {
+                        $instance->where(function ($w) use ($request) {
+                            $get = $request->get('validasi');
+                            $w->Where('status', 'LIKE', "%$get%");
+                        });
+                    }
                     if (!empty($request->get('search'))) {
                         $instance->wherehas('getuserrepo', function ($w) use ($request) {
                             $get = $request->get('search');

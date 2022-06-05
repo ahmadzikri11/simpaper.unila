@@ -13,8 +13,6 @@
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
-
-
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://cdn.tailwindcss.com/"></script>
@@ -43,15 +41,20 @@
 
 <body class="main">
     <!-- BEGIN: Mobile Menu -->
+
+
+
     <x-mobile-menu />
+
     <!-- END: Mobile Menu -->
     <!-- BEGIN: Top Bar -->
     <div class="top-bar-boxed border-b border-theme-2 -mt-7 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 md:pt-0 mb-12">
-        <div class="h-full flex items-center">
+        <div class="h-full flex items-center p-10">
             <!-- BEGIN: Logo -->
             <a href="" class="-intro-x hidden md:flex">
-                <img alt="" class="w-6" src="{{ asset('/storage/Perpus.png') }}">
-                <span class="text-white text-lg ml-3"> Submit<span class="font-medium">Script</span> </span>
+                <img alt="" class="w-24" src="{{ asset('Perpus.png') }}">
+                <span class="text-white mt-2 text-lg ml-3"> Layanan-<span class="font-medium">UPT Perpustakaan</span>
+                </span>
             </a>
             <!-- END: Logo -->
             <!-- BEGIN: Breadcrumb -->
@@ -71,14 +74,15 @@
                     <i data-feather="user" class="w-5 h-5 mt-1 items-center justify-center text-white"></i>
                 </div>
                 <div class="dropdown-menu w-56">
-                    <div class="dropdown-menu__content box bg-theme-11 dark:bg-dark-6 text-white">
-                        <div class="p-4 border-b border-theme-12 dark:border-dark-3">
+                    <div class="dropdown-menu__content box bg-theme-11  text-white">
+                        <div class="p-4 border-b border-theme-12">
                             <div class="font-medium">{{ Auth::user()->name }}</div>
-                            <div class="text-xs text-theme-13 mt-0.5 dark:text-gray-600">{{ Auth::user()->npm }}</div>
+                            <div class="text-xs text-theme-13 mt-0.5 ">{{ Auth::user()->npm }}
+                            </div>
                         </div>
                         <div class="p-2">
                             <a href=""
-                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md">
+                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1  rounded-md">
                                 <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
 
                         </div>
@@ -86,7 +90,7 @@
                             <form method="POST" action="{{ route('logout') }}">
                                 @csrf
                                 <button
-                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1 dark:hover:bg-dark-3 rounded-md"
+                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1  rounded-md"
                                     type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
                                     <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i>
                                     {{ __('Log Out') }}
