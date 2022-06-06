@@ -214,7 +214,7 @@
                         <th>Tanggal Upload</th>
                         <th>Status</th>
                         <th>Validator</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>

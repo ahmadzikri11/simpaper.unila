@@ -1,5 +1,5 @@
 <x-app-layout>
-    <x-jet-section-border />
+
     @section('navi')
         <div>SubScripts</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
         <div class="breadcrumb--active">Submit Skripsi</div>
@@ -232,7 +232,8 @@
                                     <div class="flex justify-left">
                                         <div class="mb-3 w-80 ">
                                             <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700">*Surat Layak
+                                                class="form-label inline-block mb-2 text-gray-700"><span
+                                                    class="text-red-700">*</span>Surat Layak
                                                 Upload</label>
                                             <input
                                                 class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -247,7 +248,8 @@
                                     <div class="flex justify-left">
                                         <div class="mb-3 w-80">
                                             <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700">*Surat Bebas
+                                                class="form-label inline-block mb-2 text-gray-700"><span
+                                                    class="text-red-700">*</span>Surat Bebas
                                                 perpus</label>
                                             <input
                                                 class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -262,8 +264,8 @@
                                     <div class="flex justify-left">
                                         <div class="mb-3 w-80">
                                             <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700">Bila ada Bekas yang
-                                                harus di Tanda Tangan sebagai Bukti Sebar Karya Akhir Silahkan
+                                                class="form-label inline-block mb-2 text-gray-700">Bila ada berkas yang
+                                                harus di tanda tangan sebagai <b> Bukti Sebar Karya Akhir </b> silahkan
                                                 isi</label>
                                             <input
                                                 class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -294,7 +296,8 @@
                                     <div class="flex justify-left">
                                         <div class="mb-3 w-80">
                                             <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700">*Input
+                                                class="form-label inline-block mb-2 text-gray-700"><span
+                                                    class="text-red-700">*</span>Input
                                                 KTM</label>
                                             <input
                                                 class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -318,7 +321,9 @@
                                                 <input name="photo" type="file" />
                                             </div>
                                             <div class="dz-message" data-dz-message>
-                                                <div class="text-lg font-medium">*Upload Foto selfi kamu dan KTM kamu.
+                                                <div class="text-lg font-medium"><span
+                                                        class="text-red-700">*</span>Upload Foto selfi kamu dan KTM
+                                                    kamu.
                                                 </div>
                                                 <div class="text-gray-600">click and upload file
                                                 </div>
@@ -342,5 +347,5 @@
             </div>
         </div>
     </div>
-    <x-jet-section-border />
+
 </x-app-layout>

@@ -77,7 +77,7 @@ class UserController extends Controller
 
 
         Transaction::create($attr);
-        return redirect()->route('transcation.status')->with('message', ' Data telah Telah Terkirim!');
+        return redirect()->route('transcation.status')->with('message', ' Data  Telah Terkirim!');
     }
 
     // Update Transaction

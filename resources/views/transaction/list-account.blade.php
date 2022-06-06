@@ -101,25 +101,24 @@
                 <div class="w-full  sm:w-auto flex">
 
                     <div class="dropdown">
-                        <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300"
-                            aria-expanded="false">
+                        <button class="dropdown-toggle btn px-2 box text-gray-700 " aria-expanded="false">
                             <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4"
-                                    data-feather="plus"></i></span> Download File
+                                    data-feather="plus"></i></span> Download List
                         </button>
                         <div class="dropdown-menu w-40">
-                            <div class="dropdown-menu__content box dark:bg-dark-1 p-2">
+                            <div class="dropdown-menu__content box p-2">
 
                                 <button id="print"
-                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
                                     <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </button>
                                 <button id="excel"
-                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
                                     <i data-feather="book" class="w-4 h-4 mr-2"></i> Excel </button>
                                 <button id="csv"
-                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
                                     <i data-feather="file-plus" class="w-4 h-4 mr-2"></i> CSV </button>
                                 <button id="pdf"
-                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white hover:bg-gray-200 rounded-md">
                                     <i data-feather="file-text" class="w-4 h-4 mr-2"></i> PDF </button>
                             </div>
 
@@ -196,14 +195,16 @@
                 <form action="{{ route('import') }}" enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PUT')
-                    <div class="modal-body p-0">
+                    <div class="modal-body">
                         <div class="p-5 text-center"> <i data-feather="user-plus"
                                 class="w-16 h-16 text-theme-10 mx-auto mt-3"></i></div>
-                        <label for="formFileSm" class="form-label inline-block mb-2 ml-10 text-gray-700">Masukan File
+                        <label for="formFileSm" class="form-label inline-block mb-2 ml-10 text-gray-700">Masukan
+                            File
                             User</label>
-                        <input
-                            class="form-control block w-full px-10  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                            id="file_user" name="file_user" type="file">
+                        <div class="px-5">
+
+                            <input class="form-control " id="file_user" name="file_user" type="file">
+                        </div>
 
                     </div>
                     <div class="px-5 pb-8 text-center">

@@ -154,7 +154,7 @@
                                                     <tr class="hover:bg-gray-100 ">
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
-                                                            tanggal Upload</td>
+                                                            Tanggal Upload</td>
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             :</td>
@@ -213,7 +213,7 @@
                                         </a>
                                         <a href="{{ route('file1', ['path' => $user->users[0]->file1]) }}"
                                             class="block font-medium mt-4 text-center truncate">File.pdf</a>
-                                        <div class="text-gray-600 text-xs text-center mt-0.5">Surat Layak upload</div>
+                                        <div class="text-gray-600 text-xs text-center mt-0.5">Surat Layak Upload</div>
                                         <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
                                             <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
                                                 aria-expanded="false"> <i data-feather="more-vertical"
@@ -251,7 +251,7 @@
                                         </a>
                                         <a href="{{ route('file1', ['path' => $user->users[0]->file3]) }}"
                                             class="block font-medium mt-4 text-center truncate">File.Pdf</a>
-                                        <div class="text-gray-600 text-xs text-center mt-0.5">slip Pembayaran Ukt</div>
+                                        <div class="text-gray-600 text-xs text-center mt-0.5">TTD Bukti Sebar</div>
                                         <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
                                             <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
                                                 aria-expanded="false"> <i data-feather="more-vertical"
@@ -336,9 +336,9 @@
                             @enderror
                         </div>
                         <div class="col-span-12 sm:col-span-6">
-                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Bila ada Bekas
+                            <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Bila ada berkas
                                 yang
-                                harus di Tanda Tangan sebagai Bukti Sebar Karya Akhir Silahkan
+                                harus di tanda tangan sebagai <b> Bukti Sebar Karya Akhir </b> silahkan
                                 isi</label>
                             <input
                                 class="form-control block w-full px-2 py-1 text-sm font-normal text-gray-700  bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"

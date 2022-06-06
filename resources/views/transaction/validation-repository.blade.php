@@ -1,7 +1,7 @@
 <x-app-layout>
     <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
         <h2 class="text-lg font-medium mr-auto">
-            Validation
+            Validasi Digilib
         </h2>
     </div>
     <div>
@@ -89,13 +89,13 @@
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Name</th>
+                    <th>Nama</th>
                     <th>Fakultas</th>
                     <th>Jurusan</th>
                     <th>Link Digilib</th>
                     <th>Status</th>
                     <th>Validator</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>

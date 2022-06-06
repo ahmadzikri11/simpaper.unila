@@ -29,7 +29,7 @@
                                 <div class="grid grid-cols-3 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="name" class="form-label">Nama</label>
+                                            <label for="name" class="font-medium  form-label">Nama</label>
                                             <input class="form-control" type="text"
                                                 value="{{ old('name') ?? $user->name }}" name="name" id="name"
                                                 class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
@@ -71,8 +71,8 @@
                                 <div class="grid grid-cols-3 gap-6">
                                     <div class="col-span-3 sm:col-span-2">
                                         <div class="col-span-6 sm:col-span-3">
-                                            <label for="phone" class="block text-sm font-medium text-gray-700">Nomer
-                                                Whattsapp (format: 62853--------)</label>
+                                            <label for="phone" class="block text-sm font-medium text-gray-700">Nomor
+                                                Whatsapp (format: 62853--------)</label>
                                             <input class="form-control" type="text" placeholder="6285769088559"
                                                 value="{{ old('phone') ?? $user->phone }}" name="phone" id="phone"
                                                 pattern="^(62)8[1-9][0-9]{6,9}$"
