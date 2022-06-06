@@ -95,6 +95,14 @@ class UserController extends Controller
     {
         $post = Transaction::find($id);
 
+        $attr = $request->validate([
+            'file1' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file2' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'file3' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'photo' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
+            'ktm' => 'required|mimes:pdf,jpg,jpeg,png,jfif|max:2048',
+        ]);
+
         $path = public_path() . '/storage/';
         if ($post->file1 != ''  && $post->file1 != null) {
             $file_old = $path . $post->file1;
@@ -119,30 +127,25 @@ class UserController extends Controller
             unlink($file_old);
         }
 
-        $pathfile1 = $request->file('file1')->store(
+        $attr['file1'] = $request->file('file1')->store(
             'surat_layak_upload',
             'public'
         );
-        $pathfile2 = $request->file('file2')->store(
+        $attr['file2'] = $request->file('file2')->store(
             'surat_bebas_perpus',
             'public'
         );
 
         if ($request->file('file3') == null) {
-            $pathfile3 = "";
+            $attr['file3'] = "";
         } else {
-            $pathfile3 = $request->file('file3')->store('Bukti_Sebar_Karya_Akhir', 'public');
+            $attr['file1'] = $request->file('file3')->store('Bukti_Sebar_Karya_Akhir', 'public');
         }
 
-        $pathktm = $request->file('ktm')->store('ktm', 'public');
-        $pathphoto = $request->file('photo')->store('photo', 'public');
+        $attr['ktm'] = $request->file('ktm')->store('ktm', 'public');
+        $attr['photo'] = $request->file('photo')->store('photo', 'public');
         $post->status = 'Telah Diperbaiki';
-        $post->file1 = $pathfile1;
-        $post->file2 = $pathfile2;
-        $post->file3 = $pathfile3;
-        $post->ktm = $pathktm;
-        $post->photo = $pathphoto;
-
+        $post->update($attr);
         $post->save();
 
         return back()->with('message', 'Data berhasil Diubah');
