@@ -36,6 +36,7 @@ class ViewsController extends Controller
     {
         $user = Auth::user();
         $a = $user->id;
+
         $ceck_transaction = Transaction::where('user_id', $a)->exists();
         if ($ceck_transaction) {
             return view('transaction.edit_transaction', compact('user'));
@@ -47,12 +48,7 @@ class ViewsController extends Controller
     {
         $user = Auth::user();
         $get_id = $user->id;
-        $check = Repository::where('user_id', $get_id)->exists();
-        if ($check) {
-            return view('transaction.edit-repository', compact('user'));
-        } else {
-            return view('transaction.view-repository', compact('user'));
-        }
+        return view('transaction.edit-repository', compact('user'));
     }
 
 

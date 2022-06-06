@@ -171,6 +171,7 @@
                             <option value="Revisi">Revisi</option>
                             <option value="Diproses">On Proses</option>
                             <option value="Telah Diperbaiki">Telah Diperbaiki</option>
+                            <option value="Telah Upload Digilib">Telah Upload Digilib</option>
                         </select>
                         <select id="periode_wisuda"
                             class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
@@ -205,7 +206,8 @@
 
                     </div>
                     <tr>
-                        <th>ID</th>
+
+                        <th>id</th>
                         <th>Nama</th>
                         <th>Tanggal Wisuda</th>
                         <th>Tahun Wisuda</th>
@@ -305,7 +307,7 @@
                         var label = "";
                         if (data == "Sudah Tervalidasi") {
                             text = "Tervalidasi";
-                            label = "bg-green-700";
+                            label = "bg-green-800";
                         } else
                         if (data == 'Revisi') {
                             text = "Revisi";
@@ -318,6 +320,14 @@
                         if (data == 'Telah Diperbaiki') {
                             text = "Diperbaiki";
                             label = "bg-gray-700";
+                        }
+                        if (data == 'Validasi Akun') {
+                            text = "Validasi_Akun";
+                            label = "bg-green-400";
+                        }
+                        if (data == 'Telah Upload Digilib') {
+                            text = "Telah_Upload_Digilib";
+                            label = "bg-blue-600";
                         }
 
                         return "<span class= '" + label +

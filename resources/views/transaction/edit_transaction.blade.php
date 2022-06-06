@@ -104,7 +104,7 @@
                                                             class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
                                                             @if ($user->users[0]->status == 'Sudah Tervalidasi')
                                                                 <span
-                                                                    class="bg-green-700 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
+                                                                    class="bg-green-800 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
                                                             @elseif ($user->users[0]->status == 'Revisi')
                                                                 <span
                                                                     class="bg-red-700 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
@@ -114,7 +114,17 @@
                                                             @elseif ($user->users[0]->status == 'Telah Diperbaiki')
                                                                 <span
                                                                     class="bg-gray-600 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
+                                                            @elseif ($user->users[0]->status == 'Validasi Akun')
+                                                                <span
+                                                                    class="bg-green-300 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
+                                                            @elseif ($user->users[0]->status == 'Telah Upload Digilib')
+                                                                <span
+                                                                    class="bg-blue-800 text-white py-1 px-3 rounded-full text-xs">Telah
+                                                                    Upload
+                                                                    Digilib</span>
                                                             @endif
+
+
                                                         </td>
                                                     </tr>
 
@@ -241,24 +251,29 @@
                                     </div>
                                 </div>
 
-                                <div class="intro-y col-span-4 sm:col-span-4 md:col-span-3 2xl:col-span-2">
-                                    <div
-                                        class="file bg-gray-100  box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
 
-                                        <a href="{{ route('file1', ['path' => $user->users[0]->file3]) }}"
-                                            class="w-3/5 file__icon file__icon--file mx-auto">
-                                            <div class="file__icon__file-name">PDF</div>
-                                        </a>
-                                        <a href="{{ route('file1', ['path' => $user->users[0]->file3]) }}"
-                                            class="block font-medium mt-4 text-center truncate">File.Pdf</a>
-                                        <div class="text-gray-600 text-xs text-center mt-0.5">TTD Bukti Sebar</div>
-                                        <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
-                                            <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
-                                                aria-expanded="false"> <i data-feather="more-vertical"
-                                                    class="w-5 h-5 text-gray-600"></i> </a>
+
+                                @if ($user->users[0]->file3 != null)
+                                    test
+                                    <div class="intro-y col-span-4 sm:col-span-4 md:col-span-3 2xl:col-span-2">
+                                        <div
+                                            class="file bg-gray-100  box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
+
+                                            <a href="{{ route('file1', ['path' => $user->users[0]->file3]) }}"
+                                                class="w-3/5 file__icon file__icon--file mx-auto">
+                                                <div class="file__icon__file-name">PDF</div>
+                                            </a>
+                                            <a href="{{ route('file1', ['path' => $user->users[0]->file3]) }}"
+                                                class="block font-medium mt-4 text-center truncate">File.Pdf</a>
+                                            <div class="text-gray-600 text-xs text-center mt-0.5">TTD Bukti Sebar</div>
+                                            <div class="absolute top-0 right-0 mr-2 mt-2 dropdown ml-auto">
+                                                <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
+                                                    aria-expanded="false"> <i data-feather="more-vertical"
+                                                        class="w-5 h-5 text-gray-600"></i> </a>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
+                                @endif
 
 
 

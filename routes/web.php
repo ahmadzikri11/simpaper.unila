@@ -80,9 +80,7 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
 
 
     // list Repository
-    Route::get('/dashboard/repository/', [ViewsController::class, 'AdminViewRepository'])->name('view_repository');
-    Route::get('/dashboard/validation/repository/{id}', [ViewsController::class, 'ViewAdminRepository'])->name('repository_admin');
-    Route::put('/dashboard/validation/repository/{id}', [AdminController::class, 'ValidationRepository'])->name('repository_validation_accept');
+
     // Route::post('/dashboard/validation', [TransactionController::class, 'messege'])->name('messege');
     // Route::put('/dashboard/validation/reject{id}', [TransactionController::class, 'validationReject'])->name('validation.reject');
 

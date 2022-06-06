@@ -26,6 +26,8 @@ class CreateTransactionsTable extends Migration
             $table->string('ktm');
             $table->string('photo');
             $table->text('message')->nullable();
+            $table->text('link_repository')->nullable();
+            $table->text('tanda_terima')->nullable();
             $table->string('status')->default('Diproses');
         });
     }

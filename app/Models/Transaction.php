@@ -23,6 +23,8 @@ class Transaction extends Model
         'status',
         'messege',
         'validator',
+        'link_repository',
+        'tanda_terima',
         'tahun_wisuda',
     ];
     public function transactions()

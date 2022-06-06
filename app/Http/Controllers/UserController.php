@@ -62,10 +62,20 @@ class UserController extends Controller
             'surat_bebas_perpus',
             'public'
         );
-        $attr['file3'] = $request->file('file3')->store(
-            'Bukti_Sebar_Karya_Akhir',
-            'public'
-        );
+        if ($request->file('file3') == null) {
+            $attr['file3'] = "";
+        } else {
+            $attr['file3'] = $request->file('file3')->store(
+                'Bukti_Sebar_Karya_Akhir',
+                'public'
+            );
+        }
+
+        // $attr['file3'] = $request->file('file3')->store(
+        //     'Bukti_Sebar_Karya_Akhir',
+        //     'public'
+        // );
+
         $attr['ktm'] = $request->file('ktm')->store(
             'ktm',
             'public'
@@ -117,7 +127,13 @@ class UserController extends Controller
             'surat_bebas_perpus',
             'public'
         );
-        $pathfile3 = $request->file('file3')->store('Bukti_Sebar_Karya_Akhir', 'public');
+
+        if ($request->file('file3') == null) {
+            $pathfile3 = "";
+        } else {
+            $pathfile3 = $request->file('file3')->store('Bukti_Sebar_Karya_Akhir', 'public');
+        }
+
         $pathktm = $request->file('ktm')->store('ktm', 'public');
         $pathphoto = $request->file('photo')->store('photo', 'public');
         $post->status = 'Telah Diperbaiki';
@@ -133,35 +149,30 @@ class UserController extends Controller
     }
 
     // Create Repository
-    public function CreateUserRepository(Request $request)
-    {
-        $user = Auth::user()->id;
-        $attr = $request->validate([
-            'link_repository' => 'required',
-        ]);
-        $attr['user_id'] = $user;
-        Repository::create($attr);
-        return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
-    }
+    // public function CreateUserRepository(Request $request)
+    // {
+    //     $user = Auth::user()->id;
+    //     $attr = $request->validate([
+    //         'link_repository' => 'required',
+    //     ]);
+    //     $attr['user_id'] = $user;
+    //     Repository::create($attr);
+    //     return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
+    // }
 
     // Update Repository
     public function UpdateUserRepository(Request $request, $id)
     {
-        $update = Repository::find($id);
+        $update = Transaction::find($id);
+        // dd($update);
         $attr = $request->validate([
             'link_repository' => 'required',
         ]);
-        $update->status = 'Telah Diperbaiki';
+
+        $update->status = 'Telah Upload Digilib';
         $update->update($attr);
         return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
     }
-
-
-
-
-
-
-
 
     public function dashboarduser()
     {

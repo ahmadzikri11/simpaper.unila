@@ -44,12 +44,7 @@
                     <div class="side-menu__title"> Validasi </div>
                 </a>
             </li>
-            <li>
-                <a href="{{ route('view_repository') }}" class="side-menu">
-                    <div class="side-menu__icon"> <i data-feather="external-link"></i></i> </div>
-                    <div class="side-menu__title"> Validasi Digilib</div>
-                </a>
-            </li>
+
             <li>
                 <a href="{{ route('account.list') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="users"></i> </div>

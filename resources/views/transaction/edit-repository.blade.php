@@ -28,7 +28,7 @@
 
                         <div class="sm:ml-12">
                             Status <span class="ml-5">:</span>
-                            @if ($user->getRepository->status == 'Sudah Tervalidasi')
+                            @if ($user->users[0]->status == 'Sudah Tervalidasi')
                                 <span class="bg-green-600 text-white ml-3 py-1 px-3 rounded-full text-xs"> Sudah
                                     Divalidasi</span>
                                 <div class="mt-2 sm:ml-10">
@@ -36,7 +36,7 @@
                                         dan sudah Sesuai. Terimakasih
                                     </span>
                                 </div>
-                            @elseif ($user->getRepository->status == 'Revisi')
+                            @elseif ($user->users[0]->status == 'Revisi')
                                 <span class="bg-red-700 text-white ml-3 py-1 px-3 rounded-full text-xs">
                                     REVISI</span>
                                 <div class="mt-2 sm:ml-10">
@@ -44,19 +44,26 @@
                                         Tapi
                                         Beberapa Hal Yang perlu Kamu Perbaiki</span>
                                 </div>
-                            @elseif ($user->getRepository->status == 'Diproses')
+                            @elseif ($user->users[0]->status == 'Diproses')
                                 <span class="bg-yellow-500 text-white ml-3 py-1 px-3 rounded-full text-xs">Dalam
                                     Proses</span>
                                 <div class="mt-2 sm:ml-10">
                                     <span class="text-gray-800 sm:ml-3 py-2 sm:px-3 text-m"> *Data Kamu Belum Kami
                                         cek. Kami akan Cek secepat mungkin.</span>
                                 </div>
-                            @elseif ($user->getRepository->status == 'Telah Diperbaiki')
+                            @elseif ($user->users[0]->status == 'Telah Diperbaiki')
                                 <span class="bg-gray-500 text-white ml-3 py-1 px-3 rounded-full text-xs">Telah
                                     Diperbaiki</span>
                                 <div class="mt-2 sm:ml-10">
                                     <span class="text-gray-800 sm:ml-3 py-2 sm:px-3 text-m"> *Data Kamu Belum Kami
                                         cek. Kami akan Cek secepat mungkin.</span>
+                                </div>
+                            @elseif ($user->users[0]->status == 'Telah Upload Digilib')
+                                <span class="bg-blue-800 text-white ml-3 py-1 px-3 rounded-full text-xs">Telah Upload
+                                    Digilib</span>
+                                <div class="mt-2 sm:ml-10">
+                                    <span class="text-gray-800 sm:ml-3 py-2 sm:px-3 text-m"> *Kamu sudah upload link,
+                                        Silahkan tunggu proses review admin.</span>
                                 </div>
                             @endif
                         </div>
@@ -64,15 +71,14 @@
                             Pesan <span class="ml-5 mr-2">:</span>
                             <div>
                                 <span class="text-gray-800 py-2  text-m">
-                                    {{ $user->getRepository->message }}</span>
+                                    {{ $user->users[0]->message }}</span>
                             </div>
                         </div>
                     </div>
 
                     <div class="px-4 py-5 bg-white shadow-sm space-y-6 sm:p-6">
-
-                        <form action="{{ route('update_repository', ['id' => $user->getRepository->id]) }}"
-                            method="POST">
+                        {{-- {{ $user->users[0]->id }} --}}
+                        <form action="{{ route('update_repository', ['id' => $user->users[0]->id]) }}" method="POST">
                             @method('PUT')
                             @csrf
                             <div class="sm:ml-10 mt-10">
@@ -82,7 +88,7 @@
                                             Link
                                             Digilib</label>
                                         <input class="form-control" type="text"
-                                            value="{{ $user->getRepository->link_repository }}" name="link_repository"
+                                            value="{{ $user->users[0]->link_repository }}" name="link_repository"
                                             id="link_repository" placeholder="http://digilib.unila.ac.id/61033/"
                                             class="mt-1 focus:ring-indigo-500 focus:border-indigo-500 block w-full shadow-sm sm:text-sm border-gray-300 rounded-md">
                                         @error('file1')
