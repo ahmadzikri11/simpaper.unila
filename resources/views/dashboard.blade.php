@@ -113,7 +113,8 @@
                                                     d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
                                             </svg>
                                         </div>
-                                        <div class="font-medium text-base mt-2 ml-3">Wajib Melengkapi Profile Terlebih
+                                        <div class="font-medium text-left text-base mt-2 ml-3">Wajib Melengkapi Profile
+                                            Terlebih
                                             Dahulu
                                         </div>
                                     </div>

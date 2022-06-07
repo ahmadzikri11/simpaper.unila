@@ -39,96 +39,26 @@
                     {{ session()->get('delete') }}
                 </div>
             @endif
-            {{-- <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
-            <table class="table table-report sm:mt-2">
-                <thead>
-                    <tr>
-                        <th class="whitespace-nowrap">NAME</th>
-
-                        <th class="whitespace-nowrap">TAHUN WISUDA</th>
-                        <th class="whitespace-nowrap">FAKULTAS</th>
-                        <th class="whitespace-nowrap">JURUSAN</th>
-                        <th class="text-center whitespace-nowrap">UPLOAD TIME</th>
-                        <th class="text-center whitespace-nowrap">STATUS</th>
-                        <th class="text-center whitespace-nowrap">ACTIONS</th>
-
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach ($transaction as $data)
-                        <tr class="intro-x">
-                            <td class="w-56">
-                                <div class="font-medium whitespace-nowrap">{{ $data->transactions->name }}
-                                </div>
-                                <div class="text-gray-600 text-xs whitespace-nowrap mt-0.5">
-                                    {{ $data->transactions->npm }}
-                                </div>
-                            </td>
-
-                            <td>
-                                <div class="font-medium whitespace-nowrap">{{ $data->periode_wisuda }},
-                                    {{ $data->tahun_wisuda }}</div>
-                            </td>
-                            <td>
-                                <div class="font-medium whitespace-nowrap">
-                                    {{ $data->transactions->getfakultas->fakultas }}
-                                </div>
-                            </td>
-                            <td>
-                                <div class="font-medium whitespace-nowrap">{{ $data->transactions->getprodi->prodi }}
-                                </div>
-                            </td>
-
-                            <td class="text-center">
-                                {{ $data->created_at->todatestring() }}</td>
-                            <td class="text-center">
-                                @if ($data->status == 'Sudah Tervalidasi')
-                                    <span
-                                        class="bg-green-200 text-green-600 py-1 px-3 rounded-full text-xs">Tervalidasi</span>
-                                @elseif ($data->status == 'Permintaan Ditolak')
-                                    <span class="bg-red-200 text-red-600 py-1 px-3 rounded-full text-xs"> Ditolak
-                                    </span>
-                                @elseif ($data->status == 'Diproses')
-                                    <span class="bg-yellow-200 text-yellow-600 py-1 px-3 rounded-full text-xs">Diproses
-                                    </span>
-                                @endif
-                            </td>
-
-                            <td class="table-report__action">
-                                <div class="flex justify-center items-center">
-                                    <a class="flex items-center mr-3 text-theme-10"
-                                        href="{{ route('validation', ['id' => $data->id]) }}">
-                                        <i data-feather="check-square" class="w-4 h-4 mr-1"></i> Validasi</a>
-
-                                </div>
-                            </td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
-            {{ $transaction->links() }}
-        </div> --}}
             <div class="w-full mb-2 sm:w-auto flex">
-
                 <div class="dropdown">
-                    <button class="dropdown-toggle btn px-2 box text-gray-700 dark:text-gray-300" aria-expanded="false">
+                    <button class="dropdown-toggle btn px-2 box text-gray-700" aria-expanded="false">
                         <span class="w-5 h-5 flex items-center justify-center"> <i class="w-4 h-4"
                                 data-feather="plus"></i></span> Download File
                     </button>
                     <div class="dropdown-menu w-40">
-                        <div class="dropdown-menu__content box dark:bg-dark-1 p-2">
+                        <div class="dropdown-menu__content box p-2">
 
                             <button id="print"
-                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white rounded-md">
                                 <i data-feather="printer" class="w-4 h-4 mr-2"></i> Print </button>
                             <button id="excel"
-                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white rounded-md">
                                 <i data-feather="book" class="w-4 h-4 mr-2"></i> Excel </button>
                             <button id="csv"
-                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white rounded-md">
                                 <i data-feather="file-plus" class="w-4 h-4 mr-2"></i> CSV </button>
                             <button id="pdf"
-                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                class="flex w-full items-center block p-2 transition duration-300 ease-in-out bg-white rounded-md">
                                 <i data-feather="file-text" class="w-4 h-4 mr-2"></i> PDF </button>
                         </div>
                     </div>

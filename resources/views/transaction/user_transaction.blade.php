@@ -228,62 +228,66 @@
                                         </div>
                                     </div>
                                 </div> --}}
-                                <div class="ml-10">
-                                    <div class="flex justify-left">
-                                        <div class="mb-3 w-80 ">
-                                            <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700"><span
-                                                    class="text-red-700">*</span>Surat Layak
-                                                Upload</label>
-                                            <input
-                                                class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                                id="file1" name="file1" type="file">
-                                            @error('file1')
-                                                <span class="text-red-500">{{ $message }}</span>
-                                            @enderror
+
+                                @if ($user->prodi_id != null)
+                                    <div class="ml-10">
+                                        <div class="flex justify-left">
+                                            <div class="mb-3 w-80 ">
+                                                <label for="formFileSm"
+                                                    class="form-label inline-block mb-2 text-gray-700"><span
+                                                        class="text-red-700">*</span>Surat Layak
+                                                    Upload</label>
+                                                <input
+                                                    class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                    id="file1" name="file1" type="file">
+                                                @error('file1')
+                                                    <span class="text-red-500">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="ml-10">
-                                    <div class="flex justify-left">
-                                        <div class="mb-3 w-80">
-                                            <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700"><span
-                                                    class="text-red-700">*</span>Surat Bebas
-                                                perpus</label>
-                                            <input
-                                                class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                                id="file2" name="file2" type="file">
-                                            @error('file2')
-                                                <span class="text-red-500">{{ $message }}</span>
-                                            @enderror
+                                    <div class="ml-10">
+                                        <div class="flex justify-left">
+                                            <div class="mb-3 w-80">
+                                                <label for="formFileSm"
+                                                    class="form-label inline-block mb-2 text-gray-700"><span
+                                                        class="text-red-700">*</span>Surat Bebas
+                                                    perpus</label>
+                                                <input
+                                                    class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                    id="file2" name="file2" type="file">
+                                                @error('file2')
+                                                    <span class="text-red-500">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="ml-10">
-                                    <div class="flex justify-left">
-                                        <div class="mb-3 w-80">
-                                            <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700">Bila ada berkas yang
-                                                harus di tanda tangan sebagai <b> Bukti Sebar Karya Akhir </b> silahkan
-                                                isi</label>
-                                            <input
-                                                class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                                id="file3" name="file3" type="file">
-                                            @error('file3')
-                                                <span class="text-red-500">{{ $message }}</span>
-                                            @enderror
+                                    <div class="ml-10">
+                                        <div class="flex justify-left">
+                                            <div class="mb-3 w-80">
+                                                <label for="formFileSm"
+                                                    class="form-label inline-block mb-2 text-gray-700">Bila ada berkas
+                                                    yang
+                                                    harus di tanda tangan sebagai <b> Bukti Sebar Karya Akhir </b>
+                                                    silahkan
+                                                    isi</label>
+                                                <input
+                                                    class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                    id="file3" name="file3" type="file">
+                                                @error('file3')
+                                                    <span class="text-red-500">{{ $message }}</span>
+                                                @enderror
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                                {{-- <div class="ml-10">
+                                    {{-- <div class="ml-10">
                                     <div class="flex justify-left">
                                         <div class="mb-3 w-80">
                                             <label for="formFileSm"
                                                 class="form-label inline-block mb-2 text-gray-700">Bukti Pembayaran
                                                 Kerya Ilmiah <br>
                                                 * Hanya Untuk Fakultas FMIPA, FP, FEB da FK</label>
-                                            <input
+                                                <input
                                                 class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                 id="file4" name="file4" type="file">
                                             @error('file4')
@@ -292,47 +296,49 @@
                                         </div>
                                     </div>
                                 </div> --}}
-                                <div class="ml-10">
-                                    <div class="flex justify-left">
-                                        <div class="mb-3 w-80">
+                                    <div class="ml-10">
+                                        <div class="flex justify-left">
+                                            <div class="mb-3 w-80">
+                                                <label for="formFileSm"
+                                                    class="form-label inline-block mb-2 text-gray-700"><span
+                                                        class="text-red-700">*</span>Input
+                                                    KTM</label>
+                                                <input
+                                                    class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                                    id="ktm" name="ktm" type="file">
+                                                @error('ktm')
+                                                    <span class="text-red-500">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                    <div class="intro-y box">
+                                        <div
+                                            class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md ">
                                             <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700"><span
-                                                    class="text-red-700">*</span>Input
-                                                KTM</label>
-                                            <input
-                                                class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
-                                                id="ktm" name="ktm" type="file">
-                                            @error('ktm')
-                                                <span class="text-red-500">{{ $message }}</span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                </div>
-
-
-                                <div class="intro-y box">
-                                    <div
-                                        class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md ">
-                                        <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700"><img
-                                                src="{{ asset('images/id.png') }}" class="  w-60"
-                                                alt="description of myimage"></label>
-                                        <div id="single-file-upload" class="p-5 ">
-                                            <div class="fallback">
-                                                <input name="photo" type="file" />
-                                            </div>
-                                            <div class="dz-message" data-dz-message>
-                                                <div class="text-lg font-medium"><span
-                                                        class="text-red-700">*</span>Upload Foto selfi kamu dan KTM
-                                                    kamu.
+                                                class="form-label inline-block mb-2 text-gray-700"><img
+                                                    src="{{ asset('images/id.png') }}" class="  w-60"
+                                                    alt="description of myimage"></label>
+                                            <div id="single-file-upload" class="p-5 ">
+                                                <div class="fallback">
+                                                    <input name="photo" type="file" />
                                                 </div>
-                                                <div class="text-gray-600">click and upload file
+                                                <div class="dz-message" data-dz-message>
+                                                    <div class="text-lg font-medium"><span
+                                                            class="text-red-700">*</span>Upload Foto selfi kamu dan
+                                                        KTM
+                                                        kamu.
+                                                    </div>
+                                                    <div class="text-gray-600">click and upload file
+                                                    </div>
                                                 </div>
                                             </div>
+
                                         </div>
 
                                     </div>
-
-                                </div>
                             </div>
 
 
@@ -340,7 +346,7 @@
                                 <button type="submit"
                                     class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
                             </div>
-
+                            @endif
                         </div>
                     </form>
                 </div>

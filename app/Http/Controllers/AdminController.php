@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\ImportUser;
 use App\Models\Fakultas;
 use App\Models\Transaction;
 use App\Models\Repository;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
+use GuzzleHttp\Client;
+use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
@@ -35,6 +38,8 @@ class AdminController extends Controller
         Excel::import(new ImportUser, $filename);
         return redirect()->back()->with('success', ' User telah ditambahkan!');
     }
+
+
 
     public function EditAccountAdmin($id)
     {
@@ -111,26 +116,26 @@ class AdminController extends Controller
         $phone = $transaction->transactions->phone;
         $email = $transaction->transactions->email;
 
-        // $client = new Client();
+        $client = new Client();
 
-        // $url = "https://app.whatspie.com/api/messages";
+        $url = "https://app.whatspie.com/api/messages";
 
-        // $request = $client->post(
-        //     $url,
-        //     [
-        //         'headers' => [
-        //             'Accept' => 'application/json',
-        //             'Content-Type' => 'application/x-www-form-urlencoded',
-        //             'Authorization' => 'Bearer ' . 'uTusgUQmz2vRHtmU4Q8FIcHKV79fhjTifmhxAfjzHZDptUVaOP'
-        //         ],
-        //         'form_params' => [
-        //             'receiver' => $phone,
-        //             'device' => '62816514372',
-        //             'message' => $message,
-        //             'type' => 'chat'
-        //         ]
-        //     ]
-        // );
+        $request = $client->post(
+            $url,
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
+                ],
+                'form_params' => [
+                    'receiver' => $phone,
+                    'device' => '6281276972110',
+                    'message' => $message,
+                    'type' => 'chat'
+                ]
+            ]
+        );
         $details = [
             'title' => 'UPT Perpustakaan Unila',
             'body' => $message,
