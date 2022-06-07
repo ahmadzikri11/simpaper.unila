@@ -81,7 +81,7 @@
                             </div>
                         </div>
                         <div class="p-2">
-                            <a href=""
+                            <a href="{{ route('profile') }}"
                                 class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1  rounded-md">
                                 <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
 

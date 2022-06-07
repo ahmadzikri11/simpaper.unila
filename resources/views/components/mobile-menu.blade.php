@@ -27,15 +27,15 @@
             <li>
                 <a href="{{ route('transcation/user_transaction') }}" class="menu">
                     <div class="menu__icon"> <i data-feather="edit"></i> </div>
-                    <div class="menu__title"> Submission </div>
+                    <div class="menu__title"> Upload File </div>
                 </a>
             </li>
-            {{-- <li>
-                <a href="{{ route('transcation/status') }}" class="menu">
-                    <div class="menu__icon"> <i data-feather="monitor"></i> </div>
-                    <div class="menu__title"> Status </div>
+            <li>
+                <a href="{{ route('get_repository') }}" class="menu">
+                    <div class="menu__icon"> <i data-feather="external-link"></i> </div>
+                    <div class="menu__title"> Upload Link Repositori </div>
                 </a>
-            </li> --}}
+            </li>
         @endif
         @if (auth()->user()->role == 'admin')
             <li>

@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('navi')
-        <div>SubScripts</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
-        <div class="breadcrumb--active">List Transaction</div>
+        <div>UPT Perpustakaan</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <div class="breadcrumb--active">List Upload</div>
     @endsection
 
 
@@ -12,7 +12,7 @@
         <div class="intro-y overflow-auto lg:overflow-visible mt-8 sm:mt-0">
             <div class="intro-y block sm:flex items-center h-10">
                 <h2 class="text-lg font-medium truncate mr-5">
-                    List Transaction
+                    List Upload
                 </h2>
                 <div class="flex items-center sm:ml-auto mt-3 sm:mt-0">
 
@@ -99,7 +99,7 @@
                             <option value="">Pilih Status </option>
                             <option value="Sudah Tervalidasi">Sudah Validasi</option>
                             <option value="Revisi">Revisi</option>
-                            <option value="Diproses">On Proses</option>
+                            <option value="Diproses">Diproses</option>
                             <option value="Telah Diperbaiki">Telah Diperbaiki</option>
                             <option value="Telah Upload Digilib">Telah Upload Digilib</option>
                         </select>

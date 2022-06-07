@@ -1,15 +1,15 @@
 <x-app-layout>
     {{-- <x-jet-section-border /> --}}
     @section('navi')
-        <div>SubScripts</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
-        <div class="breadcrumb--active">Submit Skripsi</div>
+        <div>UPT Perpustakaan</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <div class="breadcrumb--active">Digilib</div>
     @endsection
-    <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
+    <div class="max-w-7xl sm:mx-auto py-10 sm:px-6 lg:px-8">
         <div>
             <div class="sm:mt-10 md:grid md:grid-cols-3 md:gap-6">
                 <div class="md:col-span-1">
                     <div class="px-4 sm:px-0">
-                        <h3 class="text-lg font-medium leading-6 text-gray-900">Edit Link repository</h3>
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Kirim Link repository</h3>
                         <p class="mt-1 text-sm text-gray-600">Kirim link akun Digilib Unila kamu disini.</p>
                         <p class="mt-1 text-sm text-gray-600">Contoh : http://digilib.unila.ac.id/61033/</p>
                     </div>
@@ -65,6 +65,13 @@
                                     <span class="text-gray-800 sm:ml-3 py-2 sm:px-3 text-m"> *Kamu sudah upload link,
                                         Silahkan tunggu proses review admin.</span>
                                 </div>
+                            @elseif ($user->users[0]->status == 'Validasi Akun')
+                                <span class="bg-green-300 text-white ml-3 py-1 px-3 rounded-full text-xs">Validasi
+                                    akun</span>
+                                <div class="mt-2 sm:ml-10">
+                                    <span class="text-gray-800 sm:ml-3 py-2 sm:px-3 text-m"> *Silahkan Uplaod link
+                                        digilib dibawah.</span>
+                                </div>
                             @endif
                         </div>
                         <div class="sm:ml-12 flex">
@@ -84,7 +91,7 @@
                             <div class="sm:ml-10 mt-10">
                                 <div class="flex justify-left">
                                     <div class="mb-3 sm:mx-5 w-full ">
-                                        <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">Edit
+                                        <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700">
                                             Link
                                             Digilib</label>
                                         <input class="form-control" type="text"
@@ -101,11 +108,12 @@
 
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
                                 <button type="submit"
-                                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Edit</button>
+                                    class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
                             </div>
 
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>

@@ -1,6 +1,6 @@
 <x-app-layout>
     @section('navi')
-        <div>Upt Perpustakaan</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <div>UPT Perpustakaan</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
         <div class="breadcrumb--active">Dashboard</div>
     @endsection
     <div class="col-span-12 mt-8">

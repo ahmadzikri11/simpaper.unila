@@ -19,6 +19,6 @@ class DatabaseSeeder extends Seeder
             ProdiSeeder::class,
             FakultasSeeder::class,
         ]);
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
     }
 }

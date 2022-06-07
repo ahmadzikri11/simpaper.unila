@@ -99,7 +99,7 @@ class AdminController extends Controller
 
             $filename = $path . '/' . $name;
         } else {
-            $filename = public_path('Perpus.png');
+            $filename = public_path('Dokumentasi Sistem Perpus.pdf');
         }
         $transaction = Transaction::find($id);
         $message = $request['message'];

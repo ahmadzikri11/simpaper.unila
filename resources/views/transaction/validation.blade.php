@@ -3,7 +3,7 @@
     <div class="content">
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
-                Validation
+                Validasi
             </h2>
 
 
@@ -25,7 +25,7 @@
                             <a href="{{ route('file1', ['path' => $transaction->file1]) }}"
                                 class="block font-medium mt-4 text-center truncate">File.pdf</a>
                             <a href="{{ route('file1', ['path' => $transaction->file1]) }}">
-                                <div class="text-gray-600 text-xs text-center mt-0.5">Surat Layak
+                                <div class="text-gray-600 text-xs text-center mt-0.5">Berkas Surat Layak
                                     Upload
                             </a>
                         </div>
@@ -107,7 +107,8 @@
                             <div class=" flex justify-center">
                                 <div class="mb-3 w-full ">
 
-                                    <textarea name="message" id="message" class="
+                                    <textarea name="message" id="message"
+                                        class="
                                           form-control block h-80 w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
                                         id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $transaction->transactions->name }}, kami ingin menginformasikan bahwa permohonan tersebut telah kami poroses. Kami menyimpulkan bahwa data kamu ...........
                                         </textarea>

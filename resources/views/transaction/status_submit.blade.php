@@ -1,7 +1,7 @@
 <x-app-layout>
 
     @section('navi')
-        <div>SubScripts</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <div>UPT Perpustakaan</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
         <div class="breadcrumb--active">Status</div>
     @endsection
     <div class="max-w-7xl mt-7 mx-auto py-10 sm:px-6 lg:px-8">

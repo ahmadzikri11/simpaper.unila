@@ -1,8 +1,8 @@
 <x-app-layout>
 
     @section('navi')
-        <div>SubScripts</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
-        <div class="breadcrumb--active">Submit Skripsi</div>
+        <div>UPT Perpustakaan</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <div class="breadcrumb--active">Upload File</div>
     @endsection
     <div class="max-w-7xl mx-auto py-10 sm:px-6 lg:px-8">
         <div>
@@ -236,7 +236,7 @@
                                                 <label for="formFileSm"
                                                     class="form-label inline-block mb-2 text-gray-700"><span
                                                         class="text-red-700">*</span>Surat Layak
-                                                    Upload</label>
+                                                    Upload <span class="text-red-500">PDF(max:2Mb)</span></label>
                                                 <input
                                                     class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                     id="file1" name="file1" type="file">
@@ -252,7 +252,7 @@
                                                 <label for="formFileSm"
                                                     class="form-label inline-block mb-2 text-gray-700"><span
                                                         class="text-red-700">*</span>Surat Bebas
-                                                    perpus</label>
+                                                    perpus <span class="text-red-500">PDF(max:2Mb)</span></label>
                                                 <input
                                                     class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                     id="file2" name="file2" type="file">
@@ -270,7 +270,7 @@
                                                     yang
                                                     harus di tanda tangan sebagai <b> Bukti Sebar Karya Akhir </b>
                                                     silahkan
-                                                    isi</label>
+                                                    isi <span class="text-red-500">PDF(max:2Mb)</span></label>
                                                 <input
                                                     class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                     id="file3" name="file3" type="file">
@@ -302,7 +302,8 @@
                                                 <label for="formFileSm"
                                                     class="form-label inline-block mb-2 text-gray-700"><span
                                                         class="text-red-700">*</span>Input
-                                                    KTM</label>
+                                                    KTM <span
+                                                        class="text-red-500">JPG,Jfif,PNG(max:2Mb)</span>.</label>
                                                 <input
                                                     class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                     id="ktm" name="ktm" type="file">
@@ -329,7 +330,7 @@
                                                     <div class="text-lg font-medium"><span
                                                             class="text-red-700">*</span>Upload Foto selfi kamu dan
                                                         KTM
-                                                        kamu.
+                                                        kamu <span class="text-red-500">JPG,Jfif,PNG(max:2Mb)</span>.
                                                     </div>
                                                     <div class="text-gray-600">click and upload file
                                                     </div>

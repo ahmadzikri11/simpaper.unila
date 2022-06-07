@@ -1,7 +1,7 @@
 <x-app-layout>
 
     @section('navi')
-        <div>SubScripts</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <div>UPT Perpustakaan</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
         <div class="breadcrumb--active">Status</div>
     @endsection
     <div class="max-w-7xl mt-7 mx-auto py-10 sm:px-6 lg:px-8">
@@ -254,7 +254,6 @@
 
 
                                 @if ($user->users[0]->file3 != null)
-                                    test
                                     <div class="intro-y col-span-4 sm:col-span-4 md:col-span-3 2xl:col-span-2">
                                         <div
                                             class="file bg-gray-100  box rounded-md px-5 pt-8 pb-5 px-3 sm:px-5 relative zoom-in">
