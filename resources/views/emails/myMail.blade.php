@@ -10,7 +10,7 @@
     <p>{{ $details['body'] }}</p>
 
 
-    <p>Thank you</p>
+    <p>Terima Kasih, UPT TIK</p>
 </body>
 
 </html>

@@ -32,6 +32,11 @@ class ViewsController extends Controller
         $prodi = Prodi::all();
         return view('profile', compact('user', 'fakultas', 'prodi'));
     }
+    public function AdminProfileUpdate()
+    {
+        $user = Auth::user();
+        return view('profile_admin', compact('user',));
+    }
     public function UserSubmission()
     {
         $user = Auth::user();

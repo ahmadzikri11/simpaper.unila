@@ -24,6 +24,24 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+    public function UpdateAdminProfile(Request $request, User $user, $id)
+    {
+        $this->validate($request, [
+            'name' => 'required',
+            'phone' => 'required',
+            'email' => 'required',
+
+        ]);
+
+        $user = User::find($id);
+
+        $user->update([
+            'name' => $request['name'],
+            'email' => $request['email'],
+            'phone' => $request['phone'],
+        ]);
+        return redirect()->route('profile_admin')->with('success', ' Data telah diperbaharui!');
+    }
 
     public function ImportUser(Request $request)
     {

@@ -37,11 +37,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [UserControll
 Route::middleware('auth')->group(function () {
     // user Views
     Route::get('/profile', [ViewsController::class, 'UserProfileUpdate'])->name('profile');
+
     Route::get('/transaction/user_transaction', [ViewsController::class, 'UserSubmission'])->name('transcation/user_transaction');
     Route::get('/upload/repository', [ViewsController::class, 'UserRepository'])->name('get_repository');
 
     // Udpdate User
     Route::put('/profile/update/{id}', [UserController::class, 'UpdateUserProfile'])->name('profile.update');
+
+
 
     // Transaction User
     Route::post('/transaction/user_transaction', [UserController::class, 'CreateUserTransaction'])->name('transcation.user_transaction');
@@ -62,6 +65,8 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['role:admin', 'auth'])->group(function () {
 
+    Route::get('/profile/admin', [ViewsController::class, 'AdminProfileUpdate'])->name('profile_admin');
+    Route::put('/profile/update/admim/{id}', [AdminController::class, 'UpdateAdminProfile'])->name('profile_update_admin');
     // list akun
     Route::get('/dashboard/list/account', [ViewsController::class, 'ListAccount'])->name('account.list');
     Route::put('dashboard/list/account/import', [AdminController::class, 'ImportUser'])->name('import');

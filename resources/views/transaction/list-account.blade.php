@@ -166,13 +166,13 @@
                 <thead>
                     <tr>
                         <th>ID</th>
-                        <th>Name</th>
+                        <th>Nama</th>
                         <th>Fakultas</th>
                         <th>Jurusan</th>
                         <th>Email</th>
-                        <th>Whatapps</th>
+                        <th>Whatsapp</th>
                         <th>Role</th>
-                        <th>Action</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
