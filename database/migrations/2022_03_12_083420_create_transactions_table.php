@@ -17,18 +17,18 @@ class CreateTransactionsTable extends Migration
             $table->id();
             $table->foreignIdFor(\App\Models\User::class, 'user_id');
             $table->timestamps();
-            $table->string('periode_wisuda')->nullable();
-            $table->string('tahun_wisuda')->nullable();
-            $table->string('validator')->nullable();
+            $table->string('periode_wisuda', 10)->nullable();
+            $table->string('tahun_wisuda', 4)->nullable();
+            $table->string('validator', 30)->nullable();
             $table->string('file1');
             $table->string('file2');
             $table->string('file3')->nullable();
             $table->string('ktm');
             $table->string('photo');
-            $table->text('message')->nullable();
-            $table->text('link_repository')->nullable();
-            $table->text('tanda_terima')->nullable();
-            $table->string('status')->default('Diproses');
+            $table->text('message', 500)->nullable();
+            $table->string('link_repository', 100)->nullable();
+            $table->string('tanda_terima')->nullable();
+            $table->string('status', 15)->default('Diproses');
         });
     }
 

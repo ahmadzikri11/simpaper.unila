@@ -70,7 +70,6 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class, 'user_id', 'id');
     }
-
     public function getfakultas()
     {
         return $this->hasOne(Fakultas::class, 'id', 'fakultas_id');
@@ -78,9 +77,5 @@ class User extends Authenticatable
     public function getprodi()
     {
         return $this->hasOne(Prodi::class, 'id', 'prodi_id');
-    }
-    public function getRepository()
-    {
-        return $this->hasOne(Repository::class, 'user_id', 'id');
     }
 }

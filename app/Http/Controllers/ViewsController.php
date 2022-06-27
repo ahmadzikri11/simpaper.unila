@@ -129,83 +129,6 @@ class ViewsController extends Controller
     }
 
 
-    public function ListRepository(Request $request)
-    {
-        $data = Repository::with('getuserrepo');
-        if ($request->ajax()) {
-
-            return DataTables::eloquent($data)
-
-                ->addIndexColumn()
-                ->addColumn('name', function ($row) {
-                    if (empty($row->getuserrepo['name'])) {
-                        $row = ' ';
-                    } else {
-                        return $row->getuserrepo['name'];
-                    }
-                })
-                ->addColumn('fakultas', function ($row) {
-                    if (empty($row->getuserrepo->getfakultas['fakultas'])) {
-                        $row = ' ';
-                    } else {
-                        return $row->getuserrepo->getfakultas['fakultas'];
-                    }
-                })
-                ->addColumn('prodi', function ($row) {
-                    if (empty($row->getuserrepo->getprodi['prodi'])) {
-                        $row = ' ';
-                    } else {
-                        return $row->getuserrepo->getprodi['prodi'];
-                    }
-                })
-                ->addColumn('action', function ($row) {
-                    $actionBtn = '<a href="/dashboard/validation/repository/' . $row->id . '" " class="edit h-8 btn bg-green-500 text-white btn-sm">Validasi</a> ';
-
-                    return $actionBtn;
-                })
-
-
-                ->filter(function ($instance) use ($request) {
-                    // if ($request->get('fakultas') == '0' || $request->get('fakultas') == '1') {
-                    //     $instance->where('fakultas_id', $request->get('fakultas'));
-                    // }
-                    if (!empty($request->get('fakultas'))) {
-                        $instance->wherehas('getuserrepo', function ($w) use ($request) {
-                            $get = $request->get('fakultas');
-                            $w->Where('fakultas_id', 'LIKE', "%$get%");
-                        });
-                    }
-                    if (!empty($request->get('validasi'))) {
-                        $instance->where(function ($w) use ($request) {
-                            $get = $request->get('validasi');
-                            $w->Where('status', 'LIKE', "%$get%");
-                        });
-                    }
-                    if (!empty($request->get('search'))) {
-                        $instance->wherehas('getuserrepo', function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->Where('name', 'LIKE', "%$get%");
-                        })->orWhere(function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->orWhere('link_repository', 'LIKE', "%$get%");
-                            $w->orWhere('status', 'LIKE', "%$get%");
-                        })->orWherehas('getuserrepo.getfakultas', function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->Where('fakultas', 'LIKE', "%$get%");
-                        })->orWherehas('getuserrepo.getprodi', function ($w) use ($request) {
-                            $get = $request->get('search');
-                            $w->Where('prodi', 'LIKE', "%$get%");
-                        });
-                    }
-                })
-
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-
-        return view('transaction.validation-repository');
-    }
 
     public function ListTransaction(Request $request)
     {
@@ -305,16 +228,6 @@ class ViewsController extends Controller
         return view('transaction.validation', compact('transaction'));
     }
 
-    public function ViewAdminRepository($id)
-    {
-        $repository = Repository::find($id);
-        return view('transaction.validation-digilib', compact('repository'));
-    }
-    public function AdminViewRepository()
-    {
-        $user = Repository::all();
-        return view('transaction.validation-repository', compact('user'));
-    }
 
 
 

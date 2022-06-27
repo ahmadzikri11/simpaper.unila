@@ -232,27 +232,5 @@ class UserController extends Controller
         $prodi = Prodi::where("fakultas_id", $request->kabID)->pluck('id', 'prodi');
         return response()->json($prodi);
     }
-
-    public function importUser(Request $request)
-    {
-        $this->validate($request, [
-            'file_user' => 'required',
-        ]);
-        $path = public_path('storage/user');
-        $fileuser = $request->file('file_user');
-        $name = $fileuser->getClientOriginalName() . '.' . $fileuser->getClientOriginalExtension();
-        $fileuser->move($path, $name);
-        $filename = $path . '/' . $name;
-
-        Excel::import(new ImportUser, $filename);
-        return redirect()->back()->with('success', ' User telah ditambahkan!');
-    }
-
-
-    public function AdminViewRepository()
-    {
-        $user = Repository::all();
-        return view('transaction.validation-repository', compact('user'));
-    }
 }
 // testing
