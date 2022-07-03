@@ -28,7 +28,7 @@ class CreateTransactionsTable extends Migration
             $table->text('message', 500)->nullable();
             $table->string('link_repository', 100)->nullable();
             $table->string('tanda_terima')->nullable();
-            $table->string('status', 15)->default('Diproses');
+            $table->string('status', 50)->default('Diproses');
         });
     }
 
