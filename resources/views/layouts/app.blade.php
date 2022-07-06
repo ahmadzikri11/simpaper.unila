@@ -48,7 +48,7 @@
     <!-- END: Mobile Menu -->
     <!-- BEGIN: Top Bar -->
     <div class="top-bar-boxed border-b border-theme-2 -mt-7 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 md:pt-0 mb-12">
-        <div class="h-full flex items-center p-10">
+        <div class="h-full flex items-center ">
             <!-- BEGIN: Logo -->
             <a href="" class="-intro-x hidden md:flex">
                 <img alt="" class="w-24" src="{{ asset('Perpus.png') }}">

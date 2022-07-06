@@ -1,6 +1,6 @@
 <x-app-layout>
     @section('navi')
-        <div>UPT Perpustakaan</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
+        <div>Simpaper</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
         <div class="breadcrumb--active">Dashboard</div>
     @endsection
     <div class="col-span-12 mt-8">
@@ -18,7 +18,8 @@
                             <div class="flex">
                                 <i data-feather="users" class="report-box__icon text-theme-21"></i>
                                 <div class="ml-auto">
-                                    <div class="report-box__indicator bg-theme-26 tooltip cursor-pointer" title="Total">
+                                    <div class="report-box__indicator bg-theme-26 tooltip cursor-pointer"
+                                        title="Total">
                                         Total Account
                                         <i data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i>
                                     </div>
@@ -156,9 +157,9 @@
                             </div>
                             <div class="accordion-item mt-3">
                                 <div id="faq-accordion-content-2" class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-accordion-collapse-2" aria-expanded="false"
-                                        aria-controls="faq-accordion-collapse-2">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#faq-accordion-collapse-2"
+                                        aria-expanded="false" aria-controls="faq-accordion-collapse-2">
                                         <div class="class flex">
 
                                             <div class="w-10 h-10 bg-blue-700 rounded-full btn btn-primary">
@@ -169,8 +170,7 @@
                                                         d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
                                                 </svg>
                                             </div>
-                                            <div class="font-medium text-base mt-2 ml-3">Upload dan Edit File
-                                                Persyaratan
+                                            <div class="font-medium text-base mt-2 ml-3">Uplaod dan Edit File
                                             </div>
                                         </div>
 
@@ -204,7 +204,7 @@
                                         <a href="{{ route('transcation/user_transaction') }}" class="ml-3">
                                             <div class="bg-gray-50 ">
                                                 <button type="submit"
-                                                    class="inline-flex justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Kirim
+                                                    class="inline-flex justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mr-2">Kirim
                                                     File
                                                 </button>
                                             </div>
@@ -215,9 +215,9 @@
                             </div>
                             <div class="accordion-item mt-3">
                                 <div id="faq-accordion-content-2" class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-accordion-collapse-2" aria-expanded="false"
-                                        aria-controls="faq-accordion-collapse-2">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#faq-accordion-collapse-2"
+                                        aria-expanded="false" aria-controls="faq-accordion-collapse-2">
                                         <div class="class flex">
 
                                             <div class="w-10 h-10 bg-blue-700 rounded-full btn btn-primary">
@@ -295,9 +295,9 @@
 
                             <div class="accordion-item mt-3">
                                 <div id="faq-accordion-content-2" class="accordion-header">
-                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faq-accordion-collapse-2" aria-expanded="false"
-                                        aria-controls="faq-accordion-collapse-2">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#faq-accordion-collapse-2"
+                                        aria-expanded="false" aria-controls="faq-accordion-collapse-2">
                                         <div class="class flex">
 
                                             <div class="w-10 h-10 bg-blue-700 rounded-full btn btn-primary">
@@ -326,34 +326,26 @@
                                                 href="http://digilib.unila.ac.id/">http://digilib.unila.ac.id/</a>
                                         </div>
                                     </div>
-                                    <div class="mt-2 flex py-5 box">
-                                        <h3 class="ml-5 mt-1">
+                                    <div class="mt-2 py-5 box">
+                                        <h3 class="px-5">
                                             Setelah selesai mengupload di web http://digilib.unila.ac.id/. Selanjutnya
-                                            upload link digilib kamu kedalam halaman berikut: <br>
+                                            upload link digilib kamu kedalam halaman dibawah. <br>
                                             Kamu juga dapat mengedit link dihalaman tersebut. Jika ada kesalahan dalam
                                             proses
                                             mengupload akan dihubungi oleh admin.
                                         </h3>
-                                        <a href="{{ route('get_repository') }}" class="ml-3 mr-2">
-                                            <div class="bg-gray-50 ">
-                                                <button type="submit"
-                                                    class="inline-flex justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">Upload
-                                                    link
-                                                    Digilib
-                                                </button>
-                                            </div>
-                                        </a>
+                                        <a href="{{ route('get_repository') }}" class="p-5">
 
+                                            <button type="submit"
+                                                class="inline-flex justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 sm:mr-5 focus:ring-blue-500">Upload
+                                                link Digilib
+                                            </button>
+
+                                        </a>
                                     </div>
+
                                 </div>
                             </div>
-
-
-
-
-
-
-
                         </div>
                     </div>
                 </div>
