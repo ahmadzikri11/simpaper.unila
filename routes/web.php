@@ -75,6 +75,7 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     // list akun
     Route::get('/dashboard/list/account', [ViewsController::class, 'ListAccount'])->name('account.list');
     Route::put('dashboard/list/account/import', [AdminController::class, 'ImportUser'])->name('import');
+    Route::put('/dashboard/list/account/reset_password/{id}', [AdminController::class, 'ResetPassword'])->name('reset.password');
     // edit akun
     Route::get('/dashboard/list/account/editaccount{id}', [AdminController::class, 'EditAccountAdmin'])->name('edit.account');
     Route::put('/dashboard/list/account/editaccount{id}', [AdminController::class, 'UpdateAccount'])->name('update.account');
@@ -87,7 +88,6 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/validation/{id}', [ViewsController::class, 'ViewValidation'])->name('validation');
     Route::put('/dashboard/validation/accept{id}', [AdminController::class, 'ValidationTransaction'])->name('validation.accept');
     Route::post('dahsboard/validation/{id}', [AdminController::class, 'updatePeriode'])->name('periode_wisuda');
-
 
     // list Repository
 

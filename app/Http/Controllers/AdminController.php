@@ -176,6 +176,16 @@ class AdminController extends Controller
         return back()->with('message', 'Data berhasil ditambahkan');
     }
 
+    public function ResetPassword(Request $request, User $user, $id)
+    {
+        $user = User::find($id);
+        $user->update([
+            'password' => bcrypt('simpaper'),
+        ]);
+
+        return redirect()->route('account.list')->with('edit', ' Password Telah Dirubah!');
+    }
+
 
 
 
