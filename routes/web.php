@@ -51,8 +51,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/transaction/user_transaction/status/update{id}', [UserController::class, 'UpdateUserTransaction'])->name('transaction.update');
 
     // upload update Link digilib
-    Route::post('/upload/Repository/create', [UserController::class, 'CreateUserRepository'])->name('create_repository');
     Route::put('/upload/Repository/{id}', [UserController::class, 'UpdateUserRepository'])->name('update_repository');
+    Route::post('/upload/Repository/create', [UserController::class, 'CreateUserRepository'])->name('create_repository');
+
 
 
     // route datatable
@@ -61,6 +62,12 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/transaction/user_transaction/status', [TransactionController::class, 'status'])->name('transcation.status');
     Route::get('/transaction/status', [TransactionController::class, 'status'])->name('transcation/status');
+   
+    //route SKBP
+    Route::get('/transaction/SKBP', [UserController::class, 'view_skbp'])->name('view_skbp');
+    Route::post('/transaction/user_transaction/SKBP', [UserController::class, 'CreateUserSKBP'])->name('create_user_skbp');
+    Route::put('/transaction/user_transaction/Update/SKBP{id}', [UserController::class, 'UpdateUserSKBP'])->name('update.skbp');
+    
 });
 
 Route::middleware(['role:admin', 'auth'])->group(function () {
@@ -82,7 +89,11 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/validation/{id}', [ViewsController::class, 'ViewValidation'])->name('validation');
     Route::put('/dashboard/validation/accept{id}', [AdminController::class, 'ValidationTransaction'])->name('validation.accept');
     Route::post('dahsboard/validation/{id}', [AdminController::class, 'updatePeriode'])->name('periode_wisuda');
-
+    
+    //list transaction SKBP
+    Route::get('/dashboard/list/SKBP', [ViewsController::class, 'ListTransactionSKBP'])->name('list.skbp');
+    Route::get('/dashboard/list/SKBP/ValdasiSKBP/{id}', [ViewsController::class, 'ViewValidasiSKBP'])->name('validasi.skbp');
+    Route::put('/dashboard/list/SKBP/accept{id}', [AdminController::class, 'TransactionSKBP'])->name('accept.skbp');
 
     // list Repository
 
@@ -93,4 +104,10 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/storage/{path}', [TransactionController::class, 'showFile1'])->name('file1');
     Route::get('/storage/{path2}', [TransactionController::class, 'showFile2'])->name('file2');
     Route::get('/storage/{path3}', [TransactionController::class, 'showFile3'])->name('file3');
+
+
+    Route::post('/app/public', [TransactionController::class, 'downloadStorage'])->name('fileSkbp');
+    Route::post('/app/public2', [TransactionController::class, 'downloadStorage2'])->name('fileSkbp2');
 });
+
+// Route::get('/testdownload/{pathSkbp}', 'TransactionController@downloadStorage')->name('test1234');

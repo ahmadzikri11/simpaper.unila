@@ -28,7 +28,7 @@ License: You must have a valid license purchased only from themeforest(the above
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://cdn.tailwindcss.com/"></script>
-    <link href="{{ asset('css/apps.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
 
 </head>
 <!-- END: Head -->

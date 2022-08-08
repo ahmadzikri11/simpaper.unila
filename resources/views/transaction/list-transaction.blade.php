@@ -135,6 +135,7 @@
                         </div>
 
                     </div>
+                    
                     <tr>
 
                         <th>id</th>
@@ -191,6 +192,7 @@
                     d.search = $("#search").val();
                     d.tahun_wisuda = $("#tahun_wisuda").val();
                     // d.search = $("#search").val();
+                    // console.log(d.validasi);
                 }
             },
             columns: [
@@ -235,7 +237,7 @@
                     render: function(data, type, row) {
                         var text = "";
                         var label = "";
-                        if (data == "Sudah Tervalidasi") {
+                        if (data == "Tervalidasi") {
                             text = "Tervalidasi";
                             label = "bg-green-800";
                         } else
@@ -298,8 +300,6 @@
             var table = $('.yajra-datatable').DataTable();
             table.button('.buttons-csv').trigger();
         });
-
-
         $("#validasi").change(function() {
             let validasi = $("#validasi").val();
             console.log([validasi]);
@@ -325,7 +325,5 @@
             console.log([tahun_wisuda]);
             table.ajax.reload(null, false)
         });
-
-
     });
 </script>

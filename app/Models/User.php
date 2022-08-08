@@ -11,6 +11,7 @@ use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Transactions;
 use App\Models\Transaction;
+use App\Models\Skbp;
 
 class User extends Authenticatable
 {
@@ -70,6 +71,10 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class, 'user_id', 'id');
     }
+    public function getskbp()
+    {
+        return $this->hasMany(Skbp::class, 'user_id', 'id');
+    }
 
     public function getfakultas()
     {
@@ -83,4 +88,5 @@ class User extends Authenticatable
     {
         return $this->hasOne(Repository::class, 'user_id', 'id');
     }
+    
 }

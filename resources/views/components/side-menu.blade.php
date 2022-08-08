@@ -31,7 +31,12 @@
                     <div class="side-menu__title"> Upload Link Repositori</div>
                 </a>
             </li>
-
+            <li>
+                <a href="{{ route('view_skbp') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="monitor"></i></i> </div>
+                    <div class="side-menu__title"> SKBP </div>
+                </a>
+            </li>
 
             {{-- <li>
                 <a href="{{ route('transcation.status') }}" class="side-menu">
@@ -51,6 +56,13 @@
                 <a href="{{ route('request.list') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                     <div class="side-menu__title"> Validasi </div>
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ route('list.skbp') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="side-menu__title"> Validasi SKBP </div>
                 </a>
             </li>
 

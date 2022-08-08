@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fakultas;
 use App\Models\Prodi;
 use App\Models\Transaction;
+use App\Models\Skbp;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -183,7 +184,12 @@ class UserController extends Controller
         $transaction = Transaction::count();
         $transactionaccept = Transaction::where('status', 'Sudah Tervalidasi')->count();
         $transactionproses = Transaction::where('status', 'Diproses')->count();
-        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
+        
+        $skbp = Skbp::count();
+        $skbpproses = Skbp::where('status', 'proses')->count();
+        $skbpaccept = Skbp::where('status', 'Tervalidasi')->count();
+
+        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses','skbp','skbpproses','skbpaccept'));
     }
 
     // public function editAccount($id)
@@ -246,6 +252,81 @@ class UserController extends Controller
 
         Excel::import(new ImportUser, $filename);
         return redirect()->back()->with('success', ' User telah ditambahkan!');
+    }
+
+    public function view_skbp()
+    {
+    
+        $user = Auth::user();
+        $a = $user->id;
+        $ceck = Skbp::where('user_id', $a)->exists();
+        if ($ceck) {
+            return view('transaction.edit_skbp', compact('user'));
+        } else{
+            return view('transaction.upload_skbp', compact('user'));
+        }
+    }
+
+    public function CreateUserSKBP(Request $request)
+    {
+        $attr = $request->validate([
+            'ktm' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'spp' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+           
+        ]);
+        
+        $attr['user_id'] = auth()->user()->id;
+        $attr['ktm'] = $request->file('ktm')->store('ktmm','public');
+        $attr['spp'] = $request->file('spp')->store('spp','public');
+        Skbp::create($attr);
+        
+
+        return redirect()->route('view_skbp')->with('message', ' Data telah Telah Terkirim!');
+    }
+
+    public function UpdateUserSKBP(Request $request,$id)
+    {
+        
+        // $user=Auth::user()->id;
+        $post = Skbp::find($id);
+        $attr = $request->validate([
+            'ktm' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'spp' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+        ]);
+        
+        $path = storage_path() . '/app/public/';
+        
+        if ($post->ktm != ''  && $post->ktm != null) {
+            $file_old = $path . $post->ktm;
+            unlink($file_old);
+        }
+        if ($post->spp != ''  && $post->spp != null) {
+            $file_old = $path . $post->spp;
+            unlink($file_old);
+        }
+        
+        $attr['ktm'] = $request->file('ktm')->store(
+            'ktmm',
+            'public'
+        );
+        $attr['spp'] = $request->file('spp')->store(
+            'spp',
+            'public'
+        );
+
+        $post->update($attr);
+        $post->save();
+
+      
+       
+
+    
+        // $attr['user_id'] = auth()->user()->id;
+        // $attr['ktm'] = $request->file('ktm')->store('ktmm','public');
+        // $attr['spp'] = $request->file('spp')->store('spp','public');
+        // Skbp::create($attr);
+
+        return redirect()->route('view_skbp')->with('message', ' Data telah Telah Terkirim!');
     }
 
 
