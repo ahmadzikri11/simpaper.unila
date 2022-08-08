@@ -6,6 +6,7 @@ use App\Models\Fakultas;
 use App\Models\Prodi;
 use App\Models\Transaction;
 use App\Models\User;
+use App\Models\Helpdesk as ModelsHelpdesk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
@@ -183,7 +184,9 @@ class UserController extends Controller
         $transaction = Transaction::count();
         $transactionaccept = Transaction::where('status', 'Sudah Tervalidasi')->count();
         $transactionproses = Transaction::where('status', 'Diproses')->count();
-        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses'));
+        $prioritastotal = ModelsHelpdesk::count();
+        $proditotal = Prodi::where('prodi')->count();
+        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses', 'prioritastotal', 'proditotal'));
     }
 
     // public function editAccount($id)

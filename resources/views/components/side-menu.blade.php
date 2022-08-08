@@ -14,7 +14,9 @@
 
         @if (auth()->user()->role == 'user')
             <li>
-                <a href="{{ route('profile') }}" class="side-menu">
+                <a href="{{ route('profile') }}"
+                    class="side-menu {{ request()->routeIs('profile.') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('profile.') ? 'side-menu--active' : '' }}">
+
                     <div class="side-menu__icon"> <i data-feather="user"> </i> </div>
                     <div class="side-menu__title"> Update Profile</div>
                 </a>
@@ -29,6 +31,12 @@
                 <a href="{{ route('get_repository') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="external-link"></i></i> </div>
                     <div class="side-menu__title"> Upload Link Repositori</div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.helpdesk') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="edit"></i></i> </div>
+                    <div class="side-menu__title"> Helpdesk </div>
                 </a>
             </li>
 
@@ -58,6 +66,12 @@
                 <a href="{{ route('account.list') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                     <div class="side-menu__title"> Users </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.helpdesk') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="side-menu__title"> Helpdesk </div>
                 </a>
             </li>
         @endif
