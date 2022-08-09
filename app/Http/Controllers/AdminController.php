@@ -148,7 +148,7 @@ class AdminController extends Controller
                 ],
                 'form_params' => [
                     'receiver' => $phone,
-                    'device' => '6281276972110',
+                    'device' => '6282119970406',
                     'message' => $message,
                     'type' => 'chat'
                 ]
