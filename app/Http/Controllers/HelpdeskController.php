@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateHelpdeskRequest;
 use App\Models\Prodi;
+use App\Models\Transaction;
+use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
 class HelpdeskController extends Controller
@@ -222,12 +224,51 @@ class HelpdeskController extends Controller
                 ->make(true);
         }
 
+        // $emailsend = Transaction::find($id);
+        // $message = $request['message'];
+        // $email = $emailsend->transactions->email;
 
+        // \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
         return view('transaction.list-account');
     }
 
+
+    // graph
+
     public function GraphHelpdesk(Request $request)
     {
+
+        $graphprio =
+            ModelsHelpdesk::select(
+                // ModelsHelpdesk::raw('DATE(created_at) as date'),
+                ModelsHelpdesk::raw('count(*) as total')
+            );
+        // ->where('prioritas');
+        // ->groupBy('date')
+        // ->orderBy('date', 'asc');
+
+
+        // $tahunFilter = 2022;
+        // if ($tahunFilter == 2022) {
+        //     $graphprio = $graphprio->whereYear('created_at', $tahunFilter);
+        // }
+        // // $test= ['1','2',3];
+        // // dd($totalHoax);
+
+
+
+
+
+        $graphprio = ModelsHelpdesk::count();
+        // $a = $graphprio;
+
+        $a = [1, 2, 3, 4, 5];
+
+
+        // $graphprio = $graphprio->get();
+        // // end testing
+
+        // return view('dashboard', compact('total', 'fakta', 'hoax', 'dataHoax', 'dataFakta'));
         // $helpdesk = ModelsHelpdesk::paginate(5);
         // $formatdate = $helpdesk->date;
         // dd($formatdate);
@@ -235,6 +276,41 @@ class HelpdeskController extends Controller
         // dd($userId);
         // $helpdesk = ModelsHelpdesk::select('*')->where('user_id', $userId)->get();
         // return view('transaction.admin_helpdesk', ['helpdesk' => $helpdesk]);
-        return view('dashboard_helpdesk');
+        return view('dashboard_helpdesk', compact('a'));
     }
+
+    public function getDataChart()
+    {
+        $graphprio = ModelsHelpdesk::count();
+        return response()->json($graphprio);
+    }
+
+
+
+
+    // public function GraphPie(Request $request)
+    // {
+    //     $data = DB::table('helpdesks')->select(
+    //         DB::raw('prioritas as prioritas'),
+    //         DB::raw('count(*) as number')
+    //     )->groupBy('prioritas')->get();
+    //     $array[] = ['Prioritas', 'Number'];
+    //     foreach ($data as $key => $value) {
+    //         $array[++$key] = [$value->prioritas, $value->number];
+    //     }
+    //     return view('google_pie_chart')->with('prioritas', json_encode($array));
+    // }
+
+    // public function tesgraph()
+    // {
+    //     $users = ModelsHelpdesk::select(DB::raw("COUNT(*) as count"), DB::raw("MONTHNAME(created_at) as month_name"))
+    //         ->whereYear('created_at', date('Y'))
+    //         ->groupBy(DB::raw("Month(created_at)"))
+    //         ->pluck('count', 'month_name');
+
+    //     $labels = $users->keys();
+    //     $data = $users->values();
+
+    //     return view('dashboard_helpdesk', compact('labels', 'data'));
+    // }
 }

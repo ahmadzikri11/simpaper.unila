@@ -93,7 +93,7 @@
                                     <i data-feather="edit" class="report-box__icon text-theme-23"></i>
                                     <div class="ml-auto">
                                         <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
-                                            title="Total Unprosses"> Prioritas<i data-feather="chevron-right"
+                                            title="Total Unprosses">Total Data<i data-feather="chevron-right"
                                                 class="w-4 h-4 ml-0.5"></i> </div>
                                     </div>
                                 </div>
