@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\UpdateHelpdeskRequest;
 use App\Models\Prodi;
 use App\Models\Transaction;
+use Balping\JsonRaw\Raw;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -159,6 +160,15 @@ class HelpdeskController extends Controller
 
         $test->aksi = $attr['aksi'];
         $test->save();
+        // $hdtrans = Transaction::find($email);
+        // $pesan = $request['aksi'];
+        // $mail = $hdtrans->transaction->email;
+        // // $isi = [
+        // //     'title' => 'UPT Perpustakaan Unila',
+        // //     'body' => $pesan,
+        // // ];
+        // \Mail::to($mail)->send($pesan);
+        // return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
         return redirect()->route('admin.helpdesk')->with('message', 'Aksi Telah Terupdate!');
     }
 
@@ -238,11 +248,48 @@ class HelpdeskController extends Controller
     public function GraphHelpdesk(Request $request)
     {
 
-        $graphprio =
+        // high
+        $graphpriohigh =
             ModelsHelpdesk::select(
                 // ModelsHelpdesk::raw('DATE(created_at) as date'),
-                ModelsHelpdesk::raw('count(*) as total')
-            );
+                ModelsHelpdesk::raw('count(*) as totalhigh')
+
+            )->where('prioritas', 'High')->GroupBy(ModelsHelpdesk::raw("Month(created_at)"))->pluck('totalhigh');
+
+        $monthhigh = ModelsHelpdesk::select(
+            ModelsHelpdesk::raw("MONTHNAME(created_at) as bulanhigh")
+
+        )->GroupBy(ModelsHelpdesk::raw("MONTHNAME(created_at)"))->where('prioritas', 'High')->OrderBy('created_at', 'asc')->pluck('bulanhigh');
+
+        // medium
+        $graphpriomedium =
+            ModelsHelpdesk::select(
+                ModelsHelpdesk::raw('count(*) as totalmedium')
+            )->where('prioritas', 'Medium')->GroupBy(ModelsHelpdesk::raw("Month(created_at)"))->pluck('totalmedium');
+
+        $monthmedium = ModelsHelpdesk::select(
+            ModelsHelpdesk::raw("MONTHNAME(created_at) as bulanmedium")
+
+        )->GroupBy(ModelsHelpdesk::raw("MONTHNAME(created_at)"))->where('prioritas', 'Medium')->OrderBy('created_at', 'asc')->pluck('bulanmedium');
+
+        // low
+        $graphpriolow =
+            ModelsHelpdesk::select(
+                ModelsHelpdesk::raw('count(*) as totallow')
+            )->where('prioritas', 'Low')->GroupBy(ModelsHelpdesk::raw("Month(created_at)"))->pluck('totallow');
+
+        $monthlow = ModelsHelpdesk::select(
+            ModelsHelpdesk::raw("MONTHNAME(created_at) as bulanlow")
+
+        )->GroupBy(ModelsHelpdesk::raw("MONTHNAME(created_at)"))->where('prioritas', 'Low')->OrderBy('created_at', 'asc')->pluck('bulanlow');
+
+
+
+        return view('dashboard_helpdesk', compact('graphpriohigh', 'monthhigh', 'graphpriomedium', 'monthmedium', 'graphpriolow', 'monthlow'));
+
+        // $data = [
+        //     'baseng' => json_encode($graphprio->pluck('total')),
+        // ];
         // ->where('prioritas');
         // ->groupBy('date')
         // ->orderBy('date', 'asc');
@@ -259,10 +306,10 @@ class HelpdeskController extends Controller
 
 
 
-        $graphprio = ModelsHelpdesk::count();
+        // $graphprio = ModelsHelpdesk::count();
         // $a = $graphprio;
 
-        $a = [1, 2, 3, 4, 5];
+        // $a = [1, 2, 3, 4, 5];
 
 
         // $graphprio = $graphprio->get();
@@ -276,16 +323,9 @@ class HelpdeskController extends Controller
         // dd($userId);
         // $helpdesk = ModelsHelpdesk::select('*')->where('user_id', $userId)->get();
         // return view('transaction.admin_helpdesk', ['helpdesk' => $helpdesk]);
-        return view('dashboard_helpdesk', compact('a'));
+        // return view('dashboard_helpdesk', compact('a'));
+
     }
-
-    public function getDataChart()
-    {
-        $graphprio = ModelsHelpdesk::count();
-        return response()->json($graphprio);
-    }
-
-
 
 
     // public function GraphPie(Request $request)

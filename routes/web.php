@@ -108,6 +108,4 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard_helpdesk', [HelpdeskController::class, 'GraphHelpdesk'])->name('graph.helpdesk');
     // Route::get('/laravel_google_chart', 'LaravelGoogleGraph@index');
     // Route::get('chart', [ChartJSController::class, 'tesgraph']);
-
-    Route::get('/getDataChart', [HelpdeskController::class, 'getDataChart']);
 });
