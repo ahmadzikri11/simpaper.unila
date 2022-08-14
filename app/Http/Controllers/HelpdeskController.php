@@ -157,18 +157,18 @@ class HelpdeskController extends Controller
         $attr = $request->validate([
             'aksi' => 'required',
         ]);
+        $message = $attr['aksi'];
+        $email = $test->getname->email;
+        $details = [
+            'title' => 'UPT Perpustakaan Unila',
+            'body' => $message,
+        ];
+        $filename = public_path('Dokumentasi Sistem Perpus.pdf');
 
         $test->aksi = $attr['aksi'];
         $test->save();
-        // $hdtrans = Transaction::find($email);
-        // $pesan = $request['aksi'];
-        // $mail = $hdtrans->transaction->email;
-        // // $isi = [
-        // //     'title' => 'UPT Perpustakaan Unila',
-        // //     'body' => $pesan,
-        // // ];
-        // \Mail::to($mail)->send($pesan);
-        // return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
+        // dd($test);
+        \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
         return redirect()->route('admin.helpdesk')->with('message', 'Aksi Telah Terupdate!');
     }
 

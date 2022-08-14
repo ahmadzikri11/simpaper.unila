@@ -12,6 +12,7 @@ use DateTime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Calculation\TextData\Format;
@@ -138,22 +139,22 @@ class AdminController extends Controller
 
         $url = "https://app.whatspie.com/api/messages";
 
-        $request = $client->post(
-            $url,
-            [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
-                ],
-                'form_params' => [
-                    'receiver' => $phone,
-                    'device' => '6281276972110',
-                    'message' => $message,
-                    'type' => 'chat'
-                ]
-            ]
-        );
+        // $request = $client->post(
+        //     $url,
+        //     [
+        //         'headers' => [
+        //             'Accept' => 'application/json',
+        //             'Content-Type' => 'application/x-www-form-urlencoded',
+        //             'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
+        //         ],
+        //         'form_params' => [
+        //             'receiver' => $phone,
+        //             'device' => '6281276972110',
+        //             'message' => $message,
+        //             'type' => 'chat'
+        //         ]
+        //     ]
+        // );
         $details = [
             'title' => 'UPT Perpustakaan Unila',
             'body' => $message,
