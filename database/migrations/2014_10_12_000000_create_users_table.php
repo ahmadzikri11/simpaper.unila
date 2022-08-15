@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id()->autoIncrement()->unique();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('role')->default('user');
-            $table->char('npm')->unique()->nullable();
-            $table->string('phone', 32)->nullable();
+            $table->string('name', 30);
+            $table->string('email', 100)->unique()->nullable();
+            $table->string('role', 5)->default('user');
+            $table->char('npm', 10)->unique()->nullable();
+            $table->string('phone', 15)->nullable();
             $table->foreignIdFor(\App\Models\Prodi::class, 'prodi_id')->nullable();
             $table->foreignIdFor(\App\Models\Fakultas::class, 'fakultas_id')->nullable();
             $table->timestamp('email_verified_at')->nullable();

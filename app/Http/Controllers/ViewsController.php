@@ -10,6 +10,7 @@ use App\Models\Repository;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\Skbp;
+use Illuminate\Cache\Repository as CacheRepository;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\Facades\DataTables;
@@ -132,7 +133,7 @@ class ViewsController extends Controller
 
     public function ListRepository(Request $request)
     {
-        $data = Repository::with('getuserrepo');
+        $data = CacheRepository::with('getuserrepo');
         if ($request->ajax()) {
 
             return DataTables::eloquent($data)
@@ -299,7 +300,6 @@ class ViewsController extends Controller
         return view('transaction.list-transaction', compact('transaction'));
     }
 
-
     public function ListTransactionSKBP(Request $request)
     {
         if ($request->ajax()) {
@@ -411,22 +411,13 @@ class ViewsController extends Controller
         return view('transaction.validation', compact('transaction'));
     }
 
-    public function ViewAdminRepository($id)
-    {
-        $repository = Repository::find($id);
-        return view('transaction.validation-digilib', compact('repository'));
-    }
-    public function AdminViewRepository()
-    {
-        $user = Repository::all();
-        return view('transaction.validation-repository', compact('user'));
-    }
+
+    
     public function ListSKBP()
     {
         $skbp = Skbp::all();
         return view('transaction.list-transaction_skbp', compact('skbp'));
     }
-
     public function ViewValidasiSKBP($id)
     {
         $skbp = Skbp::find($id);

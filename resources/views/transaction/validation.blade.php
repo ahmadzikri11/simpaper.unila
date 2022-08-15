@@ -10,7 +10,7 @@
 
         </div>
         <h3 class="text-lg mt-5 font-medium mr-auto">
-            Donwload File
+            Download File
         </h3>
         <div class="pos intro-y grid grid-cols-12 gap-5">
             <!-- BEGIN: Post Content -->

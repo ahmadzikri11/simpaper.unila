@@ -50,6 +50,12 @@
                     <div class="menu__title"> Users </div>
                 </a>
             </li>
+            <li>
+                <a href="{{ route('admin.helpdesk') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="side-menu__title"> Helpdesk </div>
+                </a>
+            </li>
         @endif
     </ul>
 </div>

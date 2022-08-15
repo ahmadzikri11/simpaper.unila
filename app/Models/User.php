@@ -71,15 +71,16 @@ class User extends Authenticatable
     {
         return $this->hasMany(Transaction::class, 'user_id', 'id');
     }
-    public function getskbp()
-    {
-        return $this->hasMany(Skbp::class, 'user_id', 'id');
-    }
 
     public function getfakultas()
     {
         return $this->hasOne(Fakultas::class, 'id', 'fakultas_id');
     }
+    public function getskbp()
+    {
+        return $this->hasMany(Skbp::class, 'user_id', 'id');
+    }
+
     public function getprodi()
     {
         return $this->hasOne(Prodi::class, 'id', 'prodi_id');
@@ -88,5 +89,4 @@ class User extends Authenticatable
     {
         return $this->hasOne(Repository::class, 'user_id', 'id');
     }
-    
 }

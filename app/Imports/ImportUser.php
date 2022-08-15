@@ -16,9 +16,9 @@ class ImportUser implements ToModel
     {
         return new User([
             'name' => $row[1],
-            'email' => $row[2],
-            'npm' => $row[4],
-            'password' => bcrypt($row[9]),
+            'npm' => $row[2],
+            'email' => $row[3],
+            'password' => bcrypt($row[4]),
         ]);
     }
 }

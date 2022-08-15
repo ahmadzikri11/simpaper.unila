@@ -16,7 +16,7 @@
     <!-- Scripts -->
     <script src="{{ mix('js/app.js') }}" defer></script>
     <script src="https://cdn.tailwindcss.com/"></script>
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/apps.css') }}" rel="stylesheet" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
@@ -49,7 +49,7 @@
     <!-- END: Mobile Menu -->
     <!-- BEGIN: Top Bar -->
     <div class="top-bar-boxed border-b border-theme-2 -mt-7 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 md:pt-0 mb-12">
-        <div class="h-full flex items-center p-10">
+        <div class="h-full flex items-center ">
             <!-- BEGIN: Logo -->
             <a href="" class="-intro-x hidden md:flex">
                 <img alt="" class="w-24" src="{{ asset('Perpus.png') }}">

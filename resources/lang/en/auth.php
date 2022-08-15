@@ -13,8 +13,8 @@ return [
     |
     */
 
-    'failed' => 'Ada Yang Salah, Periksa Kembali Password dan Email Kamu.',
+    'failed' => 'Ada Yang Salah, Periksa Kembali Password dan Email / NPM Kamu.',
     'password' => 'Password Kamu Salah.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'throttle' => 'Terlalu Banyak Mencoba Login. coba lagi nanti.',
 
 ];

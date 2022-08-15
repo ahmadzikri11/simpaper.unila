@@ -176,72 +176,15 @@ class AdminController extends Controller
         // Transaction::update($post);
         return back()->with('message', 'Data berhasil ditambahkan');
     }
-    public function ValidationRepository(Request $request, Repository $repository, User $user, $id)
+
+    public function ResetPassword(Request $request, User $user, $id)
     {
-        $this->validate($request, [
-            'status' => 'required',
-            'message' => 'nullable',
-            'attachment' => 'nullable',
+        $user = User::find($id);
+        $user->update([
+            'password' => bcrypt('simpaper'),
         ]);
 
-
-        if ($request->has('attachment')) {
-
-            $path = public_path('tanda_terima');
-            $attachment = $request->file('attachment');
-            $name = time() . '.' . $attachment->getClientOriginalExtension();
-            if (!Transaction::exists($path)) {
-                Transaction::makeDirectory($path, $mode = 0777, true, true);
-            }
-            $attachment->move($path, $name);
-
-            $filename = $path . '/' . $name;
-        } else {
-            $filename = public_path('/Perpus.png');
-        }
-
-        $repository = Repository::find($id);
-        $message = $request['message'];
-
-        $repository->update([
-            'status' => $request['status'],
-        ]);
-        $date = date("D,d M Y");
-
-        $repository->validator = auth()->user()->name . ', ' . $date;
-
-        $repository->message = $request['message'];
-        $repository->save();
-        $phone = $repository->getuserrepo->phone;
-        $email = $repository->getuserrepo->email;
-
-        // $client = new Client();
-
-        // $url = "https://app.whatspie.com/api/messages";
-
-        // $request = $client->post(
-        //     $url,
-        //     [
-        //         'headers' => [
-        //             'Accept' => 'application/json',
-        //             'Content-Type' => 'application/x-www-form-urlencoded',
-        //             'Authorization' => 'Bearer ' . 'uTusgUQmz2vRHtmU4Q8FIcHKV79fhjTifmhxAfjzHZDptUVaOP'
-        //         ],
-        //         'form_params' => [
-        //             'receiver' => $phone,
-        //             'device' => '62816514372',
-        //             'message' => $message,
-        //             'type' => 'chat'
-        //         ]
-        //     ]
-        // );
-        $details = [
-            'title' => 'UPT Perpustakaan Unila',
-            'body' => $message,
-        ];
-
-        \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
-        return redirect()->route('view_repository')->with('message', ' Data telah Divalidasi!');
+        return redirect()->route('account.list')->with('edit', ' Password Telah Dirubah!');
     }
 
 
@@ -314,7 +257,6 @@ class AdminController extends Controller
         \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
         return redirect()->route('list.skbp')->with('message', ' Data telah Divalidasi!');
     }
-
 
 
     public function index()

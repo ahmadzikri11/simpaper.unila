@@ -5,6 +5,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\HelpdeskController;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\UserUpdate;
@@ -32,7 +33,7 @@ Route::get('/', function () {
 //     return view('dashboard');
 // })->name('dashboard');
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [UserController::class, 'dashboarduser'])->name('dashboard');
-
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', [UserController::class, 'grafikskbp'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     // user Views
@@ -62,12 +63,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/transaction/user_transaction/status', [TransactionController::class, 'status'])->name('transcation.status');
     Route::get('/transaction/status', [TransactionController::class, 'status'])->name('transcation/status');
-   
-    //route SKBP
-    Route::get('/transaction/SKBP', [UserController::class, 'view_skbp'])->name('view_skbp');
-    Route::post('/transaction/user_transaction/SKBP', [UserController::class, 'CreateUserSKBP'])->name('create_user_skbp');
-    Route::put('/transaction/user_transaction/Update/SKBP{id}', [UserController::class, 'UpdateUserSKBP'])->name('update.skbp');
-    
+     //route SKBP
+     Route::get('/transaction/SKBP', [UserController::class, 'view_skbp'])->name('view_skbp');
+     Route::post('/transaction/user_transaction/SKBP', [UserController::class, 'CreateUserSKBP'])->name('create_user_skbp');
+     Route::put('/transaction/user_transaction/Update/SKBP{id}', [UserController::class, 'UpdateUserSKBP'])->name('update.skbp');
+     
+
+         // route helpdesk
+    Route::get('/user/helpdesk', [HelpdeskController::class, 'View'])->name('user.helpdesk');
+    Route::post('/user/helpdesk/input', [HelpdeskController::class, 'CreateHelpdesk'])->name('inputhelpdesk');
 });
 
 Route::middleware(['role:admin', 'auth'])->group(function () {
@@ -77,6 +81,7 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     // list akun
     Route::get('/dashboard/list/account', [ViewsController::class, 'ListAccount'])->name('account.list');
     Route::put('dashboard/list/account/import', [AdminController::class, 'ImportUser'])->name('import');
+    Route::put('/dashboard/list/account/reset_password/{id}', [AdminController::class, 'ResetPassword'])->name('reset.password');
     // edit akun
     Route::get('/dashboard/list/account/editaccount{id}', [AdminController::class, 'EditAccountAdmin'])->name('edit.account');
     Route::put('/dashboard/list/account/editaccount{id}', [AdminController::class, 'UpdateAccount'])->name('update.account');
@@ -89,11 +94,10 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/validation/{id}', [ViewsController::class, 'ViewValidation'])->name('validation');
     Route::put('/dashboard/validation/accept{id}', [AdminController::class, 'ValidationTransaction'])->name('validation.accept');
     Route::post('dahsboard/validation/{id}', [AdminController::class, 'updatePeriode'])->name('periode_wisuda');
-    
-    //list transaction SKBP
-    Route::get('/dashboard/list/SKBP', [ViewsController::class, 'ListTransactionSKBP'])->name('list.skbp');
-    Route::get('/dashboard/list/SKBP/ValdasiSKBP/{id}', [ViewsController::class, 'ViewValidasiSKBP'])->name('validasi.skbp');
-    Route::put('/dashboard/list/SKBP/accept{id}', [AdminController::class, 'TransactionSKBP'])->name('accept.skbp');
+//list transaction SKBP
+Route::get('/dashboard/list/SKBP', [ViewsController::class, 'ListTransactionSKBP'])->name('list.skbp');
+Route::get('/dashboard/list/SKBP/ValdasiSKBP/{id}', [ViewsController::class, 'ViewValidasiSKBP'])->name('validasi.skbp');
+Route::put('/dashboard/list/SKBP/accept{id}', [AdminController::class, 'TransactionSKBP'])->name('accept.skbp');
 
     // list Repository
 
@@ -104,8 +108,16 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/storage/{path}', [TransactionController::class, 'showFile1'])->name('file1');
     Route::get('/storage/{path2}', [TransactionController::class, 'showFile2'])->name('file2');
     Route::get('/storage/{path3}', [TransactionController::class, 'showFile3'])->name('file3');
+     // route helpdesk
+     Route::get('/helpdesk/input', [HelpdeskController::class, 'HelpdeskRequest'])->name('request.helpdesk');
+     Route::get('/helpdesk', [HelpdeskController::class, 'TableUnila'])->name('admin.helpdesk');
+     Route::post('/helpdesk.aksi/{id}', [HelpdeskController::class, 'AksiInput'])->name('aksi.input');
+     Route::post('/helpdesk/update', [HelpdeskController::class, 'AksiInput'])->name('aksi.input');
+     Route::get('/dashboard/list/helpdesk', [HelpdeskController::class, 'ListHelpdesk'])->name('helpdesk.list');
+     Route::get('/dashboard_helpdesk', [HelpdeskController::class, 'GraphHelpdesk'])->name('graph.helpdesk');
 
-
+     //skbp
+     
     Route::post('/app/public', [TransactionController::class, 'downloadStorage'])->name('fileSkbp');
     Route::post('/app/public2', [TransactionController::class, 'downloadStorage2'])->name('fileSkbp2');
 });

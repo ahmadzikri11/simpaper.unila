@@ -7,13 +7,15 @@ use App\Models\Prodi;
 use App\Models\Transaction;
 use App\Models\Skbp;
 use App\Models\User;
+use App\Models\Helpdesk as ModelsHelpdesk;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use DataTables;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportUser;
 use App\Models\Repository;
-
+use Illuminate\Cache\Repository as CacheRepository;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 class UserController extends Controller
 {
@@ -184,14 +186,41 @@ class UserController extends Controller
         $transaction = Transaction::count();
         $transactionaccept = Transaction::where('status', 'Sudah Tervalidasi')->count();
         $transactionproses = Transaction::where('status', 'Diproses')->count();
-        
+
         $skbp = Skbp::count();
         $skbpproses = Skbp::where('status', 'proses')->count();
         $skbpaccept = Skbp::where('status', 'Tervalidasi')->count();
 
-        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses','skbp','skbpproses','skbpaccept'));
+        $prioritastotal = ModelsHelpdesk::count();
+        $proditotal = Prodi::where('prodi')->count();
+
+        //chart
+        $total_upload = Skbp::select(Skbp::raw('count(*) as total_upload'))
+            ->GroupBy(Skbp::raw("Month(created_at)"))
+            ->pluck('total_upload');
+
+        $bulan = Skbp::select(Skbp::raw('MONTHNAME(created_at) as month'))
+            ->GroupBy(Skbp::raw("MONTHNAME(created_at)"))
+            ->pluck('month');
+
+        // return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses', 'prioritastotal', 'proditotal'));
+        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses','skbp','skbpproses','skbpaccept', 'prioritastotal', 'proditotal', 'total_upload', 'bulan'));
+
     }
 
+    public function grafikskbp()
+    {
+        $total_upload = Skbp::select(Skbp::raw('count(*) as total_upload'))
+            ->GroupBy(Skbp::raw("Month(created_at)"))
+            ->pluck('total_upload');
+
+        $bulan = Skbp::select(Skbp::raw('MONTHNAME(created_at) as month'))
+            ->GroupBy(Skbp::raw("MONTHNAME(created_at)"))
+            ->pluck('month');
+    
+        return view('', compact('total_upload', 'bulan'));
+
+    }
     // public function editAccount($id)
     // {
     //     $user = User::find($id);
@@ -238,6 +267,7 @@ class UserController extends Controller
         $prodi = Prodi::where("fakultas_id", $request->kabID)->pluck('id', 'prodi');
         return response()->json($prodi);
     }
+
 
     public function importUser(Request $request)
     {
@@ -332,8 +362,9 @@ class UserController extends Controller
 
     public function AdminViewRepository()
     {
-        $user = Repository::all();
+        $user = CacheRepository::all();
         return view('transaction.validation-repository', compact('user'));
     }
+
 }
 // testing

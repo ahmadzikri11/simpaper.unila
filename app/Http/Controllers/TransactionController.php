@@ -42,8 +42,6 @@ class TransactionController extends Controller
     }
 
 
-
-
     public function showFile1($path)
     {
         $file = public_path('storage' . '/' . $path);

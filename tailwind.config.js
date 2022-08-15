@@ -68,6 +68,18 @@ module.exports = {
                 34: "#0E2561",
                 35: "#E63B1F",
             },
+
+            screens: {
+
+                'sm': '280px',
+                'md': '768px',
+                'lg': '1024px',
+
+
+                'xl': '1280px',
+
+                '2xl': '1536px',
+            }
         },
         extend: {
             fontFamily: {

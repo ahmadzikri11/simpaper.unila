@@ -1,7 +1,7 @@
 <x-app-layout>
     @section('navi')
         <div>UPT Perpustakaan</div> <i data-feather="chevron-right" class="breadcrumb__icon"></i>
-        <div class="breadcrumb--active">Lis Akun</div>
+        <div class="breadcrumb--active">List Akun</div>
     @endsection
     <!-- BEGIN: Weekly Top Products -->
     <div class="col-span-12 mt-6">
