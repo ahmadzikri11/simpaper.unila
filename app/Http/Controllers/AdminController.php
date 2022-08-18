@@ -138,29 +138,29 @@ class AdminController extends Controller
 
         $url = "https://app.whatspie.com/api/messages";
 
-        $request = $client->post(
-            $url,
-            [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
-                ],
-                'form_params' => [
-                    'receiver' => $phone,
-                    'device' => '6282119970406',
-                    'message' => $message,
-                    'type' => 'chat'
-                ]
-            ]
-        );
-        $details = [
-            'title' => 'UPT Perpustakaan Unila',
-            'body' => $message,
-        ];
+        // $request = $client->post(
+        //     $url,
+        //     [
+        //         'headers' => [
+        //             'Accept' => 'application/json',
+        //             'Content-Type' => 'application/x-www-form-urlencoded',
+        //             'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
+        //         ],
+        //         'form_params' => [
+        //             'receiver' => $phone,
+        //             'device' => '6282119970406',
+        //             'message' => $message,
+        //             'type' => 'chat'
+        //         ]
+        //     ]
+        // );
+        // $details = [
+        //     'title' => 'UPT Perpustakaan Unila',
+        //     'body' => $message,
+        // ];
 
-        \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
-        return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
+        // \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
+        return back()->with('message', ' Validasi telah Dirubah!');
     }
 
     public function updatePeriode(Request $request, $id)

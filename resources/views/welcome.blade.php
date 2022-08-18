@@ -39,59 +39,71 @@ License: You must have a valid license purchased only from themeforest(the above
             <!-- BEGIN: Login Info -->
             <div class="hidden xl:flex flex-col min-h-screen">
                 <a href="" class="-intro-x flex items-center pt-5">
-
-                    {{-- logo --}}
+                    {{-- <img alt="Icewall Tailwind HTML Admin Template" class="w-6" src="dist/images/logo.svg"> --}}
+                    {{-- <span class="text-white text-lg ml-3"> SIM<span class="font-medium">PAPER</span> </span> --}}
                 </a>
                 <div class="my-auto">
+                    {{-- <img alt="Icewall Tailwind HTML Admin Template" class="-intro-x w-1/2 -mt-16"
+                        src="dist/images/illustration.svg"> --}}
                     <img class="-intro-x w-1/2 -mt-16" src="{{ asset('Perpus.png') }}">
                     <div class="-intro-x text-white font-medium text-4xl leading-tight mt-10">
-                        UPT Perpustakaan
-                        <br>
-                        Universitas Lampung
+                        SIMPAPER
+
                     </div>
-                    <div class="-intro-x mt-5 text-lg text-white text-opacity-70 ">Manajemen File
-                        Skripsi UPT-Perpustakaan Universitas Lampung</div>
-                    <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
-                        <a href="{{ route('login') }}">
-                            <button
-                                class="btn btn-primary bg-[#1b27b3] text-white py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login</button>
-                        </a>
-                    </div>
+                    <div class="-intro-x mt-5 text-lg text-white text-opacity-70 dark:text-gray-200">
+                        Sistem Informasi Pelayanan Administrasi Perpustakaan</div>
                 </div>
             </div>
             <!-- END: Login Info -->
             <!-- BEGIN: Login Form -->
 
+            <div class="h-screen xl:h-auto flex py-5 xl:py-0 my-10 xl:my-0">
 
-
-            <div class="h-screen item-center flex py-5 xl:py-0 my-10 xl:my-0">
                 <div
-                    class="my-auto mx-auto xl:ml-20 bg-white  xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full      ">
-
-                    <div class="xl:hidden align-content-center item-center">
-                        <img class=" w-full " src="{{ asset('Perpus.png') }}">
-                    </div>
-
-
-                    <div class="intro-x mt-2 text-gray-500 xl:hidden text-center">UPT Perpustakaan Universitas
-                        Lampung
-                    </div>
-
-                    {{-- <img class="xl:hidden " src="{{ asset('library.png') }}"> --}}
-                    <div class="intro-x mt-5 text-center xl:hidden">
-                        <a href="{{ route('login') }}">
-                            <button
-                                class="btn btn-primary bg-[#1b27b3] text-white py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login</button>
-                        </a>
-                    </div>
+                    class="my-auto mx-auto xl:ml-20 bg-white dark:bg-dark-1 xl:bg-transparent px-5 sm:px-8 py-8 xl:p-0 rounded-md shadow-md xl:shadow-none w-full sm:w-3/4 lg:w-2/4 xl:w-auto">
+                    <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
+                        Sign In
+                    </h2>
+                    <form method="POST" action="{{ route('login') }}">
+                        @csrf
+                        <div class="intro-x mt-5 text-gray-900 xl:hidden text-center">SIMPAPER</div>
+                        <div class="intro-x mt-2 text-gray-700 xl:hidden text-center">Sistem Informasi Pelayanan
+                            Administrasi Perpustakaan</div>
+                        <div class="intro-x mt-8">
+                            <input type="text" id="login" name="login" :value="old('npm')" required
+                                autofocus class="intro-x login__input form-control py-3 px-4 border-gray-300 block"
+                                placeholder="Email atau NPM">
+                            <input type="password" id="password" type="password" name="password" required
+                                autocomplete="current-password"
+                                class="intro-x login__input form-control py-3 px-4 border-gray-300 block mt-4"
+                                placeholder="Password">
+                        </div>
+                        <div class="intro-x flex text-gray-700 dark:text-gray-600 text-xs sm:text-sm mt-4">
+                            <div class="flex items-center mr-auto">
+                                {{-- <input id="remember-me" type="checkbox" class="form-check-input border mr-2"> --}}
+                                {{-- <label class="cursor-pointer select-none" for="remember-me">Remember me</label> --}}
+                            </div>
+                            @if (Route::has('password.request'))
+                                <a href="{{ route('password.request') }}">Forgot Password?</a>
+                            @endif
+                        </div>
+                        <div class="intro-x mt-5 xl:mt-8 text-center xl:text-left">
+                            <button type="submit"
+                                class="bg-blue-900 text-white rounded-md py-3 px-4 w-full xl:w-32 xl:mr-3 align-top">Login</button>
+                        </div>
+                    </form>
 
                 </div>
             </div>
             <!-- END: Login Form -->
         </div>
-
     </div>
+    <!-- BEGIN: Dark Mode Switcher-->
 
+    <!-- END: Dark Mode Switcher-->
+    <!-- BEGIN: JS Assets-->
+    <script src="dist/js/app.js"></script>
+    <!-- END: JS Assets-->
 </body>
 
 </html>

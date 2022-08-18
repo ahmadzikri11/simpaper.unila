@@ -6,7 +6,31 @@
                 Validasi
             </h2>
 
-
+            @if (session()->has('message'))
+                <script>
+                    window.onload = function() {
+                        var button = document.getElementById('modalvalidasi');
+                        button.click();
+                    }
+                </script>
+                <div class="text-center hidden"> <a href="javascript:;" id="modalvalidasi" data-toggle="modal"
+                        data-target="#success-modal-preview" class="btn btn-primary">Show Modal</a> </div>
+                <div id="success-modal-preview" class="modal" aria-hidden="false" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-body p-0">
+                                <div class="p-5 text-center"> <i data-feather="check-circle"
+                                        class="w-16 h-16 text-theme-10 mx-auto mt-3"></i>
+                                    <div class="text-3xl mt-5">Berhasil</div>
+                                    <div class="text-gray-600 mt-2">{{ session()->get('message') }}</div>
+                                </div>
+                                <div class="px-5 pb-8 text-center"> <button data-dismiss="modal"
+                                        class="btn btn-primary w-24">Ok</button> </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
 
         </div>
         <h3 class="text-lg mt-5 font-medium mr-auto">
@@ -83,8 +107,10 @@
         </div>
 
         <div class="intro-y grid grid-cols-2 gap-3 mt-5">
-            <img class="rounded-lg shadow-lg ml-2" alt="" src="{{ asset('storage' . '/' . $transaction->ktm) }}">
-            <img class="rounded-lg mr-2 shadow-lg" alt="" src="{{ asset('storage' . '/' . $transaction->photo) }}">
+            <div class="w-full h-64 my-5 image-fit"> <img src="{{ asset('storage' . '/' . $transaction->ktm) }}"
+                    data-action="zoom" class="w-full rounded-md"> </div>
+            <div class="w-full h-64 my-5 image-fit"> <img src="{{ asset('storage' . '/' . $transaction->photo) }}"
+                    data-action="zoom" class="w-full rounded-md"> </div>
         </div>
 
         <div class="class intro-y mt-5 box p-5 flex">
@@ -92,117 +118,22 @@
             <a class="text-blue-700 ml-2" target="_blank"
                 href="{{ $transaction->link_repository }}">{{ $transaction->link_repository }}</a>
         </div>
+        <div class=" w-full mt-5 flex">
 
-        <div class="post intro-y overflow-hidden box mt-5">
-            <div class="post__content tab-content">
-                <div id="content" class="tab-pane p-5 active" role="tabpanel" aria-labelledby="content-tab">
-                    <div class="border border-gray-200 dark:border-dark-5 rounded-md p-5">
-                        <div class="font-medium flex items-center border-b border-gray-200 dark:border-dark-5 pb-5">
-                            <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Pesan
-                        </div>
-                        <form action="{{ route('validation.accept', ['id' => $transaction->id]) }}"
-                            enctype="multipart/form-data" method="POST">
-                            @csrf
-                            @method('PUT')
-                            <div class=" flex justify-center">
-                                <div class="mb-3 w-full ">
+            <a href="javascript:;" data-toggle="modal" data-target="#validasi"
+                class="btn btn-primary mx-2 justify-center items-center"><i data-feather="edit"
+                    class="w-4 h-4 mr-2"></i>Validasi Digilib</a>
+            <a href="javascript:;" data-toggle="modal" data-target="#validasi_akun"
+                class="btn btn-success mx-2 justify-center items-center"><i data-feather="user-check"
+                    class="w-4 h-4 mr-2"></i>Validasi Akun</a>
+            <a href="javascript:;" data-toggle="modal" data-target="#revisi"
+                class="btn btn-danger  mx-2 justify-center items-center"><i data-feather="x-circle"
+                    class="w-4 h-4 mr-2"></i>Revisi</a>
 
-                                    <textarea name="message" id="message"
-                                        class="
-                                          form-control block h-80 w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
-                                        id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $transaction->transactions->name }}, kami ingin menginformasikan bahwa permohonan tersebut telah kami poroses. Kami menyimpulkan bahwa data kamu ...........
-                                        </textarea>
-                                </div>
-                            </div>
-
-                            <div id="faq-accordion-1" class="accordion p-5">
-                                <div class="accordion-item">
-                                    <div id="faq-accordion-content-2" class="accordion-header">
-                                        <button class="accordion-button flex collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#faq-accordion-collapse-2"
-                                            aria-expanded="false" aria-controls="faq-accordion-collapse-2">
-                                            Upload File Revisi Atau Tanda Terima <svg xmlns="http://www.w3.org/2000/svg"
-                                                class="h-4 w-4 mt-1 ml-1 " fill="none" viewBox="0 0 24 24"
-                                                stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
-                                            </svg></button>
-                                    </div>
-                                    <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
-                                        aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
-                                        <div class="intro-y box">
-                                            <div
-                                                class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
-                                                <label for="formFileSm"
-                                                    class="form-label inline-block mb-2 text-gray-700"><img
-                                                        src="{{ asset('images/surat.png') }}" class="  w-60"
-                                                        alt="description of myimage"></label>
-                                                <div id="single-file-upload" class="p-5 ">
-                                                    <div class="fallback">
-                                                        <input name="attachment" type="file" />
-                                                    </div>
-                                                    <div class="dz-message" data-dz-message>
-                                                        <div class="text-lg font-medium"> Upload File Revisi atau Tanda
-                                                            Terima
-                                                        </div>
-                                                        <div class="text-gray-600">click and upload file
-                                                        </div>
-                                                    </div>
-                                                </div>
-
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-
-                            </div>
-
-
-                            <div class="intro-y box  mt-5">
-                                <div id="icon-button" class="">
-                                    <div class="preview">
-                                        <div class="flex ">
-                                            <div>
-                                                <input type="hidden" class="form-control" name="status" id="status"
-                                                    value="Sudah Tervalidasi">
-                                                <button class="btn btn-primary bg-green-600 text-white w-full  mb-2">
-                                                    <i data-feather="link-2" class=" mr-2"></i>
-                                                    Validasi Digilib
-                                                </button>
-                                            </div>
-                                            <div>
-
-                                                <button class="btn btn-primary bg-blue-500 text-white w-full ml-2 mb-2"
-                                                    name="status" value="Validasi Akun" type="submit">
-                                                    <i data-feather="user" class="mr-2"></i>
-                                                    Validasi Akun
-                                                </button>
-                                            </div>
-
-
-                                            <div class="ml-2">
-
-                                                <button
-                                                    class="btn btn-primary bg-yellow-500 text-white w-full ml-2 mb-2"
-                                                    name="status" value="Revisi" type="submit">
-                                                    <i data-feather="info" class="mr-2"></i>
-                                                    Revisi
-                                                </button>
-                                            </div>
-
-
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
+
+
     <!-- END: Post Content -->
     <!-- BEGIN: Post Info -->
     <div class="col-span-12 lg:col-span-4">
@@ -360,5 +291,232 @@
     </div>
     </div>
 
+
+    {{-- MODAl Validasi --}}
+    <div id="validasi" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content p-4">
+                <div class="modal-header">
+                    <h2 class="font-medium text-base mr-auto">Validasi</h2> <button
+                        class="btn btn-outline-secondary hidden sm:flex"> <i data-feather="alert-triangle"
+                            class="w-4 h-4 mr-2"></i> {{ $transaction->status }} </button>
+                    <div class="dropdown sm:hidden"> <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
+                            aria-expanded="false"> <i data-feather="more-horizontal"
+                                class="w-5 h-5 text-gray-600 dark:text-gray-600"></i> </a>
+                        <div class="dropdown-menu w-40">
+                            <div class="dropdown-menu__content box dark:bg-dark-1 p-2"> <a href="javascript:;"
+                                    class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                    <i data-feather="file" class="w-4 h-4 mr-2"></i> Download Docs </a> </div>
+                        </div>
+                    </div>
+                </div>
+                <form action="{{ route('validation.accept', ['id' => $transaction->id]) }}"
+                    enctype="multipart/form-data" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <textarea name="message" id="message"
+                        class="form-control block w-full px-10  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
+                        id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $transaction->transactions->name }},
+                                </textarea>
+
+                    <div class="p-5">
+                        <div id="faq-accordion-content-2" class="accordion-header">
+                        </div>
+                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
+                            aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
+                            <div class="intro-y box">
+                                <div
+                                    class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
+                                    <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700"><img
+                                            src="{{ asset('images/surat.png') }}" class="  w-60"
+                                            alt="description of myimage"></label>
+                                    <div id="single-file-upload" class="p-5 ">
+                                        <div class="fallback">
+                                            <input name="attachment" type="file" />
+                                        </div>
+                                        <div class="dz-message" data-dz-message>
+                                            <div class="text-lg font-medium"> Upload Tanda Terima
+                                            </div>
+                                            <div class="text-gray-600">click and upload file
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="intro-y box mt-5 ml-5">
+                        <div id="icon-button" class="">
+                            <div class="preview">
+                                <div class="flex ">
+                                    <div>
+                                        <input type="hidden" class="form-control" name="status" id="status"
+                                            value="Sudah Tervalidasi">
+                                        <button class="p-3  btn btn-primary w-full  mb-2">
+                                            <i data-feather="edit" class=" mr-2"></i>
+                                            Validasi Digilib
+                                        </button>
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    {{-- MODAl Validasi Akun --}}
+
+
+    <div id="validasi_akun" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content p-4">
+                <div class="modal-header">
+                    <h2 class="font-medium text-base mr-auto">Validasi Akun / Berikan Akun</h2> <button
+                        class="btn btn-outline-secondary hidden sm:flex"> <i data-feather="alert-triangle"
+                            class="w-4 h-4 mr-2"></i> {{ $transaction->status }} </button>
+                    <div class="dropdown sm:hidden"> <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
+                            aria-expanded="false"> <i data-feather="more-horizontal"
+                                class="w-5 h-5 text-gray-600 dark:text-gray-600"></i> </a>
+                        <div class="dropdown-menu w-40">
+                            <div class="dropdown-menu__content box dark:bg-dark-1 p-2"> <a href="javascript:;"
+                                    class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                    <i data-feather="file" class="w-4 h-4 mr-2"></i> Download Docs </a> </div>
+                        </div>
+                    </div>
+                </div>
+                <form action="{{ route('validation.accept', ['id' => $transaction->id]) }}"
+                    enctype="multipart/form-data" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <textarea name="message" id="message"
+                        class="form-control block h-52 w-full px-10  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
+                        id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Berikut adalah akun untuk masuk kedalam digilib.
+username :
+password :
+Terimakasih, Silahkan Mengisi kedalam digilib.unila.ac.id
+</textarea>
+
+
+
+
+                    <div class="intro-y box mt-5 ml-5">
+                        <div id="icon-button" class="">
+                            <div class="preview">
+                                <div class="flex ">
+                                    <div>
+                                        <input type="hidden" class="form-control" name="status" id="status"
+                                            value="Validasi Akun">
+                                        <button class="btn btn-success w-full mb-2">
+                                            <i data-feather="user" class=" mr-2"></i>
+                                            Validasi Akun
+                                        </button>
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    {{-- MODAl REvisi --}}
+    <div id="revisi" class="modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content p-4">
+                <div class="modal-header">
+                    <h2 class="font-medium text-base mr-auto">Revisi</h2> <button
+                        class="btn btn-outline-secondary hidden sm:flex"> <i data-feather="alert-triangle"
+                            class="w-4 h-4 mr-2"></i> {{ $transaction->status }} </button>
+                    <div class="dropdown sm:hidden"> <a class="dropdown-toggle w-5 h-5 block" href="javascript:;"
+                            aria-expanded="false"> <i data-feather="more-horizontal"
+                                class="w-5 h-5 text-gray-600 dark:text-gray-600"></i> </a>
+                        <div class="dropdown-menu w-40">
+                            <div class="dropdown-menu__content box dark:bg-dark-1 p-2"> <a href="javascript:;"
+                                    class="flex items-center p-2 transition duration-300 ease-in-out bg-white dark:bg-dark-1 hover:bg-gray-200 dark:hover:bg-dark-2 rounded-md">
+                                    <i data-feather="file" class="w-4 h-4 mr-2"></i> Download Docs </a> </div>
+                        </div>
+                    </div>
+                </div>
+                <form action="{{ route('validation.accept', ['id' => $transaction->id]) }}"
+                    enctype="multipart/form-data" method="POST">
+                    @csrf
+                    @method('PUT')
+                    <textarea name="message" id="message"
+                        class="form-control block w-full px-10  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
+                        id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $transaction->transactions->name }},
+                                </textarea>
+
+                    <div class="p-5">
+                        <div id="faq-accordion-content-2" class="accordion-header">
+                        </div>
+                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
+                            aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
+                            <div class="intro-y box">
+                                <div
+                                    class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
+                                    <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700"><img
+                                            src="{{ asset('images/surat.png') }}" class="  w-60"
+                                            alt="description of myimage"></label>
+                                    <div id="single-file-upload" class="p-5 ">
+                                        <div class="fallback">
+                                            <input name="attachment" type="file" />
+                                        </div>
+                                        <div class="dz-message" data-dz-message>
+                                            <div class="text-lg font-medium"> Upload Gambar Yang Perlu Direvisi
+                                            </div>
+                                            <div class="text-gray-600">click and upload file
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class="intro-y box mt-5 ml-5">
+                        <div id="icon-button" class="">
+                            <div class="preview">
+                                <div class="flex ">
+                                    <div>
+                                        <input type="hidden" class="form-control" name="status" id="status"
+                                            value="Revisi">
+                                        <button class="  btn btn-danger w-full  mb-2">
+                                            <i data-feather="x-circle" class=" mr-2"></i>
+                                            Revisi
+                                        </button>
+                                    </div>
+                                    <div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+
+
+    {{-- modal success --}}
 
 </x-app-layout>

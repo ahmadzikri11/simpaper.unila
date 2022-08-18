@@ -54,7 +54,8 @@
             </li>
             <li>
                 <a href="{{ route('request.list') }}"
-                    class="side-menu {{ request()->routeIs('request.list') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('request.list') ? 'side-menu--active' : '' }}">
+                    class="side-menu
+                    {{ request()->routeIs('request.list') || request()->routeIs('validation') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('validation') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                     <div class="side-menu__title"> Validasi </div>
                 </a>
@@ -62,7 +63,7 @@
 
             <li>
                 <a href="{{ route('account.list') }}"
-                    class="side-menu {{ request()->routeIs('account.list') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('account.list') ? 'side-menu--active' : '' }}">
+                    class="side-menu {{ request()->routeIs('account.list') || request()->routeIs('edit.account') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('account.list') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                     <div class="side-menu__title"> Users </div>
                 </a>
