@@ -15,8 +15,7 @@
 
         @if (auth()->user()->role == 'user')
             <li>
-                <a href="{{ route('profile') }}"
-                    class="side-menu {{ request()->routeIs('profile') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('profile') ? 'side-menu--active' : '' }}">
+                <a href="{{ route('profile') }}" class="side-menu">
                     <div class="side-menu__icon"> <i data-feather="user"> </i> </div>
                     <div class="side-menu__title"> Update Profile</div>
                 </a>
@@ -33,6 +32,12 @@
                     class="side-menu {{ request()->routeIs('get_repository') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('get_repository') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="external-link"></i></i> </div>
                     <div class="side-menu__title"> Upload Link Repositori</div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('user.helpdesk') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="edit"></i></i> </div>
+                    <div class="side-menu__title"> Helpdesk </div>
                 </a>
             </li>
 
@@ -66,6 +71,12 @@
                     class="side-menu {{ request()->routeIs('account.list') || request()->routeIs('edit.account') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('account.list') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="users"></i> </div>
                     <div class="side-menu__title"> Users </div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ route('admin.helpdesk') }}" class="side-menu">
+                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="side-menu__title"> Helpdesk </div>
                 </a>
             </li>
         @endif

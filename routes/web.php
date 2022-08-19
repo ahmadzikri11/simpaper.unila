@@ -5,6 +5,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\ViewsController;
+use App\Http\Controllers\HelpdeskController;
 use App\Models\Transaction;
 use App\Models\User;
 use App\Models\UserUpdate;
@@ -61,6 +62,10 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/transaction/user_transaction/status', [TransactionController::class, 'status'])->name('transcation.status');
     Route::get('/transaction/status', [TransactionController::class, 'status'])->name('transcation/status');
+
+    // route helpdesk
+    Route::get('/user/helpdesk', [HelpdeskController::class, 'View'])->name('user.helpdesk');
+    Route::post('/user/helpdesk/input', [HelpdeskController::class, 'CreateHelpdesk'])->name('inputhelpdesk');
 });
 
 Route::middleware(['role:admin', 'auth'])->group(function () {
@@ -93,4 +98,12 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/storage/{path}', [TransactionController::class, 'showFile1'])->name('file1');
     Route::get('/storage/{path2}', [TransactionController::class, 'showFile2'])->name('file2');
     Route::get('/storage/{path3}', [TransactionController::class, 'showFile3'])->name('file3');
+
+    // route helpdesk
+    Route::get('/helpdesk/input', [HelpdeskController::class, 'HelpdeskRequest'])->name('request.helpdesk');
+    Route::get('/helpdesk', [HelpdeskController::class, 'TableUnila'])->name('admin.helpdesk');
+    Route::post('/helpdesk.aksi/{id}', [HelpdeskController::class, 'AksiInput'])->name('aksi.input');
+    Route::post('/helpdesk/update', [HelpdeskController::class, 'AksiInput'])->name('aksi.input');
+    Route::get('/dashboard/list/helpdesk', [HelpdeskController::class, 'ListHelpdesk'])->name('helpdesk.list');
+    Route::get('/dashboard_helpdesk', [HelpdeskController::class, 'GraphHelpdesk'])->name('graph.helpdesk');
 });

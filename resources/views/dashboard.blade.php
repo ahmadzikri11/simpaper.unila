@@ -11,75 +11,115 @@
         </div>
 
         @if (auth()->user()->role == 'admin')
-            <div class="grid grid-cols-12 gap-6 mt-5 mb-10">
-                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                    <div class="report-box zoom-in">
-                        <div class="box p-5">
-                            <div class="flex">
-                                <i data-feather="users" class="report-box__icon text-theme-21"></i>
-                                <div class="ml-auto">
-                                    <div class="report-box__indicator bg-theme-26 tooltip cursor-pointer"
-                                        title="Total">
-                                        Total Account
-                                        <i data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i>
+            <section>
+                <div class="grid grid-cols-12 gap-6 mt-5 mb-10">
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                    <i data-feather="users" class="report-box__icon text-theme-21"></i>
+                                    <div class="ml-auto">
+                                        <div class="report-box__indicator bg-theme-26 tooltip cursor-pointer"
+                                            title="Total">
+                                            Total Account
+                                            <i data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i>
+                                        </div>
                                     </div>
                                 </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{ $user }}</div>
+                                <div class="text-base text-gray-600 mt-1">Total User</div>
                             </div>
-                            <div class="text-3xl font-medium leading-8 mt-6">{{ $user }}</div>
-                            <div class="text-base text-gray-600 mt-1">Total User</div>
                         </div>
                     </div>
-                </div>
-                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                    <div class="report-box zoom-in">
-                        <div class="box p-5">
-                            <div class="flex">
-                                <i data-feather="inbox" class="report-box__icon text-theme-22"></i>
-                                <div class="ml-auto">
-                                    <div class="report-box__indicator bg-theme-22 tooltip cursor-pointer"
-                                        title="Total Script"> Total Upload <i data-feather="chevron-right"
-                                            class="w-4 h-4 ml-0.5"></i> </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                    <i data-feather="inbox" class="report-box__icon text-theme-22"></i>
+                                    <div class="ml-auto">
+                                        <div class="report-box__indicator bg-theme-22 tooltip cursor-pointer"
+                                            title="Total Script"> Total Upload <i data-feather="chevron-right"
+                                                class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div>
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{ $transaction }}</div>
+                                <div class="text-base text-gray-600 mt-1">Total File Upload</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                    <i data-feather="edit" class="report-box__icon text-theme-23"></i>
+                                    <div class="ml-auto">
+                                        <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
+                                            title="Total Unprosses"> Total belum Diproses<i data-feather="chevron-right"
+                                                class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div>
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{ $transactionproses }}</div>
+                                <div class="text-base text-gray-600 mt-1">Total File Yang belum diproses</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                    <i data-feather="file-text" class="report-box__icon text-theme-10"></i>
+                                    <div class="ml-auto">
+                                        <div class="report-box__indicator bg-theme-10 tooltip cursor-pointer"
+                                            title="Total been Processed"> Total Selesai Diproses<i
+                                                data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div>
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{ $transactionaccept }}</div>
+                                <div class="text-base text-gray-600 mt-1">Total Selesai Diproses
+                                    {{ $transactionproses }}
                                 </div>
                             </div>
-                            <div class="text-3xl font-medium leading-8 mt-6">{{ $transaction }}</div>
-                            <div class="text-base text-gray-600 mt-1">Total File Upload</div>
                         </div>
                     </div>
                 </div>
-                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+            </section>
+
+            <section>
+                <a href="{{ route('graph.helpdesk') }}" class="dashboard">
+                    <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                    <i data-feather="edit" class="report-box__icon text-theme-23"></i>
+                                    <div class="ml-auto">
+                                        <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
+                                            title="Total Unprosses"> Prioritas<i data-feather="chevron-right"
+                                                class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div>
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{ $prioritastotal }}</div>
+                                <div class="text-base text-gray-600 mt-1">Total Data</div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+                {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                     <div class="report-box zoom-in">
                         <div class="box p-5">
                             <div class="flex">
                                 <i data-feather="edit" class="report-box__icon text-theme-23"></i>
                                 <div class="ml-auto">
                                     <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
-                                        title="Total Unprosses"> Total belum Diproses<i data-feather="chevron-right"
+                                        title="Total Unprosses"> Prioritas<i data-feather="chevron-right"
                                             class="w-4 h-4 ml-0.5"></i> </div>
                                 </div>
                             </div>
-                            <div class="text-3xl font-medium leading-8 mt-6">{{ $transactionproses }}</div>
+                            <div class="text-3xl font-medium leading-8 mt-6">{{ $proditotal }}</div>
                             <div class="text-base text-gray-600 mt-1">Total File Yang belum diproses</div>
                         </div>
                     </div>
-                </div>
-                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                    <div class="report-box zoom-in">
-                        <div class="box p-5">
-                            <div class="flex">
-                                <i data-feather="file-text" class="report-box__icon text-theme-10"></i>
-                                <div class="ml-auto">
-                                    <div class="report-box__indicator bg-theme-10 tooltip cursor-pointer"
-                                        title="Total been Processed"> Total Selesai Diproses<i
-                                            data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i> </div>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-medium leading-8 mt-6">{{ $transactionaccept }}</div>
-                            <div class="text-base text-gray-600 mt-1">Total Selesai Diproses {{ $transactionproses }}
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                </div> --}}
+            </section>
         @endif
 
 
