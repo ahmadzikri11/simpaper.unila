@@ -15,7 +15,8 @@
 
         @if (auth()->user()->role == 'user')
             <li>
-                <a href="{{ route('profile') }}" class="side-menu">
+                <a href="{{ route('profile') }}"
+                    class="side-menu {{ request()->routeIs('profile') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('profile') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="user"> </i> </div>
                     <div class="side-menu__title"> Update Profile</div>
                 </a>
