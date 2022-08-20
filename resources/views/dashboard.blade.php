@@ -79,92 +79,92 @@
                         </div>
                     </div>
                 </div>
-            </div>
 
-
-
-
-
-
-            {{-- zikri --}}
-            <div class="col-span-12 mt-8">
-                <div class="intro-y flex items-center h-10">
-                    <h2 class="text-lg font-medium truncate mr-5">
-                        Dashboard SKBP & Helpdesk
-                    </h2>
-                </div>
-            </div>
-
-            {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                <div class="flex"></div>
-            </div> --}}
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                <div class="report-box zoom-in">
-                    <div class="box p-5">
-                        <div class="flex">
-                            <i data-feather="edit" class="report-box__icon text-theme-23"></i>
-                            <div class="ml-auto">
-                                <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
-                                    title="Total Unprosses">Total Data<i data-feather="chevron-right"
-                                        class="w-4 h-4 ml-0.5"></i> </div>
-                            </div>
-                        </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">{{ $prioritastotal }}</div>
-                        <div class="text-base text-gray-600 mt-1">Total Data Helpdesk</div>
+                <div class="col-span-12 mt-8">
+                    <div class="intro-y flex items-center h-10">
+                        <h2 class="text-lg font-medium truncate mr-5">
+                            Dashboard SKBP & Helpdesk
+                        </h2>
                     </div>
                 </div>
-            </div>
-            </a>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                <div class="report-box zoom-in">
-                    <div class="box p-5">
-                        <div class="flex">
-                            <i data-feather="inbox" class="report-box__icon text-theme-22"></i>
-                            <div class="ml-auto">
-                                <div class="report-box__indicator bg-theme-22 tooltip cursor-pointer"
-                                    title="Total Script"> Total Upload <i data-feather="chevron-right"
-                                        class="w-4 h-4 ml-0.5"></i> </div>
+
+                {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                    <div class="flex"></div>
+                </div> --}}
+
+                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                    <a href="{{ route('graph.helpdesk') }}" class="dashboard">
+                        <div class="report-box zoom-in">
+                            <div class="box p-5">
+                                <div class="flex">
+                                    <i data-feather="edit" class="report-box__icon text-theme-23"></i>
+                                    <div class="ml-auto">
+                                        <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
+                                            title="Total Unprosses">Total Data<i data-feather="chevron-right"
+                                                class="w-4 h-4 ml-0.5"></i> </div>
+                                    </div>
+                                </div>
+                                <div class="text-3xl font-medium leading-8 mt-6">{{ $prioritastotal }}</div>
+                                <div class="text-base text-gray-600 mt-1">Total Data</div>
                             </div>
                         </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">{{ $skbp }}</div>
-                        <div class="text-base text-gray-600 mt-1">Total File Upload SKBP</div>
-                    </div>
+                    </a>
                 </div>
-            </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                <div class="report-box zoom-in">
-                    <div class="box p-5">
-                        <div class="flex">
-                            <i data-feather="edit" class="report-box__icon text-theme-23"></i>
-                            <div class="ml-auto">
-                                <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
-                                    title="Total Unprosses"> Total belum Diproses<i data-feather="chevron-right"
-                                        class="w-4 h-4 ml-0.5"></i> </div>
+
+
+                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                    <div class="report-box zoom-in">
+                        <div class="box p-5">
+                            <div class="flex">
+                                <i data-feather="inbox" class="report-box__icon text-theme-22"></i>
+                                <div class="ml-auto">
+                                    <div class="report-box__indicator bg-theme-22 tooltip cursor-pointer"
+                                        title="Total Script"> Total Upload <i data-feather="chevron-right"
+                                            class="w-4 h-4 ml-0.5"></i> </div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">{{ $skbpproses }}</div>
-                        <div class="text-base text-gray-600 mt-1">Total File Yang belum diproses</div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                <div class="report-box zoom-in">
-                    <div class="box p-5">
-                        <div class="flex">
-                            <i data-feather="file-text" class="report-box__icon text-theme-10"></i>
-                            <div class="ml-auto">
-                                <div class="report-box__indicator bg-theme-10 tooltip cursor-pointer"
-                                    title="Total been Processed"> Total Selesai Diproses<i
-                                        data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i> </div>
-                            </div>
-                        </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">{{ $skbpaccept }}</div>
-                        <div class="text-base text-gray-600 mt-1">Total Selesai Diproses
+                            <div class="text-3xl font-medium leading-8 mt-6">{{ $skbp }}</div>
+                            <div class="text-base text-gray-600 mt-1">Total File Upload SKBP</div>
                         </div>
                     </div>
                 </div>
-            </div>
+                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                    <div class="report-box zoom-in">
+                        <div class="box p-5">
+                            <div class="flex">
+                                <i data-feather="edit" class="report-box__icon text-theme-23"></i>
+                                <div class="ml-auto">
+                                    <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
+                                        title="Total Unprosses"> Total belum Diproses<i data-feather="chevron-right"
+                                            class="w-4 h-4 ml-0.5"></i> </div>
+                                </div>
+                            </div>
+                            <div class="text-3xl font-medium leading-8 mt-6">{{ $skbpproses }}</div>
+                            <div class="text-base text-gray-600 mt-1">Total File Yang belum diproses</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                    <div class="report-box zoom-in">
+                        <div class="box p-5">
+                            <div class="flex">
+                                <i data-feather="file-text" class="report-box__icon text-theme-10"></i>
+                                <div class="ml-auto">
+                                    <div class="report-box__indicator bg-theme-10 tooltip cursor-pointer"
+                                        title="Total been Processed"> Total Selesai Diproses<i
+                                            data-feather="chevron-right" class="w-4 h-4 ml-0.5"></i> </div>
+                                </div>
+                            </div>
+                            <div class="text-3xl font-medium leading-8 mt-6">{{ $skbpaccept }}</div>
+                            <div class="text-base text-gray-600 mt-1">Total Selesai Diproses
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
+
+
+            </div>
 
             <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
                 <div class="col-md-12">
@@ -178,6 +178,12 @@
                     </div>
                 </div>
             </div>
+
+
+
+
+            {{-- zikri --}}
+
             {{-- <script src="https://code.highcharts.com/highcharts.js"></script> --}}
             <script src="https://cdn.jsdelivr.net/npm/chart.js@3.9.1/dist/chart.min.js"></script>
             <script type="text/javascript">
@@ -242,44 +248,6 @@
     </div>
 
     {{-- adit --}}
-
-
-    <section>
-        <a href="{{ route('graph.helpdesk') }}" class="dashboard">
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                <div class="report-box zoom-in">
-                    <div class="box p-5">
-                        <div class="flex">
-                            <i data-feather="edit" class="report-box__icon text-theme-23"></i>
-                            <div class="ml-auto">
-                                <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
-                                    title="Total Unprosses">Total Data<i data-feather="chevron-right"
-                                        class="w-4 h-4 ml-0.5"></i> </div>
-                            </div>
-                        </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">{{ $prioritastotal }}</div>
-                        <div class="text-base text-gray-600 mt-1">Total Data</div>
-                    </div>
-                </div>
-            </div>
-        </a>
-        {{-- <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                <div class="report-box zoom-in">
-                    <div class="box p-5">
-                        <div class="flex">
-                            <i data-feather="edit" class="report-box__icon text-theme-23"></i>
-                            <div class="ml-auto">
-                                <div class="report-box__indicator bg-theme-23 tooltip cursor-pointer"
-                                    title="Total Unprosses"> Prioritas<i data-feather="chevron-right"
-                                        class="w-4 h-4 ml-0.5"></i> </div>
-                            </div>
-                        </div>
-                        <div class="text-3xl font-medium leading-8 mt-6">{{ $proditotal }}</div>
-                        <div class="text-base text-gray-600 mt-1">Total File Yang belum diproses</div>
-                    </div>
-                </div>
-            </div> --}}
-    </section>
     @endif
 
 
