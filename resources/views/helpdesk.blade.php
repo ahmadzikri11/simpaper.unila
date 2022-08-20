@@ -47,9 +47,12 @@
 
                     {{-- @endforeach --}}
                 </tr>
+                <?php $a = 1;
+                $b = $a++; ?>
                 @foreach ($helpdesk as $hd)
+                    {{-- $hd->id --}}
                     <tr>
-                        <td>{{ $hd->id }}</td>
+                        <td>{{ $b }}</td>
                         <td>{{ $hd->layanan }}</td>
                         <td>{{ $hd->keterangan }}</td>
                         <td>{{ $hd->prioritas }}</td>

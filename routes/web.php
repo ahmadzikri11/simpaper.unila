@@ -108,4 +108,6 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::post('/helpdesk/update', [HelpdeskController::class, 'AksiInput'])->name('aksi.input');
     Route::get('/dashboard/list/helpdesk', [HelpdeskController::class, 'ListHelpdesk'])->name('helpdesk.list');
     Route::get('/dashboard_helpdesk', [HelpdeskController::class, 'GraphHelpdesk'])->name('graph.helpdesk');
+    // Route::get('/laravel_google_chart', 'LaravelGoogleGraph@index');
+    // Route::get('chart', [ChartJSController::class, 'tesgraph']);
 });
