@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Fakultas;
 use App\Models\Prodi;
 use App\Models\Transaction;
+use App\Models\Skbp;
 use App\Models\User;
 use App\Models\Helpdesk as ModelsHelpdesk;
 use Illuminate\Http\Request;
@@ -13,7 +14,8 @@ use DataTables;
 use Maatwebsite\Excel\Facades\Excel;
 use App\Imports\ImportUser;
 use App\Models\Repository;
-
+use Illuminate\Cache\Repository as CacheRepository;
+use PHPUnit\TextUI\XmlConfiguration\Group;
 
 class UserController extends Controller
 {
@@ -186,9 +188,38 @@ class UserController extends Controller
         $transactionproses = Transaction::where('status', 'Diproses')->count();
         $prioritastotal = ModelsHelpdesk::count();
         $proditotal = Prodi::where('prodi')->count();
-        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses', 'prioritastotal', 'proditotal'));
+        $skbp = Skbp::count();
+        $skbpproses = Skbp::where('status', 'proses')->count();
+        $skbpaccept = Skbp::where('status', 'Tervalidasi')->count();
+
+        $prioritastotal = ModelsHelpdesk::count();
+        $proditotal = Prodi::where('prodi')->count();
+
+        //chart
+        $total_upload = Skbp::select(Skbp::raw('count(*) as total_upload'))
+            ->GroupBy(Skbp::raw("Month(created_at)"))
+            ->pluck('total_upload');
+
+        $bulan = Skbp::select(Skbp::raw('MONTHNAME(created_at) as month'))
+            ->GroupBy(Skbp::raw("MONTHNAME(created_at)"))
+            ->pluck('month');
+
+
+        return view('dashboard', compact('user', 'transaction', 'transactionaccept', 'transactionproses', 'prioritastotal', 'proditotal', 'skbp', 'skbpproses', 'skbpaccept', 'prioritastotal', 'proditotal', 'total_upload', 'bulan'));
     }
 
+    public function grafikskbp()
+    {
+        $total_upload = Skbp::select(Skbp::raw('count(*) as total_upload'))
+            ->GroupBy(Skbp::raw("Month(created_at)"))
+            ->pluck('total_upload');
+
+        $bulan = Skbp::select(Skbp::raw('MONTHNAME(created_at) as month'))
+            ->GroupBy(Skbp::raw("MONTHNAME(created_at)"))
+            ->pluck('month');
+
+        return view('', compact('total_upload', 'bulan'));
+    }
     // public function editAccount($id)
     // {
     //     $user = User::find($id);
@@ -234,6 +265,97 @@ class UserController extends Controller
     {
         $prodi = Prodi::where("fakultas_id", $request->kabID)->pluck('id', 'prodi');
         return response()->json($prodi);
+    }
+
+    public function importUser(Request $request)
+    {
+        $this->validate($request, [
+            'file_user' => 'required',
+        ]);
+        $path = public_path('storage/user');
+        $fileuser = $request->file('file_user');
+        $name = $fileuser->getClientOriginalName() . '.' . $fileuser->getClientOriginalExtension();
+        $fileuser->move($path, $name);
+        $filename = $path . '/' . $name;
+
+        Excel::import(new ImportUser, $filename);
+        return redirect()->back()->with('success', ' User telah ditambahkan!');
+    }
+
+
+    public function view_skbp()
+    {
+
+        $user = Auth::user();
+        $a = $user->id;
+        $ceck = Skbp::where('user_id', $a)->exists();
+        if ($ceck) {
+            return view('transaction.edit_skbp', compact('user'));
+        } else {
+            return view('transaction.upload_skbp', compact('user'));
+        }
+    }
+
+    public function CreateUserSKBP(Request $request)
+    {
+        $attr = $request->validate([
+            'ktm' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'spp' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+
+        ]);
+
+        $attr['user_id'] = auth()->user()->id;
+        $attr['ktm'] = $request->file('ktm')->store('ktmm', 'public');
+        $attr['spp'] = $request->file('spp')->store('spp', 'public');
+        Skbp::create($attr);
+
+
+        return redirect()->route('view_skbp')->with('message', ' Data telah Telah Terkirim!');
+    }
+
+    public function UpdateUserSKBP(Request $request, $id)
+    {
+
+        // $user=Auth::user()->id;
+        $post = Skbp::find($id);
+        $attr = $request->validate([
+            'ktm' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'spp' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+        ]);
+
+        $path = storage_path() . '/app/public/';
+
+        if ($post->ktm != ''  && $post->ktm != null) {
+            $file_old = $path . $post->ktm;
+            unlink($file_old);
+        }
+        if ($post->spp != ''  && $post->spp != null) {
+            $file_old = $path . $post->spp;
+            unlink($file_old);
+        }
+
+        $attr['ktm'] = $request->file('ktm')->store(
+            'ktmm',
+            'public'
+        );
+        $attr['spp'] = $request->file('spp')->store(
+            'spp',
+            'public'
+        );
+
+        $post->update($attr);
+        $post->save();
+
+
+
+
+
+        // $attr['user_id'] = auth()->user()->id;
+        // $attr['ktm'] = $request->file('ktm')->store('ktmm','public');
+        // $attr['spp'] = $request->file('spp')->store('spp','public');
+        // Skbp::create($attr);
+
+        return redirect()->route('view_skbp')->with('message', ' Data telah Telah Terkirim!');
     }
 }
 // testing

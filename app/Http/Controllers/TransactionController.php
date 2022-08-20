@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use Illuminate\Support\Facades\Storage;
 
 
 class TransactionController extends Controller
@@ -66,5 +68,38 @@ class TransactionController extends Controller
             'Content-Disposition' => 'inline; filename="' . $path3 . '"'
         ];
         return response()->file($file, $header);
+    }
+
+    // public function downloadStorage (Request $pathSkbp)
+    // {
+    //     if (Storage::(disk('public')->exists("app/public/ktmm/"))) {
+    //       $path = Storage::disk('public')->path("app/public/ktmm/");
+    //       $content = file_get_contents($path);
+    //       return response($content)->withHeaders([
+    //         'content-Type' => mime_content_type($path)
+    //       ]);
+    //     }
+    //     return redirect('/404');
+    //     }
+
+    public function downloadStorage(Request $req){
+        // return Storage::download($req->pathfile);
+        $filename = 'app/public/'.$req->pathfile;
+        $path = storage_path($filename);
+        // dd($path);
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename.'"'
+        ]);
+    }
+
+    public function downloadStorage2(Request $req2){
+        // return Storage::download($req->pathfile);
+        $filename2 = 'app/public/'.$req2->pathfile2;
+        $path = storage_path($filename2);
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename2.'"'
+        ]);
     }
 }

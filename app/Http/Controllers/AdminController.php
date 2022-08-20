@@ -5,13 +5,7 @@ namespace App\Http\Controllers;
 use App\Imports\ImportUser;
 use App\Models\Fakultas;
 use App\Models\Transaction;
-use App\Models\Repository;
 use App\Models\User;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
-use PDF;
-use Illuminate\Support\Str;
-use SimpleSoftwareIO\QrCode\Generator;
-// use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use DateTime;
 use GuzzleHttp\Client;
@@ -21,6 +15,12 @@ use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use PDF;
+use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Generator;
+// use Barryvdh\DomPDF\PDF;
+use App\Models\Skbp;
 use PhpOffice\PhpSpreadsheet\Calculation\TextData\Format;
 
 class AdminController extends Controller
@@ -155,9 +155,9 @@ class AdminController extends Controller
         $phone = $transaction->transactions->phone;
         $email = $transaction->transactions->email;
 
-        $client = new Client();
+        // $client = new Client();
 
-        $url = "https://app.whatspie.com/api/messages";
+        // $url = "https://app.whatspie.com/api/messages";
 
         // $request = $client->post(
         //     $url,
@@ -181,7 +181,7 @@ class AdminController extends Controller
         ];
 
         \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
-        return back()->with('message', ' Validasi telah Dirubah!');
+        return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
     }
 
     public function updatePeriode(Request $request, $id)
@@ -196,7 +196,6 @@ class AdminController extends Controller
         // Transaction::update($post);
         return back()->with('message', 'Data berhasil ditambahkan');
     }
-
     public function ResetPassword(Request $request, User $user, $id)
     {
         $user = User::find($id);
@@ -206,6 +205,77 @@ class AdminController extends Controller
 
         return redirect()->route('account.list')->with('edit', ' Password Telah Dirubah!');
     }
+
+
+    public function TransactionSKBP(Request $request, Skbp $skbp, User $user, $id)
+    {
+
+        $this->validate($request, [
+            'status' => 'required',
+            'message' => 'required',
+            'attachment' => 'nullable',
+        ]);
+
+
+        if ($request->has('attachment')) {
+
+            $path = public_path('tanda_terima');
+            $attachment = $request->file('attachment');
+            $name = time() . '.' . $attachment->getClientOriginalExtension();
+            if (!Skbp::exists($path)) {
+                Skbp::makeDirectory($path, $mode = 0777, true, true);
+            }
+            $attachment->move($path, $name);
+
+            $filename = $path . '/' . $name;
+        } else {
+            $filename = public_path('Dokumentasi Sistem Perpus.pdf');
+        }
+        $skbp = Skbp::find($id);
+        $message = $request['message'];
+
+        $skbp->update([
+            'status' => $request['status'],
+        ]);
+        // dd($skbp);
+        // $date = date("d M Y");
+        // $skbp->validator = auth()->user()->name . ', ' . $date;
+        // $skbp->message = $request['message'];
+        $skbp->save();
+        $phone = $skbp->getskbp->phone;
+        $email = $skbp->getskbp->email;
+
+
+        $client = new Client();
+
+        $url = "https://app.whatspie.com/api/messages";
+
+        $request = $client->post(
+            $url,
+            [
+                'headers' => [
+                    'Accept' => 'application/json',
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                    'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
+                ],
+                'form_params' => [
+                    'receiver' => $phone,
+                    'device' => '6281276972110',
+                    'message' => $message,
+                    'type' => 'chat'
+                ]
+            ]
+        );
+
+        $details = [
+            'title' => 'UPT Perpustakaan Unila',
+            'body' => $message,
+        ];
+
+        \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
+        return redirect()->route('list.skbp')->with('message', ' Data telah Divalidasi!');
+    }
+
 
 
 
