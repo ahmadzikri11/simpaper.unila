@@ -250,22 +250,22 @@ class AdminController extends Controller
 
         $url = "https://app.whatspie.com/api/messages";
 
-        $request = $client->post(
-            $url,
-            [
-                'headers' => [
-                    'Accept' => 'application/json',
-                    'Content-Type' => 'application/x-www-form-urlencoded',
-                    'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
-                ],
-                'form_params' => [
-                    'receiver' => $phone,
-                    'device' => '6281276972110',
-                    'message' => $message,
-                    'type' => 'chat'
-                ]
-            ]
-        );
+        // $request = $client->post(
+        //     $url,
+        //     [
+        //         'headers' => [
+        //             'Accept' => 'application/json',
+        //             'Content-Type' => 'application/x-www-form-urlencoded',
+        //             'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
+        //         ],
+        //         'form_params' => [
+        //             'receiver' => $phone,
+        //             'device' => '6281276972110',
+        //             'message' => $message,
+        //             'type' => 'chat'
+        //         ]
+        //     ]
+        // );
 
         $details = [
             'title' => 'UPT Perpustakaan Unila',
