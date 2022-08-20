@@ -11,11 +11,13 @@
                     window.onload = function() {
                         var button = document.getElementById('modalvalidasi');
                         button.click();
+
+                        $(".modalvalidasi").hide();
                     }
                 </script>
                 <div class="text-center hidden"> <a href="javascript:;" id="modalvalidasi" data-toggle="modal"
                         data-target="#success-modal-preview" class="btn btn-primary">Show Modal</a> </div>
-                <div id="success-modal-preview" class="modal" aria-hidden="false" tabindex="-1">
+                <div id="success-modal-preview" class="modal" aria-hidden="true" tabindex="-1">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="modal-body p-0">

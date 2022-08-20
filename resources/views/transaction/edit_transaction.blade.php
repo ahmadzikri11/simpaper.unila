@@ -16,12 +16,33 @@
 
 
 
+
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <div class="w-ful">
                         @if (session()->has('message'))
-                            <div class="alert bg-green-500 text-white show flex items-center mb-2" role="alert">
-                                <i data-feather="file-plus" class="w-6 h-6 mr-2 "></i>
-                                {{ session()->get('message') }}
+                            <script>
+                                window.onload = function() {
+                                    var button = document.getElementById('modalvalidasi');
+                                    button.click();
+                                }
+                            </script>
+                            <div class="text-center hidden"> <a href="javascript:;" id="modalvalidasi"
+                                    data-toggle="modal" data-target="#success-modal-preview"
+                                    class="btn btn-primary">Show Modal</a> </div>
+                            <div id="success-modal-preview" class="modal" aria-hidden="true" tabindex="-1">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-body p-0">
+                                            <div class="p-5 text-center"> <i data-feather="check-circle"
+                                                    class="w-16 h-16 text-theme-10 mx-auto mt-3"></i>
+                                                <div class="text-3xl mt-5">Berhasil</div>
+                                                <div class="text-gray-600 mt-2">{{ session()->get('message') }}</div>
+                                            </div>
+                                            <div class="px-5 pb-8 text-center"> <button data-dismiss="modal"
+                                                    class="btn btn-primary w-24">Ok</button> </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         @endif
                     </div>
@@ -278,12 +299,21 @@
 
                             </div>
 
-                            <div class="intro-y grid sm:grid-cols-2 gap-3 mt-5">
+                            <div class="intro-y grid grid-cols-2 gap-3 mt-5">
+                                <div class="w-full h-64 my-5 image-fit"> <img
+                                        src="{{ asset('storage' . '/' . $user->users[0]->ktm) }}" data-action="zoom"
+                                        class="w-full rounded-md"> </div>
+                                <div class="w-full h-64 my-5 image-fit"> <img
+                                        src="{{ asset('storage' . '/' . $user->users[0]->photo) }}"
+                                        data-action="zoom" class="w-full rounded-md"> </div>
+                            </div>
+
+                            {{-- <div class="intro-y grid sm:grid-cols-2 gap-3 mt-5">
                                 <img class="rounded-lg shadow-lg ml-2" alt=""
                                     src="{{ asset('storage' . '/' . $user->users[0]->ktm) }}">
                                 <img class="rounded-lg mr-2 shadow-lg" alt=""
                                     src="{{ asset('storage' . '/' . $user->users[0]->photo) }}">
-                            </div>
+                            </div> --}}
                         </div>
 
                         <a href="javascript:;" data-toggle="modal" data-target="#header-footer-modal-preview">

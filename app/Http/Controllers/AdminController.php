@@ -7,11 +7,18 @@ use App\Models\Fakultas;
 use App\Models\Transaction;
 use App\Models\Repository;
 use App\Models\User;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
+use PDF;
+use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Generator;
+// use Barryvdh\DomPDF\PDF;
 use Carbon\Carbon;
 use DateTime;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Storage;
 use Maatwebsite\Excel\Excel as ExcelExcel;
 use Maatwebsite\Excel\Facades\Excel;
 use PhpOffice\PhpSpreadsheet\Calculation\TextData\Format;
@@ -97,6 +104,20 @@ class AdminController extends Controller
 
     public function ValidationTransaction(Request $request, Transaction $transaction, User $user, $id)
     {
+        // $qrcode = new Generator;
+        // $qr = $qrcode->size(500)->generate('Make me into a QrCode!');
+        $transaction = Transaction::find($id);
+        $data = [
+            'name' => $transaction->transactions->name,
+            'npm' => $transaction->transactions->npm,
+            'prodi' => $transaction->transactions->getprodi->prodi,
+            'fakultas' => $transaction->transactions->getfakultas->fakultas,
+            'date' => date('m/d/Y'),
+            'qr' => base64_encode(QrCode::format('svg')->size(50)->errorCorrection('H')->generate('https://www.youtube.com/watch?v=FPVh8ToKGGg')),
+
+        ];
+        $pdf = PDF::loadView('pdf', $data);
+        Storage::put('public/tanda_terima.pdf', $pdf->output());
 
         $this->validate($request, [
             'status' => 'required',
@@ -117,9 +138,9 @@ class AdminController extends Controller
 
             $filename = $path . '/' . $name;
         } else {
-            $filename = public_path('Dokumentasi Sistem Perpus.pdf');
+            $filename = public_path('storage/tanda_terima.pdf');
         }
-        $transaction = Transaction::find($id);
+
         $message = $request['message'];
 
         $transaction->update([
@@ -154,12 +175,12 @@ class AdminController extends Controller
         //         ]
         //     ]
         // );
-        // $details = [
-        //     'title' => 'UPT Perpustakaan Unila',
-        //     'body' => $message,
-        // ];
+        $details = [
+            'title' => 'UPT Perpustakaan Unila',
+            'body' => $message,
+        ];
 
-        // \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
+        \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
         return back()->with('message', ' Validasi telah Dirubah!');
     }
 
@@ -192,7 +213,9 @@ class AdminController extends Controller
 
     public function index()
     {
-        //
+        $qrcode = new Generator;
+        $qr = $qrcode->size(500)->generate('Make me into a QrCode!');
+        return view('test', compact('qr'));
     }
 
     /**
