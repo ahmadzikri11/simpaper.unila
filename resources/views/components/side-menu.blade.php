@@ -22,15 +22,15 @@
                 </a>
             </li>
             <a href="{{ route('view_skbp') }}" class="side-menu">
-                <div class="side-menu__icon"> <i data-feather="edit"></i></i> </div>
-                <div class="side-menu__title"> Layanan SKBP </div>
+                <div class="side-menu__icon"> <i data-feather="file-text"></i></i> </div>
+                <div class="side-menu__title"> SKBP </div>
             </a>
             </li>
             <li>
                 <a href="{{ route('transcation/user_transaction') }}"
                     class="side-menu {{ request()->routeIs('transcation/user_transaction') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('transcation/user_transaction') ? 'side-menu--active' : '' }}">
-                    <div class="side-menu__icon"> <i data-feather="edit"></i></i> </div>
-                    <div class="side-menu__title"> Upload File </div>
+                    <div class="side-menu__icon"> <i data-feather="layers"></i></i> </div>
+                    <div class="side-menu__title"> Digilib </div>
                 </a>
             </li>
             <li>
@@ -42,7 +42,7 @@
 
             <li>
                 <a href="{{ route('user.helpdesk') }}" class="side-menu">
-                    <div class="side-menu__icon"> <i data-feather="edit"></i></i> </div>
+                    <div class="side-menu__icon"> <i data-feather="message-square"></i></i> </div>
                     <div class="side-menu__title"> Helpdesk </div>
                 </a>
             </li>
@@ -59,15 +59,15 @@
                 <a href="{{ route('profile_admin') }}"
                     class="side-menu {{ request()->routeIs('profile_admin') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('profile_admin') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="user"> </i> </div>
-                    <div class="side-menu__title"> Update Profile</div>
+                    <div class="side-menu__title"> Perbarui Profile</div>
                 </a>
             </li>
             <li>
                 <a href="{{ route('request.list') }}"
                     class="side-menu
                     {{ request()->routeIs('request.list') || request()->routeIs('validation') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('validation') ? 'side-menu--active' : '' }}">
-                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
-                    <div class="side-menu__title"> Validasi </div>
+                    <div class="side-menu__icon"> <i data-feather="layers"></i> </div>
+                    <div class="side-menu__title"> Digilib </div>
                 </a>
             </li>
             <li>
@@ -78,7 +78,7 @@
             </li>
             <li>
                 <a href="{{ route('admin.helpdesk') }}" class="side-menu">
-                    <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
+                    <div class="side-menu__icon"> <i data-feather="message-square"></i> </div>
                     <div class="side-menu__title"> Helpdesk </div>
                 </a>
             </li>
@@ -87,7 +87,7 @@
                 <a href="{{ route('account.list') }}"
                     class="side-menu {{ request()->routeIs('account.list') || request()->routeIs('edit.account') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('account.list') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="users"></i> </div>
-                    <div class="side-menu__title"> Users </div>
+                    <div class="side-menu__title"> Pengguna </div>
                 </a>
             </li>
         @endif

@@ -183,6 +183,70 @@ class AdminController extends Controller
         \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
         return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
     }
+    public function ValidationDigilib(Request $request, Transaction $transaction, User $user, $id)
+    {
+
+        $transaction = Transaction::find($id);
+        $data = [
+            'name' => $transaction->transactions->name,
+            'npm' => $transaction->transactions->npm,
+            'prodi' => $transaction->transactions->getprodi->prodi,
+            'fakultas' => $transaction->transactions->getfakultas->fakultas,
+            'date' => date('m/d/Y'),
+            'qr' => base64_encode(QrCode::format('svg')->size(50)->errorCorrection('H')->generate('https://www.youtube.com/watch?v=FPVh8ToKGGg')),
+
+        ];
+        $pdf = PDF::loadView('pdf', $data);
+        Storage::put('tanda_terima.pdf', $pdf->output());
+
+        $this->validate($request, [
+            'status' => 'required',
+            'message' => 'required',
+            'attachment' => 'nullable',
+        ]);
+
+        $filename = public_path('storage/tanda_terima.pdf');
+        $message = $request['message'];
+        $transaction->update([
+            'status' => $request['status'],
+        ]);
+
+        $date = date("d M Y");
+
+        $transaction->validator = auth()->user()->name . ', ' . $date;
+        $transaction->message = $request['message'];
+        $transaction->save();
+        $phone = $transaction->transactions->phone;
+        $email = $transaction->transactions->email;
+
+        // $client = new Client();
+
+        // $url = "https://app.whatspie.com/api/messages";
+
+        // $request = $client->post(
+        //     $url,
+        //     [
+        //         'headers' => [
+        //             'Accept' => 'application/json',
+        //             'Content-Type' => 'application/x-www-form-urlencoded',
+        //             'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
+        //         ],
+        //         'form_params' => [
+        //             'receiver' => $phone,
+        //             'device' => '6281276972110',
+        //             'message' => $message,
+        //             'type' => 'chat'
+        //         ]
+        //     ]
+        // );
+        $details = [
+            'title' => 'UPT Perpustakaan Unila',
+            'body' => $message,
+        ];
+
+        \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
+        return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
+    }
 
     public function updatePeriode(Request $request, $id)
     {

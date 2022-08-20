@@ -312,7 +312,7 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('validation.accept', ['id' => $transaction->id]) }}"
+                <form action="{{ route('validation.digilib', ['id' => $transaction->id]) }}"
                     enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PUT')
@@ -327,49 +327,30 @@
                         <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
                             aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
                             <div class="intro-y box">
-                                <div
-                                    class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
-                                    <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700"><img
-                                            src="{{ asset('images/surat.png') }}" class="  w-60"
-                                            alt="description of myimage"></label>
-                                    <div id="single-file-upload" class="p-5 ">
-                                        <div class="fallback">
-                                            <input name="attachment" type="file" />
-                                        </div>
-                                        <div class="dz-message" data-dz-message>
-                                            <div class="text-lg font-medium"> Upload Tanda Terima
-                                            </div>
-                                            <div class="text-gray-600">click and upload file
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
 
                             </div>
+
+
                         </div>
 
 
-                    </div>
-
-
-                    <div class="intro-y box mt-5 ml-5">
-                        <div id="icon-button" class="">
-                            <div class="preview">
-                                <div class="flex ">
-                                    <div>
-                                        <input type="hidden" class="form-control" name="status" id="status"
-                                            value="Sudah Tervalidasi">
-                                        <button class="p-3  btn btn-primary w-full  mb-2">
-                                            <i data-feather="edit" class=" mr-2"></i>
-                                            Validasi Digilib
-                                        </button>
-                                    </div>
-                                    <div>
+                        <div class="intro-y box mt-5 ml-5">
+                            <div id="icon-button" class="">
+                                <div class="preview">
+                                    <div class="flex ">
+                                        <div>
+                                            <input type="hidden" class="form-control" name="status" id="status"
+                                                value="Sudah Tervalidasi">
+                                            <button class="p-3  btn btn-primary w-full  mb-2">
+                                                <i data-feather="edit" class=" mr-2"></i>
+                                                Validasi Digilib
+                                            </button>
+                                        </div>
+                                        <div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                 </form>
 
             </div>
