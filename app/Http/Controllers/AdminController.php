@@ -175,7 +175,6 @@ class AdminController extends Controller
 
         $transaction = Transaction::find($id);
         $uuid = $transaction->uuid;
-
         $this->validate($request, [
             'status' => 'required',
             'message' => 'required',
@@ -183,28 +182,27 @@ class AdminController extends Controller
             'no_surat' => 'required',
         ]);
 
+        $filename = public_path('storage/tanda_terima.pdf');
         $message = $request['message'];
         $transaction->update([
             'status' => $request['status'],
             'no_surat' => $request['no_surat'],
         ]);
-
-
+        set_time_limit(300);
         $data = [
             'name' => $transaction->transactions->name,
             'npm' => $transaction->transactions->npm,
             'prodi' => $transaction->transactions->getprodi->prodi,
             'fakultas' => $transaction->transactions->getfakultas->fakultas,
             'no_surat' => $transaction->no_surat,
-            'date' => date('m/d/Y'),
-            'qr' => base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate('http://simpaper.unila.ac.id/' . $uuid)),
+            'date' => date("d M Y"),
+            'qr' => base64_encode(QrCode::format('svg')->size(80)->errorCorrection('H')->generate('http://simpaper.unila.ac.id/' . $uuid)),
 
         ];
         $pdf = PDF::loadView('pdf', $data);
         Storage::put('tanda_terima.pdf', $pdf->output());
 
 
-        $filename = public_path('storage/tanda_terima.pdf');
 
         $date = date("d M Y");
 

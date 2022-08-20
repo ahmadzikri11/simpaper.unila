@@ -87,8 +87,8 @@
                     <div class="intro-y box overflow-hidden mt-5">
                         <div class="border-b border-gray-200 dark:border-dark-5 text-center sm:text-left">
                             <div class="px-5 py-10 sm:px-20 sm:py-20">
-                                <div class="text-theme-17 dark:text-theme-17 font-semibold text-3xl">Tervalidasi</div>
-                                <div class="mt-2"> Nomor Surat <span class="font-medium">{{ $transaction->id }}</span>
+                                <div class="text-theme-17 dark:text-theme-17 font-semibold text-3xl">Berkas Valid</div>
+                                <div class="mt-2"> Nomor Surat : <span class="font-medium">{{ $transaction->no_surat }}</span>
                                 </div>
                                 <div class="mt-1"> Divalidasi oleh : {{ $transaction->validator }}</div>
                             </div>
