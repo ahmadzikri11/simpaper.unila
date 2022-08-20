@@ -40,6 +40,11 @@
                 <td style="width: 65%;"> {{ $npm }}</td>
             </tr>
             <tr>
+                <td style="width: 30%;">Nomer Surat</td>
+                <td style="width: 5%;">:</td>
+                <td style="width: 65%;"> {{ $no_surat }}</td>
+            </tr>
+            <tr>
                 <td style="width: 30%; vertical-align: top;">Fakultas/Jurusan</td>
                 <td style="width: 5%; vertical-align: top;">:</td>
                 <td style="width: 65%;">{{ $fakultas }} / {{ $prodi }}</td>

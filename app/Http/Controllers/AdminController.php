@@ -104,20 +104,6 @@ class AdminController extends Controller
 
     public function ValidationTransaction(Request $request, Transaction $transaction, User $user, $id)
     {
-        // $qrcode = new Generator;
-        // $qr = $qrcode->size(500)->generate('Make me into a QrCode!');
-        $transaction = Transaction::find($id);
-        $data = [
-            'name' => $transaction->transactions->name,
-            'npm' => $transaction->transactions->npm,
-            'prodi' => $transaction->transactions->getprodi->prodi,
-            'fakultas' => $transaction->transactions->getfakultas->fakultas,
-            'date' => date('m/d/Y'),
-            'qr' => base64_encode(QrCode::format('svg')->size(50)->errorCorrection('H')->generate('https://www.youtube.com/watch?v=FPVh8ToKGGg')),
-
-        ];
-        $pdf = PDF::loadView('pdf', $data);
-        Storage::put('public/tanda_terima.pdf', $pdf->output());
 
         $this->validate($request, [
             'status' => 'required',
@@ -138,7 +124,7 @@ class AdminController extends Controller
 
             $filename = $path . '/' . $name;
         } else {
-            $filename = public_path('storage/tanda_terima.pdf');
+            $filename = public_path('Dokumentasi Sistem Perpus.pdf');
         }
 
         $message = $request['message'];
@@ -186,30 +172,39 @@ class AdminController extends Controller
     public function ValidationDigilib(Request $request, Transaction $transaction, User $user, $id)
     {
 
-        $transaction = Transaction::find($id);
-        $data = [
-            'name' => $transaction->transactions->name,
-            'npm' => $transaction->transactions->npm,
-            'prodi' => $transaction->transactions->getprodi->prodi,
-            'fakultas' => $transaction->transactions->getfakultas->fakultas,
-            'date' => date('m/d/Y'),
-            'qr' => base64_encode(QrCode::format('svg')->size(50)->errorCorrection('H')->generate('https://www.youtube.com/watch?v=FPVh8ToKGGg')),
 
-        ];
-        $pdf = PDF::loadView('pdf', $data);
-        Storage::put('tanda_terima.pdf', $pdf->output());
+        $transaction = Transaction::find($id);
+        $uuid = $transaction->uuid;
 
         $this->validate($request, [
             'status' => 'required',
             'message' => 'required',
             'attachment' => 'nullable',
+            'no_surat' => 'required',
         ]);
 
-        $filename = public_path('storage/tanda_terima.pdf');
         $message = $request['message'];
         $transaction->update([
             'status' => $request['status'],
+            'no_surat' => $request['no_surat'],
         ]);
+
+
+        $data = [
+            'name' => $transaction->transactions->name,
+            'npm' => $transaction->transactions->npm,
+            'prodi' => $transaction->transactions->getprodi->prodi,
+            'fakultas' => $transaction->transactions->getfakultas->fakultas,
+            'no_surat' => $transaction->no_surat,
+            'date' => date('m/d/Y'),
+            'qr' => base64_encode(QrCode::format('svg')->size(200)->errorCorrection('H')->generate('http://simpaper.unila.ac.id/' . $uuid)),
+
+        ];
+        $pdf = PDF::loadView('pdf', $data);
+        Storage::put('tanda_terima.pdf', $pdf->output());
+
+
+        $filename = public_path('storage/tanda_terima.pdf');
 
         $date = date("d M Y");
 
@@ -345,11 +340,10 @@ class AdminController extends Controller
 
 
 
-    public function index()
+    public function index($uuid)
     {
-        $qrcode = new Generator;
-        $qr = $qrcode->size(500)->generate('Make me into a QrCode!');
-        return view('test', compact('qr'));
+        $transaction = Transaction::where('uuid', $uuid)->first();;
+        return view('qr_validation', compact('transaction'));
     }
 
     /**

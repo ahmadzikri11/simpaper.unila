@@ -26,6 +26,8 @@ class Transaction extends Model
         'link_repository',
         'tanda_terima',
         'tahun_wisuda',
+        'no_surat',
+        'uuid',
     ];
     public function transactions()
     {

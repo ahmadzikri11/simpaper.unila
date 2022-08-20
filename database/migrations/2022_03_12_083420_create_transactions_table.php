@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class CreateTransactionsTable extends Migration
 {
@@ -27,11 +28,11 @@ class CreateTransactionsTable extends Migration
             $table->string('photo');
             $table->text('message', 500)->nullable();
             $table->string('link_repository', 100)->nullable();
-            $table->string('tanda_terima')->nullable();
+            $table->string('uuid')->default(Str::uuid()->toString());
+            $table->string('no_surat')->nullable();
             $table->string('status', 50)->default('Diproses');
         });
     }
-
     /**
      * Reverse the migrations.
      *

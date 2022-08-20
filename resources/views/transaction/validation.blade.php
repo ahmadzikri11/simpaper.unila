@@ -12,7 +12,6 @@
                         var button = document.getElementById('modalvalidasi');
                         button.click();
 
-                        $(".modalvalidasi").hide();
                     }
                 </script>
                 <div class="text-center hidden"> <a href="javascript:;" id="modalvalidasi" data-toggle="modal"
@@ -316,11 +315,14 @@
                     enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PUT')
+                    <label for="crud-form-3" class="form-label mt-5">Pesan</label>
                     <textarea name="message" id="message"
                         class="form-control block w-full px-10  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
                         id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $transaction->transactions->name }},
                                 </textarea>
-
+                    <label for="crud-form-3" class="form-label mt-5 ">Nomer Surat</label>
+                    <input id="crud-form-3 " type="text" class="form-control px-10" placeholder="Quantity"
+                        value="1315/UN26.31.01.02/PK.39/2022" name="no_surat" aria-describedby="input-group-1">
                     <div class="p-5">
                         <div id="faq-accordion-content-2" class="accordion-header">
                         </div>

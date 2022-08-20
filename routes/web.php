@@ -29,7 +29,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', [AdminController::class, 'index'])->name('import');
+Route::get('/qrrecord/{uuid}/simpaper/unila', [AdminController::class, 'index'])->name('import');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
