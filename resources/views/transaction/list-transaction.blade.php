@@ -135,7 +135,7 @@
                         </div>
 
                     </div>
-                    
+
                     <tr>
 
                         <th>id</th>
@@ -162,6 +162,9 @@
     $(function() {
         $.fn.dataTable.ext.errMode = 'throw';
         var table = $('.yajra-datatable').DataTable({
+            "order": [
+                [0, "desc"]
+            ],
             processing: true,
             serverSide: true,
 
