@@ -171,8 +171,6 @@ class AdminController extends Controller
     }
     public function ValidationDigilib(Request $request, Transaction $transaction, User $user, $id)
     {
-
-
         $transaction = Transaction::find($id);
         $uuid = $transaction->uuid;
         $this->validate($request, [
@@ -181,29 +179,24 @@ class AdminController extends Controller
             'attachment' => 'nullable',
             'no_surat' => 'required',
         ]);
-
-        $filename = public_path('storage/tanda_terima.pdf');
         $message = $request['message'];
         $transaction->update([
             'status' => $request['status'],
             'no_surat' => $request['no_surat'],
         ]);
-        set_time_limit(300);
         $data = [
             'name' => $transaction->transactions->name,
             'npm' => $transaction->transactions->npm,
             'prodi' => $transaction->transactions->getprodi->prodi,
             'fakultas' => $transaction->transactions->getfakultas->fakultas,
             'no_surat' => $transaction->no_surat,
-            'date' => date("d M Y"),
+            'date' => date("d m Y"),
             'qr' => base64_encode(QrCode::format('svg')->size(80)->errorCorrection('H')->generate('http://simpaper.unila.ac.id/' . $uuid)),
 
         ];
+
         $pdf = PDF::loadView('pdf', $data);
         Storage::put('tanda_terima.pdf', $pdf->output());
-
-
-
         $date = date("d M Y");
 
         $transaction->validator = auth()->user()->name . ', ' . $date;
@@ -211,6 +204,22 @@ class AdminController extends Controller
         $transaction->save();
         $phone = $transaction->transactions->phone;
         $email = $transaction->transactions->email;
+
+        if ($request->has('attachment')) {
+
+            $path = public_path('tanda_terima');
+            $attachment = $request->file('attachment');
+            $name = time() . '.' . $attachment->getClientOriginalExtension();
+            if (!Transaction::exists($path)) {
+                Transaction::makeDirectory($path, $mode = 0777, true, true);
+            }
+            $attachment->move($path, $name);
+
+            $filename = $path . '/' . $name;
+        } else {
+            $filename = public_path('Dokumentasi Sistem Perpus.pdf');
+        }
+
 
         // $client = new Client();
 
@@ -232,12 +241,18 @@ class AdminController extends Controller
         //         ]
         //     ]
         // );
-        $details = [
-            'title' => 'UPT Perpustakaan Unila',
-            'body' => $message,
+
+        $files = [
+            $filename,
+            public_path('storage/tanda_terima.pdf'),
         ];
 
-        \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
+        $value = [
+            'title' => 'UPT Perpustakaan Unila',
+            'body' =>  $message,
+            'files' => $files
+        ];
+        \Mail::to($email)->send(new \App\Mail\ValidMail($value));
         return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
     }
 

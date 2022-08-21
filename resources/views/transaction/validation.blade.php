@@ -323,6 +323,9 @@
                     <label for="crud-form-3" class="form-label mt-5 ">Nomer Surat</label>
                     <input id="crud-form-3 " type="text" class="form-control px-10" placeholder="Quantity"
                         value="1315/UN26.31.01.02/PK.39/2022" name="no_surat" aria-describedby="input-group-1">
+                    <label for="crud-form-3" class="form-label mt-5 ">Permohonan TTD Sebar Karya Akhir</label>
+                    <input id="crud-form-3 " type="file" class="form-control px-10" placeholder="Quantity"
+                         name="attachment" aria-describedby="input-group-1">
                     <div class="p-5">
                         <div id="faq-accordion-content-2" class="accordion-header">
                         </div>
@@ -342,7 +345,7 @@
                                     <div class="flex ">
                                         <div>
                                             <input type="hidden" class="form-control" name="status" id="status"
-                                                value="Sudah Tervalidasi">
+                                                value="Tervalidasi">
                                             <button class="p-3  btn btn-primary w-full  mb-2">
                                                 <i data-feather="edit" class=" mr-2"></i>
                                                 Validasi Digilib
