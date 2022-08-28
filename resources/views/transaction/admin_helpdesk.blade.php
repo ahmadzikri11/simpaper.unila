@@ -123,7 +123,7 @@
                     success: function(data) {
                         console.log(data)
                         $('#header-footer-modal-preview').modal('hide')
-                        location.reload()
+                        window.location.reload()
                     }
                 })
             }
