@@ -21,10 +21,12 @@
                     <div class="side-menu__title"> Update Profile</div>
                 </a>
             </li>
-            <a href="{{ route('view_skbp') }}" class="side-menu">
-                <div class="side-menu__icon"> <i data-feather="file-text"></i></i> </div>
-                <div class="side-menu__title"> SKBP </div>
-            </a>
+            <li>
+                <a href="{{ route('view_skbp') }}"
+                    class="side-menu {{ request()->routeIs('view_skbp') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('view_skbp') ? 'side-menu--active' : '' }}">
+                    <div class="side-menu__icon"> <i data-feather="file-text"></i></i> </div>
+                    <div class="side-menu__title"> SKBP </div>
+                </a>
             </li>
             <li>
                 <a href="{{ route('transcation/user_transaction') }}"
@@ -34,14 +36,16 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('get_repository') }}" class="side-menu">
+                <a href="{{ route('get_repository') }}"
+                    class="side-menu {{ request()->routeIs('get_repository') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('get_repository') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="external-link"></i></i> </div>
                     <div class="side-menu__title"> Upload Link Repositori</div>
                 </a>
             </li>
 
             <li>
-                <a href="{{ route('user.helpdesk') }}" class="side-menu">
+                <a href="{{ route('user.helpdesk') }}"
+                    class="side-menu {{ request()->routeIs('user.helpdesk') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('user.helpdesk') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="message-square"></i></i> </div>
                     <div class="side-menu__title"> Helpdesk </div>
                 </a>
@@ -71,13 +75,15 @@
                 </a>
             </li>
             <li>
-                <a href="{{ route('list.skbp') }}" class="side-menu">
+                <a href="{{ route('list.skbp') }}"
+                    class="side-menu {{ request()->routeIs('list.skbp') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('list.skbp') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="file-text"></i> </div>
                     <div class="side-menu__title"> Validasi SKBP </div>
                 </a>
             </li>
             <li>
-                <a href="{{ route('admin.helpdesk') }}" class="side-menu">
+                <a href="{{ route('admin.helpdesk') }}"
+                    class="side-menu {{ request()->routeIs('admin.helpdesks') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('admin.helpdesks') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="message-square"></i> </div>
                     <div class="side-menu__title"> Helpdesk </div>
                 </a>
