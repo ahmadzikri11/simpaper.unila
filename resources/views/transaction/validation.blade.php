@@ -12,7 +12,6 @@
                         var button = document.getElementById('modalvalidasi');
                         button.click();
 
-                        $(".modalvalidasi").hide();
                     }
                 </script>
                 <div class="text-center hidden"> <a href="javascript:;" id="modalvalidasi" data-toggle="modal"
@@ -312,64 +311,51 @@
                         </div>
                     </div>
                 </div>
-                <form action="{{ route('validation.accept', ['id' => $transaction->id]) }}"
+                <form action="{{ route('validation.digilib', ['id' => $transaction->id]) }}"
                     enctype="multipart/form-data" method="POST">
                     @csrf
                     @method('PUT')
+                    <label for="crud-form-3" class="form-label mt-5">Pesan</label>
                     <textarea name="message" id="message"
                         class="form-control block w-full px-10  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
                         id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $transaction->transactions->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $transaction->transactions->name }},
                                 </textarea>
-
+                    <label for="crud-form-3" class="form-label mt-5 ">Nomer Surat</label>
+                    <input id="crud-form-3 " type="text" class="form-control px-10" placeholder="Quantity"
+                        value="1315/UN26.31.01.02/PK.39/2022" name="no_surat" aria-describedby="input-group-1">
+                    <label for="crud-form-3" class="form-label mt-5 ">Permohonan TTD Sebar Karya Akhir</label>
+                    <input id="crud-form-3 " type="file" class="form-control px-10" placeholder="Quantity"
+                         name="attachment" aria-describedby="input-group-1">
                     <div class="p-5">
                         <div id="faq-accordion-content-2" class="accordion-header">
                         </div>
                         <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
                             aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
                             <div class="intro-y box">
-                                <div
-                                    class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
-                                    <label for="formFileSm" class="form-label inline-block mb-2 text-gray-700"><img
-                                            src="{{ asset('images/surat.png') }}" class="  w-60"
-                                            alt="description of myimage"></label>
-                                    <div id="single-file-upload" class="p-5 ">
-                                        <div class="fallback">
-                                            <input name="attachment" type="file" />
-                                        </div>
-                                        <div class="dz-message" data-dz-message>
-                                            <div class="text-lg font-medium"> Upload Tanda Terima
-                                            </div>
-                                            <div class="text-gray-600">click and upload file
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
 
                             </div>
+
+
                         </div>
 
 
-                    </div>
-
-
-                    <div class="intro-y box mt-5 ml-5">
-                        <div id="icon-button" class="">
-                            <div class="preview">
-                                <div class="flex ">
-                                    <div>
-                                        <input type="hidden" class="form-control" name="status" id="status"
-                                            value="Sudah Tervalidasi">
-                                        <button class="p-3  btn btn-primary w-full  mb-2">
-                                            <i data-feather="edit" class=" mr-2"></i>
-                                            Validasi Digilib
-                                        </button>
-                                    </div>
-                                    <div>
+                        <div class="intro-y box mt-5 ml-5">
+                            <div id="icon-button" class="">
+                                <div class="preview">
+                                    <div class="flex ">
+                                        <div>
+                                            <input type="hidden" class="form-control" name="status" id="status"
+                                                value="Tervalidasi">
+                                            <button class="p-3  btn btn-primary w-full  mb-2">
+                                                <i data-feather="edit" class=" mr-2"></i>
+                                                Validasi Digilib
+                                            </button>
+                                        </div>
+                                        <div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                 </form>
 
             </div>

@@ -104,20 +104,6 @@ class AdminController extends Controller
 
     public function ValidationTransaction(Request $request, Transaction $transaction, User $user, $id)
     {
-        // $qrcode = new Generator;
-        // $qr = $qrcode->size(500)->generate('Make me into a QrCode!');
-        $transaction = Transaction::find($id);
-        $data = [
-            'name' => $transaction->transactions->name,
-            'npm' => $transaction->transactions->npm,
-            'prodi' => $transaction->transactions->getprodi->prodi,
-            'fakultas' => $transaction->transactions->getfakultas->fakultas,
-            'date' => date('m/d/Y'),
-            'qr' => base64_encode(QrCode::format('svg')->size(50)->errorCorrection('H')->generate('https://www.youtube.com/watch?v=FPVh8ToKGGg')),
-
-        ];
-        $pdf = PDF::loadView('pdf', $data);
-        Storage::put('public/tanda_terima.pdf', $pdf->output());
 
         $this->validate($request, [
             'status' => 'required',
@@ -138,7 +124,7 @@ class AdminController extends Controller
 
             $filename = $path . '/' . $name;
         } else {
-            $filename = public_path('storage/tanda_terima.pdf');
+            $filename = public_path('Dokumentasi Sistem Perpus.pdf');
         }
 
         $message = $request['message'];
@@ -181,6 +167,92 @@ class AdminController extends Controller
         ];
 
         \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
+        return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
+    }
+    public function ValidationDigilib(Request $request, Transaction $transaction, User $user, $id)
+    {
+        $transaction = Transaction::find($id);
+        $uuid = $transaction->uuid;
+        $this->validate($request, [
+            'status' => 'required',
+            'message' => 'required',
+            'attachment' => 'nullable',
+            'no_surat' => 'required',
+        ]);
+        $message = $request['message'];
+        $transaction->update([
+            'status' => $request['status'],
+            'no_surat' => $request['no_surat'],
+        ]);
+        $data = [
+            'name' => $transaction->transactions->name,
+            'npm' => $transaction->transactions->npm,
+            'prodi' => $transaction->transactions->getprodi->prodi,
+            'fakultas' => $transaction->transactions->getfakultas->fakultas,
+            'no_surat' => $transaction->no_surat,
+            'date' => date("d m Y"),
+            'qr' => base64_encode(QrCode::format('svg')->size(80)->errorCorrection('H')->generate('http://simpaper.unila.ac.id/' . $uuid)),
+
+        ];
+
+        $pdf = PDF::loadView('pdf', $data);
+        Storage::put('tanda_terima.pdf', $pdf->output());
+        $date = date("d M Y");
+
+        $transaction->validator = auth()->user()->name . ', ' . $date;
+        $transaction->message = $request['message'];
+        $transaction->save();
+        $phone = $transaction->transactions->phone;
+        $email = $transaction->transactions->email;
+
+        if ($request->has('attachment')) {
+
+            $path = public_path('tanda_terima');
+            $attachment = $request->file('attachment');
+            $name = time() . '.' . $attachment->getClientOriginalExtension();
+            if (!Transaction::exists($path)) {
+                Transaction::makeDirectory($path, $mode = 0777, true, true);
+            }
+            $attachment->move($path, $name);
+
+            $filename = $path . '/' . $name;
+        } else {
+            $filename = public_path('Dokumentasi Sistem Perpus.pdf');
+        }
+
+
+        // $client = new Client();
+
+        // $url = "https://app.whatspie.com/api/messages";
+
+        // $request = $client->post(
+        //     $url,
+        //     [
+        //         'headers' => [
+        //             'Accept' => 'application/json',
+        //             'Content-Type' => 'application/x-www-form-urlencoded',
+        //             'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
+        //         ],
+        //         'form_params' => [
+        //             'receiver' => $phone,
+        //             'device' => '6281276972110',
+        //             'message' => $message,
+        //             'type' => 'chat'
+        //         ]
+        //     ]
+        // );
+
+        $files = [
+            $filename,
+            public_path('storage/tanda_terima.pdf'),
+        ];
+
+        $value = [
+            'title' => 'UPT Perpustakaan Unila',
+            'body' =>  $message,
+            'files' => $files
+        ];
+        \Mail::to($email)->send(new \App\Mail\ValidMail($value));
         return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
     }
 
@@ -281,11 +353,10 @@ class AdminController extends Controller
 
 
 
-    public function index()
+    public function index($uuid)
     {
-        $qrcode = new Generator;
-        $qr = $qrcode->size(500)->generate('Make me into a QrCode!');
-        return view('test', compact('qr'));
+        $transaction = Transaction::where('uuid', $uuid)->first();;
+        return view('qr_validation', compact('transaction'));
     }
 
     /**

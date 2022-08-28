@@ -1,13 +1,4 @@
 <!DOCTYPE html>
-<!--
-Template Name: Icewall - HTML Admin Dashboard Template
-Author: Left4code
-Website: http://www.left4code.com/
-Contact: muhammadrizki@left4code.com
-Purchase: https://themeforest.net/user/left4code/portfolio
-Renew Support: https://themeforest.net/user/left4code/portfolio
-License: You must have a valid license purchased only from themeforest(the above link) in order to legally use the theme for your project.
--->
 <html lang="en" class="light">
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
@@ -64,6 +55,12 @@ License: You must have a valid license purchased only from themeforest(the above
                     <h2 class="intro-x font-bold text-2xl xl:text-3xl text-center xl:text-left">
                         Sign In
                     </h2>
+                    <x-jet-validation-errors class="mt-4" />
+                    @if (session('status'))
+                        <div class="mb-4 font-medium text-sm text-green-600">
+                            {{ session('status') }}
+                        </div>
+                    @endif
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="intro-x mt-5 text-gray-900 xl:hidden text-center">SIMPAPER</div>
@@ -73,8 +70,7 @@ License: You must have a valid license purchased only from themeforest(the above
                             <input type="text" id="login" name="login" :value="old('npm')" required
                                 autofocus class="intro-x login__input form-control py-3 px-4 border-gray-300 block"
                                 placeholder="Email atau NPM">
-                            <input type="password" id="password" type="password" name="password" required
-                                autocomplete="current-password"
+                            <input type="password" id="password" name="password" required
                                 class="intro-x login__input form-control py-3 px-4 border-gray-300 block mt-4"
                                 placeholder="Password">
                         </div>

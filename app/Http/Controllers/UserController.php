@@ -154,19 +154,6 @@ class UserController extends Controller
         return back()->with('message', 'Data berhasil Diubah');
     }
 
-    // Create Repository
-    // public function CreateUserRepository(Request $request)
-    // {
-    //     $user = Auth::user()->id;
-    //     $attr = $request->validate([
-    //         'link_repository' => 'required',
-    //     ]);
-    //     $attr['user_id'] = $user;
-    //     Repository::create($attr);
-    //     return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
-    // }
-
-    // Update Repository
     public function UpdateUserRepository(Request $request, $id)
     {
         $update = Transaction::find($id);
@@ -220,38 +207,6 @@ class UserController extends Controller
 
         return view('', compact('total_upload', 'bulan'));
     }
-    // public function editAccount($id)
-    // {
-    //     $user = User::find($id);
-    //     $fakultas = Fakultas::all();
-    //     return view('transaction.edit-account', compact('user', 'fakultas'));
-    // }
-    // public function updateAccount(Request $request, User $user, $id)
-    // {
-    //     $this->validate($request, [
-    //         'name' => 'required',
-    //         'npm' => 'required',
-    //         'phone' => 'required',
-    //         'email' => 'required',
-    //         'fakultas' => 'required',
-    //         'prodi' => 'required',
-    //     ]);
-
-    //     $user = User::find($id);
-
-    //     $user->update([
-    //         'name' => $request['name'],
-    //         'email' => $request['email'],
-    //         'npm' => $request['npm'],
-    //         'phone' => $request['phone'],
-    //         'fakultas_id' => $request['fakultas'],
-    //         'prodi_id' => $request['prodi'],
-    //     ]);
-
-    //     return redirect()->route('account.list')->with('edit', ' Data telah diperbaharui!');
-    // }
-
-
 
 
     public function destroy(User $user, $id)
@@ -316,7 +271,6 @@ class UserController extends Controller
     public function UpdateUserSKBP(Request $request, $id)
     {
 
-        // $user=Auth::user()->id;
         $post = Skbp::find($id);
         $attr = $request->validate([
             'ktm' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
@@ -345,16 +299,6 @@ class UserController extends Controller
 
         $post->update($attr);
         $post->save();
-
-
-
-
-
-        // $attr['user_id'] = auth()->user()->id;
-        // $attr['ktm'] = $request->file('ktm')->store('ktmm','public');
-        // $attr['spp'] = $request->file('spp')->store('spp','public');
-        // Skbp::create($attr);
-
         return redirect()->route('view_skbp')->with('message', ' Data telah Telah Terkirim!');
     }
 }
