@@ -105,7 +105,7 @@
                                     </div>
                                 </div>
                                 <div class="text-3xl font-medium leading-8 mt-6">{{ $prioritastotal }}</div>
-                                <div class="text-base text-gray-600 mt-1">Total Data</div>
+                                <div class="text-base text-gray-600 mt-1">Total Data Helpdesk</div>
                             </div>
                         </div>
                     </a>
