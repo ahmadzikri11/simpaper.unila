@@ -83,7 +83,7 @@
             </li>
             <li>
                 <a href="{{ route('admin.helpdesk') }}"
-                    class="side-menu {{ request()->routeIs('admin.helpdesks') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('admin.helpdesks') ? 'side-menu--active' : '' }}">
+                    class="side-menu {{ request()->routeIs('admin.helpdesk') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('admin.helpdesk') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="message-square"></i> </div>
                     <div class="side-menu__title"> Helpdesk </div>
                 </a>
