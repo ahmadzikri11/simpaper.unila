@@ -16,7 +16,7 @@
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
-                <th>No</th>
+                {{-- <th>No</th> --}}
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Prodi</th>
@@ -134,16 +134,20 @@
             $(function() {
                 $.fn.dataTable.ext.errMode = 'throw';
                 var table = $('.yajra-datatable').DataTable({
+                    "order": [
+                        [0, "desc"]
+                    ],
                     processing: true,
                     serverSide: true,
 
                     // dom: 'Blrtip',
 
                     ajax: "{{ route('helpdesk.list') }}",
-                    columns: [{
-                            data: 'id',
-                            name: 'id'
-                        },
+                    columns: [
+                        // {
+                        //     data: 'id',
+                        //     name: 'id'
+                        // },
                         {
                             data: 'name',
                             name: 'name'
