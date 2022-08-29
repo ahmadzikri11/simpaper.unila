@@ -131,7 +131,7 @@
 
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
-                                                            @if ($user->users[0]->status == 'Sudah Tervalidasi')
+                                                            @if ($user->users[0]->status == 'Tervalidasi')
                                                                 <span
                                                                     class="bg-green-800 text-white py-1 px-3 rounded-full text-xs">{{ $user->users[0]->status }}</span>
                                                             @elseif ($user->users[0]->status == 'Revisi')
@@ -246,6 +246,7 @@
 
                             @if ($user->users[0]->status == 'Telah Upload Digilib' ||
                                 $user->users[0]->status == 'Validasi Akun' ||
+                                $user->users[0]->status == 'Tervalidasi' ||
                                 $user->users[0]->status == 'Revisi')
                                 <div class=" flex justify-center">
                                     <div class="mb-3 w-full ">

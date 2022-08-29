@@ -325,7 +325,7 @@
                         value="1315/UN26.31.01.02/PK.39/2022" name="no_surat" aria-describedby="input-group-1">
                     <label for="crud-form-3" class="form-label mt-5 ">Permohonan TTD Sebar Karya Akhir</label>
                     <input id="crud-form-3 " type="file" class="form-control px-10" placeholder="Quantity"
-                         name="attachment" aria-describedby="input-group-1">
+                        name="attachment" aria-describedby="input-group-1">
                     <div class="p-5">
                         <div id="faq-accordion-content-2" class="accordion-header">
                         </div>
@@ -395,8 +395,6 @@ username :
 password :
 Terimakasih, Silahkan Mengisi kedalam digilib.unila.ac.id
 </textarea>
-
-
 
 
                     <div class="intro-y box mt-5 ml-5">
