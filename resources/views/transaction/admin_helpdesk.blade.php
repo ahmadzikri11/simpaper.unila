@@ -94,9 +94,17 @@
                             </div>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button type="submit"
+                            <button type="submit" id="loadingReply"
                                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                onclick="()">Send</button>
+                                onclick="aksi()">Send
+                                <div class="lds-ring" id="loading" style="display: none">
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                    <div></div>
+                                </div>
+                            </button>
+
                         </div>
                     </div>
                 </div>
@@ -112,6 +120,8 @@
             const aksi = () => {
                 console.log('value', $('#aksi1').val(), id)
                 // return;
+                $('#loading').show();
+                $('#loadingReply').prop('disabled', true);
                 $.ajax({
                     url: '/helpdesk/update',
                     type: 'POST',
@@ -123,6 +133,8 @@
                     success: function(data) {
                         console.log(data)
                         $('#header-footer-modal-preview').modal('hide')
+                        $('#loading').hide();
+                        $('#loadingReply').prop('disabled', false);
                         window.location.reload()
                     }
                 })
