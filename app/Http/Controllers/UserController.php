@@ -164,7 +164,7 @@ class UserController extends Controller
 
         $update->status = 'Telah Upload Digilib';
         $update->update($attr);
-        return redirect()->route('get_repository')->with('message', ' Data telah diperbaharui!');
+        return redirect()->route('transcation/user_transaction')->with('message', ' Data telah diperbaharui!');
     }
 
     public function dashboarduser()

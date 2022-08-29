@@ -20,6 +20,14 @@
                 <div class="mt-5 md:mt-0 md:col-span-2">
                     <div class="w-ful">
                         @if (session()->has('message'))
+                            <div class="alert bg-green-500 text-white show flex items-center mb-2" role="alert">
+                                <i data-feather="file-plus" class="w-6 h-6 mr-2 "></i>
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
+                    </div>
+                    {{-- <div class="w-ful">
+                        @if (session()->has('message'))
                             <script>
                                 window.onload = function() {
                                     var button = document.getElementById('modalvalidasi');
@@ -45,7 +53,7 @@
                                 </div>
                             </div>
                         @endif
-                    </div>
+                    </div> --}}
 
 
                     <div class="shadow sm:rounded-md sm:overflow-hidden">
@@ -215,7 +223,9 @@
 
 
                             </div>
-                            <div class=" flex justify-center">
+
+
+                            {{-- <div class=" flex justify-center">
                                 <div class="mb-3 w-full ">
                                     <div
                                         class="font-medium flex items-center border-b border-gray-200 dark:border-dark-5 pb-5">
@@ -232,7 +242,34 @@
                                         </h2>
                                     </label>
                                 </div>
-                            </div>
+                            </div> --}}
+
+                            @if ($user->users[0]->status == 'Telah Upload Digilib' ||
+                                $user->users[0]->status == 'Validasi Akun' ||
+                                $user->users[0]->status == 'Revisi')
+                                <div class=" flex justify-center">
+                                    <div class="mb-3 w-full ">
+                                        <form action="{{ route('update_repository', ['id' => $user->users[0]->id]) }}"
+                                            method="POST">
+                                            @method('PUT')
+                                            @csrf
+                                            <div
+                                                class="font-medium flex items-center border-b border-gray-200 dark:border-dark-5 pb-5">
+                                                <i data-feather="chevron-down" class="w-4 h-4 mr-2"></i> Link Digilib
+                                            </div>
+                                            <div class="input-group mt-2">
+                                                <input type="text" class="form-control"
+                                                    value="{{ $user->users[0]->link_repository }}"
+                                                    placeholder="Masukan link digilib : http://digilib.unila.ac.id/63727/"
+                                                    name="link_repository">
+                                                <button type="submit"
+                                                    class="input-group-text hover:bg-primary-1 hover:text-white">Masukan</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            @endif
+
 
                             <div class="intro-y grid grid-cols-12 gap-3 sm:gap-6 mt-5">
                                 <div class="intro-y  col-span-4 sm:col-span-4 md:col-span-3 2xl:col-span-2">

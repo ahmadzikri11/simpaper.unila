@@ -138,7 +138,7 @@
 
                     <tr>
 
-                        {{-- <th>No</th> --}}
+                        <th>No</th>
                         <th>Nama</th>
                         <th>NPM</th>
                         {{-- <th>Tanggal Wisuda</th>
@@ -201,11 +201,11 @@
             },
             columns: [
 
-                // {
-                //     data: 'id',
-                //     name: 'id'
+                {
+                    data: 'id',
+                    name: 'id'
 
-                // },
+                },
                 {
                     data: 'name',
                     name: 'name'
