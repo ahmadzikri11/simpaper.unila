@@ -30,18 +30,18 @@
             </li>
             <li>
                 <a href="{{ route('transcation/user_transaction') }}"
-                    class="side-menu {{ request()->routeIs('transcation/user_transaction') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('transcation/user_transaction') ? 'side-menu--active' : '' }}">
+                    class="side-menu {{ request()->routeIs('transcation/user_transaction') || request()->routeIs('transcation.status') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('transcation/user_transaction') || request()->routeIs('transcation.status') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="layers"></i></i> </div>
                     <div class="side-menu__title"> Digilib </div>
                 </a>
             </li>
-            <li>
+            {{-- <li>
                 <a href="{{ route('get_repository') }}"
                     class="side-menu {{ request()->routeIs('get_repository') ? 'side-menu--active' : '' }}"class="side-menu {{ request()->routeIs('get_repository') ? 'side-menu--active' : '' }}">
                     <div class="side-menu__icon"> <i data-feather="external-link"></i></i> </div>
                     <div class="side-menu__title"> Upload Link Repositori</div>
                 </a>
-            </li>
+            </li> --}}
 
             <li>
                 <a href="{{ route('user.helpdesk') }}"

@@ -104,7 +104,6 @@ class AdminController extends Controller
 
     public function ValidationTransaction(Request $request, Transaction $transaction, User $user, $id)
     {
-
         $this->validate($request, [
             'status' => 'required',
             'message' => 'required',
@@ -126,7 +125,7 @@ class AdminController extends Controller
         } else {
             $filename = public_path('Dokumentasi Sistem Perpus.pdf');
         }
-
+        $transaction = Transaction::find($id);
         $message = $request['message'];
 
         $transaction->update([
@@ -141,26 +140,11 @@ class AdminController extends Controller
         $phone = $transaction->transactions->phone;
         $email = $transaction->transactions->email;
 
-        // $client = new Client();
+        $client = new Client();
 
-        // $url = "https://app.whatspie.com/api/messages";
+        $url = "https://app.whatspie.com/api/messages";
 
-        // $request = $client->post(
-        //     $url,
-        //     [
-        //         'headers' => [
-        //             'Accept' => 'application/json',
-        //             'Content-Type' => 'application/x-www-form-urlencoded',
-        //             'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
-        //         ],
-        //         'form_params' => [
-        //             'receiver' => $phone,
-        //             'device' => '6281276972110',
-        //             'message' => $message,
-        //             'type' => 'chat'
-        //         ]
-        //     ]
-        // );
+
         $details = [
             'title' => 'UPT Perpustakaan Unila',
             'body' => $message,
@@ -168,6 +152,70 @@ class AdminController extends Controller
 
         \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
         return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
+
+        // $this->validate($request, [
+        //     'status' => 'required',
+        //     'message' => 'required',
+        //     'attachment' => 'nullable',
+        // ]);
+
+
+        // if ($request->has('attachment')) {
+
+        //     $path = public_path('tanda_terima');
+        //     $attachment = $request->file('attachment');
+        //     $name = time() . '.' . $attachment->getClientOriginalExtension();
+        //     if (!Transaction::exists($path)) {
+        //         Transaction::makeDirectory($path, $mode = 0777, true, true);
+        //     }
+        //     $attachment->move($path, $name);
+
+        //     $filename = $path . '/' . $name;
+        // } else {
+        //     $filename = public_path('Dokumentasi Sistem Perpus.pdf');
+        // }
+
+        // $message = $request['message'];
+
+        // $transaction->update([
+        //     'status' => $request['status'],
+        // ]);
+
+        // $date = date("d M Y");
+
+        // $transaction->validator = auth()->user()->name . ', ' . $date;
+        // $transaction->message = $request['message'];
+        // $transaction->save();
+        // $phone = $transaction->transactions->phone;
+        // $email = $transaction->transactions->email;
+
+        // // $client = new Client();
+
+        // // $url = "https://app.whatspie.com/api/messages";
+
+        // // $request = $client->post(
+        // //     $url,
+        // //     [
+        // //         'headers' => [
+        // //             'Accept' => 'application/json',
+        // //             'Content-Type' => 'application/x-www-form-urlencoded',
+        // //             'Authorization' => 'Bearer ' . 'dILnerPytl0wC1Psjs19uQUG8CgbGP6tCZXjAhnzbdpQDrlUpB'
+        // //         ],
+        // //         'form_params' => [
+        // //             'receiver' => $phone,
+        // //             'device' => '6281276972110',
+        // //             'message' => $message,
+        // //             'type' => 'chat'
+        // //         ]
+        // //     ]
+        // // );
+        // $details = [
+        //     'title' => 'UPT Perpustakaan Unila',
+        //     'body' => $message,
+        // ];
+
+        // \Mail::to($email)->send(new \App\Mail\MyMail($details, $filename));
+        // return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
     }
     public function ValidationDigilib(Request $request, Transaction $transaction, User $user, $id)
     {
@@ -191,7 +239,7 @@ class AdminController extends Controller
             'fakultas' => $transaction->transactions->getfakultas->fakultas,
             'no_surat' => $transaction->no_surat,
             'date' => date("d m Y"),
-            'qr' => base64_encode(QrCode::format('svg')->size(80)->errorCorrection('H')->generate('http://simpaper.unila.ac.id/' . $uuid)),
+            'qr' => base64_encode(QrCode::format('svg')->size(80)->errorCorrection('H')->generate('http://simpaper.unila.ac.id/qrrecord/' . $uuid . '/simpaper/unila')),
 
         ];
 
@@ -221,10 +269,14 @@ class AdminController extends Controller
         }
 
 
-        // $client = new Client();
+        $client = new Client();
 
-        // $url = "https://app.whatspie.com/api/messages";
+        $url = "https://api.whatspie.com/";
 
+        $files = [
+            $filename,
+            public_path('storage/tanda_terima.pdf'),
+        ];
         // $request = $client->post(
         //     $url,
         //     [
@@ -235,17 +287,13 @@ class AdminController extends Controller
         //         ],
         //         'form_params' => [
         //             'receiver' => $phone,
-        //             'device' => '6281276972110',
+        //             'device' => '6282119970406',
         //             'message' => $message,
         //             'type' => 'chat'
         //         ]
         //     ]
         // );
 
-        $files = [
-            $filename,
-            public_path('storage/tanda_terima.pdf'),
-        ];
 
         $value = [
             'title' => 'UPT Perpustakaan Unila',
