@@ -97,11 +97,11 @@
                         <select id="validasi"
                             class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                             <option value="">Pilih Status </option>
-                            <option value="Sudah Tervalidasi">Sudah Validasi</option>
-                            <option value="Revisi">Revisi</option>
                             <option value="Diproses">Diproses</option>
+                            <option value="Revisi">Revisi</option>
                             <option value="Telah Diperbaiki">Telah Diperbaiki</option>
                             <option value="Telah Upload Digilib">Telah Upload Digilib</option>
+                            <option value="Tervalidasi">Sudah Validasi</option>
                         </select>
                         <select id="periode_wisuda"
                             class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
@@ -135,16 +135,17 @@
                         </div>
 
                     </div>
-                    
+
                     <tr>
 
-                        <th>id</th>
+                        <th>No</th>
                         <th>Nama</th>
-                        <th>Tanggal Wisuda</th>
-                        <th>Tahun Wisuda</th>
+                        <th>NPM</th>
+                        {{-- <th>Tanggal Wisuda</th>
+                        <th>Tahun Wisuda</th> --}}
                         <th>Fakultas</th>
                         <th>Jurusan</th>
-                        <th>Tanggal Upload</th>
+                        <th>Tgl upload</th>
                         <th>Status</th>
                         <th>Validator</th>
                         <th>Aksi</th>
@@ -162,6 +163,9 @@
     $(function() {
         $.fn.dataTable.ext.errMode = 'throw';
         var table = $('.yajra-datatable').DataTable({
+            "order": [
+                [0, "desc"]
+            ],
             processing: true,
             serverSide: true,
 
@@ -208,15 +212,21 @@
 
                 },
                 {
-                    data: 'periode_wisuda',
-                    name: 'periode_wisuda'
+                    data: 'npm',
+                    name: 'npm'
 
                 },
-                {
-                    data: 'tahun_wisuda',
-                    name: 'tahun_wisuda'
 
-                },
+                // {
+                //     data: 'periode_wisuda',
+                //     name: 'periode_wisuda'
+
+                // },
+                // {
+                //     data: 'tahun_wisuda',
+                //     name: 'tahun_wisuda'
+
+                // },
                 {
                     data: 'fakultas',
                     name: 'fakultas'

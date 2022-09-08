@@ -221,7 +221,7 @@ class HelpdeskController extends Controller
                     // die;
                     if ($row->aksi == null) {
                         $actionBtn = '<a href="javascript:/helpdesk/aksi;" onclick="setId(' . $row->id . ')"  data-toggle="modal"
-                        data-target="#header-footer-modal-preview" data-community="{{ json_encode(' . $row . ') }}" class="edit h-8 btn bg-green-500 text-white btn-sm">Edit</a> ';
+                        data-target="#header-footer-modal-preview" data-community="{{ json_encode(' . $row . ') }}" class="edit h-8 btn bg-green-500 text-white btn-sm">Reply</a> ';
                     } else {
                         $actionBtn = $row->aksi;
                     }

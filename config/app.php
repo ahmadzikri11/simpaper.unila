@@ -179,6 +179,7 @@ return [
         App\Providers\JetstreamServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
 
+
     ],
 
     /*

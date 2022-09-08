@@ -146,6 +146,13 @@ class ViewsController extends Controller
                         return $row->transactions['name'];
                     }
                 })
+                ->addColumn('npm', function ($row) {
+                    if (empty($row->transactions['npm'])) {
+                        $row = ' ';
+                    } else {
+                        return $row->transactions['npm'];
+                    }
+                })
                 ->addColumn('fakultas', function ($row) {
                     if (empty($row->transactions->getfakultas['fakultas'])) {
                         $row = ' ';
@@ -199,6 +206,7 @@ class ViewsController extends Controller
                         $instance->wherehas('transactions', function ($w) use ($request) {
                             $get = $request->get('search');
                             $w->Where('name', 'LIKE', "%$get%");
+                            $w->orWhere('npm', 'LIKE', "%$get%");
                         })->orWhere(function ($w) use ($request) {
                             $get = $request->get('search');
                             $w->orWhere('periode_wisuda', 'LIKE', "%$get%");
@@ -368,7 +376,7 @@ class ViewsController extends Controller
      */
     public function create()
     {
-        //
+        return view('test');
     }
 
     /**

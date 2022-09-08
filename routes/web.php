@@ -29,7 +29,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/test', [AdminController::class, 'index'])->name('import');
+Route::get('/test', [ViewsController::class, 'create'])->name('import');
+Route::get('/qrrecord/{uuid}/simpaper/unila', [AdminController::class, 'index'])->name('import');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 //     return view('dashboard');
@@ -96,6 +97,7 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/transaction', [ViewsController::class, 'ListTransaction'])->name('request.list');
     Route::get('/dashboard/validation/{id}', [ViewsController::class, 'ViewValidation'])->name('validation');
     Route::put('/dashboard/validation/accept{id}', [AdminController::class, 'ValidationTransaction'])->name('validation.accept');
+    Route::put('/dashboard/validation/ValidationDigilib{id}', [AdminController::class, 'ValidationDigilib'])->name('validation.digilib');
     Route::post('dahsboard/validation/{id}', [AdminController::class, 'updatePeriode'])->name('periode_wisuda');
 
     //list transaction SKBP

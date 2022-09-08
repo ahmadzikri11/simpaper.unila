@@ -12,50 +12,6 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-    {{-- css loading --}}
-    <style>
-        .lds-ring {
-            display: inline-block;
-            position: relative;
-            width: 80px;
-            height: 80px;
-        }
-
-        .lds-ring div {
-            box-sizing: border-box;
-            display: block;
-            position: absolute;
-            width: 64px;
-            height: 64px;
-            margin: 8px;
-            border: 8px solid #fff;
-            border-radius: 50%;
-            animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
-            border-color: #fff transparent transparent transparent;
-        }
-
-        .lds-ring div:nth-child(1) {
-            animation-delay: -0.45s;
-        }
-
-        .lds-ring div:nth-child(2) {
-            animation-delay: -0.3s;
-        }
-
-        .lds-ring div:nth-child(3) {
-            animation-delay: -0.15s;
-        }
-
-        @keyframes lds-ring {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    </style>
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"> --}}
 
     <!-- Scripts -->
@@ -82,19 +38,10 @@
     <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.1.2/js/buttons.print.min.js"></script>
     <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
-
-
 </head>
-
-
 
 <body class="main">
     <!-- BEGIN: Mobile Menu -->
-
-
-
-    <x-mobile-menu />
-
     <!-- END: Mobile Menu -->
     <!-- BEGIN: Top Bar -->
     <div class="top-bar-boxed border-b border-theme-2 -mt-7 md:-mt-5 -mx-3 sm:-mx-8 px-3 sm:px-8 md:pt-0 mb-12">
@@ -116,40 +63,7 @@
 
             <!-- END: Notifications -->
             <!-- BEGIN: Account Menu -->
-            <div class="text-white mr-2">{{ Auth::user()->name }}</div>
-            <div class="intro-x dropdown w-8 h-8">
-                <div class="dropdown-toggle mt-1 w-5 h-5 overflow-hidden shadow-lg image-fit zoom-in scale-110"
-                    role="button" aria-expanded="false">
-                    <i data-feather="user" class="w-5 h-5 mt-1 items-center justify-center text-white"></i>
-                </div>
-                <div class="dropdown-menu w-56">
-                    <div class="dropdown-menu__content box bg-theme-11  text-white">
-                        <div class="p-4 border-b border-theme-12">
-                            <div class="font-medium">{{ Auth::user()->name }}</div>
-                            <div class="text-xs text-theme-13 mt-0.5 ">{{ Auth::user()->npm }}
-                            </div>
-                        </div>
-                        <div class="p-2">
-                            <a href="{{ route('profile') }}"
-                                class="flex items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1  rounded-md">
-                                <i data-feather="user" class="w-4 h-4 mr-2"></i> Profile </a>
 
-                        </div>
-                        <div class="p-2 w-full">
-                            <form method="POST" action="{{ route('logout') }}">
-                                @csrf
-                                <button
-                                    class="flex w-full items-center block p-2 transition duration-300 ease-in-out hover:bg-theme-1  rounded-md"
-                                    type="submit" class="underline text-sm text-gray-600 hover:text-gray-900">
-                                    <i data-feather="toggle-right" class="w-4 h-4 mr-2"></i>
-                                    {{ __('Log Out') }}
-                                </button>
-                            </form>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
             <!-- END: Account Menu -->
         </div>
     </div>
@@ -157,16 +71,56 @@
     <div class="wrapper">
         <div class="wrapper-box">
             <!-- BEGIN: Side Menu -->
-            <x-side-menu />
+
             <!-- END: Side Menu -->
             <!-- BEGIN: Content -->
             <div class="content">
-                {{ $slot }}
+                <!-- BEGIN: Content -->
+                <div class="content">
+                    <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
+                        <h2 class="text-lg font-medium mr-auto">
+                            QR Validasi
+                        </h2>
+
+                    </div>
+                    <!-- BEGIN: Invoice -->
+                    <div class="intro-y box overflow-hidden mt-5">
+                        <div class="border-b border-gray-200 dark:border-dark-5 text-center sm:text-left">
+                            <div class="px-5 py-10 sm:px-20 sm:py-20">
+                                <div class="text-theme-17 dark:text-theme-17 font-semibold text-3xl">Berkas Valid</div>
+                                <div class="mt-2"> Nomor Surat : <span class="font-medium">{{ $transaction->no_surat }}</span>
+                                </div>
+                                <div class="mt-1"> Divalidasi oleh : {{ $transaction->validator }}</div>
+                            </div>
+                            <div class="flex flex-col lg:flex-row px-5 sm:px-20 pt-10 pb-10 sm:pb-20">
+                                <div>
+                                    <div class="text-base text-gray-600">Pemilik Berkas</div>
+                                    <div class="text-lg font-medium text-theme-17 dark:text-theme-17 mt-2">
+                                        {{ $transaction->transactions->name }}</div>
+                                    <div class="mt-1">{{ $transaction->transactions->npm }}</div>
+                                    <div class="mt-1">{{ $transaction->transactions->getfakultas->fakultas }} /
+                                        {{ $transaction->transactions->getprodi->prodi }}</div>
+                                </div>
+                                <div class="lg:text-right mt-10 lg:mt-0 lg:ml-auto">
+                                    <div class="text-base text-gray-600">Ditandatangani Oleh</div>
+                                    <div class="text-lg font-medium text-theme-17 dark:text-theme-17 mt-2">Endah
+                                        Kurniasari, S.I.Kom
+                                    </div>
+                                    <div class="mt-1">Sub Divisi Layanan Teknologi Informasi
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <!-- END: Invoice -->
+                </div>
+                <!-- END: Content -->
             </div>
             <!-- END: Content -->
         </div>
     </div>
 </body>
-@livewireScripts
+
 
 </html>

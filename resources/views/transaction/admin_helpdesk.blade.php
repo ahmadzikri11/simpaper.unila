@@ -16,7 +16,7 @@
     <table class="table table-bordered yajra-datatable">
         <thead>
             <tr>
-                <th>No</th>
+                {{-- <th>No</th> --}}
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Prodi</th>
@@ -94,93 +94,111 @@
                             </div>
                         </div>
                         <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
-                            <button type="submit"
+                            <button type="submit" id="loadingReply"
                                 class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-                                onclick="aksi()">Send</button>
+                                onclick="aksi()">Send
+                                <div class="lds-ring" id="loading" style="display: none; height: 10px; width: 10px;">
+                                    <div style=" height: 10px; width: 10px;"></div>
+                                    <div style=" height: 10px; width: 10px;"></div>
+                                    <div style=" height: 10px; width: 10px;"></div>
+                                    <div style=" height: 10px; width: 10px;"></div>
+                                </div>
+                            </button>
+
                         </div>
+
                     </div>
                 </div>
             </div>
         </div>
-        <script>
-            let id;
-            const setId = (params) => {
-                console.log(params)
-                id = params
-                $('#aksi1').val('')
-            }
-            const aksi = () => {
-                console.log('value', $('#aksi1').val(), id)
-                // return;
-                $.ajax({
-                    url: '/helpdesk/update',
-                    type: 'POST',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        id,
-                        aksi: $('#aksi1').val()
+    </div>
+    <script>
+        let id;
+        const setId = (params) => {
+            console.log(params)
+            id = params
+            $('#aksi1').val('')
+        }
+        const aksi = () => {
+            console.log('value', $('#aksi1').val(), id)
+            // return;
+            $('#loading').show();
+            $('#loadingReply').prop('disabled', true);
+            $.ajax({
+                url: '/helpdesk/update',
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id,
+                    aksi: $('#aksi1').val()
+                },
+                success: function(data) {
+                    console.log(data)
+                    $('#header-footer-modal-preview').modal('hide')
+                    $('#loading').hide();
+                    $('#loadingReply').prop('disabled', false);
+                    window.location.reload()
+                }
+            })
+        }
+
+
+
+
+        $(function() {
+            $.fn.dataTable.ext.errMode = 'throw';
+            var table = $('.yajra-datatable').DataTable({
+                "order": [
+                    [0, "desc"]
+                ],
+                processing: true,
+                serverSide: true,
+
+                // dom: 'Blrtip',
+
+                ajax: "{{ route('helpdesk.list') }}",
+                columns: [
+                    // {
+                    //     data: 'id',
+                    //     name: 'id'
+                    // },
+                    {
+                        data: 'name',
+                        name: 'name'
                     },
-                    success: function(data) {
-                        console.log(data)
-                        $('#header-footer-modal-preview').modal('hide')
-                        location.reload()
-                    }
-                })
-            }
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'prodi',
+                        name: 'prodi'
+                    },
+                    {
+                        data: 'layanan',
+                        name: 'layanan'
+                    },
+                    {
+                        data: 'keterangan',
+                        name: 'keterangan'
+                    },
+                    {
+                        data: 'prioritas',
+                        name: 'prioritas'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action'
+                    },
+                    {
+                        data: 'created_at',
+                        name: 'created_at',
+                        orderable: true,
+                        searchable: true
+                    },
+                ]
 
-
-
-
-            $(function() {
-                $.fn.dataTable.ext.errMode = 'throw';
-                var table = $('.yajra-datatable').DataTable({
-                    processing: true,
-                    serverSide: true,
-
-                    // dom: 'Blrtip',
-
-                    ajax: "{{ route('helpdesk.list') }}",
-                    columns: [{
-                            data: 'id',
-                            name: 'id'
-                        },
-                        {
-                            data: 'name',
-                            name: 'name'
-                        },
-                        {
-                            data: 'email',
-                            name: 'email'
-                        },
-                        {
-                            data: 'prodi',
-                            name: 'prodi'
-                        },
-                        {
-                            data: 'layanan',
-                            name: 'layanan'
-                        },
-                        {
-                            data: 'keterangan',
-                            name: 'keterangan'
-                        },
-                        {
-                            data: 'prioritas',
-                            name: 'prioritas'
-                        },
-                        {
-                            data: 'action',
-                            name: 'action'
-                        },
-                        {
-                            data: 'created_at',
-                            name: 'created_at',
-                            orderable: true,
-                            searchable: true
-                        },
-                    ]
-
-                });
             });
-        </script>
+        });
+    </script>
 </x-app-layout>

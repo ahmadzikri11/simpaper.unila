@@ -28,7 +28,7 @@
         <table class="table table-bordered yajra-datatable">
             <thead>
                 <tr>
-                    <th>No</th>
+
                     <th>Layanan</th>
                     <th>Keterangan</th>
                     <th>Prioritas</th>
@@ -47,12 +47,11 @@
 
                     {{-- @endforeach --}}
                 </tr>
-                <?php $a = 1;
-                $b = $a++; ?>
+
                 @foreach ($helpdesk as $hd)
                     {{-- $hd->id --}}
                     <tr>
-                        <td>{{ $b }}</td>
+
                         <td>{{ $hd->layanan }}</td>
                         <td>{{ $hd->keterangan }}</td>
                         <td>{{ $hd->prioritas }}</td>
