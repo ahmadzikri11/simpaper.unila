@@ -184,6 +184,7 @@ class AdminController extends Controller
         return redirect()->route('request.list')->with('message', ' Data telah Divalidasi!');
     }
 
+
     public function updatePeriode(Request $request, $id)
     {
 
@@ -209,6 +210,20 @@ class AdminController extends Controller
 
     public function TransactionSKBP(Request $request, Skbp $skbp, User $user, $id)
     {
+
+        $skbp = Skbp::find($id);
+        
+        $data = [
+            'name' => $skbp->getskbp->name,
+            'npm' => $skbp->getskbp->npm,
+            'prodi' => $skbp->getskbp->getprodi->prodi,
+            'fakultas' => $skbp->getskbp->getfakultas->fakultas,
+            'date' => date('m/d/Y'),
+            'qr' => base64_encode(QrCode::format('svg')->size(50)->errorCorrection('H')->generate('https://www.youtube.com/watch?v=FPVh8ToKGGg')),
+
+        ];
+        $pdf = PDF::loadView('pdf', $data);
+        Storage::put('public/tanda_terima.pdf', $pdf->output());
 
         $this->validate($request, [
             'status' => 'required',

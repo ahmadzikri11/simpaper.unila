@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('email', 100)->unique()->nullable();
             $table->string('role', 5)->default('user');
             $table->char('npm', 10)->unique()->nullable();
+            $table->string('alamat', 2048)->nullable();
             $table->string('phone', 15)->nullable();
             $table->foreignIdFor(\App\Models\Prodi::class, 'prodi_id')->nullable();
             $table->foreignIdFor(\App\Models\Fakultas::class, 'fakultas_id')->nullable();

@@ -251,6 +251,9 @@ class ViewsController extends Controller
                 ->addColumn('npm', function ($row) {
                     return $row->getskbp['npm'] ?? '';
                 })
+                ->addColumn('alamat', function ($row) {
+                    return $row->getskbp['alamat'] ?? '';
+                })
                 ->addColumn('fakultas', function ($row) {
                     return $row->getskbp->getfakultas['fakultas'] ?? '';
                 })

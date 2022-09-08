@@ -162,22 +162,21 @@
                     </div>
                 </div>
 
-
-
-            </div>
-
-            <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
-                <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">Grafik file Upload Bulanan SKBP</div>
-                        <canvas id="myChart" width="400" height="400"></canvas>
-                        <div class="card-body">
-                            <div id="grafik"></div>
-
+                <div class="col-span-12 sm:col-span-6 xl:col-span-3 intro-y">
+                    <div class="col-md-12">
+                        <div class="card">
+                            <div class="card-header">Grafik file Upload Bulanan SKBP</div>
+                            <canvas id="myChart" width="400" height="400"></canvas>
+                            <div class="card-body">
+                                <div id="grafik"></div>
+    
+                            </div>
                         </div>
                     </div>
                 </div>
+
             </div>
+
 
 
 

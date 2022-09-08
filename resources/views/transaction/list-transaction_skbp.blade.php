@@ -119,6 +119,7 @@
                 <th>id</th>
                 <th>Nama</th>
                 <th>Email</th>
+                <th>Alamat</th>
                 <th>NPM</th>
                 <th>Fakultas</th>
                 <th>Prodi</th>
@@ -242,6 +243,10 @@
                 { 
                     data: 'email',
                     name: 'email'
+                },
+                { 
+                    data: 'alamat',
+                    name: 'alamat'
                 },
                 { 
                     data: 'npm',

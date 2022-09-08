@@ -82,6 +82,25 @@
                                                     <tr class="hover:bg-gray-100 ">
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
+                                                            Alamat</td>
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
+                                                            :</td>
+                                                        @if (empty($user->alamat))
+                                                            <td
+                                                                class="py-4 px-6 text-sm font-medium text-red-500 whitespace-nowrap ">
+                                                                Perhatian!!! Harap lengkapi Profile Terlebih dahulu!
+                                                            </td>
+                                                        @else
+                                                            <td
+                                                                class="py-4 px-6 text-sm font-medium text-gray-500 whitespace-nowrap ">
+                                                                {{ $user->alamat }}</td>
+                                                        @endif
+                                                    </tr>
+
+                                                    <tr class="hover:bg-gray-100 ">
+                                                        <td
+                                                            class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">
                                                             Fakultas</td>
                                                         <td
                                                             class="py-4 px-6 text-sm font-medium text-gray-900 whitespace-nowrap ">

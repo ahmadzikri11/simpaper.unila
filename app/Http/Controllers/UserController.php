@@ -27,6 +27,7 @@ class UserController extends Controller
             'npm' => 'required',
             'phone' => 'required',
             'email' => 'required',
+            'alamat' => 'required',
             'fakultas' => 'required',
             'prodi' => 'required',
         ]);
@@ -38,6 +39,7 @@ class UserController extends Controller
             'email' => $request['email'],
             'npm' => $request['npm'],
             'phone' => $request['phone'],
+            'alamat' => $request['alamat'],
             'fakultas_id' => $request['fakultas'],
             'prodi_id' => $request['prodi'],
         ]);

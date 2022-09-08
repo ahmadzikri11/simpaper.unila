@@ -102,6 +102,7 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/SKBP', [ViewsController::class, 'ListTransactionSKBP'])->name('list.skbp');
     Route::get('/dashboard/list/SKBP/ValdasiSKBP/{id}', [ViewsController::class, 'ViewValidasiSKBP'])->name('validasi.skbp');
     Route::put('/dashboard/list/SKBP/accept{id}', [AdminController::class, 'TransactionSKBP'])->name('accept.skbp');
+    // Route::put('/dashboard/validation/accept{id}', [AdminController::class, 'ValidationTransactionSkbp'])->name('akun.accept');
     Route::post('/app/public', [TransactionController::class, 'downloadStorage'])->name('fileSkbp');
     Route::post('/app/public2', [TransactionController::class, 'downloadStorage2'])->name('fileSkbp2');
     // list Repository

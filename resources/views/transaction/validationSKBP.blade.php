@@ -153,6 +153,7 @@
                                                                 </button>
                                                             </div>
                 
+                                                            
                 
                                                             <div class="ml-2">
                 
@@ -164,6 +165,39 @@
                                                                 </button>
                                                             </div>
                 
+                                                            <form action="{{ route('accept.skbp', ['id' => $skbp->id]) }}"
+                                                                enctype="multipart/form-data" method="POST">
+                                                                @csrf
+                                                                @method('PUT')
+                                                                <textarea name="message" id="message"
+                                                                    class="form-control block h-52 w-full px-10  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
+                                                                    id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $skbp->getskbp->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Berikut adalah akun untuk masuk kedalam digilib.
+                                            username :
+                                            password :
+                                            Terimakasih, Silahkan Mengisi kedalam digilib.unila.ac.id
+                                            </textarea>
+                                            
+                                            
+                                            
+                                            
+                                                                <div class="intro-y box mt-5 ml-5">
+                                                                    <div id="icon-button" class="">
+                                                                        <div class="preview">
+                                                                            <div class="flex ">
+                                                                                <div>
+                                                                                    <input type="hidden" class="form-control" name="status" id="status"
+                                                                                        value="Validasi Akun">
+                                                                                    <button class="btn btn-success w-full mb-2">
+                                                                                        <i data-feather="user" class=" mr-2"></i>
+                                                                                        Validasi Akun
+                                                                                    </button>
+                                                                                </div>
+                                                                                <div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                            </form>
                 
                 
                                                         </div>
@@ -201,6 +235,17 @@
                         <div class="w-6 h-6 image-fit mr-3">
                         </div>
                         <div class="truncate"> {{ $skbp->getskbp->npm }}</div>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <label class=" mt-4 form-label">Alamat</label>
+                <div class="dropdown">
+                    <div class="dropdown-toggle btn w-full btn-outline-secondary dark:bg-dark-2 dark:border-dark-2 flex items-center justify-start"
+                        role="button" aria-expanded="false">
+                        <div class="w-6 h-6 image-fit mr-3">
+                        </div>
+                        <div class="truncate"> {{ $skbp->getskbp->alamat }}</div>
                     </div>
                 </div>
             </div>
@@ -274,61 +319,7 @@
                 </div>
             </div>
 
-            {{-- <form action="{{ route('periode_wisuda', ['id' => $skbp->id]) }}" method="POST">
-                @csrf
-                <div>
-                    <label class="mt-4 form-label">Periode Wisuda</label>
-                    <select id="periode_wisuda" name="periode_wisuda" autocomplete="periode-name"
-                        class="dropdown-toggle btn w-full btn-outline-secondary">
-
-                        @if (empty($skbp->periode_wisuda))
-                            <option value="">Pilih Periode</option>
-                        @else
-                            <option value="{{ $skbp->periode_wisuda }}">
-                                {{ $skbp->periode_wisuda }} </option>
-                        @endif
-                        <option value="januari">Januari</option>
-                        <option value="maret">Maret</option>
-                        <option value="mei">Mei</option>
-                        <option value="juli">Juli</option>
-                        <option value="september">September</option>
-                        <option value="november">November</option>
-                    </select>
-                    @error('periode_wisuda')
-                        <span class="text-red-500">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <div>
-                    <label class="mt-4 form-label">Tahun Wisuda</label>
-                    <select id="tahun_wisuda" name="tahun_wisuda" autocomplete="periode-name"
-                        class="dropdown-toggle btn w-full btn-outline-secondary margin-">
-                        @if (empty($skbp->tahun_wisuda))
-                            <option value=""> Pilih Tahun Wisuda </option>
-                        @else
-                            <option value="{{ $skbp->tahun_wisuda }}">
-                                {{ $skbp->tahun_wisuda }} </option>
-                        @endif
-
-                        <option value="2022">2022</option>
-                        <option value="2023">2023</option>
-                        <option value="2024">2024</option>
-                        <option value="2025">2025</option>
-                        <option value="2026">2026</option>
-                        <option value="2027">2027</option>
-                        <option value="2028">2028</option>
-                        <option value="2029">2029</option>
-                        <option value="2030">2030</option>
-                    </select>
-                    @error('tahun_wisuda')
-                        <span class="text-red-500">{{ $message }}</span>
-                    @enderror
-                </div>
-                <div class="px-4 pt-4 text-right sm:px-1">
-                    <button type="submit"
-                        class="inline-flex justify-center bg-indigo-600 py-2 px-4 border shadow-sm text-sm font-medium rounded-md text-white">Save</button>
-                </div>
-            </form> --}}
+            
         </div>
     </div>
     <!-- END: Post Info -->
