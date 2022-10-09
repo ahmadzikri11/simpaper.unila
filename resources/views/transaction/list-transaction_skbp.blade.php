@@ -286,9 +286,9 @@
                             text = "Diperbaiki";
                             label = "bg-gray-700";
                         }
-                        if (data == 'Validasi Akun') {
-                            text = "Validasi_Akun";
-                            label = "bg-green-400";
+                        if (data == 'virtual_akun') {
+                            text = "VA_akun";
+                            label = "bg-lime-600";
                         }
                         if (data == 'Telah Upload Digilib') {
                             text = "Telah_Upload_Digilib";

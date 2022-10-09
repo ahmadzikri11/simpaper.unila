@@ -13,6 +13,8 @@ class Skbp extends Model
         'user_id',
         'ktm',
         'spp',
+        'bukti',
+        'no_surat',
         'status',
     ];
 

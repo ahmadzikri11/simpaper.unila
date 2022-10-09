@@ -62,9 +62,12 @@ Route::middleware('auth')->group(function () {
     // zikri
     //route SKBP
     Route::get('/transaction/SKBP', [UserController::class, 'view_skbp'])->name('view_skbp');
+    Route::get('/transaction/bukti', [UserController::class, 'view_bukti'])->name('view_bukti');
+    Route::get('/transaction/grafik', [UserController::class, 'view_grafik'])->name('view_grafik');
     Route::post('/transaction/user_transaction/SKBP', [UserController::class, 'CreateUserSKBP'])->name('create_user_skbp');
+    Route::post('/transaction/user_transaction/bukti/{id}', [UserController::class, 'BuktiUpload'])->name('create.bukti');
     Route::put('/transaction/user_transaction/Update/SKBP{id}', [UserController::class, 'UpdateUserSKBP'])->name('update.skbp');
-
+    // Route::put('/transaction/user_transaction/Update/SKBP{id}', [UserController::class, 'BuktiUpload'])->name('update.bukti');
 
     // adit
     Route::get('/user/helpdesk', [HelpdeskController::class, 'View'])->name('user.helpdesk');
@@ -104,9 +107,10 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     Route::get('/dashboard/list/SKBP', [ViewsController::class, 'ListTransactionSKBP'])->name('list.skbp');
     Route::get('/dashboard/list/SKBP/ValdasiSKBP/{id}', [ViewsController::class, 'ViewValidasiSKBP'])->name('validasi.skbp');
     Route::put('/dashboard/list/SKBP/accept{id}', [AdminController::class, 'TransactionSKBP'])->name('accept.skbp');
-    // Route::put('/dashboard/validation/accept{id}', [AdminController::class, 'ValidationTransactionSkbp'])->name('akun.accept');
+    Route::put('/dashboard/validation/accept{id}', [AdminController::class, 'ValidationAkun'])->name('akun.accept');
     Route::post('/app/public', [TransactionController::class, 'downloadStorage'])->name('fileSkbp');
     Route::post('/app/public2', [TransactionController::class, 'downloadStorage2'])->name('fileSkbp2');
+    Route::post('/app/public3', [TransactionController::class, 'downloadStorage3'])->name('fileSkbp3');
     // list Repository
 
     // Route::post('/dashboard/validation', [TransactionController::class, 'messege'])->name('messege');
@@ -131,3 +135,4 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
 });
 
 // Route::get('/testdownload/{pathSkbp}', 'TransactionController@downloadStorage')->name('test1234');
+

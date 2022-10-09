@@ -206,7 +206,7 @@
                                         <div class="flex justify-left">
                                             <div class="mb-3 w-80 ">
                                                 <label for="formFileSm"
-                                                    class="form-label inline-block mb-2 text-gray-700">Upload SPP</label>
+                                                    class="form-label inline-block mb-2 text-gray-700">Upload Slip UKT Terakhir <span class="text-red-500">PDF(max:2Mb)</span></label>
                                                 <input
                                                     class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                     id="ktm" name="ktm" type="file">
@@ -220,7 +220,7 @@
                                         <div class="flex justify-left">
                                             <div class="mb-3 w-80">
                                                 <label for="formFileSm"
-                                                    class="form-label inline-block mb-2 text-gray-700">Upload KTM</label>
+                                                    class="form-label inline-block mb-2 text-gray-700">Upload KTM <span class="text-red-500">PDF(max:2Mb)</span></label>
                                                 <input
                                                     class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
                                                     id="spp" name="spp" type="file">
@@ -241,6 +241,52 @@
                         </div>
                     </form>
             </div>
+
+
+            {{-- <form action="{{ route('create.bukti', ['id' => $user->getskbp[0]->id]) }}" enctype="multipart/form-data"
+                method="POST">
+                @method('PUT')
+                @csrf
+            <div class="shadow sm:rounded-md sm:overflow-hidden">
+                    <div class="px-4 py-5 bg-white space-y-6 sm:p-6">
+                        <div class="flex ml-5 max-w-7xl table-fixed">
+                            <div class="overflow-x-auto shadow-md sm:rounded-lg">
+                                <div class="inline-block min-w-full align-middle">
+                                    <div class="overflow-hidden ">
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        <div class="ml-10">
+                            <div class="flex justify-left">
+                                <div class="mb-3 w-80 ">
+                                    <label for="formFileSm"
+                                        class="form-label inline-block mb-2 text-gray-700">Upload Slip UKT Terakhir</label>
+                                    <input
+                                        class="form-control block w-full px-2  py-1 text-sm font-normal text-gray-700 bg-white bg-clip-padding  border border-solid border-gray-300    rounded    transition  ease-in-out  m-0  focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
+                                        id="bukti" name="bukti" type="file">
+                                    @error('bukti')
+                                        <span class="text-red-500">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">
+                        <button type="submit"
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Save</button>
+                    </div>
+
+                </div>
+            </form>
+            </div> --}}
+
         </div>
     </div>
     

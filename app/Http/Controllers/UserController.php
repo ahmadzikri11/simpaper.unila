@@ -199,6 +199,8 @@ class UserController extends Controller
 
     public function grafikskbp()
     {
+        $user = User::count();
+        dd($user);
         $total_upload = Skbp::select(Skbp::raw('count(*) as total_upload'))
             ->GroupBy(Skbp::raw("Month(created_at)"))
             ->pluck('total_upload');
@@ -207,7 +209,7 @@ class UserController extends Controller
             ->GroupBy(Skbp::raw("MONTHNAME(created_at)"))
             ->pluck('month');
 
-        return view('', compact('total_upload', 'bulan'));
+        return view('dashboard', compact('total_upload', 'bulan'));
     }
 
 
@@ -242,45 +244,89 @@ class UserController extends Controller
 
     public function view_skbp()
     {
-
         $user = Auth::user();
         $a = $user->id;
-        $ceck = Skbp::where('user_id', $a)->exists();
+        $ceck = Skbp::where('user_id', $a)->first();
+
         if ($ceck) {
-            return view('transaction.edit_skbp', compact('user'));
+            $status = $ceck->status;
+    
+            return view('transaction.edit_skbp', compact('user','status'));
         } else {
             return view('transaction.upload_skbp', compact('user'));
         }
     }
 
+    public function view_bukti()
+    {
+        $user = Auth::user();
+        $a = $user->id;
+        return view('transaction.upload_bukti', compact('user'));
+    }
+    
+    public function view_grafik()
+    {
+        $user = Auth::user();
+        $a = $user->id;
+        $total_upload = Skbp::select(Skbp::raw('count(*) as total_upload'))
+            ->GroupBy(Skbp::raw("Month(created_at)"))
+            ->pluck('total_upload');
+
+        $bulan = Skbp::select(Skbp::raw('MONTHNAME(created_at) as month'))
+            ->GroupBy(Skbp::raw("MONTHNAME(created_at)"))
+            ->pluck('month');
+            
+        return view('transaction.grafik_skbp', compact('user', 'total_upload', 'bulan'));
+    }
     public function CreateUserSKBP(Request $request)
     {
         $attr = $request->validate([
             'ktm' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
             'spp' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            // 'bukti' => 'nullable|mimes:pdf,jpg,jpeg,png,jfif|max:4096',
 
         ]);
 
         $attr['user_id'] = auth()->user()->id;
         $attr['ktm'] = $request->file('ktm')->store('ktmm', 'public');
         $attr['spp'] = $request->file('spp')->store('spp', 'public');
+        // $attr['bukti'] = $request->file('bukti')->store('bukti', 'public');
         Skbp::create($attr);
 
 
         return redirect()->route('view_skbp')->with('message', ' Data telah Telah Terkirim!');
     }
 
+    // public function CreateBukti(Request $request)
+    // {
+    //     $attr = $request->validate([
+    //         'bukti' => 'mimes:jpeg,png,bmp,tiff |max:4096',
+
+    //     ]);
+
+    //     $attr['user_id'] = auth()->user()->id;
+    //     $attr['bukti'] = $request->file('bukti')->store('bukti', 'public');
+    //     Skbp::create($attr);
+
+
+    //     return redirect()->route('view_skbp')->with('message', ' Data telah Telah Terkirim!');
+    // }
+
     public function UpdateUserSKBP(Request $request, $id)
     {
 
         $post = Skbp::find($id);
+        $status = $post->status;
+
         $attr = $request->validate([
-            'ktm' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
-            'spp' => 'required|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'ktm' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'spp' => 'nullable|mimes:csv,txt,xlx,xls,pdf|max:2048',
+            'bukti' => 'nullable|mimes:pdf,jpg,jpeg,png,jfif|max:4096',
         ]);
+       
 
         $path = storage_path() . '/app/public/';
-
+    
         if ($post->ktm != ''  && $post->ktm != null) {
             $file_old = $path . $post->ktm;
             unlink($file_old);
@@ -289,7 +335,8 @@ class UserController extends Controller
             $file_old = $path . $post->spp;
             unlink($file_old);
         }
-
+    
+    
         $attr['ktm'] = $request->file('ktm')->store(
             'ktmm',
             'public'
@@ -298,10 +345,39 @@ class UserController extends Controller
             'spp',
             'public'
         );
-
+        
+        
         $post->update($attr);
         $post->save();
         return redirect()->route('view_skbp')->with('message', ' Data telah Telah Terkirim!');
     }
+
+    public function BuktiUpload(Request $request, $id)
+    {
+
+        $post = Skbp::find($id);
+        $attr = $request->validate([
+            // 'bukti' => 'mimes:jpeg,png,bmp,tiff |max:4096',
+            'bukti' => 'nullable|mimes:pdf,jpg,jpeg,png,jfif|max:4096',
+        ]);
+
+        $path = storage_path() . '/app/public/';
+
+        if ($post->bukti != ''  && $post->bukti != null) {
+            $file_old = $path . $post->bukti;
+            unlink($file_old);
+        }
+       
+        $attr['bukti'] = $request->file('bukti')->store(
+            'bukti',
+            'public'
+        );
+
+        $post->update($attr);
+        $post->save();
+        return redirect()->route('view_bukti')->with('message', ' Data telah Telah Terkirim!');
+        // return back()->route('view_bukti')->with('message', 'Data berhasil Diubah');
+    }
+
 }
 // testing

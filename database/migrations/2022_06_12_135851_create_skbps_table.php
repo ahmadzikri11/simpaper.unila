@@ -16,8 +16,10 @@ class CreateSkbpsTable extends Migration
         Schema::create('skbps', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(\App\Models\User::class, 'user_id');
-            $table->string('ktm');
-            $table->string('spp');
+            $table->string('ktm')->nullable();
+            $table->string('spp')->nullable();
+            $table->string('bukti')->nullable();
+            $table->string('no_surat');
             $table->timestamps();
             $table->string('status')->default('proses');
         });

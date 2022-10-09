@@ -102,4 +102,14 @@ class TransactionController extends Controller
             'Content-Disposition' => 'inline; filename="'.$filename2.'"'
         ]);
     }
+
+    public function downloadStorage3(Request $req3){
+        // return Storage::download($req->pathfile);
+        $filename3 = 'app/public/'.$req3->pathfile3;
+        $path = storage_path($filename3);
+        return Response::make(file_get_contents($path), 200, [
+            'Content-Type' => 'application/png/pdf',
+            'Content-Disposition' => 'inline; filename="'.$filename3.'"'
+        ]);
+    }
 }
