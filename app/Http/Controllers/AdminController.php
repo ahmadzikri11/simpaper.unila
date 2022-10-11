@@ -100,7 +100,7 @@ class AdminController extends Controller
     }
 
 
-
+ 
 
     public function ValidationTransaction(Request $request, Transaction $transaction, User $user, $id)
     {
