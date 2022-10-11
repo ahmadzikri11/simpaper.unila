@@ -99,8 +99,8 @@ Route::middleware(['role:admin', 'auth'])->group(function () {
     // list transaction
     Route::get('/dashboard/list/transaction', [ViewsController::class, 'ListTransaction'])->name('request.list');
     Route::get('/dashboard/validation/{id}', [ViewsController::class, 'ViewValidation'])->name('validation');
-    Route::put('/dashboard/validation/accept{id}', [AdminController::class, 'ValidationTransaction'])->name('validation.accept');
-    Route::put('/dashboard/validation/ValidationDigilib{id}', [AdminController::class, 'ValidationDigilib'])->name('validation.digilib');
+    Route::put('/dashboard/validation/accept/{id}', [AdminController::class, 'ValidationTransaction'])->name('validation.accept');
+    Route::put('/dashboard/validation/ValidationDigilib/{id}', [AdminController::class, 'ValidationDigilib'])->name('validation.digilib');
     Route::post('dahsboard/validation/{id}', [AdminController::class, 'updatePeriode'])->name('periode_wisuda');
 
     //list transaction SKBP
