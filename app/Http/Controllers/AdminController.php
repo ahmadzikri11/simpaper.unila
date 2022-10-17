@@ -412,12 +412,8 @@ class AdminController extends Controller
 
         $pdf = PDF::loadView('pdf', $data);
         Storage::put('public/tanda_terima.pdf', $pdf->output());
-
-
-
-
-
         $date = date("d M Y");
+
 
         $transaction->validator = auth()->user()->name . ', ' . $date;
         $transaction->message = $request['message'];

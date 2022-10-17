@@ -276,7 +276,7 @@
                         } else
                         if (data == 'Revisi') {
                             text = "Revisi";
-                            label = "bg-yellow-500";
+                            label = "bg-orange-600";
                         }
                         if (data == 'proses') {
                             text = "Diproses";

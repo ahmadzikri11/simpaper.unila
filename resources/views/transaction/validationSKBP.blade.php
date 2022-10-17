@@ -105,7 +105,7 @@
                         method="POST">
                         @csrf
                         @method('PUT')
-                        <div class=" flex justify-center">
+                        {{-- <div class=" flex justify-center">
                             <div class="mb-3 w-full ">
 
                                 <textarea name="message" id="message"
@@ -114,12 +114,12 @@
                                     id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $skbp->getskbp->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $skbp->getskbp->name }}, kami ingin menginformasikan bahwa permohonan tersebut telah kami poroses. Kami menyimpulkan bahwa data kamu ...........
                                                         </textarea>
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div id="faq-accordion-1" class="accordion p-5">
                             <div class="accordion-item">
                                 <div id="faq-accordion-content-2" class="accordion-header">
-                                    <button class="accordion-button flex collapsed" type="button"
+                                    {{-- <button class="accordion-button flex collapsed" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#faq-accordion-collapse-2"
                                         aria-expanded="false" aria-controls="faq-accordion-collapse-2">
                                         Upload File Tanda Terima <svg xmlns="http://www.w3.org/2000/svg"
@@ -128,7 +128,7 @@
                                             <path stroke-linecap="round" stroke-linejoin="round"
                                                 d="M19 13l-7 7-7-7m14-8l-7 7-7-7" />
                                         </svg>
-                                    </button>
+                                    </button> --}}
 
                                 </div>
                                 <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
@@ -404,7 +404,7 @@
                                             <input name="attachment" type="file" />
                                         </div>
                                         <div class="dz-message" data-dz-message>
-                                            <div class="text-lg font-medium"> Upload Gambar Yang Perlu Direvisi
+                                            <div class="text-lg font-medium"> Upload File Yang Perlu Direvisi
                                             </div>
                                             <div class="text-gray-600">click and upload file
                                             </div>
@@ -472,9 +472,9 @@
                         class="form-control block h-52 w-full px-10  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
                         id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $skbp->getskbp->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Kami telah meriview persyaratan yang telah anda lampirkan dan terdapat kesalahan pada bagian........
 
-Silahkan isi kembali persyaratan dengan cermat,
-Terimakasih. 
-</textarea>
+                            Silahkan isi kembali persyaratan dengan cermat,
+                            Terimakasih. 
+                    </textarea>
 
 
                     <div class="intro-y box mt-5 ml-5">
