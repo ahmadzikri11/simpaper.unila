@@ -484,9 +484,9 @@
                                     <div>
                                         <input type="hidden" class="form-control" name="status" id="status"
                                             value="Revisi">
-                                        <button class="btn btn-success w-full mb-2">
+                                        <button class="btn btn-danger">
                                             <i data-feather="user" class=" mr-2"></i>
-                                            Validasi Akun
+                                            Revisi
                                         </button>
                                     </div>
                                     <div>
