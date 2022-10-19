@@ -51,17 +51,17 @@ class ViewsController extends Controller
             return view('transaction.user_transaction', compact('user'));
         }
     }
-    public function UserSkbp()
-    {
-        $user = Auth::user();
-        $a = $user->id;
-        $check_transaction = Skbp::where('user_id', $a)->exists();
-        if ($check_transaction) {
-            return view('transaction.upload_skbp', compact('user'));
-        } else {
-            return view('transaction.upload_skbp', compact('user'));
-        }
-    }
+    // public function UserSkbp()
+    // {
+    //     $user = Auth::user();
+    //     $a = $user->id;
+    //     $check_transaction = Skbp::where('user_id', $a)->exists();
+    //     if ($check_transaction) {
+    //         return view('transaction.upload_skbp', compact('user'));
+    //     } else {
+    //         return view('transaction.upload_skbp', compact('user'));
+    //     }
+    // }
 
     public function UserRepository()
     {

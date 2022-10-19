@@ -44,7 +44,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/transaction/user_transaction', [ViewsController::class, 'UserSubmission'])->name('transcation/user_transaction');
     Route::get('/upload/repository', [ViewsController::class, 'UserRepository'])->name('get_repository');
-    Route::get('/transaction/dashboard/SKBP', [ViewsController::class, 'UserSkbp'])->name('dashboard/SKBP');
+    // Route::get('/transaction/dashboard/SKBP', [ViewsController::class, 'UserSkbp'])->name('dashboard/SKBP');
     
     // Udpdate User
     Route::put('/profile/update/{id}', [UserController::class, 'UpdateUserProfile'])->name('profile.update');

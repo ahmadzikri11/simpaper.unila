@@ -388,7 +388,7 @@
                                             <h3 class="ml-5 mt-1">
                                                 LINK UPLOAD dan EDIT :
                                             </h3>
-                                            <a href="{{ route('dashboard/SKBP') }}" class="ml-3">
+                                            <a href="{{ route('view_skbp') }}" class="ml-3">
                                                 <div class="bg-gray-50 ">
                                                     <button type="submit"
                                                         class="inline-flex justify-center py-1 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-blue-800 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 mr-2">Kirim
