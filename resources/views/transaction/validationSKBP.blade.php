@@ -1,5 +1,6 @@
 <x-app-layout>
     <!-- BEGIN: Content -->
+    
     <div class="content">
         <div class="intro-y flex flex-col sm:flex-row items-center mt-8">
             <h2 class="text-lg font-medium mr-auto">
@@ -111,15 +112,18 @@
                                 <textarea name="message" id="message"
                                     class="
                                                           form-control block h-80 w-full  px-3 py-1.5 text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
-                                    id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $skbp->getskbp->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $skbp->getskbp->name }}, kami ingin menginformasikan bahwa permohonan tersebut telah kami poroses. Kami menyimpulkan bahwa data kamu ...........
-                                                        </textarea>
-                            </div>
-                        </div> --}}
+                                    id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $skbp->getskbp->name }},
+                        Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $skbp->getskbp->name }}, kami
+                        ingin menginformasikan bahwa permohonan tersebut telah kami poroses. Kami menyimpulkan bahwa
+                        data kamu ...........
+                        </textarea>
+                </div>
+            </div> --}}
 
-                        <div id="faq-accordion-1" class="accordion p-5">
-                            <div class="accordion-item">
-                                <div id="faq-accordion-content-2" class="accordion-header">
-                                    {{-- <button class="accordion-button flex collapsed" type="button"
+            <div id="faq-accordion-1" class="accordion p-5">
+                <div class="accordion-item">
+                    <div id="faq-accordion-content-2" class="accordion-header">
+                        {{-- <button class="accordion-button flex collapsed" type="button"
                                         data-bs-toggle="collapse" data-bs-target="#faq-accordion-collapse-2"
                                         aria-expanded="false" aria-controls="faq-accordion-collapse-2">
                                         Upload File Tanda Terima <svg xmlns="http://www.w3.org/2000/svg"
@@ -130,50 +134,50 @@
                                         </svg>
                                     </button> --}}
 
-                                </div>
-                                <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
-                                    aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
-                                    <div class="intro-y box">
-                                        <div
-                                            class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
-                                            <label for="formFileSm"
-                                                class="form-label inline-block mb-2 text-gray-700"><img
-                                                    src="{{ asset('images/surat.png') }}" class="  w-60"
-                                                    alt="description of myimage"></label>
-                                            <div id="single-file-upload" class="p-5 ">
-                                                <div class="fallback">
-                                                    <input name="attachment" type="file" />
-                                                </div>
-                                                <div class="dz-message" data-dz-message>
-                                                    <div class="text-lg font-medium"> Upload File Revisi atau Tanda
-                                                        Terima
-                                                    </div>
-                                                    <div class="text-gray-600">click and upload file
-                                                    </div>
-                                                </div>
-                                            </div>
+                    </div>
+                    <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
+                        aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
+                        <div class="intro-y box">
+                            <div
+                                class="flex flex-col sm:flex-row items-center p-5 border-b bg-white shadow-md dark:border-dark-5">
+                                <label for="formFileSm" 
+                                class="form-label inline-block mb-2 text-gray-700"><img
+                                        src="{{ asset('images/surat.png') }}" class="  w-60"
+                                        alt="description of myimage"></label>
+                                <div id="single-file-upload" class="p-5 ">
+                                    <div class="fallback">
+                                        <input name="attachment" type="file" />
+                                    </div>
+                                    <div class="dz-message" data-dz-message>
+                                        <div class="text-lg font-medium"> Upload File Revisi atau Tanda
+                                            Terima
+                                        </div>
+                                        <div class="text-gray-600">click and upload file
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class=" w-full mt-5 flex">
-
-                            <a href="javascript:;" data-toggle="modal" data-target="#validasi"
-                                class="btn btn-primary mx-2 justify-center items-center"><i data-feather="edit"
-                                    class="w-4 h-4 mr-2"></i>Validasi SKBP</a>
-                            <a href="javascript:;" data-toggle="modal" data-target="#virtual_akun"
-                                class="btn btn-success mx-2 justify-center items-center"><i data-feather="user-check"
-                                    class="w-4 h-4 mr-2"></i>Virtual Account</a>
-                            <a href="javascript:;" data-toggle="modal" data-target="#revisi"
-                                class="btn btn-danger  mx-2 justify-center items-center"><i data-feather="x-circle"
-                                    class="w-4 h-4 mr-2"></i>Revisi</a>
-
-                        </div>
+                    </div>
                 </div>
             </div>
+
+            <div class=" w-full mt-5 flex">
+
+                <a href="javascript:;" data-toggle="modal" data-target="#validasi"
+                    class="btn btn-primary mx-2 justify-center items-center"><i data-feather="edit"
+                        class="w-4 h-4 mr-2"></i>Validasi SKBP</a>
+                <a href="javascript:;" data-toggle="modal" data-target="#virtual_akun"
+                    class="btn btn-success mx-2 justify-center items-center"><i data-feather="user-check"
+                        class="w-4 h-4 mr-2"></i>Virtual Account</a>
+                <a href="javascript:;" data-toggle="modal" data-target="#revisi"
+                    class="btn btn-danger  mx-2 justify-center items-center"><i data-feather="x-circle"
+                        class="w-4 h-4 mr-2"></i>Revisi</a>
+
+            </div>
         </div>
+    </div>
+    </div>
     </div>
     </div>
     <!-- END: Post Content -->
@@ -387,11 +391,12 @@
                         class="form-control block w-full px-10  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
                         id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $skbp->getskbp->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $skbp->getskbp->name }},
                                 </textarea>
-
+                   
                     <div class="p-5">
+                    
                         <div id="faq-accordion-content-2" class="accordion-header">
                         </div>
-                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
+                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse tampil"
                             aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
                             <div class="intro-y box">
                                 <div
@@ -420,23 +425,23 @@
                     </div>
 
 
-                    <div class="intro-y box mt-5 ml-5">
-                        <div id="icon-button" class="">
-                            <div class="preview">
-                                <div class="flex ">
-                                    <div>
-                                        <input type="hidden" class="form-control" name="status" id="status"
-                                            value="virtual_akun">
-                                        <button class=" btn btn-success w-full mb-2 ">
-                                            <i data-feather="user" class=" mr-2"></i>
-                                            Virtual Akun
-                                        </button>
-                                    </div>
-                                    <div>
+                        <div class="intro-y box mt-5 ml-5">
+                            <div id="icon-button" class="">
+                                <div class="preview">
+                                    <div class="flex ">
+                                        <div>
+                                            <input type="hidden" class="form-control" name="status" id="status"
+                                                value="virtual_akun">
+                                            <button class=" btn btn-success w-full mb-2 ">
+                                                <i data-feather="user" class=" mr-2"></i>
+                                                Virtual Akun
+                                            </button>
+                                        </div>
+                                        <div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
                 </form>
 
             </div>

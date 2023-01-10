@@ -302,7 +302,7 @@
                         </div>
 
 
-                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
+                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse tampil"
                             aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
                             <div class="intro-y w-full box">
                                 <div class="mt-5 p-5">
@@ -356,7 +356,7 @@
 
                             </button>
                         </div>
-                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
+                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse tampil"
                             aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
                             <div class="intro-y w-full box">
                                 <div class="mt-5 p-5">
@@ -474,7 +474,7 @@
 
                             </button>
                         </div>
-                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
+                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse tampil"
                             aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
                             <div class="intro-y w-full box">
                                 <div class="mt-5 p-5">
@@ -661,7 +661,7 @@
 
                             </button>
                         </div>
-                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse"
+                        <div id="faq-accordion-collapse-2" class="accordion-collapse collapse tampil"
                             aria-labelledby="faq-accordion-content-2" data-bs-parent="#faq-accordion-1">
                             <div class="intro-y w-full box">
                                 <div class="mt-5 p-5">

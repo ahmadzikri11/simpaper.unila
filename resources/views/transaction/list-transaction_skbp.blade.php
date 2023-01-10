@@ -100,6 +100,7 @@
                     class=" mb-2 ml-2 border filter border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none">
                     <option value="">Pilih Status </option>
                     <option value="Tervalidasi">Tervalidasi</option>
+                    <option value="virtual_akun">VA_akun</option>
                     <option value="Revisi">Revisi</option>
                     <option value="proses">Diproses</option>
                     {{-- <option value="Telah Diperbaiki">Telah Diperbaiki</option>
