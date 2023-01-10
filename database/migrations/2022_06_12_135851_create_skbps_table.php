@@ -19,7 +19,7 @@ class CreateSkbpsTable extends Migration
             $table->string('ktm')->nullable();
             $table->string('spp')->nullable();
             $table->string('bukti')->nullable();
-            $table->string('no_surat');
+            $table->string('no_surat')->nullable();
             $table->timestamps();
             $table->string('status')->default('proses');
         });
