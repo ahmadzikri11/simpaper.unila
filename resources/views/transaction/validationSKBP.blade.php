@@ -389,7 +389,7 @@
                     @method('PUT')
                     <textarea name="message" id="message"
                         class="form-control block w-full px-10  text-base font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none "
-                        id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $skbp->getskbp->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $skbp->getskbp->name }},
+                        id="exampleFormControlTextarea1" rows="3">Selamat siang {{ $skbp->getskbp->name }}, Kami dari UPT Perpustakaan Universitas Lampung. Atas permohonan {{ $skbp->getskbp->name }},. . . . . 
                                 </textarea>
                    
                     <div class="p-5">
@@ -409,7 +409,7 @@
                                             <input name="attachment" type="file" />
                                         </div>
                                         <div class="dz-message" data-dz-message>
-                                            <div class="text-lg font-medium"> Upload File Yang Perlu Direvisi
+                                            <div class="text-lg font-medium"> Upload File Virtual Akun
                                             </div>
                                             <div class="text-gray-600">click and upload file
                                             </div>
