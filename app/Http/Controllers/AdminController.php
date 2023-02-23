@@ -405,7 +405,7 @@ class AdminController extends Controller
             'prodi' => $transaction->transactions->getprodi->prodi,
             'fakultas' => $transaction->transactions->getfakultas->fakultas,
             'no_surat' => $transaction->no_surat,
-            'date' => date("d m Y"),
+            'date' => date("d M Y"),
             // 'qr' => base64_encode(QrCode::format('svg')->size(80)->errorCorrection('H')->generate('http://simpaper.unila.ac.id/qrrecord/' . $uuid . '/simpaper/unila')),
 
         ];
